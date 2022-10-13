@@ -3,6 +3,7 @@ obj/*
 .vs/*
 Front/bin/*
 Front/obj/*
+Front/.vs*
 Entities/bin/*
 Entities/obj/*
 Hierba-Santa.snl/*
