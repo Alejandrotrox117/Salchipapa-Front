@@ -1,0 +1,8 @@
+bin/*
+obj/*
+.vs/*
+Front/bin/*
+Front/obj/*
+Entities/bin/*
+Entities/obj/*
+Hierba-Santa.snl/*
