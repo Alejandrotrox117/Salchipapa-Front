@@ -27,19 +27,18 @@
 
             <TabItem Header="Entrantes">
                 <ScrollViewer
-                    Margin="0,1,0,-1"
+                    
                     CanContentScroll="True"
                     FlowDirection="LeftToRight"
                     HorizontalScrollBarVisibility="Hidden"
                     VerticalScrollBarVisibility="Auto">
                     <ItemsControl
                         x:Name="itemCardFlipper"
-           
                         Width="795"
                         ItemsSource="{Binding Orders}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" Rows="{Binding cant}" />
+                                <WrapPanel Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
@@ -48,7 +47,7 @@
                                     Grid.Row="1"
                                     Width="250"
                                     Height="340"
-                                    Margin="0,30,0,0">
+                                    Margin="10,30,0,0">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="55" />
@@ -208,18 +207,19 @@
                                 </materialDesign:Card>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                       
+
                     </ItemsControl>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="Finalizados">
-               
-                 
-                
-                
-                
-                
-                
+                <ItemsControl>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
             </TabItem>
         </TabControl>
         <!--#endregion TabItem-->

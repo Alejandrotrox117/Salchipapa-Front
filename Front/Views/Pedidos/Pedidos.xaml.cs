@@ -41,26 +41,15 @@ namespace Front.Views.Pedidos
             this.client = client;
 
         }
-
-
-
         private async void Main()
         {
             string response = await GetHttp();
-
             List<Orders> returnedData = JsonConvert.DeserializeObject<List<Orders>>(response);
-
-
             Order = new ObservableCollection<Orders>(returnedData);
-
-
             if (returnedData != null)
             {
                 itemCardFlipper.ItemsSource = Order;
-                foreach (Orders o in returnedData)
-                {
-                    o.cant = returnedData.Count();
-                }
+                
             }
             else
             {
@@ -86,7 +75,8 @@ namespace Front.Views.Pedidos
                 {
                     var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString());
                     this.Order.Add(returned[0]);
-
+                    itemCardFlipper.Focus();
+                        
                 });
             });
         }
