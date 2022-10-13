@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="logo.png" />
+    <None Remove="Views\logo.png" />
+    <None Remove="Views\logoFondoBlanco.png" />
+    <None Remove="Views\Pedidos\Batido-pie.jpg" />
+    <None Remove="Views\Productos\Batido-pie.jpg" />
+    <None Remove="Views\Stock\Batido-pie.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IMG\" />
+    <Folder Include="Views\Administracion\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Graph" Version="4.36.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.30" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="SocketIOClient" Version="3.0.6" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png" />
+    <Resource Include="Views\logo.png" />
+    <Resource Include="Views\logoFondoBlanco.png" />
+    <Resource Include="Views\Pedidos\Batido-pie.jpg" />
+    <Resource Include="Views\Productos\Batido-pie.jpg" />
+    <Resource Include="Views\Stock\Batido-pie.jpg" />
+  </ItemGroup>
+
+</Project>

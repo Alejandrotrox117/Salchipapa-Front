@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Views\Clientes\Clientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Clientes\FormCliente.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Empleados\Empleados.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Inicio.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Metodos de pago\MetodosPagos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pedidos\CardFlipper.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Productos\FormProducto.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Productos\Productos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Stock\Stock.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Clientes\Clientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Clientes\FormCliente.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Empleados\Empleados.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Inicio.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Metodos de pago\MetodosPagos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pedidos\CardFlipper.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pedidos\Pedidos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Productos\FormProducto.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Productos\Productos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Stock\Stock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Style\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Style\Dictionary1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

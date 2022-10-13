@@ -1,0 +1,107 @@
+﻿<UserControl
+    x:Class="Front.Views.Productos.Productos"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Productos"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    Width="795"
+    Height="558"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    mc:Ignorable="d">
+    <Border Background="White">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="itemsPedidos">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Margin="0,0,0,0" Columns="3" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <!--#endregion-->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!--#region cuerpo principal del card-->
+
+                        <materialDesign:Card
+                            Width="200"
+                            Height="300"
+                            Background="GhostWhite">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <materialDesign:Badged
+                                    Badge="{Binding cantidad}"
+                                    BadgeBackground="#00695c"
+                                    BadgeForeground="White">
+                                    <Image
+                                        Height="140"
+                                        Source="/Views/Productos/Batido-pie.jpg"
+                                        Stretch="Fill" />
+                                </materialDesign:Badged>
+                                <materialDesign:Badged
+                                    Grid.Row="0"
+                                    Margin="0,0,14,-10"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Badge="{Binding cantidad}"
+                                    BadgeBackground="White"
+                                    BadgeForeground="Black"
+                                    FlowDirection="LeftToRight">
+                                    <Button
+                                        Grid.Row="0"
+                                        Margin="0,0,0,0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Background="#00695c"
+                                        BorderBrush="White"
+                                        Cursor="Hand"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                                        <materialDesign:PackIcon
+                                            Width="32"
+                                            Height="36"
+                                            Foreground="White"
+                                            Kind="BookmarkCheckOutline" />
+                                    </Button>
+                                </materialDesign:Badged>
+                                <StackPanel Grid.Row="1" Margin="8,15,8,8">
+                                    <TextBlock
+                                        Margin="0,0,0,3"
+                                        HorizontalAlignment="Center"
+                                        FontSize="15"
+                                        FontWeight="Bold"
+                                        Text="{Binding producto}" />
+                                    <TextBlock
+                                        Margin="0,0,0,4"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Text="Toppings:" />
+                                    <TextBlock
+                                        Margin="0,0,0,3"
+                                        VerticalAlignment="Center"
+                                        FontSize="13"
+                                        Text="{Binding descripcion}"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:Card>
+                        <!--#endregion-->
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <!--<system:String>Item #1</system:String>
+                <system:String>Item #2</system:String>
+                <system:String>Item #3</system:String>
+                <system:String>Item #4</system:String>
+                <system:String>Item #5</system:String>
+                <system:String>Item #6</system:String>-->
+            </ItemsControl>
+        </ScrollViewer>
+    </Border>
+</UserControl>
