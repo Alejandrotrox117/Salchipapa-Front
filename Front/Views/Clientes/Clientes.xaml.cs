@@ -64,49 +64,43 @@ namespace Front.Views.Clientes
         }
 
 
-        public async void DeleteHttp(string ci)
+        public async void Delete(string ci)
         {
-
-
-
-
-
-            string urll = ("http://localhost:3000/api/clients/" + ci);
+            string urll = ("http://localhost:3000/api/clients/"+ci);
             var httpResponse = await client.DeleteAsync(urll);
             var result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
-
-                MessageBox.Show(result + "Se ha eliminado correctamente");
+                MessageBox.Show("Se ha eliminado correctamente");
             }
             else
             {
-                MessageBox.Show(result + "Error");
+                MessageBox.Show("Error"+result);
             }
 
         }
 
-        public void eliminar()
+        public void EliminateElement()
         {
             if (DataGridClientes.SelectedItems.Count > 0)
             {
                 List<clientes> miLista = (List<clientes>)DataGridClientes.ItemsSource;
-
+                //Certifica si la lista esta vacia
                 if (miLista != null)
                 {
                     for (int i = 0; i < DataGridClientes.SelectedItems.Count; i++)
                     {
+                        //Obtiene el indice de la fila seleccionada mediante el boton
                         int indice = DataGridClientes.Items.IndexOf(DataGridClientes.SelectedItems[i]);
-
-                        miLista.RemoveAt(indice);
-                        foreach (clientes p in miLista)
-                        {
-
-                            DeleteHttp(p.Cedula);
-                        }
-
+                        //Almacena en la variable item el item seleccionado del datagrid
+                        clientes item = DataGridClientes.SelectedItem as clientes;
+                        //almacena en la variable id la cedula seleccionada
+                        string id = item.Cedula;
+                        //En la variable id almacena la cedula y la pasa por parametros al metodo
+                        Delete(id); 
+                        //Remueve la fila completa seleccionada solo visualmente
+                        miLista.RemoveAt(indice); 
                     }
-
                     DataGridClientes.ItemsSource = null;
                     DataGridClientes.ItemsSource = miLista;
                 }
@@ -115,6 +109,13 @@ namespace Front.Views.Clientes
             {
                 MessageBox.Show("Debe seleccionar por lo menos una fila.");
             }
+        }
+           
+        public void EditElement()
+        {
+            DataGridClientes.IsReadOnly= false;
+          
+
         }
 
 
@@ -125,19 +126,19 @@ namespace Front.Views.Clientes
 
         }
 
-
-
         private void DataGridClientes_Initialized(object sender, EventArgs e)
         {
             Main();
         }
 
-
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
+            EliminateElement();
+        }
 
-
-            eliminar();
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            EditElement();
         }
     }
 }

@@ -17,7 +17,10 @@
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border  Background="White" CornerRadius="10" Loaded="Grid_Loaded">
+    <Border
+        Background="White"
+        CornerRadius="10"
+        Loaded="Grid_Loaded">
         <Grid x:Name="Principal" Background="Transparent">
             <!--#region CONTENIDO-->
             <Grid
@@ -67,21 +70,49 @@
                     Loaded="MyFrame_Loaded"
                     NavigationUIVisibility="Hidden" />
 
-                <materialDesign:Snackbar
-                    x:Name="SnackbarNotify"
+                <materialDesign:Badged
+                    Name="SnackbarBadge"
                     Grid.Row="1"
                     Margin="251,521,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    VerticalContentAlignment="Center"
-                    Panel.ZIndex="1"
-                    AutomationProperties.IsOffscreenBehavior="Default"
-                    FlowDirection="LeftToRight"
-                    IsActive="False"
-                    RenderTransformOrigin="0.5,0.5">
-                    <materialDesign:SnackbarMessage ActionContent="Aceptar" Content="Nuevo Pedido" />
-                </materialDesign:Snackbar>
+                    Badge="1">
+                    <materialDesign:Snackbar
+                        x:Name="SnackbarNotify"
+                        Grid.Row="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Center"
+                        Panel.ZIndex="1"
+                        Background="#00695c"
+                        FlowDirection="LeftToRight"
+                        IsActive="False">
+                        <materialDesign:SnackbarMessage Height="24">
+                            <Grid Width="256">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="7,-2,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Text="¡Nuevo pedido!" />
+                                <Button
+                                    x:Name="BtnAceptarPedido"
+                                    Grid.Column="1"
+                                    Margin="40,-9,-56,1"
+                                    Background="#20786b"
+                                    BorderBrush="Transparent"
+                                    Click="BtnAceptarPedido_Click"
+                                    Content="Aceptar" />
+                            </Grid>
+                        </materialDesign:SnackbarMessage>
+                    </materialDesign:Snackbar>
+                </materialDesign:Badged>
             </Grid>
+
             <!--#endregion Contenido-->
             <!--#region SIDEBAR-->
             <Grid

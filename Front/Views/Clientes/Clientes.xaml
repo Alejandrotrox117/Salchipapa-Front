@@ -60,10 +60,13 @@
                 HeadersVisibility="All"
                 HorizontalGridLinesBrush="#00695c"
                 Initialized="DataGridClientes_Initialized"
+                IsReadOnly="True"
                 ItemsSource="{Binding Source=clientes}"
-                RowBackground="Transparent" SelectionMode="Single">
+                RowBackground="Transparent"
+                SelectedIndex="1"
+                SelectedItem="{Binding SelectItm}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Opciones" >
+                    <DataGridTemplateColumn Header="Opciones">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <DockPanel>
@@ -71,28 +74,23 @@
                                         Name="BtnEliminar"
                                         Width="50"
                                         Background="#f44c58"
-                                        BorderBrush="Transparent" Click="BtnEliminar_Click">
+                                        BorderBrush="Transparent"
+                                        Click="BtnEliminar_Click">
                                         <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                     </Button>
                                     <Button
                                         Name="BtnEditar"
                                         Width="50"
                                         Background="#00695c"
-                                        BorderBrush="Transparent">
+                                        BorderBrush="Transparent"
+                                        Click="BtnEditar_Click">
                                         <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                     </Button>
                                 </DockPanel>
                             </DataTemplate>
-
                         </DataGridTemplateColumn.CellTemplate>
-
                     </DataGridTemplateColumn>
-                    <!--<DataGridTextColumn Header="{Binding Cedula}" />
-                    <DataGridTextColumn Header="{Binding Nombre}" />
-                    <DataGridTextColumn Header="{Binding Apellido}" />
-                    <DataGridTextColumn Header="{Binding Telefono}" />
-                    <DataGridTextColumn Header="{Binding Direccion}" />-->
-
+                    <DataGridTextColumn x:Name="columnCedula" Header="{Binding Cedula}" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -115,9 +113,6 @@
                     Foreground="White"
                     Kind="ClipboardPlusOutline" />
             </Button>
-
-
-
             <!--#endregion DatagridClientes-->
             <Frame
                 x:Name="FrameClientes"

@@ -12,13 +12,13 @@ namespace Entities
     public class clientes
     {
 
-        public clientes(string name, string surname, string dir, string ci, string telf)
+        public clientes(string name, string surname, string address, string ci, string phone)
         {
             Nombre = name;
             Apellido = surname;
-            Direccion = dir;
+            Direccion = address;
             Cedula = ci;
-            Telefono = telf;
+            Telefono = phone;
 
         }
 

@@ -39,9 +39,9 @@ namespace Front.Views.Clientes
         {
             string url = ("http://localhost:3000/api/clients");
 
-            var sol = new HttpClient();
+            var client = new HttpClient();
 
-            clientes prueba = new clientes(TxtCi.Text, TxtNombre.Text, TxtApellido.Text, TxtDir.Text, TxtTelef.Text)
+            clientes cliente = new clientes(TxtCi.Text, TxtNombre.Text, TxtApellido.Text, TxtDir.Text, TxtTelef.Text)
             {
                 Nombre = TxtNombre.Text,
                 Apellido = TxtApellido.Text,
@@ -51,10 +51,12 @@ namespace Front.Views.Clientes
 
             };
 
-            var data = JsonSerializer.Serialize<clientes>(prueba);
+            var data = JsonSerializer.Serialize<clientes>(cliente);
             HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await sol.PostAsync(url, content);
-            //evaluar si la soliciotud ha sido exitosa
+            var httpResponse = await client.PostAsync(url, content);
+            
+            
+            //evaluar si la solicitud ha sido exitosa
             var result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {

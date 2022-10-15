@@ -13,12 +13,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
-using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 
 namespace Front
@@ -30,16 +29,9 @@ namespace Front
     {
         private SocketIO client;
         Pedidos pedidos;
-
-
-
-
         public MainWindow()
         {
             InitializeComponent();
-
-
-
         }
 
         public async Task<string> GetHttp()
@@ -48,13 +40,10 @@ namespace Front
             string url = ("http://localhost:3000/api/socket");
             WebRequest oRequest = WebRequest.Create(url);
             WebResponse oResponse = oRequest.GetResponse();
-
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
-
         }
-
-
+        
         public async void SocketClient()
         {
             this.client = new SocketIO("http://localhost:3000");
@@ -66,11 +55,13 @@ namespace Front
 
             this.client.On("newOrder", async response =>
              {
-                 MessageBox.Show("new order");
+                    
+                
                  this.Dispatcher.Invoke(() =>
                  {
-                     SnackbarNotify.IsActive = true;
+                    SnackbarNotify.IsActive = true;
                     
+                     
                  });
              });
             await this.client.ConnectAsync();
@@ -146,10 +137,13 @@ namespace Front
         }
         private void MyFrame_Loaded(object sender, RoutedEventArgs e)
         {
-
+            SocketClient();
 
         }
 
-       
+        private void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.NavigationService.Navigate(pedidos);
+        }
     }
 }

@@ -49,7 +49,6 @@ namespace Front.Views.Pedidos
             if (returnedData != null)
             {
                 itemCardFlipper.ItemsSource = Order;
-                
             }
             else
             {
