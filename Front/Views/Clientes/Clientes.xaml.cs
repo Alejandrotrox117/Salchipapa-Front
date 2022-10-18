@@ -95,7 +95,7 @@ namespace Front.Views.Clientes
                         //Almacena en la variable item el item seleccionado del datagrid
                         clientes item = DataGridClientes.SelectedItem as clientes;
                         //almacena en la variable id la cedula seleccionada
-                        string id = item.Cedula;
+                        string id = item.ci;
                         //En la variable id almacena la cedula y la pasa por parametros al metodo
                         Delete(id); 
                         //Remueve la fila completa seleccionada solo visualmente
@@ -113,7 +113,7 @@ namespace Front.Views.Clientes
            
         public void EditElement()
         {
-            DataGridClientes.IsReadOnly= false;
+            
           
 
         }

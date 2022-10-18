@@ -32,6 +32,7 @@ namespace Front
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         public async Task<string> GetHttp()
@@ -46,8 +47,7 @@ namespace Front
         
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://localhost:3000");
-
+            this.client = new SocketIO("http://192.168.1.105:3000");
             //this.client.OnConnected += (sender, arg) =>
             //{
             //    MessageBox.Show("Conectado al servidor");
@@ -55,17 +55,12 @@ namespace Front
 
             this.client.On("newOrder", async response =>
              {
-                    
-                
                  this.Dispatcher.Invoke(() =>
                  {
-                    SnackbarNotify.IsActive = true;
-                    
-                     
+                    SnackbarNotify.IsActive = true;                     
                  });
              });
             await this.client.ConnectAsync();
-
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -91,25 +86,19 @@ namespace Front
         {
             MyFrame.NavigationService.Navigate(pedidos);
         }
-
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new Clientes());
-
         }
-
         private void BtnProductos_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new Productos());
-
         }
-
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             //Para cerrar la aplicación
             Application.Current.Shutdown();
         }
-
         public void RelojDigital()
         {
             DispatcherTimer timer = new DispatcherTimer();
@@ -117,7 +106,6 @@ namespace Front
             timer.Tick += timer_Tick;
             timer.Start();
             txtFecha.Text = DateTime.Now.ToString("D");
-
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -126,21 +114,15 @@ namespace Front
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new Inicio());
-
         }
-
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {
-
             MyFrame.NavigationService.Navigate(new Stock());
-
         }
         private void MyFrame_Loaded(object sender, RoutedEventArgs e)
         {
             SocketClient();
-
         }
-
         private void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);

@@ -12,23 +12,23 @@ namespace Entities
     public class clientes
     {
 
-        public clientes(string name, string surname, string address, string ci, string phone)
+        public clientes()
         {
-            Nombre = name;
-            Apellido = surname;
-            Direccion = address;
-            Cedula = ci;
-            Telefono = phone;
+            //Nombre = name;
+            //Apellido = surname;
+            //Direccion = address;
+            //Cedula = ci;
+            //Telefono = phone;
 
         }
 
 
-        public string Cedula { get; set; }
-        public string Nombre { get; set; }
+        public string ci { get; set; }
+        public string name { get; set; }
 
-        public string Apellido { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
+        public string surname { get; set; }
+        public string address { get; set; }
+        public string phone { get; set; }
 
 
         //public bool Error()
@@ -36,7 +36,7 @@ namespace Entities
         //    if (ci is null || name is null || surname is null ||
         //        dir is null || telf is null)
         //    {
-        //        return true;
+        //        return true  
         //    }
         //    else
         //    {

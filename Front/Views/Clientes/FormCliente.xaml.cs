@@ -41,26 +41,24 @@ namespace Front.Views.Clientes
 
             var client = new HttpClient();
 
-            clientes cliente = new clientes(TxtCi.Text, TxtNombre.Text, TxtApellido.Text, TxtDir.Text, TxtTelef.Text)
+            clientes cliente = new clientes()
             {
-                Nombre = TxtNombre.Text,
-                Apellido = TxtApellido.Text,
-                Cedula = TxtCi.Text,
-                Direccion = TxtDir.Text,
-                Telefono = TxtTelef.Text
+                name = TxtNombre.Text,
+                surname = TxtApellido.Text,
+                ci = TxtCi.Text,
+                address = TxtDir.Text,
+                phone = TxtTelef.Text
 
             };
 
             var data = JsonSerializer.Serialize<clientes>(cliente);
+            MessageBox.Show(data.ToString());
             HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
             var httpResponse = await client.PostAsync(url, content);
-            
-            
             //evaluar si la solicitud ha sido exitosa
             var result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
-
                 MessageBox.Show("Se ha enviado los datos");
             }
             else

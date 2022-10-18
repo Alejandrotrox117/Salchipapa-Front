@@ -49,6 +49,7 @@
                 Margin="0,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                AutoGenerateColumns="False"
                 Background="GhostWhite"
                 CanUserAddRows="False"
                 CanUserDeleteRows="False"
@@ -61,10 +62,9 @@
                 HorizontalGridLinesBrush="#00695c"
                 Initialized="DataGridClientes_Initialized"
                 IsReadOnly="True"
-                ItemsSource="{Binding Source=clientes}"
+                ItemsSource="{Binding clientes}"
                 RowBackground="Transparent"
-                SelectedIndex="1"
-                SelectedItem="{Binding SelectItm}">
+                SelectedIndex="1">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Opciones">
                         <DataGridTemplateColumn.CellTemplate>
@@ -90,10 +90,13 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn x:Name="columnCedula" Header="{Binding Cedula}" />
+                    <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
+                    <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
+                    <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
+                    <DataGridTextColumn Binding="{Binding phone}" Header="Teléfono" />
+                    <DataGridTextColumn Binding="{Binding address}" Header="Dirección" />
                 </DataGrid.Columns>
             </DataGrid>
-
             <Button
                 x:Name="BtnAgregar"
                 Grid.Row="3"
