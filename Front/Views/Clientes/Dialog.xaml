@@ -84,6 +84,7 @@
                             Height="46"
                             materialDesign:ColorZoneAssist.Background="#00695c"
                             BorderBrush="#00695c"
+                            BorderThickness="2"
                             Foreground="#FF00695C"
                             Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                         <!--#endregion-->
@@ -100,6 +101,8 @@
                             Grid.Column="1"
                             Width="250"
                             Height="46"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
                             Foreground="#FF00695C"
                             Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                         <!--#endregion-->
@@ -114,6 +117,8 @@
                         Height="100"
                         VerticalAlignment="Top"
                         materialDesign:HintAssist.Hint="This is a text area"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextWrapping="Wrap"
                         VerticalScrollBarVisibility="Auto" />
