@@ -121,9 +121,9 @@ namespace Front.Views.Clientes
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            FormCliente form = new FormCliente();
-            FrameClientes.Content = form;
-
+            //FormCliente form = new FormCliente();
+            //FrameClientes.Content = form;
+            DialogHostClientes.IsOpen = true;
         }
 
         private void DataGridClientes_Initialized(object sender, EventArgs e)

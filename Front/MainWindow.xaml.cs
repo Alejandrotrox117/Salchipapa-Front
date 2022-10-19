@@ -113,7 +113,7 @@ namespace Front
         }
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Inicio());
+            MyFrame.NavigationService.Navigate(new Dialog());
         }
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {

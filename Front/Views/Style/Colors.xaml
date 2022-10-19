@@ -15,14 +15,46 @@
 
     </Style>
 
-
-    <Style x:Key="PrimaryColorGrid" TargetType="GridViewColumnHeader">
-        <!--  Set any properties you want to set  -->
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Foreground" Value="#00695c" />
-        <Setter Property="FontWeight" Value="Bold" />
+    <Style x:Key="TexboxColor" TargetType="TextBox">
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="MinWidth" Value="250" />
+        <Setter Property="MinWidth" Value="250" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border
+                        x:Name="border"
+                        Background="#fff"
+                        BorderBrush="#FF00695C"
+                        BorderThickness="2"
+                        CornerRadius="3">
+                        <ScrollViewer
+                            x:Name="PART_ContentHost"
+                            Focusable="false"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Hidden" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#909090" />
+                            <Setter Property="Foreground" Value="#FF00695C" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="Foreground" Value="#FF00695C" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF00695C" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
+
+
+
+
 
 
 </ResourceDictionary>

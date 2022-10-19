@@ -14,6 +14,7 @@
     <Border Background="White">
         <Grid x:Name="GridClientes">
             <!--#region Filas y columnas-->
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition />
@@ -105,6 +106,7 @@
                 Height="70"
                 Margin="0,0,0,20"
                 VerticalAlignment="Bottom"
+                Panel.ZIndex="1"
                 Background="#00695c"
                 BorderBrush="Transparent"
                 Click="BtnAgregar_Click"
@@ -116,12 +118,158 @@
                     Foreground="White"
                     Kind="ClipboardPlusOutline" />
             </Button>
+            <materialDesign:DialogHost
+                x:Name="DialogHostClientes"
+                Grid.RowSpan="5"
+                Grid.ColumnSpan="5"
+                Background="#00695c"
+                DialogTheme="Inherit"
+                IsOpen="False">
+                <materialDesign:DialogHost.DialogContent>
+                    <StackPanel Margin="16">
+                        <!--#region TITULO DEL DIALOG-->
+                        <TextBlock
+                            Margin="0,0,0,10"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="#00695c"
+                            Text="Añadir Clientes" />
+                        <!--#endregion-->
+                        <Grid>
+                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="19" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <!--#endregion-->
+                            <!--#region Titulo y texbox NOMBRE-->
+                            <TextBlock
+                                Grid.Column="0"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Style="{StaticResource PrimaryColor}"
+                                Text="Nombre" />
+                            <TextBox
+                                Grid.Row="1"
+                                Width="190"
+                                Height="46"
+                                AcceptsReturn="True"
+                                Style="{StaticResource TexboxColor}"
+                                TextWrapping="Wrap" />
+                            <!--#endregion TITULO Y TEXBOX NOMBRE-->
+                            <!--#region TITULO APELLIDO Y TEXBLOXK APELLIDO-->
+                            <TextBlock
+                                Grid.Column="1"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Style="{StaticResource PrimaryColor}"
+                                Text="Apellido" />
+                            <TextBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="190"
+                                Height="46"
+                                AcceptsReturn="True"
+                                Style="{StaticResource TexboxColor}"
+                                TextWrapping="Wrap" />
+                            <!--#endregion-->
+                            <!--#region TITULO Y COMBOBOX CEDULA-->
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Style="{StaticResource PrimaryColor}"
+                                Text="Cédula" />
+                            <ComboBox
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Width="250"
+                                Height="46"
+                                Foreground="#FF00695C"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                            <!--#endregion-->
+                            <!--#region TITULO TELEFONO Y COMBOBOX-->
+                            <TextBlock
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Style="{StaticResource PrimaryColor}"
+                                Text="Teléfono" />
+                            <ComboBox
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Width="250"
+                                Height="46"
+                                Foreground="#FF00695C"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                            <!--#endregion-->
+                        </Grid>
+                        <TextBlock
+                            Margin="0,10,1,5"
+                            FontSize="15"
+                            FontWeight="Bold"
+                            Style="{StaticResource PrimaryColor}"
+                            Text="Dirección" />
+                        <TextBox
+                            Height="100"
+                            VerticalAlignment="Top"
+                            materialDesign:HintAssist.Hint="This is a text area"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button
+                                Margin="0,8,108,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="Aceptar"
+                                Foreground="#00695c"
+                                IsDefault="True">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                        True
+                                    </system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <Button
+                                Margin="0,8,8,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="Cancelar"
+                                Foreground="#00695c"
+                                IsCancel="True">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                        False
+                                    </system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:DialogHost.DialogContent>
+            </materialDesign:DialogHost>
+
+
+
+
+
             <!--#endregion DatagridClientes-->
-            <Frame
+            <!--<Frame
                 x:Name="FrameClientes"
                 Grid.RowSpan="5"
                 Grid.ColumnSpan="5"
-                Margin="0,10,10,10" />
+                Margin="0,10,10,10" />-->
         </Grid>
     </Border>
 </UserControl>

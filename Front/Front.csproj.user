@@ -5,6 +5,9 @@
     <Compile Update="Views\Clientes\Clientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Clientes\Dialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Clientes\FormCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Clientes\Clientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Clientes\Dialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Clientes\FormCliente.xaml">

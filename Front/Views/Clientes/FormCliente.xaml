@@ -10,8 +10,8 @@
     Height="580"
     Background="Transparent"
     mc:Ignorable="d">
-    <Border Background="White">
-        <Grid x:Name="GridDatosClientes">
+    <Border Background="Transparent">
+        <Grid x:Name="GridDatosClientes" Background="white">
             <!--#region Filas y columnas-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20" />
