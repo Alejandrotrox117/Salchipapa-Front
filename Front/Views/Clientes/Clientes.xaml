@@ -150,69 +150,99 @@
                             </Grid.RowDefinitions>
                             <!--#endregion-->
                             <!--#region Titulo y texbox NOMBRE-->
-                            <TextBlock
-                                Grid.Column="0"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Style="{StaticResource PrimaryColor}"
-                                Text="Nombre" />
                             <TextBox
                                 Grid.Row="1"
-                                Width="190"
-                                Height="46"
+                                Width="180"
+                                Height="50"
+                                Margin="0,0,5,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Nombre"
                                 AcceptsReturn="True"
-                                Style="{StaticResource TexboxColor}"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
                             <!--#endregion TITULO Y TEXBOX NOMBRE-->
-                            <!--#region TITULO APELLIDO Y TEXBLOXK APELLIDO-->
-                            <TextBlock
-                                Grid.Column="1"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Style="{StaticResource PrimaryColor}"
-                                Text="Apellido" />
+                            <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
+
                             <TextBox
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Width="190"
-                                Height="46"
+                                Width="180"
+                                Height="50"
+                                Margin="5"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Apellido"
                                 AcceptsReturn="True"
-                                Style="{StaticResource TexboxColor}"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
                             <!--#endregion-->
                             <!--#region TITULO Y COMBOBOX CEDULA-->
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="0"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Style="{StaticResource PrimaryColor}"
-                                Text="Cédula" />
+
                             <ComboBox
                                 Grid.Row="3"
                                 Grid.Column="0"
-                                Width="250"
-                                Height="46"
+                                Width="65"
+                                Height="48"
+                                Margin="0,0,40,0"
+                                HorizontalAlignment="Left"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
                                 Foreground="#FF00695C"
-                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                <ComboBoxItem Content="V-" />
+                                <ComboBoxItem Content="J-" />
+                                <ComboBoxItem Content="E-" />
+                            </ComboBox>
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Width="120"
+                                Height="49"
+                                Margin="62,0,0,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Cédula"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextWrapping="Wrap" />
                             <!--#endregion-->
                             <!--#region TITULO TELEFONO Y COMBOBOX-->
-                            <TextBlock
-                                Grid.Row="2"
-                                Grid.Column="1"
-                                FontSize="15"
-                                FontWeight="Bold"
-                                Style="{StaticResource PrimaryColor}"
-                                Text="Teléfono" />
+
                             <ComboBox
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Width="250"
-                                Height="46"
+                                Width="65"
+                                Height="48"
+                                Margin="0,0,40,0"
+                                HorizontalAlignment="Left"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
                                 Foreground="#FF00695C"
-                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                <ComboBoxItem Content="V-" />
+                                <ComboBoxItem Content="J-" />
+                                <ComboBoxItem Content="E-" />
+                            </ComboBox>
+                            <TextBox
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                Width="120"
+                                Height="49"
+                                Margin="60,0,0,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Teléfono"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextWrapping="Wrap" />
                             <!--#endregion-->
                         </Grid>
+                        <!--#endregion-->
                         <TextBlock
                             Margin="0,10,1,5"
                             FontSize="15"
@@ -222,7 +252,10 @@
                         <TextBox
                             Height="100"
                             VerticalAlignment="Top"
-                            materialDesign:HintAssist.Hint="This is a text area"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Escriba la dirección"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             TextWrapping="Wrap"
                             VerticalScrollBarVisibility="Auto" />

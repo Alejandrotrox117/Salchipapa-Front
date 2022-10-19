@@ -24,5 +24,10 @@ namespace Front.Views.Clientes
         {
             InitializeComponent();
         }
+
+        private void ComboBox_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }
