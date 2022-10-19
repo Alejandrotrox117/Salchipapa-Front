@@ -82,6 +82,8 @@
                             Grid.Column="0"
                             Width="250"
                             Height="46"
+                            materialDesign:ColorZoneAssist.Background="#00695c"
+                            BorderBrush="#00695c"
                             Foreground="#FF00695C"
                             Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                         <!--#endregion-->
