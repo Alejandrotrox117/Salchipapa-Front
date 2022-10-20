@@ -125,7 +125,7 @@
                 Background="#00695c"
                 DialogClosing="DialogHostClientes_DialogClosing"
                 DialogTheme="Inherit"
-                IsOpen="True">
+                IsOpen="False">
                 <materialDesign:DialogHost.DialogContent>
                     <StackPanel
                         Width="430"
