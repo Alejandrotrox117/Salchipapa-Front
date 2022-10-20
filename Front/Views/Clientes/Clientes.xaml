@@ -123,10 +123,14 @@
                 Grid.RowSpan="5"
                 Grid.ColumnSpan="5"
                 Background="#00695c"
+                DialogClosing="DialogHostClientes_DialogClosing"
                 DialogTheme="Inherit"
-                IsOpen="False">
+                IsOpen="True">
                 <materialDesign:DialogHost.DialogContent>
-                    <StackPanel Margin="16">
+                    <StackPanel
+                        Width="430"
+                        Height="300"
+                        Margin="15">
                         <!--#region TITULO DEL DIALOG-->
                         <TextBlock
                             Margin="0,0,0,10"
@@ -143,18 +147,18 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="19" />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
                             <!--#endregion-->
                             <!--#region Titulo y texbox NOMBRE-->
                             <TextBox
+                                x:Name="TxtNombre"
                                 Grid.Row="1"
-                                Width="180"
+                                Width="190"
                                 Height="50"
-                                Margin="0,0,5,0"
+                                Margin="-13,0,0,0"
                                 materialDesign:HintAssist.Foreground="#00695c"
                                 materialDesign:HintAssist.Hint="Nombre"
                                 AcceptsReturn="True"
@@ -166,11 +170,12 @@
                             <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
 
                             <TextBox
+                                x:Name="TxtApellido"
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Width="180"
+                                Width="190"
                                 Height="50"
-                                Margin="5"
+                                Margin="5,0,0,0"
                                 materialDesign:HintAssist.Foreground="#00695c"
                                 materialDesign:HintAssist.Hint="Apellido"
                                 AcceptsReturn="True"
@@ -180,13 +185,13 @@
                                 TextWrapping="Wrap" />
                             <!--#endregion-->
                             <!--#region TITULO Y COMBOBOX CEDULA-->
-
                             <ComboBox
+                                x:Name="CBCedula"
                                 Grid.Row="3"
                                 Grid.Column="0"
-                                Width="65"
-                                Height="48"
-                                Margin="0,0,40,0"
+                                Width="73"
+                                Height="49"
+                                Margin="3,0,0,0"
                                 HorizontalAlignment="Left"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
@@ -197,11 +202,12 @@
                                 <ComboBoxItem Content="E-" />
                             </ComboBox>
                             <TextBox
+                                x:Name="TxtCedula"
                                 Grid.Row="3"
                                 Grid.Column="0"
                                 Width="120"
                                 Height="49"
-                                Margin="62,0,0,0"
+                                Margin="55,0,0,0"
                                 materialDesign:HintAssist.Foreground="#00695c"
                                 materialDesign:HintAssist.Hint="Cédula"
                                 AcceptsReturn="True"
@@ -211,28 +217,31 @@
                                 TextWrapping="Wrap" />
                             <!--#endregion-->
                             <!--#region TITULO TELEFONO Y COMBOBOX-->
-
                             <ComboBox
+                                x:Name="CBTelefono"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Width="65"
+                                Width="73"
                                 Height="48"
-                                Margin="0,0,40,0"
+                                Margin="12,0,0,0"
                                 HorizontalAlignment="Left"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
                                 Foreground="#FF00695C"
                                 Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                <ComboBoxItem Content="V-" />
-                                <ComboBoxItem Content="J-" />
-                                <ComboBoxItem Content="E-" />
+                                <ComboBoxItem Content="424-" />
+                                <ComboBoxItem Content="414-" />
+                                <ComboBoxItem Content="426-" />
+                                <ComboBoxItem Content="416-" />
+                                <ComboBoxItem Content="412-" />
                             </ComboBox>
                             <TextBox
+                                x:Name="TxtTelefono"
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 Width="120"
                                 Height="49"
-                                Margin="60,0,0,0"
+                                Margin="72,0,0,0"
                                 materialDesign:HintAssist.Foreground="#00695c"
                                 materialDesign:HintAssist.Hint="Teléfono"
                                 AcceptsReturn="True"
@@ -243,17 +252,13 @@
                             <!--#endregion-->
                         </Grid>
                         <!--#endregion-->
-                        <TextBlock
-                            Margin="0,10,1,5"
-                            FontSize="15"
-                            FontWeight="Bold"
-                            Style="{StaticResource PrimaryColor}"
-                            Text="Dirección" />
                         <TextBox
+                            x:Name="TxtDireccion"
+                            Width="415"
                             Height="100"
                             VerticalAlignment="Top"
                             materialDesign:HintAssist.Foreground="#00695c"
-                            materialDesign:HintAssist.Hint="Escriba la dirección"
+                            materialDesign:HintAssist.Hint="Dirección"
                             BorderBrush="#00695c"
                             BorderThickness="2"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -261,9 +266,11 @@
                             VerticalScrollBarVisibility="Auto" />
                         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                             <Button
+                                x:Name="BtnEnviar"
                                 Margin="0,8,108,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
+                                Click="BtnEnviar_Click"
                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                 Content="Aceptar"
                                 Foreground="#00695c"
@@ -292,17 +299,6 @@
                     </StackPanel>
                 </materialDesign:DialogHost.DialogContent>
             </materialDesign:DialogHost>
-
-
-
-
-
-            <!--#endregion DatagridClientes-->
-            <!--<Frame
-                x:Name="FrameClientes"
-                Grid.RowSpan="5"
-                Grid.ColumnSpan="5"
-                Margin="0,10,10,10" />-->
         </Grid>
     </Border>
 </UserControl>

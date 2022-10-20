@@ -12,6 +12,8 @@ using System.Net;
 using Entities;
 using Newtonsoft.Json;
 using System.IO;
+using Nancy.Json;
+using System.Collections.ObjectModel;
 
 namespace Front.Views.Clientes
 {
@@ -22,28 +24,35 @@ namespace Front.Views.Clientes
     {
         private static readonly HttpClient client = new HttpClient();
         string url = ("http://localhost:3000/api/clients");
-
+       
         public Clientes()
         {
             InitializeComponent();
         }
-        private void DataGridClientes_Loaded(object sender, RoutedEventArgs e)
+        //METODO ASINCRONO TASK PARA EJECUTAR METODO GET
+        public async Task<string> GetHttp()
         {
-            Main();
-
+            //Peticion get al API mediante URL
+            WebRequest oRequest = WebRequest.Create(url);
+            WebResponse oResponse = oRequest.GetResponse();
+            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            return await sr.ReadToEndAsync();
         }
 
+        //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
+            
             string respuesta = await GetHttp();
-
+            //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
+            
             List<clientes> returnedData = JsonConvert.DeserializeObject<List<clientes>>(respuesta);
-
+           
+            //VALIDACION DE RETORNO DE DATOS 
             if (returnedData != null)
             {
-
+                //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
                 DataGridClientes.ItemsSource = returnedData;
-
             }
             else
             {
@@ -51,24 +60,13 @@ namespace Front.Views.Clientes
             }
         }
 
-
-
-        public async Task<string> GetHttp()
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-
-        }
-
-
+        //METODO PARA BORRAR UN CLIENTE PASANDO POR PARAMETRO LA CEDULA COMO REQUISITO PARA EL INDICE
         public async void Delete(string ci)
         {
             string urll = ("http://localhost:3000/api/clients/"+ci);
             var httpResponse = await client.DeleteAsync(urll);
             var result = await httpResponse.Content.ReadAsStringAsync();
+            //CONDICION QUE ASEGURA EL PROCESO HA SIDO EXITOSO
             if (httpResponse.IsSuccessStatusCode)
             {
                 MessageBox.Show("Se ha eliminado correctamente");
@@ -77,9 +75,8 @@ namespace Front.Views.Clientes
             {
                 MessageBox.Show("Error"+result);
             }
-
         }
-
+        //ELIMINAR EL ELEMENTO DE MANERA VISUAL DEL DATAGRID 
         public void EliminateElement()
         {
             if (DataGridClientes.SelectedItems.Count > 0)
@@ -110,20 +107,43 @@ namespace Front.Views.Clientes
                 MessageBox.Show("Debe seleccionar por lo menos una fila.");
             }
         }
-           
-        public void EditElement()
+        async private void Post()
         {
-            
-          
+            string link = ("http://localhost:3000/api/clients");
+            clientes cliente = new clientes()
+            {
+                name = TxtNombre.Text,
+                surname = TxtApellido.Text,
+                ci = CBCedula.Text + TxtCedula.Text,
+                address = TxtDireccion.Text,
+                phone = CBTelefono.Text + TxtTelefono.Text
 
+            };
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            string data = js.Serialize(cliente);
+            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
+            var httpResponse = await client.PostAsync(link, content);
+            //evaluar si la solicitud ha sido exitosa
+            var result = await httpResponse.Content.ReadAsStringAsync();
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Se ha enviado los datos");
+            }
+            else
+            {
+                MessageBox.Show("Error" + result);
+            }
         }
 
-
+     
+        //METODO CLICK DEL BOTON AGREGAR 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            //FormCliente form = new FormCliente();
-            //FrameClientes.Content = form;
             DialogHostClientes.IsOpen = true;
+        }
+        private void BtnEnviar_Click(object sender, RoutedEventArgs e)
+        {
+            Post();
         }
 
         private void DataGridClientes_Initialized(object sender, EventArgs e)
@@ -138,7 +158,18 @@ namespace Front.Views.Clientes
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            EditElement();
+            
+        }
+
+        private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            this.TxtNombre.Clear();
+            this.TxtApellido.Clear();
+            this.CBCedula.Text = "";
+            this.CBTelefono.Text = "";
+            this.TxtTelefono.Clear();
+            this.TxtCedula.Clear();
+            this.DataGridClientes_Initialized(sender, eventArgs);
         }
     }
 }
