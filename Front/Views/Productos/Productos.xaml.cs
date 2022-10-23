@@ -23,12 +23,13 @@ namespace Front.Views.Productos
         public Productos()
         {
             InitializeComponent();
-            List<pedir> items = new List<pedir>();
+            List<Categories> items = new List<Categories>();
 
-            items.Add(new pedir() { producto = "Batido pie de limon", descripcion = "batido limon", cantidad = "3" });
+            items.Add(new Categories() { categorie = "Batidos",producto="Batido de oreo"});
 
-            items.Add(new pedir() { producto = "Batido de fresa", descripcion = "Leche condensada", cantidad = "2" });
-            itemsPedidos.ItemsSource = items;
+            items.Add(new Categories() { categorie = "Merengadas",producto="Merengada de fresa"});
+            items.Add(new Categories() { categorie = "Tortas",producto="Tortas de fresa"});
+            TabControlItem.ItemsSource = items;
         }
 
         public string Categorie { get; internal set; }
@@ -39,10 +40,10 @@ namespace Front.Views.Productos
 
 
         }
-        public class pedir
+        public class Categories
         {
             public string pedido { get; set; }
-            public string categoria { get; set; }
+            public string categorie { get; set; }
 
             public string producto { get; set; }
 

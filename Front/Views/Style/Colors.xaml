@@ -15,30 +15,21 @@
 
     </Style>
 
-    <Style
-        x:Key="TexboxColor"
-        BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}"
-        TargetType="TextBox">
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Margin" Value="5" />
+    <Style x:Key="TabItemColor" TargetType="TabItem">
+        <Setter Property="Foreground" Value="#00695c" />
         <Setter Property="FontSize" Value="20" />
+        <Setter Property="Background" Value="#00695c" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
+                <ControlTemplate TargetType="{x:Type TabItem}">
                     <Border
                         x:Name="border"
-                        Background="#fff"
+                        Background="#00695c"
                         BorderBrush="#909090"
                         BorderThickness="2"
-                        CornerRadius="3">
-                        <ScrollViewer
-                            x:Name="PART_ContentHost"
-                            Focusable="false"
-                            HorizontalScrollBarVisibility="Hidden"
-                            VerticalScrollBarVisibility="Hidden" />
-                    </Border>
+                        CornerRadius="3" />
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="true">
+                        <Trigger Property="Background" Value="#00695c">
                             <Setter TargetName="border" Property="BorderBrush" Value="#00695c" />
                             <Setter Property="Foreground" Value="#909090" />
                         </Trigger>

@@ -11,7 +11,7 @@
     Background="Transparent"
     mc:Ignorable="d">
 
-    <Border Background="White">
+    <Border x:Name="BorderBody" Background="White">
         <Grid x:Name="GridClientes">
             <!--#region Filas y columnas-->
 
@@ -75,8 +75,7 @@
                                         Name="BtnEliminar"
                                         Width="50"
                                         Background="#f44c58"
-                                        BorderBrush="Transparent"
-                                        Click="BtnEliminar_Click">
+                                        BorderBrush="Transparent">
                                         <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                     </Button>
                                     <Button
@@ -96,6 +95,10 @@
                     <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
                     <DataGridTextColumn Binding="{Binding phone}" Header="Teléfono" />
                     <DataGridTextColumn Binding="{Binding address}" Header="Dirección" />
+                    <DataGridTextColumn
+                        x:Name="_id"
+                        Binding="{Binding _id}"
+                        Visibility="Hidden" />
                 </DataGrid.Columns>
             </DataGrid>
             <Button
@@ -117,7 +120,11 @@
                     Height="50"
                     Foreground="White"
                     Kind="ClipboardPlusOutline" />
+
+
+
             </Button>
+
             <materialDesign:DialogHost
                 x:Name="DialogHostClientes"
                 Grid.RowSpan="5"
@@ -125,23 +132,30 @@
                 Background="#00695c"
                 DialogClosing="DialogHostClientes_DialogClosing"
                 DialogTheme="Inherit"
-                IsOpen="False">
+                IsOpen="False"
+                Loaded="DialogHostClientes_Loaded">
                 <materialDesign:DialogHost.DialogContent>
                     <StackPanel
                         Width="430"
                         Height="300"
                         Margin="15">
+
                         <!--#region TITULO DEL DIALOG-->
+
                         <TextBlock
+                            x:Name="TxtTituloDialg"
                             Margin="0,0,0,10"
                             HorizontalAlignment="Center"
                             FontSize="20"
                             FontWeight="Bold"
-                            Foreground="#00695c"
-                            Text="Añadir Clientes" />
+                            Foreground="#00695c" />
+
                         <!--#endregion-->
+
                         <Grid>
+
                             <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
@@ -151,8 +165,10 @@
                                 <RowDefinition Height="60" />
                                 <RowDefinition Height="60" />
                             </Grid.RowDefinitions>
+
                             <!--#endregion-->
                             <!--#region Titulo y texbox NOMBRE-->
+
                             <TextBox
                                 x:Name="TxtNombre"
                                 Grid.Row="1"
@@ -166,8 +182,10 @@
                                 BorderThickness="2"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
+
                             <!--#endregion TITULO Y TEXBOX NOMBRE-->
                             <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
+
 
                             <TextBox
                                 x:Name="TxtApellido"
@@ -183,8 +201,10 @@
                                 BorderThickness="2"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
+
                             <!--#endregion-->
                             <!--#region TITULO Y COMBOBOX CEDULA-->
+
                             <ComboBox
                                 x:Name="CBCedula"
                                 Grid.Row="3"
@@ -215,6 +235,7 @@
                                 BorderThickness="2"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
+
                             <!--#endregion-->
                             <!--#region TITULO TELEFONO Y COMBOBOX-->
                             <ComboBox
@@ -249,9 +270,13 @@
                                 BorderThickness="2"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextWrapping="Wrap" />
+
                             <!--#endregion-->
+
                         </Grid>
+
                         <!--#endregion-->
+
                         <TextBox
                             x:Name="TxtDireccion"
                             Width="415"
@@ -272,9 +297,27 @@
                                 BorderBrush="#00695c"
                                 Click="BtnEnviar_Click"
                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                Content="Aceptar"
+                                Content="Agregar"
                                 Foreground="#00695c"
-                                IsDefault="True">
+                                IsDefault="True"
+                                Visibility="Hidden">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                        True
+                                    </system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <Button
+                                x:Name="BtnEnviarEditado"
+                                Margin="0,8,108,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Click="BtnEnviarEditado_Click"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="Editar"
+                                Foreground="#00695c"
+                                IsDefault="True"
+                                Visibility="Hidden">
                                 <Button.CommandParameter>
                                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                         True

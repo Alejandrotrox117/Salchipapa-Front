@@ -6,153 +6,209 @@
     xmlns:local="clr-namespace:Front.Views.Clientes"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="932"
-    Height="580"
+    Width="795"
+    Height="558"
     Background="Transparent"
     mc:Ignorable="d">
     <Border Background="Transparent">
-        <Grid x:Name="GridDatosClientes" Background="white">
-            <!--#region Filas y columnas-->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition Width="20" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="30 " />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <!--#endregion Filas y columnas-->
-            <!--#region TITULO-->
-            <TextBlock
-                x:Name="titulo"
-                Grid.Row="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="22"
-                Style="{StaticResource PrimaryColor}"
-                Text="Registro de Clientes" />
+        <materialDesign:DialogHost
+            x:Name="DialogHostClientes"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5"
+            Background="#00695c"
+            DialogTheme="Inherit"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel
+                    Width="430"
+                    Height="300"
+                    Margin="15">
 
-            <!--#endregion-->
-            <!--#region Regresar-->
+                    <TextBlock
+                        x:Name="TxtTituloDialg"
+                        Margin="0,0,0,10"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="#00695c" />
 
-            <Button
-                x:Name="BtnRegresar"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="100"
-                Margin="39,10,39,0"
-                Click="BtnRegresar_Click"
-                Content="Regresar"
-                Style="{StaticResource PrimaryColorButton}" />
+                    <Grid>
 
-            <!--#endregion-->
-            <!--#region Contenido-->
-
-            <TextBlock
-                Grid.Row="4"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Nombre" />
-            <TextBox
-                x:Name="TxtNombre"
-                Grid.Row="4"
-                Grid.Column="2"
-                Background="GhostWhite" />
-
-            <!--#endregion-->
-            <!--#region TXT Apellido-->
-
-            <TextBlock
-                Grid.Row="5"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Apellido" />
-            <TextBox
-                x:Name="TxtApellido"
-                Grid.Row="5"
-                Grid.Column="2"
-                Background="GhostWhite" />
-
-            <!--#endregion-->
-            <!--#region Direccion-->
-
-            <TextBlock
-                Grid.Row="6"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Direccion" />
-            <TextBox
-                x:Name="TxtDir"
-                Grid.Row="6"
-                Grid.Column="2"
-                Background="GhostWhite" />
-
-            <!--#endregion-->
-            <!--#region Cedula-->
-
-            <TextBlock
-                Grid.Row="7"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Cédula" />
-            <TextBox
-                x:Name="TxtCi"
-                Grid.Row="7"
-                Grid.Column="2"
-                Background="GhostWhite" />
-
-            <!--#endregion-->
-            <!--#region Telefono-->
-
-            <TextBlock
-                Grid.Row="8"
-                Grid.Column="1"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Text="Telefono" />
-            <TextBox
-                x:Name="TxtTelef"
-                Grid.Row="8"
-                Grid.Column="2"
-                Background="GhostWhite" />
-
-            <Button
-                Grid.Row="10"
-                Grid.RowSpan="2"
-                Grid.Column="2"
-                Margin="0,10,0,56"
-                Click="Button_Click"
-                Content="Agregar"
-                Style="{StaticResource PrimaryColorButton}" />
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="60" />
+                        </Grid.RowDefinitions>
 
 
+                        <TextBox
+                            x:Name="TxtNombre"
+                            Grid.Row="1"
+                            Width="190"
+                            Height="50"
+                            Margin="-13,0,0,0"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Nombre"
+                            AcceptsReturn="True"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
 
-        </Grid>
+
+                        <TextBox
+                            x:Name="TxtApellido"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Width="190"
+                            Height="50"
+                            Margin="5,0,0,0"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Apellido"
+                            AcceptsReturn="True"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
 
 
+                        <ComboBox
+                            x:Name="CBCedula"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Width="73"
+                            Height="49"
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Foreground="#FF00695C"
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBoxItem Content="V-" />
+                            <ComboBoxItem Content="J-" />
+                            <ComboBoxItem Content="E-" />
+                        </ComboBox>
+                        <TextBox
+                            x:Name="TxtCedula"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Width="120"
+                            Height="49"
+                            Margin="55,0,0,0"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Cédula"
+                            AcceptsReturn="True"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
 
 
+                        <ComboBox
+                            x:Name="CBTelefono"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="73"
+                            Height="48"
+                            Margin="12,0,0,0"
+                            HorizontalAlignment="Left"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Foreground="#FF00695C"
+                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBoxItem Content="424-" />
+                            <ComboBoxItem Content="414-" />
+                            <ComboBoxItem Content="426-" />
+                            <ComboBoxItem Content="416-" />
+                            <ComboBoxItem Content="412-" />
+                        </ComboBox>
+                        <TextBox
+                            x:Name="TxtTelefono"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            Width="120"
+                            Height="49"
+                            Margin="72,0,0,0"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Teléfono"
+                            AcceptsReturn="True"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            TextWrapping="Wrap" />
+
+                    </Grid>
+
+                    <TextBox
+                        x:Name="TxtDireccion"
+                        Width="415"
+                        Height="100"
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Foreground="#00695c"
+                        materialDesign:HintAssist.Hint="Dirección"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button
+                            x:Name="BtnEnviar"
+                            Margin="0,8,108,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnEnviar_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Agregar"
+                            Foreground="#00695c"
+                            IsDefault="True"
+                            Visibility="Hidden">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            x:Name="BtnEnviarEditado"
+                            Margin="0,8,108,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Editar"
+                            Foreground="#00695c"
+                            IsDefault="True"
+                            Visibility="Hidden">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            x:Name="BtnCancelar"
+                            Margin="0,8,8,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnCancelar_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Cancelar"
+                            Foreground="#00695c"
+                            IsCancel="True">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
 
     </Border>
 </UserControl>

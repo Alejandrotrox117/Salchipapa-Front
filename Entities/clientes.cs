@@ -26,7 +26,7 @@ namespace Entities
         public string address { get; set; }
         public string phone { get; set; }
 
-
+        public string _id { get; set; }
         //public bool Error()
         //{
         //    if (ci is null || name is null || surname is null ||
