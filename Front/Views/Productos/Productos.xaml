@@ -14,42 +14,83 @@
     FontFamily="{DynamicResource MaterialDesignFont}"
     mc:Ignorable="d">
     <Border Background="White">
+        <!--#region Cuerpo principal del TABITEM-->
         <materialDesign:Card>
             <TabControl
                 x:Name="TabControlItem"
                 HorizontalContentAlignment="Left"
-                ItemsSource="{Binding Categories}">
-
+                materialDesign:ColorZoneAssist.Mode="Standard"
+                Initialized="TabControlItem_Initialized">
+                <!--#region Region del template del tabitem-->
                 <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding categorie}" />
-                    </DataTemplate>
+                    <HierarchicalDataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding name}" />
+                        </Grid>
+                    </HierarchicalDataTemplate>
                 </TabControl.ItemTemplate>
+                <!--<TextBlock Text="Uno" />-->
                 <TabControl.ContentTemplate>
-
-                    <DataTemplate>
+                    <HierarchicalDataTemplate>
 
                         <Grid>
-                            <TextBlock Text="{Binding producto}" />
+                            <ScrollViewer>
+                                <ItemsControl ItemsSource="{Binding products}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <materialDesign:Card
+                                                    Width="240"
+                                                    Height="340"
+                                                    Margin="12,30,0,10"
+                                                    Background="GhostWhite">
+                                                    <!--#region Filas dentro del card-->
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="150" />
+                                                            <RowDefinition />
+                                                            <RowDefinition />
+                                                            <RowDefinition />
+                                                        </Grid.RowDefinitions>
+                                                        <Image
+                                                            Grid.Row="0"
+                                                            Width="200"
+                                                            Height="130"
+                                                            Margin="0,0,20,0"
+                                                            HorizontalAlignment="Right"
+                                                            Source="/Views/Stock/Batido-pie.jpg"
+                                                            Stretch="Fill"
+                                                            StretchDirection="DownOnly" />
+                                                        <TextBlock Grid.Row="1" Text="Producto" />
+                                                        <TextBlock
+                                                            Grid.Row="1"
+                                                            Margin="50,0,0,0"
+                                                            Text="{Binding name}" />
+                                                    </Grid>
+                                                    <!--#endregion-->
+                                                </materialDesign:Card>
+                                                <!--#endregion-->
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <system:String>Item #2</system:String>
+                                    <system:String>Item #2</system:String>
+                                    <system:String>Item #2</system:String>
+                                    <system:String>Item #2</system:String>
+                                </ItemsControl>
+                            </ScrollViewer>
                         </Grid>
+                    </HierarchicalDataTemplate>
 
-                    </DataTemplate>
                 </TabControl.ContentTemplate>
 
-                <!--<TabItem Header="Todas las categorias">
-                    <TextBlock Text="HEADER 1" />
-                </TabItem>-->
-
-
-
-
-                <!--<system:String>Item #1</system:String>
-                <system:String>Item #2</system:String>
-                <system:String>Item #3</system:String>
-                <system:String>Item #4</system:String>-->
             </TabControl>
         </materialDesign:Card>
-
-
+        <!--#endregion-->
     </Border>
 </UserControl>

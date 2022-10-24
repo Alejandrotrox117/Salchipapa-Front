@@ -11,7 +11,7 @@ namespace Entities
     {
 
         public string origin { get; set; }
-        public int cant { get; set; }
+        
         public List<productos> products { get; set; }
 
 

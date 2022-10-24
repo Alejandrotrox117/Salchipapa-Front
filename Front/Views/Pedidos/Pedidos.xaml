@@ -24,10 +24,8 @@
             materialDesign:ColorZoneAssist.Background="GhostWhite"
             materialDesign:ColorZoneAssist.Mode="Light"
             Style="{StaticResource MaterialDesignFilledTabControl}">
-
             <TabItem Header="Entrantes">
-                <ScrollViewer
-                    
+                <ScrollViewer           
                     CanContentScroll="True"
                     FlowDirection="LeftToRight"
                     HorizontalScrollBarVisibility="Hidden"

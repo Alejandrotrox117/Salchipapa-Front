@@ -74,7 +74,8 @@
                     Name="SnackbarBadge"
                     Grid.Row="1"
                     Margin="251,521,0,0"
-                    Badge="1">
+                    Badge="1"
+                    Visibility="Hidden">
                     <materialDesign:Snackbar
                         x:Name="SnackbarNotify"
                         Grid.Row="1"
