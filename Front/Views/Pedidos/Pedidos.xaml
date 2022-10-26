@@ -25,7 +25,7 @@
             materialDesign:ColorZoneAssist.Mode="Light"
             Style="{StaticResource MaterialDesignFilledTabControl}">
             <TabItem Header="Entrantes">
-                <ScrollViewer           
+                <ScrollViewer
                     CanContentScroll="True"
                     FlowDirection="LeftToRight"
                     HorizontalScrollBarVisibility="Hidden"
@@ -187,11 +187,8 @@
                                                                             FontWeight="Bold"
                                                                             Header="{Binding name}"
                                                                             IsExpanded="True">
-
                                                                             <TextBlock FontSize="12" Text="{Binding toppings[0].name}" />
                                                                             <TextBlock FontSize="12" Text="{Binding toppings[1].name}" />
-
-
                                                                         </TreeViewItem>
                                                                     </TreeView>
                                                                 </DataTemplate>

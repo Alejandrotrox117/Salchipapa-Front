@@ -231,15 +231,9 @@ namespace Front.Views.Clientes
 
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-         
+ //METODO QUE ABRE EL FORMULARIO Y EL INDEX DE LA FILA
             PutViewElement();
             TxtTituloDialg.Text = "Editar Clientes";
-            BtnEnviarEditado.Visibility = Visibility.Visible;
-
-
-            
-
-
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
@@ -247,18 +241,13 @@ namespace Front.Views.Clientes
             DialogHostClientes.IsOpen = true;
             TxtTituloDialg.Text = "Agregar Clientes";
 
-            BtnEnviar.Visibility = Visibility.Visible;
+         
         }
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             EliminateViewElement();
         }
-        private  void BtnEnviarEditado_Click(object sender, RoutedEventArgs e)
-        {
-         
-
-
-        }
+       
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             PostElement();
@@ -281,9 +270,6 @@ namespace Front.Views.Clientes
 
         }
 
-        private void DataGridClientes_Selected(object sender, RoutedEventArgs e)
-        {
-            
-        }
+       
     }
 }

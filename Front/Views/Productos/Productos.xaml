@@ -13,8 +13,8 @@
     Height="558"
     FontFamily="{DynamicResource MaterialDesignFont}"
     mc:Ignorable="d">
+
     <Border Background="White">
-        <!--#region Cuerpo principal del TABITEM-->
         <materialDesign:Card>
             <TabControl
                 x:Name="TabControlItem"
@@ -22,17 +22,21 @@
                 materialDesign:ColorZoneAssist.Mode="Standard"
                 Initialized="TabControlItem_Initialized">
                 <!--#region Region del template del tabitem-->
+
+
+
                 <TabControl.ItemTemplate>
                     <HierarchicalDataTemplate>
                         <Grid>
+
                             <TextBlock Text="{Binding name}" />
                         </Grid>
                     </HierarchicalDataTemplate>
+
                 </TabControl.ItemTemplate>
                 <!--<TextBlock Text="Uno" />-->
                 <TabControl.ContentTemplate>
                     <HierarchicalDataTemplate>
-
                         <Grid>
                             <ScrollViewer>
                                 <ItemsControl ItemsSource="{Binding products}">
@@ -78,10 +82,10 @@
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
+                                    <!--<system:String>Item #2</system:String>
                                     <system:String>Item #2</system:String>
                                     <system:String>Item #2</system:String>
-                                    <system:String>Item #2</system:String>
-                                    <system:String>Item #2</system:String>
+                                    <system:String>Item #2</system:String>-->
                                 </ItemsControl>
                             </ScrollViewer>
                         </Grid>
@@ -91,6 +95,6 @@
 
             </TabControl>
         </materialDesign:Card>
-        <!--#endregion-->
+
     </Border>
 </UserControl>

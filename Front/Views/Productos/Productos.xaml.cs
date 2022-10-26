@@ -27,28 +27,15 @@ namespace Front.Views.Productos
     /// </summary>
     public partial class Productos : UserControl
     {
-        //string url = ("http://localhost:3000/api/products");
-        string url = ("http://localhost:3000/api/orders");
-        private ObservableCollection<Orders> Order;
+        string url = ("http://localhost:3000/api/products?extendeData=true");
+        
+        private ObservableCollection<productos> productos;
+        private ObservableCollection<categories> categories;
 
         public Productos()
         {
             InitializeComponent();
-
-
-
-
-            List<string> grupo = new List<string>();
-
-            List<productos> items = new List<productos>();
             List<categories> categories = new List<categories>();
-
-
-            List<categories> movimientos = new List<categories>();
-
-
-
-
             categories.Add(new categories()
             {
                 name = "Batidos",
@@ -57,10 +44,8 @@ namespace Front.Views.Productos
                     new productos{  name ="Oreo", price = 2,stock=3,description="Batido de Oreo" },
                     new productos{  name ="Fresa", price = 2,stock=3,description="Batido de Fresa" },
                     new productos{  name ="Piña", price = 2,stock=3,description="Batido de Piña" }
-                
-                
                 },
-                
+
                 toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }
 
             });
@@ -72,34 +57,13 @@ namespace Front.Views.Productos
                 toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }
 
             });
-
-
-
-
-
-
-
-
             TabControlItem.ItemsSource = categories;
+            
+           
         }
 
 
 
-
-        private async void Main()
-        {
-            string response = await GetHttp();
-            List<Orders> returnedData = JsonConvert.DeserializeObject<List<Orders>>(response);
-            Order = new ObservableCollection<Orders>(returnedData);
-            if (returnedData != null)
-            {
-                TabControlItem.ItemsSource = Order;
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-        }
 
 
         public async Task<string> GetHttp()
@@ -112,37 +76,23 @@ namespace Front.Views.Productos
 
 
 
-        //private async void Main()
-        //{
-        //    string response = await GetHttp();
-        //    List<productos> returnedData = JsonConvert.DeserializeObject<List<productos>>(response);
-        //    productos = new ObservableCollection<productos>(returnedData);
-        //    if (returnedData != null)
-        //    {
-        //        TabControlItem.ItemsSource = productos;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Error");
-        //    }
-        //}
+        private async void Main()
+        {
+            string response = await GetHttp();
+            List<productos> returnedData = JsonConvert.DeserializeObject<List<productos>>(response);
+            productos = new ObservableCollection<productos>(returnedData);
+            if (returnedData != null)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
 
 
-        //public async Task<string> GetHttp()
-        //{
-        //    WebRequest oRequest = WebRequest.Create(url);
-        //    WebResponse oResponse = oRequest.GetResponse();
-        //    StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-        //    return await sr.ReadToEndAsync();
-        //}
-
-
-
-
-
-
-
-
+      
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
@@ -154,6 +104,16 @@ namespace Front.Views.Productos
         private void TabControlItem_Initialized(object sender, EventArgs e)
         {
             
+        }
+
+        private void BtnEditarProducto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //DialogCategoria.IsOpen = true;
         }
     }
 }

@@ -83,5 +83,7 @@ namespace Front.Views.Pedidos
         private void BtnFinalizado_click(object sender, RoutedEventArgs e)
         {
         }
+
+        
     }
 }
