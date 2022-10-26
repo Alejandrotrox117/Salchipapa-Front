@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="Front.Views.Productos.FormProducto"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Productos"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="932"
+    Height="580"
+    mc:Ignorable="d">
+    <Border Background="White">
+        <materialDesign:DialogHost DialogTheme="Inherit">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Margin="16">
+                    <TextBlock Text="Add a new fruit." />
+                    <TextBox
+                        x:Name="FruitTextBox"
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Stretch" />
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            Margin="0,8,8,0"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="ACCEPT"
+                            IsDefault="True"
+                            Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            Margin="0,8,8,0"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="CANCEL"
+                            IsCancel="True"
+                            Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+            <Border
+                MinHeight="256"
+                BorderBrush="{DynamicResource PrimaryHueMidBrush}"
+                BorderThickness="1"
+                ClipToBounds="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TreeView Name="ItemsProductos">
+                        <TreeView.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card
+                                    Width="240"
+                                    Height="340"
+                                    Margin="12,30,0,10"
+                                    Background="GhostWhite">
+                                    <!--#region Filas dentro del card-->
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="150" />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Image
+                                            Grid.Row="0"
+                                            Width="200"
+                                            Height="130"
+                                            Margin="0,0,20,0"
+                                            HorizontalAlignment="Right"
+                                            Source="/Views/Stock/Batido-pie.jpg"
+                                            Stretch="Fill"
+                                            StretchDirection="DownOnly" />
+                                        <TextBlock Grid.Row="1" Text="Producto" />
+                                        <TextBlock
+                                            Grid.Row="1"
+                                            Margin="50,0,0,0"
+                                            Text="{Binding name}" />
+                                    </Grid>
+                                    <!--#endregion-->
+                                </materialDesign:Card>
+
+                            </DataTemplate>
+                        </TreeView.ItemTemplate>
+
+
+
+
+
+
+                    </TreeView>
+
+                    <materialDesign:ColorZone
+                        Grid.Row="1"
+                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                        Mode="PrimaryMid">
+                        <TextBlock Margin="16" Text="Fruit Bowl" />
+                    </materialDesign:ColorZone>
+                    <Button
+                        Grid.Row="0"
+                        Margin="0,0,28,-20"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        Content="{materialDesign:PackIcon Kind=Plus,
+                                                          Size=22}"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" />
+                </Grid>
+            </Border>
+        </materialDesign:DialogHost>
+
+
+
+    </Border>
+</UserControl>

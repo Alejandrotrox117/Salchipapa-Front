@@ -31,7 +31,8 @@ namespace Front.Views.Productos
         
         private ObservableCollection<productos> productos;
         private ObservableCollection<categories> categories;
-
+        
+        TabControl tbControl;
         public Productos()
         {
             InitializeComponent();
@@ -57,12 +58,20 @@ namespace Front.Views.Productos
                 toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }
 
             });
-            TabControlItem.ItemsSource = categories;
             
-           
+         
         }
 
-
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem newTabItem = new TabItem
+            {
+                Header = "Test",
+                Name = "Test",
+                
+            };
+            tbControl.Items.Add(newTabItem);
+        }
 
 
 
@@ -113,7 +122,14 @@ namespace Front.Views.Productos
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //DialogCategoria.IsOpen = true;
+            
+        }
+
+      
+        private void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            
+            FrameAgregarCategoria.NavigationService.Navigate()
         }
     }
 }

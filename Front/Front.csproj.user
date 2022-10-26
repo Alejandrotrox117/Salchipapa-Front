@@ -26,7 +26,7 @@
     <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Productos\FormProducto.xaml.cs">
+    <Compile Update="Views\Productos\AgregarCategoria.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Productos\Productos.xaml.cs">
@@ -61,7 +61,7 @@
     <Page Update="Views\Pedidos\Pedidos.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Productos\FormProducto.xaml">
+    <Page Update="Views\Productos\AgregarCategoria.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Productos\Productos.xaml">

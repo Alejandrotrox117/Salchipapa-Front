@@ -16,84 +16,36 @@
 
     <Border Background="White">
         <materialDesign:Card>
-            <TabControl
-                x:Name="TabControlItem"
-                HorizontalContentAlignment="Left"
-                materialDesign:ColorZoneAssist.Mode="Standard"
-                Initialized="TabControlItem_Initialized">
-                <!--#region Region del template del tabitem-->
+            <Grid>
+                <Button
+                    Name="BtnAgregarCategoria"
+                    Margin="10,10,729,492"
+                    Panel.ZIndex="3"
+                    Click="BtnAgregarCategoria_Click"
+                    Cursor="Hand"
+                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+                    <materialDesign:PackIcon
+                        Width="24"
+                        Height="24"
+                        Kind="Plus" />
+                </Button>
+                <Frame Name="FrameAgregarCategoria" Margin="0,71,0,0" />
+                <TabControl
+                    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                    materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
+                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                    TabStripPlacement="Top">
 
+                    <TabItem Margin="100,0,0,0">
+                        <TabItem.Header>
+                            <TextBlock Text="A" />
+                        </TabItem.Header>
+                        <TextBlock />
+                    </TabItem>
 
-
-                <TabControl.ItemTemplate>
-                    <HierarchicalDataTemplate>
-                        <Grid>
-
-                            <TextBlock Text="{Binding name}" />
-                        </Grid>
-                    </HierarchicalDataTemplate>
-
-                </TabControl.ItemTemplate>
-                <!--<TextBlock Text="Uno" />-->
-                <TabControl.ContentTemplate>
-                    <HierarchicalDataTemplate>
-                        <Grid>
-                            <ScrollViewer>
-                                <ItemsControl ItemsSource="{Binding products}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <materialDesign:Card
-                                                    Width="240"
-                                                    Height="340"
-                                                    Margin="12,30,0,10"
-                                                    Background="GhostWhite">
-                                                    <!--#region Filas dentro del card-->
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="150" />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                        </Grid.RowDefinitions>
-                                                        <Image
-                                                            Grid.Row="0"
-                                                            Width="200"
-                                                            Height="130"
-                                                            Margin="0,0,20,0"
-                                                            HorizontalAlignment="Right"
-                                                            Source="/Views/Stock/Batido-pie.jpg"
-                                                            Stretch="Fill"
-                                                            StretchDirection="DownOnly" />
-                                                        <TextBlock Grid.Row="1" Text="Producto" />
-                                                        <TextBlock
-                                                            Grid.Row="1"
-                                                            Margin="50,0,0,0"
-                                                            Text="{Binding name}" />
-                                                    </Grid>
-                                                    <!--#endregion-->
-                                                </materialDesign:Card>
-                                                <!--#endregion-->
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    <!--<system:String>Item #2</system:String>
-                                    <system:String>Item #2</system:String>
-                                    <system:String>Item #2</system:String>
-                                    <system:String>Item #2</system:String>-->
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-                    </HierarchicalDataTemplate>
-
-                </TabControl.ContentTemplate>
-
-            </TabControl>
+                </TabControl>
+            </Grid>
         </materialDesign:Card>
 
     </Border>
