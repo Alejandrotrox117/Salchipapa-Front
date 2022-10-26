@@ -255,7 +255,7 @@ namespace Front.Views.Clientes
 
         private void DataGridClientes_Initialized(object sender, EventArgs e)
         {
-            Main();
+            
         }
 
 
@@ -270,6 +270,9 @@ namespace Front.Views.Clientes
 
         }
 
-       
+        private void BorderBody_Initialized(object sender, EventArgs e)
+        {
+            Main();
+        }
     }
 }

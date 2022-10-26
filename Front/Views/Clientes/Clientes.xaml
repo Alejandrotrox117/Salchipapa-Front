@@ -11,7 +11,10 @@
     Background="Transparent"
     mc:Ignorable="d">
 
-    <Border x:Name="BorderBody" Background="White">
+    <Border
+        x:Name="BorderBody"
+        Background="White"
+        Initialized="BorderBody_Initialized">
         <Grid x:Name="GridClientes">
             <!--#region Filas y columnas-->
 
@@ -63,9 +66,13 @@
                 HorizontalGridLinesBrush="#00695c"
                 IsReadOnly="True"
                 ItemsSource="{Binding clientes}"
-                RowBackground="Transparent"
-                SelectedIndex="1">
+                RowBackground="Transparent">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
+                    <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
+                    <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
+                    <DataGridTextColumn Binding="{Binding phone}" Header="Teléfono" />
+                    <DataGridTextColumn Binding="{Binding address}" Header="Dirección" />
                     <DataGridTemplateColumn Header="Opciones">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -89,15 +96,6 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
-                    <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
-                    <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
-                    <DataGridTextColumn Binding="{Binding phone}" Header="Teléfono" />
-                    <DataGridTextColumn Binding="{Binding address}" Header="Dirección" />
-                    <DataGridTextColumn
-                        x:Name="_id"
-                        Binding="{Binding _id}"
-                        Visibility="Hidden" />
                 </DataGrid.Columns>
             </DataGrid>
             <Button
@@ -127,7 +125,7 @@
                 Background="#00695c"
                 DialogClosing="DialogHostClientes_DialogClosing"
                 DialogTheme="Inherit"
-                IsOpen="True"
+                IsOpen="False"
                 Loaded="DialogHostClientes_Loaded">
                 <materialDesign:DialogHost.DialogContent>
                     <StackPanel
