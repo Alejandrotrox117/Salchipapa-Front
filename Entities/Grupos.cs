@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class categories
+    public class Grupos
     {
 
-       
-        public string name { get; set; }
-
-       
-
+    public List<productos> productos { get; set; }
+    public List<categories> categories { get; set; }    
 
     }
 }

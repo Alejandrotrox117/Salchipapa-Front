@@ -14,39 +14,111 @@
     FontFamily="{DynamicResource MaterialDesignFont}"
     mc:Ignorable="d">
 
-    <Border Background="White">
+    <Border Background="White" Initialized="Border_Initialized">
         <materialDesign:Card>
             <Grid>
                 <Button
                     Name="BtnAgregarCategoria"
-                    Margin="10,10,729,492"
+                    Height="55"
+                    Margin="10,60,729,442"
                     Panel.ZIndex="3"
+                    Background="#009faf"
+                    BorderBrush="Transparent"
                     Click="BtnAgregarCategoria_Click"
                     Cursor="Hand"
-                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}">
+                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                    ToolTip="Todas las categoria">
                     <materialDesign:PackIcon
-                        Width="24"
-                        Height="24"
-                        Kind="Plus" />
+                        Width="30"
+                        Height="30"
+                        Foreground="White"
+                        Kind="BookmarkMultipleOutline" />
                 </Button>
-                <Frame Name="FrameAgregarCategoria" Margin="0,71,0,0" />
-                <TabControl
-                    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
-                    materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
-                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-                    TabStripPlacement="Top">
+                <Frame
+                    Name="FrameAgregarCategoria"
+                    Width="795"
+                    Height="485"
+                    Margin="0,71,0,0"
+                    Panel.ZIndex="1"
+                    Visibility="Collapsed" />
+                <materialDesign:Card>
+                    <TabControl
+                        x:Name="TabItems"
+                        HorizontalContentAlignment="Left"
+                        materialDesign:ColorZoneAssist.Mode="Standard"
+                        Initialized="TabControlItem_Initialized">
+                        <!--#region Region del template del tabitem-->
 
-                    <TabItem Margin="100,0,0,0">
-                        <TabItem.Header>
-                            <TextBlock Text="A" />
-                        </TabItem.Header>
-                        <TextBlock />
-                    </TabItem>
+                        <ItemsControl Name="Items">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TabItem Header="{Binding name}">
+                                        <ItemsControl>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <materialDesign:Card
+                                                        Width="240"
+                                                        Height="340"
+                                                        Margin="12,30,0,10"
+                                                        Background="GhostWhite">
+                                                        <!--#region Filas dentro del card-->
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="150" />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                                <RowDefinition />
+                                                            </Grid.RowDefinitions>
+                                                            <Image
+                                                                Grid.Row="0"
+                                                                Width="200"
+                                                                Height="130"
+                                                                Margin="0,0,20,0"
+                                                                HorizontalAlignment="Right"
+                                                                Source="/Views/Stock/Batido-pie.jpg"
+                                                                Stretch="Fill"
+                                                                StretchDirection="DownOnly" />
+                                                            <TextBlock Grid.Row="1" Text="Producto" />
+                                                            <TextBlock
+                                                                Grid.Row="1"
+                                                                Margin="50,0,0,0"
+                                                                Text="{Binding name}" />
+                                                        </Grid>
+                                                        <!--#endregion-->
+                                                    </materialDesign:Card>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TabItem>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
 
-                </TabControl>
+                        </ItemsControl>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </TabControl>
+                </materialDesign:Card>
             </Grid>
         </materialDesign:Card>
-
     </Border>
 </UserControl>

@@ -13,6 +13,8 @@ namespace Entities
         
         public int price { get; set; }
 
+        public string categorie { get; set; }
+
         public string description { get; set; }
         public int  stock { get; set; }
 

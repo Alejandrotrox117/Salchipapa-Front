@@ -22,12 +22,10 @@ namespace Front.Views.Clientes
     /// </summary>
     public partial class Clientes : UserControl
     {
-      
-
         private static readonly HttpClient client = new HttpClient();
         string url = ("http://localhost:3000/api/clients");
-        public bool btnPresionado = false;
-        clientes Cliente;
+    
+      
         public Clientes()
         {
             
