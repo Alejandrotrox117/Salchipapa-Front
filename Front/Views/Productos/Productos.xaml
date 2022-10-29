@@ -13,109 +13,114 @@
     Height="558"
     FontFamily="{DynamicResource MaterialDesignFont}"
     mc:Ignorable="d">
-
     <Border Background="White" Initialized="Border_Initialized">
         <materialDesign:Card>
             <Grid>
-                <Button
-                    Name="BtnAgregarCategoria"
-                    Height="55"
-                    Margin="10,60,729,442"
-                    Panel.ZIndex="3"
-                    Background="#009faf"
-                    BorderBrush="Transparent"
-                    Click="BtnAgregarCategoria_Click"
-                    Cursor="Hand"
-                    Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
-                    ToolTip="Todas las categoria">
-                    <materialDesign:PackIcon
-                        Width="30"
-                        Height="30"
-                        Foreground="White"
-                        Kind="BookmarkMultipleOutline" />
-                </Button>
+
                 <Frame
                     Name="FrameAgregarCategoria"
                     Width="795"
                     Height="485"
                     Margin="0,71,0,0"
-                    Panel.ZIndex="1"
-                    Visibility="Collapsed" />
+                    Panel.ZIndex="3" />
                 <materialDesign:Card>
                     <TabControl
-                        x:Name="TabItems"
-                        HorizontalContentAlignment="Left"
-                        materialDesign:ColorZoneAssist.Mode="Standard"
-                        Initialized="TabControlItem_Initialized">
-                        <!--#region Region del template del tabitem-->
-
-                        <ItemsControl Name="Items">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TabItem Header="{Binding name}">
-                                        <ItemsControl>
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <materialDesign:Card
-                                                        Width="240"
-                                                        Height="340"
-                                                        Margin="12,30,0,10"
-                                                        Background="GhostWhite">
-                                                        <!--#region Filas dentro del card-->
-                                                        <Grid>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="150" />
-                                                                <RowDefinition />
-                                                                <RowDefinition />
-                                                                <RowDefinition />
-                                                            </Grid.RowDefinitions>
-                                                            <Image
-                                                                Grid.Row="0"
-                                                                Width="200"
-                                                                Height="130"
-                                                                Margin="0,0,20,0"
-                                                                HorizontalAlignment="Right"
-                                                                Source="/Views/Stock/Batido-pie.jpg"
-                                                                Stretch="Fill"
-                                                                StretchDirection="DownOnly" />
-                                                            <TextBlock Grid.Row="1" Text="Producto" />
-                                                            <TextBlock
-                                                                Grid.Row="1"
-                                                                Margin="50,0,0,0"
-                                                                Text="{Binding name}" />
-                                                        </Grid>
-                                                        <!--#endregion-->
-                                                    </materialDesign:Card>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </TabItem>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-
-                        </ItemsControl>
-
-
-
-
-
-
-
-
-
-
-
-
+                        materialDesign:ColorZoneAssist.Mode="Light"
+                        materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
+                        materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                        Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                        TabStripPlacement="Top">
+                        <materialDesign:NavigationRailAssist.FloatingContent>
+                            <Button
+                                Name="BtnAgregarCategoria"
+                                Height="55"
+                                Background="#009faf"
+                                BorderBrush="Transparent"
+                                Click="BtnAgregarCategoria_Click"
+                                Cursor="Hand"
+                                Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                                ToolTip="Todas las categoria">
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Foreground="White"
+                                    Kind="BookmarkMultipleOutline" />
+                            </Button>
+                        </materialDesign:NavigationRailAssist.FloatingContent>
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Folder" />
+                                    <TextBlock HorizontalAlignment="Center" Text="All Files" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 1 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                                <Run FontStyle="Italic">
+                                    Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="ClockOutline" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Recent" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 2 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                                <Run FontStyle="Italic">
+                                    Praesent sed dui arcu. Vivamus porta auctor sagittis
+                                </Run>
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="Images" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Photos" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 3 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                            </TextBlock>
+                        </TabItem>
+                        <TabItem>
+                            <TabItem.Header>
+                                <StackPanel Width="auto" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Kind="MusicBoxMultiple" />
+                                    <TextBlock HorizontalAlignment="Center" Text="Sounds" />
+                                </StackPanel>
+                            </TabItem.Header>
+                            <TextBlock>
+                                <Run Text="tab 4 content. Default look and behaviors." />
+                                <LineBreak />
+                                <LineBreak />
+                            </TextBlock>
+                        </TabItem>
                     </TabControl>
                 </materialDesign:Card>
             </Grid>

@@ -32,13 +32,12 @@ namespace Front.Views.Productos
         public ObservableCollection<categories> categories;
         public ObservableCollection<productos> productos;
         private static readonly HttpClient client = new HttpClient();
-        string url = ("http://localhost:3000/api/products?extendeData=true");
         public AgregarCategoria()
         {
             InitializeComponent();
         }
 
-        public async Task<string> GetHttp()
+        public async Task<string> GetHttp(string url)
         {
             WebRequest oRequest = WebRequest.Create(url);
             WebResponse oResponse = oRequest.GetResponse();
@@ -50,12 +49,21 @@ namespace Front.Views.Productos
 
         private async void Main()
         {
-            string response = await GetHttp();
-            List<productos> returnedData = Newtonsoft.Json.JsonConvert.DeserializeObject<List<productos>>(response);
-            productos = new ObservableCollection<productos>(returnedData);
-            if (returnedData != null)
+            string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
+            string RespondCategorie = await GetHttp("http://localhost:3000/api/categories");
+            string RespondTopping = await GetHttp("http://localhost:3000/api/toppings");
+            List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(response);
+            List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
+            List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
+            //productos = new ObservableCollection<productos>(products);
+            categories = new ObservableCollection<categories>(categorie);
+             
+            
+            
+            if (group != null)
             {
-                ItemsProductos.ItemsSource = returnedData;
+                itemsCardsCategorias.ItemsSource = group;
+                ListToppings.ItemsSource = toppings;
             }
             else
             {
@@ -99,11 +107,20 @@ namespace Front.Views.Productos
         private void Border_Initialized(object sender, EventArgs e)
         {
             Main();
+          
         }
 
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             PostElement();
+        }
+
+        private void Tabcontrol_Initialized(object sender, EventArgs e)
+        {
+           
+               
+
+            
         }
     }
 }

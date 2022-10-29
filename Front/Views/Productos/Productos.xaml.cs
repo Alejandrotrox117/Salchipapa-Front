@@ -27,10 +27,8 @@ namespace Front.Views.Productos
     /// </summary>
     public partial class Productos : UserControl
     {
-       
-        
-        
-        TabControl tbControl;
+
+
         public Productos()
         {
             InitializeComponent();
@@ -56,20 +54,11 @@ namespace Front.Views.Productos
             //    toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }
 
             //});
-
+            
 
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-            TabItem newTabItem = new TabItem
-            {
-                Header = "Test",
-                Name = "Test",
-                
-            };
-            tbControl.Items.Add(newTabItem);
-        }
+        
 
 
 
@@ -85,46 +74,21 @@ namespace Front.Views.Productos
 
         private async void Main()
         {
-            string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
-            string responseTwo = await GetHttp("http://localhost:3000/api/categories");
+//            string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
+  //          string responseTwo = await GetHttp("http://localhost:3000/api/categories");
 
             List<Grupos> Grupo = new List<Grupos>();
-            List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(responseTwo);
-            List<productos> productos = JsonConvert.DeserializeObject<List<productos>>(response);
-            
+    //        List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(responseTwo);
+            //List<productos> productos = JsonConvert.DeserializeObject<List<productos>>(response);
+            List<productos> productos = new List<productos>();
+            productos.Add(new productos() { name = "Batido de Oreo",price=1,stock=2,description="Batido",categorie="Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }});
+            productos.Add(new productos() { name = "Batido de Oreo",price=1,stock=2,description="Batido",categorie="Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }});
 
 
-            if (categories  != null)
+            if (productos  != null)
             {
-                Items.ItemsSource = productos;
-                //foreach (categories i in categories)
-                //{
-                //    foreach (productos p in productos)
-                //    {
+             
 
-
-                //        TabItem newTabItem = new TabItem
-                //        {
-
-                //            Header = i.name,
-                //            DataContext = p.name
-                       
-                //        };
-                       
-
-                //        TextBlock tex = new TextBlock()
-                //        {
-                //            Text = i.name,
-                //        };
-                        
-                //        TabItems.Items.Add(newTabItem);
-                //        TabItems.Items.
-                        
-                //    }
-
-                    
-                //}
-                
             }
             else
             {
@@ -160,13 +124,16 @@ namespace Front.Views.Productos
       
         private void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
         {
-            
-            FrameAgregarCategoria.NavigationService.Navigate(new AgregarCategoria());
+
+           
         }
 
         private void Border_Initialized(object sender, EventArgs e)
         {
-            Main();
+
+            //Main();
+            FrameAgregarCategoria.NavigationService.Navigate(new AgregarCategoria());
+            
         }
 
         private void ItemsProductos_Initialized(object sender, EventArgs e)

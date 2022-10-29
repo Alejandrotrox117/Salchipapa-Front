@@ -16,31 +16,11 @@
     </Style>
 
     <Style x:Key="TabItemColor" TargetType="TabItem">
-        <Setter Property="Foreground" Value="#00695c" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Background" Value="#00695c" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border
-                        x:Name="border"
-                        Background="#00695c"
-                        BorderBrush="#909090"
-                        BorderThickness="2"
-                        CornerRadius="3" />
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Background" Value="#00695c">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#00695c" />
-                            <Setter Property="Foreground" Value="#909090" />
-                        </Trigger>
-                        <Trigger Property="IsFocused" Value="true">
-                            <Setter Property="Foreground" Value="#FF00695C" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="#00695c" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="IsSelected" Value="True" />
+
     </Style>
 
 
