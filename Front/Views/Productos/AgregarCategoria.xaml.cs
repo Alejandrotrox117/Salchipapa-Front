@@ -45,8 +45,6 @@ namespace Front.Views.Productos
             return await sr.ReadToEndAsync();
         }
 
-
-
         private async void Main()
         {
             string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
@@ -58,20 +56,17 @@ namespace Front.Views.Productos
             //productos = new ObservableCollection<productos>(products);
             categories = new ObservableCollection<categories>(categorie);
              
-            
-            
-            if (group != null)
+            if (categorie != null)
             {
-                itemsCardsCategorias.ItemsSource = group;
-                ListToppings.ItemsSource = toppings;
+                itemsCardsCategorias.ItemsSource = categorie;
+         
+                //ListToppings.ItemsSource = toppings;
             }
             else
             {
                 MessageBox.Show("Error");
             }
         }
-
-
         private async void PostElement()
         {
             string link = ("http://localhost:3000/api/categories");
@@ -89,7 +84,7 @@ namespace Front.Views.Productos
             if (httpResponse.IsSuccessStatusCode)
             {
                 MessageBox.Show("Se han enviado los datos");
-
+                itemsCardsCategorias.UpdateLayout();
             }
             else
             {
@@ -99,28 +94,77 @@ namespace Front.Views.Productos
 
 
 
-        private void BtnAgregarProducto_Click(object sender, RoutedEventArgs e)
+        private childItem FindVisualChild<childItem>(DependencyObject obj)
+     where childItem : DependencyObject
         {
-            
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
         }
-
         private void Border_Initialized(object sender, EventArgs e)
         {
             Main();
-          
+            
+
+
         }
 
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             PostElement();
+            DialogHostCategorias.IsOpen = false;
+            
         }
 
-        private void Tabcontrol_Initialized(object sender, EventArgs e)
+       
+
+        private void DialogHostCategorias_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
-           
-               
+            TxtNombreCategoria.Clear();
 
             
+
+
+        }
+
+        private void itemsCardsCategorias_Loaded(object sender, RoutedEventArgs e)
+        {
+
+           
+        }
+
+        private void BtnElimina_Click(object sender, RoutedEventArgs e)
+        {
+            itemsCardsCategorias.Focusable = true;
+            itemsCardsCategorias.IsHitTestVisible = true;
+            for (int i=0;i<itemsCardsCategorias.Items.Count;i++)
+            {
+                ListBoxItem myListBoxItem =
+    (ListBoxItem)(itemsCardsCategorias.ItemContainerGenerator.ContainerFromItem(itemsCardsCategorias.Items[i]));
+
+                // Getting the ContentPresenter of myListBoxItem
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+
+                // Finding textBlock from the DataTemplate that is set on that ContentPresenter
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                Button myButton = (Button)myDataTemplate.FindName("BtnEliminar", myContentPresenter);
+
+                // Do something to the DataTemplate-generated TextBlock
+               
+                myButton.Visibility = Visibility.Visible;
+            }
         }
     }
 }

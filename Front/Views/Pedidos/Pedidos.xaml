@@ -23,7 +23,7 @@
             HorizontalContentAlignment="Left"
             materialDesign:ColorZoneAssist.Background="GhostWhite"
             materialDesign:ColorZoneAssist.Mode="Light"
-            Style="{StaticResource MaterialDesignFilledTabControl}">
+            >
             <TabItem Header="Entrantes">
                 <ScrollViewer
                     CanContentScroll="True"
@@ -45,6 +45,7 @@
                                     Grid.Row="1"
                                     Width="250"
                                     Height="340"
+                                  
                                     Margin="10,30,0,0">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -54,6 +55,7 @@
                                         <materialDesign:Flipper
                                             Grid.Row="0"
                                             IsFlipped="False"
+                                            Background="GhostWhite"
                                             Style="{StaticResource MaterialDesignCardFlipper}">
                                             <materialDesign:Flipper.FrontContent>
                                                 <Button
@@ -88,6 +90,7 @@
                                             Grid.Row="1"
                                             Width="250"
                                             Height="260"
+                                            Background="GhostWhite"
                                             Margin="0,-40,0,150"
                                             FlowDirection="LeftToRight"
                                             IsFlipped="false">

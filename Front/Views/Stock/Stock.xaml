@@ -13,134 +13,47 @@
     Height="558"
     mc:Ignorable="d">
     <Border Background="White">
-        <StackPanel Width="260" Height="370">
-            <Grid Height="251">
+
+
+        <materialDesign:Card
+            x:Name="CardPedido"
+            Grid.Row="1"
+            Width="100"
+            Height="150"
+            Background="GhostWhite">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
+                    <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <materialDesign:Flipper
-                    Grid.Row="0"
-                    IsFlipped="False"
-                    Style="{StaticResource MaterialDesignCardFlipper}">
-                    <materialDesign:Flipper.FrontContent>
-                        <Button
-                            Width="184"
-                            Margin="8"
-                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                            Content="Aceptar Pedido"
-                            Style="{StaticResource MaterialDesignFlatButton}" />
-                    </materialDesign:Flipper.FrontContent>
-                    <materialDesign:Flipper.BackContent>
-                        <Grid Width="124">
-                            <Button
-                                Margin="2,0"
-                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
-                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                                materialDesign:ButtonProgressAssist.Value="-1"
-                                Content="Indeterminate"
-                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                Style="{StaticResource MaterialDesignRaisedButton}" />
-                        </Grid>
-                    </materialDesign:Flipper.BackContent>
-                </materialDesign:Flipper>
-                <materialDesign:Flipper
-                    x:Name="CardPedido"
-                    Grid.Row="1"
-                    Width="260"
-                    Margin="0,0,-10,-109"
-                    Background="GhostWhite"
-                    FlowDirection="LeftToRight"
-                    IsFlipped="True">
-                    <materialDesign:Flipper.FrontContent>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="150" />
-                                <RowDefinition Height="120" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Grid.Row="0"
-                                Width="200"
-                                Height="130"
-                                Source="/Views/Stock/Batido-pie.jpg"
-                                Stretch="Fill" />
-                            <StackPanel
-                                Grid.Row="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20" />
-                                        <RowDefinition Height="24" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
+                <Image
+                    Source="/IMG/Batido-pie.jpg"
+                    Stretch="Fill"
+                    StretchDirection="Both" />
+                <StackPanel Grid.Row="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            FontSize="9"
+                            FontWeight="Bold"
+                            Foreground="#00695c"
+                            Text="Nombre del producto" />
 
-                                    <TextBlock
-                                        Grid.Row="0"
-                                        Margin="50,-10,0,0"
-                                        FontSize="15"
-                                        Text="Mesa: 1" />
-                                    <TextBlock
-                                        Grid.Row="1"
-                                        Margin="0,0,0,0"
-                                        FontSize="12"
-                                        Text="16min" />
-                                    <Button
-                                        Grid.Row="2"
-                                        Background="#00695c"
-                                        BorderBrush="Transparent"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        Content="Detalles del Pedido" />
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
-                    </materialDesign:Flipper.FrontContent>
-                    <materialDesign:Flipper.BackContent>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="45" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <materialDesign:ColorZone
-                                Grid.Row="0"
-                                Padding="6"
-                                VerticalAlignment="Top"
-                                Background="#00695c"
-                                FontWeight="Bold"
-                                Foreground="White">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        HorizontalAlignment="Left"
-                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                        <materialDesign:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
-                                    </Button>
-                                    <TextBlock
-                                        Margin="8,0,0,0"
-                                        VerticalAlignment="Center"
-                                        Text="Volver" />
-                                </StackPanel>
-                            </materialDesign:ColorZone>
-                            <ScrollViewer
-                                Grid.Row="1"
-                                HorizontalScrollBarVisibility="Auto"
-                                VerticalScrollBarVisibility="Auto">
-                                <ListView
-                                    x:Name="ListProductos"
-                                    Grid.Row="1"
-                                    Height="300">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Productos" />
-                                            <GridViewColumn DisplayMemberBinding="{Binding topping}" Header="Adicional" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </ScrollViewer>
-                        </Grid>
-                    </materialDesign:Flipper.BackContent>
-                </materialDesign:Flipper>
+
+
+                    </Grid>
+                </StackPanel>
+
+
             </Grid>
-        </StackPanel>
+
+
+        </materialDesign:Card>
+
+
     </Border>
 </UserControl>

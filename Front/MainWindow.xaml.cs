@@ -92,7 +92,7 @@ namespace Front
         }
         private void BtnProductos_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Productos());
+            MyFrame.NavigationService.Navigate(new AgregarCategoria());
         }
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
