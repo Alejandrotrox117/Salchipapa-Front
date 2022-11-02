@@ -132,7 +132,7 @@ namespace Front.Views.Productos
         {
 
             //Main();
-            FrameAgregarCategoria.NavigationService.Navigate(new AgregarCategoria());
+            //FrameAgregarCategoria.NavigationService.Navigate(new AgregarCategoria());
             
         }
 

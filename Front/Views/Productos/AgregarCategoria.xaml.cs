@@ -58,7 +58,7 @@ namespace Front.Views.Productos
              
             if (categorie != null)
             {
-                itemsCardsCategorias.ItemsSource = categorie;
+                TabsProductos.ItemsSource = group;
          
                 //ListToppings.ItemsSource = toppings;
             }
@@ -130,15 +130,7 @@ namespace Front.Views.Productos
 
        
 
-        private void DialogHostCategorias_ContextMenuClosing(object sender, ContextMenuEventArgs e)
-        {
-            TxtNombreCategoria.Clear();
-
-            
-
-
-        }
-
+        
         private void itemsCardsCategorias_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -164,7 +156,45 @@ namespace Front.Views.Productos
                 // Do something to the DataTemplate-generated TextBlock
                
                 myButton.Visibility = Visibility.Visible;
+              
             }
+        }
+
+        private void AgregarTopping_Click(object sender, RoutedEventArgs e)
+        {
+            ListToppings.Items.Add(CBToppings.Text);
+        }
+
+       
+
+        private void CBToppings_KeyDown(object sender, KeyEventArgs e)
+        {
+            ListToppings.Items.Add(CBToppings.Text);
+        }
+
+        private void ListToppings_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < ListToppings.Items.Count; i++)
+            {
+                ListBoxItem myListBoxItem =
+    (ListBoxItem)(ListToppings.ItemContainerGenerator.ContainerFromItem(ListToppings.Items[i]));
+
+                // Getting the ContentPresenter of myListBoxItem
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+
+                // Finding textBlock from the DataTemplate that is set on that ContentPresenter
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                Button myButton = (Button)myDataTemplate.FindName("BtnEliminarTopping", myContentPresenter);
+
+                // Do something to the DataTemplate-generated TextBlock
+                myButton.Click += new RoutedEventHandler(BtnEliminarTopping_Click);
+
+            }
+        }
+
+        private void BtnEliminarTopping_Click(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }
