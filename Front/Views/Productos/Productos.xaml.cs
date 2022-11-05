@@ -72,32 +72,32 @@ namespace Front.Views.Productos
 
 
 
-        private async void Main()
-        {
-//            string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
-  //          string responseTwo = await GetHttp("http://localhost:3000/api/categories");
+        //private async void Main()
+        //{
+        //    string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
+        //    string responseTwo = await GetHttp("http://localhost:3000/api/categories");
 
-            List<Grupos> Grupo = new List<Grupos>();
-    //        List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(responseTwo);
-            //List<productos> productos = JsonConvert.DeserializeObject<List<productos>>(response);
-            List<productos> productos = new List<productos>();
-            productos.Add(new productos() { name = "Batido de Oreo",price=1,stock=2,description="Batido",categorie="Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }});
-            productos.Add(new productos() { name = "Batido de Oreo",price=1,stock=2,description="Batido",categorie="Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } }});
-
-
-            if (productos  != null)
-            {
-             
-
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-        }
+        //    List<Grupos> Grupo = new List<Grupos>();
+        //    List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(responseTwo);
+        //    List<productos> productos = JsonConvert.DeserializeObject<List<productos>>(response);
+        //    List<productos> productos = new List<productos>();
+        //    productos.Add(new productos() { name = "Batido de Oreo", price = 1, stock = 2, description = "Batido", categorie = "Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } } });
+        //    productos.Add(new productos() { name = "Batido de Oreo", price = 1, stock = 2, description = "Batido", categorie = "Batidos", toppings = new List<Toppings>() { new Toppings { name = "Flips", price = 2 } } });
 
 
-      
+        //    if (productos != null)
+        //    {
+
+
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Error");
+        //    }
+        //}
+
+
+
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {

@@ -9,8 +9,8 @@ namespace Entities
     public class Grupos
     {
 
-    public List<productos> productos { get; set; }
-    public List<categories> categories { get; set; }    
+        public List<productos> products { get; set; }
+        public string categorie { get; set; }
 
     }
 }

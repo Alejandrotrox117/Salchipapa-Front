@@ -295,9 +295,10 @@
                                     Grid.ColumnSpan="5"
                                     Background="#00695c"
                                     DialogTheme="Inherit"
-                                    IsOpen="True">
+                                    IsOpen="False">
                                     <!--#region Contenido del formulario-->
                                     <materialDesign:DialogHost.DialogContent>
+
                                         <StackPanel Width="500" Height="450">
                                             <!--#region TITULO DEL DIALOG-->
                                             <Grid>
@@ -509,128 +510,157 @@
                                             <!--#endregion-->
                                         </StackPanel>
                                     </materialDesign:DialogHost.DialogContent>
-                                    <!--#endregion-->
-                                    <!--#region  Colorzone producto-->
-                                    <materialDesign:ColorZone
-                                        Grid.Row="0"
-                                        Height="50"
-                                        Background="#00695c"
-                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                        Mode="Custom">
-                                        <TextBlock
-                                            Margin="16"
-                                            FontSize="15"
-                                            FontStyle="Italic"
-                                            FontWeight="Bold"
+                                    <Grid>
+                                        <!--#endregion-->
+                                        <!--#region  Colorzone producto-->
+                                        <materialDesign:ColorZone
+                                            Grid.Row="0"
+                                            Height="50"
+                                            Background="#00695c"
+                                            Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                            Mode="Custom">
+                                            <TextBlock
+                                                Margin="16"
+                                                FontSize="15"
+                                                FontStyle="Italic"
+                                                FontWeight="Bold"
+                                                Foreground="White"
+                                                Text="Todos los productos" />
+
+                                        </materialDesign:ColorZone>
+                                        <materialDesign:PopupBox
+                                            Grid.Row="0"
+                                            Margin="0,0,28,20"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Panel.ZIndex="5"
+                                            Background="#099faf"
+                                            BorderBrush="Transparent"
+                                            Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
+                                                                              Size=24}"
+                                            Cursor="Hand"
                                             Foreground="White"
-                                            Text="Todos los productos" />
-                                    </materialDesign:ColorZone>
-                                    <!--#endregion-->
-                                    <!--#region Contenido productos-->
-
-
-
-
-
-
-                                    <!--#endregion-->
+                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                            PlacementMode="TopAndAlignCentres"
+                                            Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                            ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
+                                            ToggleCheckedContentCommandParameter="wowsers">
+                                            <materialDesign:PopupBox.ToggleCheckedContent>
+                                                <materialDesign:PackIcon
+                                                    Width="24"
+                                                    Height="24"
+                                                    Kind="BookmarkAddOutline" />
+                                            </materialDesign:PopupBox.ToggleCheckedContent>
+                                            <StackPanel>
+                                                <Button
+                                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                    Content="1"
+                                                    ToolTip="Agregar" />
+                                                <Button
+                                                    Click="BtnElimina_Click"
+                                                    Content="2"
+                                                    ToolTip="Eliminar" />
+                                            </StackPanel>
+                                        </materialDesign:PopupBox>
+                                        <!--#endregion-->
+                                        <TabControl
+                                            x:Name="TabsProductos"
+                                            Margin="0,54,0,0"
+                                            HorizontalContentAlignment="Left"
+                                            ItemsSource="{Binding Grupos}">
+                                            <TabControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding categorie}" />
+                                                </DataTemplate>
+                                            </TabControl.ItemTemplate>
+                                            <TabControl.ContentTemplate>
+                                                <DataTemplate>
+                                                    <ListBox ItemsSource="{Binding products}">
+                                                        <ListBox.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel />
+                                                            </ItemsPanelTemplate>
+                                                        </ListBox.ItemsPanel>
+                                                        <ListBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <materialDesign:Card
+                                                                    Width="200"
+                                                                    Height="300"
+                                                                    Background="GhostWhite">
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="140" />
+                                                                            <RowDefinition Height="*" />
+                                                                            <RowDefinition Height="Auto" />
+                                                                        </Grid.RowDefinitions>
+                                                                        <materialDesign:Badged
+                                                                            Badge="{Binding stock}"
+                                                                            BadgeBackground="#00695c"
+                                                                            BadgeForeground="White">
+                                                                            <Image
+                                                                                Height="140"
+                                                                                Source="/Views/Productos/Batido-pie.jpg"
+                                                                                Stretch="Fill" />
+                                                                        </materialDesign:Badged>
+                                                                        <materialDesign:Badged
+                                                                            Grid.Row="0"
+                                                                            Margin="0,0,14,-10"
+                                                                            HorizontalAlignment="Right"
+                                                                            VerticalAlignment="Bottom"
+                                                                            Badge="{Binding stock}"
+                                                                            BadgeBackground="White"
+                                                                            BadgeForeground="Black"
+                                                                            FlowDirection="LeftToRight">
+                                                                            <Button
+                                                                                Grid.Row="0"
+                                                                                Margin="0,0,0,0"
+                                                                                HorizontalAlignment="Right"
+                                                                                VerticalAlignment="Bottom"
+                                                                                Background="#00695c"
+                                                                                BorderBrush="White"
+                                                                                Cursor="Hand"
+                                                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                                                                                <materialDesign:PackIcon
+                                                                                    Width="32"
+                                                                                    Height="36"
+                                                                                    Foreground="White"
+                                                                                    Kind="BookmarkCheckOutline" />
+                                                                            </Button>
+                                                                        </materialDesign:Badged>
+                                                                        <StackPanel Grid.Row="1" Margin="8,15,8,8">
+                                                                            <TextBlock
+                                                                                Margin="0,0,0,3"
+                                                                                HorizontalAlignment="Center"
+                                                                                FontSize="15"
+                                                                                FontWeight="Bold"
+                                                                                Text="{Binding name}" />
+                                                                            <TextBlock
+                                                                                Margin="0,0,0,4"
+                                                                                FontSize="14"
+                                                                                FontWeight="Bold"
+                                                                                Text="Toppings:" />
+                                                                            <TextBlock
+                                                                                Margin="0,0,0,3"
+                                                                                VerticalAlignment="Center"
+                                                                                FontSize="13"
+                                                                                Text="{Binding description}"
+                                                                                TextWrapping="Wrap" />
+                                                                        </StackPanel>
+                                                                    </Grid>
+                                                                </materialDesign:Card>
+                                                            </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                    </ListBox>
+                                                </DataTemplate>
+                                            </TabControl.ContentTemplate>
+                                        </TabControl>
+                                        <!--#region Contenido productos-->
+                                    </Grid>
                                 </materialDesign:DialogHost>
-
                                 <!--#region Tabs de productos-->
-                                <TabControl
-                                    x:Name="TabsProductos"
-                                    HorizontalContentAlignment="Left"
-                                    ItemsSource="{Binding Grupo}">
-                                    <TabControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding categorie}" />
-                                        </DataTemplate>
-                                    </TabControl.ItemTemplate>
-                                    <TabControl.ContentTemplate>
-                                        <DataTemplate>
-                                            <ListBox ItemsSource="{Binding products}">
-                                                <ListBox.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel />
-                                                    </ItemsPanelTemplate>
-                                                </ListBox.ItemsPanel>
-                                                <ListBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <materialDesign:Card
-                                                            Width="200"
-                                                            Height="300"
-                                                            Background="GhostWhite">
-                                                            <Grid>
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="140" />
-                                                                    <RowDefinition Height="*" />
-                                                                    <RowDefinition Height="Auto" />
-                                                                </Grid.RowDefinitions>
-                                                                <materialDesign:Badged
-                                                                    Badge="{Binding stock}"
-                                                                    BadgeBackground="#00695c"
-                                                                    BadgeForeground="White">
-                                                                    <Image
-                                                                        Height="140"
-                                                                        Source="/Views/Productos/Batido-pie.jpg"
-                                                                        Stretch="Fill" />
-                                                                </materialDesign:Badged>
-                                                                <materialDesign:Badged
-                                                                    Grid.Row="0"
-                                                                    Margin="0,0,14,-10"
-                                                                    HorizontalAlignment="Right"
-                                                                    VerticalAlignment="Bottom"
-                                                                    Badge="{Binding stock}"
-                                                                    BadgeBackground="White"
-                                                                    BadgeForeground="Black"
-                                                                    FlowDirection="LeftToRight">
-                                                                    <Button
-                                                                        Grid.Row="0"
-                                                                        Margin="0,0,0,0"
-                                                                        HorizontalAlignment="Right"
-                                                                        VerticalAlignment="Bottom"
-                                                                        Background="#00695c"
-                                                                        BorderBrush="White"
-                                                                        Cursor="Hand"
-                                                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                                                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-                                                                        <materialDesign:PackIcon
-                                                                            Width="32"
-                                                                            Height="36"
-                                                                            Foreground="White"
-                                                                            Kind="BookmarkCheckOutline" />
-                                                                    </Button>
-                                                                </materialDesign:Badged>
-                                                                <StackPanel Grid.Row="1" Margin="8,15,8,8">
-                                                                    <TextBlock
-                                                                        Margin="0,0,0,3"
-                                                                        HorizontalAlignment="Center"
-                                                                        FontSize="15"
-                                                                        FontWeight="Bold"
-                                                                        Text="{Binding name}" />
-                                                                    <TextBlock
-                                                                        Margin="0,0,0,4"
-                                                                        FontSize="14"
-                                                                        FontWeight="Bold"
-                                                                        Text="Toppings:" />
-                                                                    <TextBlock
-                                                                        Margin="0,0,0,3"
-                                                                        VerticalAlignment="Center"
-                                                                        FontSize="13"
-                                                                        Text="{Binding description}"
-                                                                        TextWrapping="Wrap" />
-                                                                </StackPanel>
-                                                            </Grid>
-                                                        </materialDesign:Card>
-                                                    </DataTemplate>
-                                                </ListBox.ItemTemplate>
-                                            </ListBox>
-                                        </DataTemplate>
-                                    </TabControl.ContentTemplate>
-                                </TabControl>
                                 <!--#endregion-->
                             </Grid>
-
                             <!--#endregion-->
                         </TabItem.Content>
                         <!--#endregion-->
@@ -653,6 +683,272 @@
                                     Text="Extras" />
                             </StackPanel>
                         </TabItem.Header>
+                        <!--#region Contenido de los toppings-->
+                        <TabItem.Content>
+                            <materialDesign:DialogHost
+                                x:Name="DialogHostToppings"
+                                Grid.RowSpan="5"
+                                Grid.ColumnSpan="5"
+                                Background="#00695c"
+                                DialogTheme="Inherit"
+                                IsOpen="False">
+                                <materialDesign:DialogHost.DialogContent>
+                                    <Grid>
+                                        <TextBlock
+                                            x:Name="TxtTituloDiagToppings"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="0,0,0,0"
+                                            HorizontalAlignment="Center"
+                                            FontSize="20"
+                                            FontWeight="Bold"
+                                            Foreground="#00695c"
+                                            Text="TITULO" />
+                                        <StackPanel Width="450" Height="250">
+                                            <!--#region TITULO DEL DIALOG-->
+                                            <!--#endregion-->
+                                            <Grid>
+                                                <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="55" />
+                                                    <RowDefinition Height="55" />
+                                                    <RowDefinition Height="55" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <!--#endregion-->
+                                                <!--#region Titulo y texbox NOMBRE-->
+
+                                                <TextBox
+                                                    Grid.Row="1"
+                                                    Grid.Column="0"
+                                                    Width="190"
+                                                    Height="50"
+                                                    Margin="0,-13,10,0"
+                                                    materialDesign:HintAssist.Foreground="#00695c"
+                                                    materialDesign:HintAssist.Hint="Nombre categoria"
+                                                    AcceptsReturn="True"
+                                                    BorderBrush="#00695c"
+                                                    BorderThickness="2"
+                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                                                <TextBox
+                                                    Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Width="190"
+                                                    Height="50"
+                                                    Margin="0,-13,10,0"
+                                                    materialDesign:HintAssist.Foreground="#00695c"
+                                                    materialDesign:HintAssist.Hint="En Stock"
+                                                    AcceptsReturn="True"
+                                                    BorderBrush="#00695c"
+                                                    BorderThickness="2"
+                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+
+
+
+                                            </Grid>
+                                            <TextBox
+                                                Width="190"
+                                                Height="50"
+                                                Margin="0,-50,0,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Precio"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                                            <StackPanel
+                                                Margin="0,30,0,0"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    Margin="0,8,108,0"
+                                                    Background="Transparent"
+                                                    BorderBrush="#00695c"
+                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Content="Agregar"
+                                                    Foreground="#00695c"
+                                                    IsDefault="False">
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                                <Button
+                                                    Margin="0,8,8,0"
+                                                    Background="Transparent"
+                                                    BorderBrush="#00695c"
+                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Content="Cancelar"
+                                                    Foreground="#00695c"
+                                                    IsCancel="True">
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                            </StackPanel>
+                                            <!--#endregion-->
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:DialogHost.DialogContent>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                        <ListBox
+                                            x:Name="ListBoxToppings"
+                                            Height="410"
+                                            AllowDrop="True"
+                                            Background="Transparent"
+                                            Focusable="False"
+                                            IsHitTestVisible="False"
+                                            ItemsSource="{Binding toppings}">
+                                            <ListBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel />
+                                                </ItemsPanelTemplate>
+                                            </ListBox.ItemsPanel>
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <materialDesign:Card
+                                                        Width="240"
+                                                        Height="110"
+                                                        Background="GhostWhite"
+                                                        Foreground="#00695c">
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="auto" />
+                                                                <RowDefinition Height="auto" />
+                                                            </Grid.RowDefinitions>
+                                                            <TextBlock
+                                                                Grid.Row="0"
+                                                                Margin="10,16,10,10"
+                                                                Foreground="#00695c"
+                                                                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                                                Text="{Binding name}"
+                                                                TextWrapping="WrapWithOverflow" />
+
+                                                            <StackPanel Grid.Row="1">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="78" />
+                                                                        <ColumnDefinition Width="auto" />
+
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock
+                                                                        Grid.Column="0"
+                                                                        Margin="10,0,5,0"
+                                                                        HorizontalAlignment="Left"
+                                                                        VerticalAlignment="Center"
+                                                                        FontSize="13"
+                                                                        FontWeight="Bold"
+                                                                        Text="En stock :" />
+                                                                    <TextBlock
+                                                                        Grid.Column="0"
+                                                                        HorizontalAlignment="Right"
+                                                                        VerticalAlignment="Center"
+                                                                        FontSize="13"
+                                                                        FontWeight="Bold"
+                                                                        Text="{Binding stock}" />
+                                                                    <TextBlock
+                                                                        Grid.Column="1"
+                                                                        Margin="40,0,0,0"
+                                                                        FontWeight="Bold"
+                                                                        Text="Precio :" />
+                                                                    <TextBlock
+                                                                        Grid.Column="1"
+                                                                        Margin="90,0,0,0"
+                                                                        FontWeight="Bold"
+                                                                        Text="{Binding price}" />
+                                                                    <TextBlock
+                                                                        Grid.Column="1"
+                                                                        Margin="110,0,0,0"
+                                                                        FontWeight="Bold"
+                                                                        Text="$" />
+                                                                </Grid>
+                                                            </StackPanel>
+
+                                                            <StackPanel
+                                                                Grid.Row="1"
+                                                                Width="32"
+                                                                Margin="0,17,22,8"
+                                                                HorizontalAlignment="Right"
+                                                                Orientation="Horizontal">
+                                                                <Button
+                                                                    Width="30"
+                                                                    Padding="2,0,2,0"
+                                                                    HorizontalAlignment="Right"
+                                                                    materialDesign:RippleAssist.IsCentered="True"
+                                                                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                                                    <materialDesign:PackIcon Kind="Pencil" />
+                                                                </Button>
+
+
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </materialDesign:Card>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+
+                                        </ListBox>
+                                    </ScrollViewer>
+                                    <materialDesign:ColorZone
+                                        Grid.Row="0"
+                                        Height="50"
+                                        Background="#00695c"
+                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                        Mode="Custom">
+                                        <TextBlock
+                                            Margin="16"
+                                            FontSize="15"
+                                            FontStyle="Italic"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            Text="Todos los Toppings" />
+                                    </materialDesign:ColorZone>
+                                    <materialDesign:PopupBox
+                                        Grid.Row="0"
+                                        Margin="0,0,28,20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Background="#099faf"
+                                        BorderBrush="Transparent"
+                                        Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
+                                                                          Size=24}"
+                                        Cursor="Hand"
+                                        Foreground="White"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                        PlacementMode="TopAndAlignCentres"
+                                        Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                        ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
+                                        ToggleCheckedContentCommandParameter="wowsers">
+                                        <materialDesign:PopupBox.ToggleCheckedContent>
+                                            <materialDesign:PackIcon
+                                                Width="24"
+                                                Height="24"
+                                                Kind="BookmarkAddOutline" />
+                                        </materialDesign:PopupBox.ToggleCheckedContent>
+                                        <StackPanel>
+                                            <Button
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                Content="1"
+                                                ToolTip="Agregar" />
+                                            <Button
+                                                Click="BtnElimina_Click"
+                                                Content="2"
+                                                ToolTip="Eliminar" />
+                                        </StackPanel>
+                                    </materialDesign:PopupBox>
+                                </Grid>
+                            </materialDesign:DialogHost>
+                        </TabItem.Content>
                     </TabItem>
                 </TabControl>
             </materialDesign:Card>

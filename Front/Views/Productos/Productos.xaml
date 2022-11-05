@@ -15,200 +15,87 @@
     mc:Ignorable="d">
     <Border Background="White" Initialized="Border_Initialized">
         <materialDesign:DialogHost
-            x:Name="DialogHostProductos"
+            x:Name="DialogHostToppings"
             Grid.RowSpan="5"
             Grid.ColumnSpan="5"
             Background="#00695c"
             DialogTheme="Inherit"
             IsOpen="True">
-            <!--#region Contenido del formulario-->
             <materialDesign:DialogHost.DialogContent>
-                <StackPanel Width="500" Height="450">
-                    <!--#region TITULO DEL DIALOG-->
-                    <Grid>
-                        <!--#region FILAS DEL STACKPANEL DEL DIALOG-->
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
+                <Grid>
+                    <TextBlock
+                        x:Name="TxtTituloDiagToppings"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="#00695c"
+                        Text="TITULO" />
+                    <StackPanel Width="450" Height="250">
+                        <!--#region TITULO DEL DIALOG-->
                         <!--#endregion-->
-                        <!--#region Titulo y texbox NOMBRE-->
-                        <TextBlock
-                            x:Name="TituloFormProdu"
-                            Grid.Row="0"
-                            Margin="0,20,0,0"
-                            HorizontalAlignment="Center"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Foreground="#00695c"
-                            Text="TITULO" />
-                        <StackPanel Grid.Row="1">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <TextBox
-                                    x:Name="TxtNombreProducto"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Width="190"
-                                    Height="50"
-                                    Margin="0,0,0,0"
-                                    materialDesign:HintAssist.Foreground="#00695c"
-                                    materialDesign:HintAssist.Hint="Nombre Producto"
-                                    AcceptsReturn="True"
-                                    BorderBrush="#00695c"
-                                    BorderThickness="2"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                <TextBox
-                                    x:Name="TxtCategoriaProducto"
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    Width="190"
-                                    Height="50"
-                                    Margin="0,0,0,0"
-                                    materialDesign:HintAssist.Foreground="#00695c"
-                                    materialDesign:HintAssist.Hint="Nombre categoria"
-                                    AcceptsReturn="True"
-                                    BorderBrush="#00695c"
-                                    BorderThickness="2"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                <TextBox
-                                    x:Name="TxtCantidadProducto"
-                                    Grid.Row="2"
-                                    Grid.Column="0"
-                                    Width="190"
-                                    Height="50"
-                                    Margin="0,10,0,0"
-                                    materialDesign:HintAssist.Foreground="#00695c"
-                                    materialDesign:HintAssist.Hint="En stock"
-                                    AcceptsReturn="True"
-                                    BorderBrush="#00695c"
-                                    BorderThickness="2"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                <TextBox
-                                    x:Name="TxtPrecioProducto"
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    Width="190"
-                                    Height="50"
-                                    Margin="0,10,0,0"
-                                    materialDesign:HintAssist.Foreground="#00695c"
-                                    materialDesign:HintAssist.Hint="Precio"
-                                    AcceptsReturn="True"
-                                    BorderBrush="#00695c"
-                                    BorderThickness="2"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        <Grid>
+                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="55" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--#endregion-->
+                            <!--#region Titulo y texbox NOMBRE-->
+
+                            <TextBox
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Width="190"
+                                Height="50"
+                                Margin="0,-13,10,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Nombre categoria"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                            <TextBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="190"
+                                Height="50"
+                                Margin="0,-13,10,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="En Stock"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
 
 
 
-                            </Grid>
-                        </StackPanel>
+                        </Grid>
                         <TextBox
-                            x:Name="TxtDescripcionProducto"
-                            Grid.Row="3"
-                            Width="400"
-                            Height="90"
-                            Margin="0,10,0,0"
-                            VerticalAlignment="Top"
-                            materialDesign:HintAssist.Foreground="#00695c"
-                            materialDesign:HintAssist.Hint="Descripción"
-                            BorderBrush="#00695c"
-                            BorderThickness="2"
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                            TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto" />
-                        <ComboBox
-                            x:Name="CBToppings"
-                            Grid.Row="4"
                             Width="190"
                             Height="50"
-                            Margin="25,10,0,0"
-                            HorizontalAlignment="Left"
+                            Margin="0,-50,0,0"
                             materialDesign:HintAssist.Foreground="#00695c"
-                            materialDesign:HintAssist.Hint="Añadir Extras"
+                            materialDesign:HintAssist.Hint="Precio"
+                            AcceptsReturn="True"
                             BorderBrush="#00695c"
                             BorderThickness="2"
-                            Foreground="#FF00695C"
-                            Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                            <ComboBoxItem Content="V-" />
-                            <ComboBoxItem Content="J-" />
-                            <ComboBoxItem Content="E-" />
-                        </ComboBox>
-                        <StackPanel
-                            Grid.Row="4"
-                            Grid.Column="0"
-                            Width="250"
-                            Margin="-10,14,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <ListBox
-                                    x:Name="ListToppings"
-                                    Grid.Column="1"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                    Style="{StaticResource MaterialDesignFilterChipListBox}" >
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="50" />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" Text="{Binding}" />
-                                                <Button
-                                                    Grid.Column="1"
-                                                    Width="17"
-                                                    Height="17"
-                                                    Background="Transparent"
-                                                    BorderBrush="Transparent"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                    <materialDesign:PackIcon
-                                                        Width="16"
-                                                        Height="16"
-                                                        Foreground="Black"
-                                                        Kind="CloseCircle" />
-                                                </Button>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-
-                                </ListBox>
-                            </Grid>
-
-                        </StackPanel>
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
 
                         <StackPanel
-                            Grid.Row="5"
-                            Margin="0,20,0,0"
+                            Margin="0,30,0,0"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
                             <Button
-                                x:Name="BtnEnviarProducto"
                                 Margin="0,8,108,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
@@ -233,9 +120,9 @@
                                 </Button.CommandParameter>
                             </Button>
                         </StackPanel>
-                    </Grid>
-                    <!--#endregion-->
-                </StackPanel>
+                        <!--#endregion-->
+                    </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
     </Border>

@@ -45,27 +45,35 @@ namespace Front.Views.Productos
             return await sr.ReadToEndAsync();
         }
 
-        private async void Main()
+        private async void  Main()
         {
             string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
             string RespondCategorie = await GetHttp("http://localhost:3000/api/categories");
             string RespondTopping = await GetHttp("http://localhost:3000/api/toppings");
+
             List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(response);
-            List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
-            List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
+
+
+            //List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
+           List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
             //productos = new ObservableCollection<productos>(products);
-            categories = new ObservableCollection<categories>(categorie);
-             
-            if (categorie != null)
+            //categories = new ObservableCollection<categories>(categorie);
+
+            if (group  != null)
             {
                 TabsProductos.ItemsSource = group;
-         
+                ListBoxToppings.ItemsSource = toppings;
+
                 //ListToppings.ItemsSource = toppings;
             }
-            else
-            {
+            else {
                 MessageBox.Show("Error");
             }
+
+
+
+
+
         }
         private async void PostElement()
         {
