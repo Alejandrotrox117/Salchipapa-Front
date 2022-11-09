@@ -13,7 +13,7 @@ namespace Entities
 
         public double price { get; set; }
         public int stock { get; set; }
-
+        public string _id { get; set; }
 
 
 

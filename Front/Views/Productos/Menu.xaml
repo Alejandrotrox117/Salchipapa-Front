@@ -90,7 +90,7 @@
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="BtnEnviar_Click"
+                                                Click="BtnEnviarCategoria_Click"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"
@@ -132,7 +132,7 @@
                                         ItemsSource="{Binding categories}">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <UniformGrid Columns="3" />
+                                                <UniformGrid Columns="3" Rows="3" />
                                             </ItemsPanelTemplate>
                                         </ListBox.ItemsPanel>
                                         <!--#endregion-->
@@ -153,7 +153,7 @@
                                                             BorderBrush="Transparent"
                                                             Cursor="Hand"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                            Visibility="Visible">
+                                                            Visibility="Hidden">
                                                             <materialDesign:PackIcon
                                                                 Width="20"
                                                                 Height="25"
@@ -165,7 +165,6 @@
                                                         Width="220"
                                                         Height="140"
                                                         Margin="10,30,0,0"
-                                                        Padding="0,0,0,0"
                                                         Background="Transparent"
                                                         UniformCornerRadius="6">
                                                         <Grid>
@@ -202,10 +201,7 @@
                                                                             Height="20"
                                                                             Kind="Pencil" />
                                                                     </Button>
-
                                                                 </Grid>
-
-
                                                             </Border>
                                                         </Grid>
                                                     </materialDesign:Card>
@@ -213,7 +209,6 @@
                                                 <!--#endregion-->
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
-
                                     </ListBox>
                                 </ScrollViewer>
                                 <materialDesign:ColorZone
@@ -298,7 +293,6 @@
                                     IsOpen="False">
                                     <!--#region Contenido del formulario-->
                                     <materialDesign:DialogHost.DialogContent>
-
                                         <StackPanel Width="500" Height="450">
                                             <!--#region TITULO DEL DIALOG-->
                                             <Grid>
@@ -351,8 +345,8 @@
                                                             BorderBrush="#00695c"
                                                             BorderThickness="2"
                                                             Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                                        <TextBox
-                                                            x:Name="TxtCategoriaProducto"
+                                                        <ComboBox
+                                                            x:Name="CbCategoriaProducto"
                                                             Grid.Row="0"
                                                             Grid.Column="1"
                                                             Width="190"
@@ -360,12 +354,14 @@
                                                             Margin="0,0,0,0"
                                                             materialDesign:HintAssist.Foreground="#00695c"
                                                             materialDesign:HintAssist.Hint="Nombre categoria"
-                                                            AcceptsReturn="True"
                                                             BorderBrush="#00695c"
                                                             BorderThickness="2"
-                                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                                            DisplayMemberPath="name"
+                                                            KeyDown="CbCategoriaProducto_KeyDown"
+                                                            SelectionChanged="CbCategoriaProducto_SelectionChanged"
+                                                            Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                                                         <TextBox
-                                                            x:Name="TxtCantidadProducto"
+                                                            x:Name="TxtStockProducto"
                                                             Grid.Row="2"
                                                             Grid.Column="0"
                                                             Width="190"
@@ -417,13 +413,10 @@
                                                     materialDesign:HintAssist.Hint="Añadir Extras"
                                                     BorderBrush="#00695c"
                                                     BorderThickness="2"
+                                                    DisplayMemberPath="name"
                                                     Foreground="#FF00695C"
                                                     KeyDown="CBToppings_KeyDown"
-                                                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                                                    <ComboBoxItem Content="V-" />
-                                                    <ComboBoxItem Content="J-" />
-                                                    <ComboBoxItem Content="E-" />
-                                                </ComboBox>
+                                                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                                                 <StackPanel
                                                     Grid.Row="4"
                                                     Grid.Column="0"
@@ -434,11 +427,11 @@
                                                             <ColumnDefinition Width="150" />
                                                             <ColumnDefinition />
                                                         </Grid.ColumnDefinitions>
-
                                                         <ListBox
                                                             x:Name="ListToppings"
                                                             Grid.Column="1"
                                                             Loaded="ListToppings_Loaded"
+                                                            MouseDoubleClick="ListToppings_MouseDoubleClick"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                                             Style="{StaticResource MaterialDesignFilterChipListBox}">
                                                             <ListBox.ItemsPanel>
@@ -453,7 +446,7 @@
                                                                             <ColumnDefinition Width="50" />
                                                                             <ColumnDefinition />
                                                                         </Grid.ColumnDefinitions>
-                                                                        <TextBlock Grid.Column="0" Text="{Binding}" />
+                                                                        <TextBlock Grid.Column="0" Text="{Binding name}" />
                                                                         <Button
                                                                             Name="BtnEliminarTopping"
                                                                             Grid.Column="1"
@@ -461,8 +454,7 @@
                                                                             Height="17"
                                                                             Background="Transparent"
                                                                             BorderBrush="Transparent"
-                                                                            Click="BtnEliminarTopping_Click"
-                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" Click="BtnEliminarTopping_Click">
                                                                             <materialDesign:PackIcon
                                                                                 Width="16"
                                                                                 Height="16"
@@ -485,6 +477,7 @@
                                                         Margin="0,8,108,0"
                                                         Background="Transparent"
                                                         BorderBrush="#00695c"
+                                                        Click="BtnEnviarProducto_Click"
                                                         Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                         Content="Agregar"
                                                         Foreground="#00695c"
@@ -565,8 +558,9 @@
                                         <!--#endregion-->
                                         <TabControl
                                             x:Name="TabsProductos"
-                                            Margin="0,54,0,0"
+                                            Margin="0,50,0,0"
                                             HorizontalContentAlignment="Left"
+                                            materialDesign:ColorZoneAssist.Mode="Light"
                                             ItemsSource="{Binding Grupos}">
                                             <TabControl.ItemTemplate>
                                                 <DataTemplate>
@@ -722,19 +716,20 @@
                                                 <!--#region Titulo y texbox NOMBRE-->
 
                                                 <TextBox
+                                                    Name="TxtNombreTopping"
                                                     Grid.Row="1"
                                                     Grid.Column="0"
                                                     Width="190"
                                                     Height="50"
                                                     Margin="0,-13,10,0"
                                                     materialDesign:HintAssist.Foreground="#00695c"
-                                                    materialDesign:HintAssist.Hint="Nombre categoria"
+                                                    materialDesign:HintAssist.Hint="Nombre del Topping"
                                                     AcceptsReturn="True"
                                                     BorderBrush="#00695c"
                                                     BorderThickness="2"
                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-
                                                 <TextBox
+                                                    Name="TxtStockTopping"
                                                     Grid.Row="1"
                                                     Grid.Column="1"
                                                     Width="190"
@@ -746,12 +741,9 @@
                                                     BorderBrush="#00695c"
                                                     BorderThickness="2"
                                                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-
-
-
-
                                             </Grid>
                                             <TextBox
+                                                Name="TxtPrecioTopping"
                                                 Width="190"
                                                 Height="50"
                                                 Margin="0,-50,0,0"
@@ -761,15 +753,16 @@
                                                 BorderBrush="#00695c"
                                                 BorderThickness="2"
                                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-
                                             <StackPanel
                                                 Margin="0,30,0,0"
                                                 HorizontalAlignment="Center"
                                                 Orientation="Horizontal">
                                                 <Button
+                                                    x:Name="BtnEnviarTopping"
                                                     Margin="0,8,108,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
+                                                    Click="BtnEnviarTopping_Click"
                                                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                     Content="Agregar"
                                                     Foreground="#00695c"
@@ -803,7 +796,8 @@
                                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                                         <ListBox
                                             x:Name="ListBoxToppings"
-                                            Height="410"
+                                            Height="455"
+                                            Margin="0,50,0,0"
                                             AllowDrop="True"
                                             Background="Transparent"
                                             Focusable="False"

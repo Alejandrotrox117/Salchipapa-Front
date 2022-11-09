@@ -17,36 +17,7 @@ namespace Front
     {
 
 
-        public void GetDeserealize(string url, DataGrid dataGrid)
-        {
-            async void Main()
-            {
-                string respuesta = await GetHttp(url);
-
-                List<clientes> returnedData = JsonConvert.DeserializeObject<List<clientes>>(respuesta);
-
-                if (returnedData != null)
-                {
-                    dataGrid.ItemsSource = returnedData;
-                }
-                else
-                {
-                    MessageBox.Show("Error");
-                }
-            }
-        }
-
-        public async Task<string> GetHttp(string url)
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-
-        }
-
-
+      
 
 
 
