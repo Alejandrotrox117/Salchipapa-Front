@@ -90,10 +90,7 @@ namespace Front
         {
             MyFrame.NavigationService.Navigate(new Clientes());
         }
-        private void BtnProductos_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(new AgregarCategoria());
-        }
+       
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             //Para cerrar la aplicación
@@ -113,7 +110,7 @@ namespace Front
         }
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Dialog());
+            MyFrame.NavigationService.Navigate(new Productos());
         }
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {
@@ -126,6 +123,11 @@ namespace Front
         private void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);
+        }
+
+        private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.NavigationService.Navigate(new Empleados());
         }
     }
 }

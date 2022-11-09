@@ -225,6 +225,7 @@
                                         </StackPanel>
                                     </TreeViewItem.Header>
                                 </TreeViewItem>
+
                                 <!--#endregion-->
                                 <!--#region Btn Menu-->
                                 <TreeViewItem Width="190">
@@ -262,6 +263,41 @@
                                         <!--#endregion-->
                                     </TreeViewItem.Header>
                                     <!--#endregion-->
+
+                                </TreeViewItem>
+
+                                <!--#region BTN CAJA-->
+                                <TreeViewItem Width="190">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Width="170" Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Grid.Column="0"
+                                                    Width="24"
+                                                    Height="24"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="#00695c"
+                                                    Kind="CashRegister" />
+                                                <!--#region Boton CAJA-->
+                                                <Button
+                                                    Grid.Column="1"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent"
+                                                    Cursor="Hand">
+                                                    <TextBlock
+                                                        FontSize="18"
+                                                        Style="{StaticResource PrimaryColor}"
+                                                        Text="Caja" />
+                                                </Button>
+                                                <!--#endregion-->
+                                            </Grid>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
                                 </TreeViewItem>
                                 <!--#endregion-->
                                 <!--#region Administracion-->
@@ -300,7 +336,7 @@
                                             <!--#endregion-->
                                         </Grid>
                                     </StackPanel>
-                                    <!--#region PRODUCTOS-->
+                                    <!--#region EMPLEADOS-->
                                     <StackPanel Orientation="Horizontal">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -314,18 +350,18 @@
                                                 HorizontalAlignment="Right"
                                                 VerticalAlignment="Center"
                                                 Foreground="#00695c"
-                                                Kind="FoodForkDrink" />
-                                            <!--#region BTN PRODUCTOS-->
+                                                Kind="ClipboardAccount" />
+                                            <!--#region BTN EMPLEADOS-->
                                             <Button
-                                                x:Name="BtnProductos"
+                                                x:Name="BtnEmpleados"
                                                 Grid.Column="1"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
-                                                Click="BtnProductos_Click">
+                                                Click="BtnEmpleados_Click">
                                                 <TextBlock
                                                     FontSize="17"
                                                     Style="{StaticResource PrimaryColor}"
-                                                    Text="Productos" />
+                                                    Text="Empleados" />
                                             </Button>
                                             <!--#endregion-->
                                         </Grid>

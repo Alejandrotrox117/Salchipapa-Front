@@ -11,86 +11,759 @@
     Height="560"
     mc:Ignorable="d">
     <Border Background="White" Initialized="Border_Initialized">
+
         <materialDesign:Card>
-            <materialDesign:Card>
-                <TabControl
-                    materialDesign:ColorZoneAssist.Mode="Light"
-                    materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
-                    materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                    ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                    ScrollViewer.VerticalScrollBarVisibility="Visible"
-                    Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-                    TabStripPlacement="Bottom">
-                    <TabItem Width="250" Height="50">
-                        <TabItem.Header>
-                            <StackPanel Width="150" Height="auto">
-                                <materialDesign:PackIcon
-                                    Width="24"
-                                    Height="24"
-                                    HorizontalAlignment="Center"
-                                    Foreground="#00695c"
-                                    Kind="BookmarkMultipleOutline" />
+            <TabControl
+                materialDesign:ColorZoneAssist.Mode="Light"
+                materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                TabStripPlacement="Bottom">
+                <TabItem Width="250" Height="50">
+                    <TabItem.Header>
+                        <StackPanel Width="150" Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Foreground="#00695c"
+                                Kind="BookmarkMultipleOutline" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontStyle="Italic"
+                                FontWeight="Bold"
+                                Foreground="#00695c"
+                                Text="Categorias" />
+                        </StackPanel>
+                    </TabItem.Header>
+
+                    <materialDesign:DialogHost
+                        x:Name="DialogHostCategorias"
+                        Grid.RowSpan="5"
+                        Grid.ColumnSpan="5"
+                        Background="#00695c"
+                        DialogTheme="Inherit"
+                        IsOpen="False">
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="25,0,0,0">
+                                <!--#region TITULO DEL DIALOG-->
+                                <!--#endregion-->
+                                <Grid>
+                                    <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="55" />
+                                        <RowDefinition Height="55" />
+                                        <RowDefinition Height="55" />
+                                    </Grid.RowDefinitions>
+                                    <!--#endregion-->
+                                    <!--#region Titulo y texbox NOMBRE-->
+                                    <TextBlock
+                                        x:Name="TxtTituloDialg"
+                                        Grid.Row="0"
+                                        Margin="0,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="#00695c"
+                                        Text="TITULO" />
+                                    <TextBox
+                                        x:Name="TxtNombreCategoria"
+                                        Grid.Row="1"
+                                        Width="190"
+                                        Height="50"
+                                        Margin="0,-13,10,0"
+                                        materialDesign:HintAssist.Foreground="#00695c"
+                                        materialDesign:HintAssist.Hint="Nombre categoria"
+                                        AcceptsReturn="True"
+                                        BorderBrush="#00695c"
+                                        BorderThickness="2"
+                                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                        TextWrapping="Wrap" />
+                                    <StackPanel
+                                        Grid.Row="2"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            x:Name="BtnEnviar"
+                                            Margin="0,8,108,0"
+                                            Background="Transparent"
+                                            BorderBrush="#00695c"
+                                            Click="BtnEnviarCategoria_Click"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            Content="Agregar"
+                                            Foreground="#00695c"
+                                            IsDefault="False">
+                                            <Button.CommandParameter>
+                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                            </Button.CommandParameter>
+                                        </Button>
+                                        <Button
+                                            Margin="0,8,8,0"
+                                            Background="Transparent"
+                                            BorderBrush="#00695c"
+                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            Content="Cancelar"
+                                            Foreground="#00695c"
+                                            IsCancel="True">
+                                            <Button.CommandParameter>
+                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                            </Button.CommandParameter>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <!--#endregion-->
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                <ListBox
+                                    x:Name="itemsCardsCategorias"
+                                    Margin="0,60,0,0"
+                                    AllowDrop="True"
+                                    Background="Transparent"
+                                    Focusable="False"
+                                    IsHitTestVisible="False"
+                                    ItemsSource="{Binding categories}">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="3" Rows="3" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <!--#endregion-->
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <!--#region cuerpo principal del card-->
+                                            <materialDesign:Badged
+                                                Background="Transparent"
+                                                BadgeBackground="Transparent"
+                                                BorderBrush="Transparent">
+                                                <materialDesign:Badged.Badge>
+                                                    <Button
+                                                        x:Name="BtnEliminar"
+                                                        Width="28"
+                                                        Height="28"
+                                                        Margin="0,50,0,0"
+                                                        Background="Red"
+                                                        BorderBrush="Transparent"
+                                                        Cursor="Hand"
+                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                                                        Visibility="Hidden">
+                                                        <materialDesign:PackIcon
+                                                            Width="20"
+                                                            Height="25"
+                                                            Foreground="White"
+                                                            Kind="CloseCircle" />
+                                                    </Button>
+                                                </materialDesign:Badged.Badge>
+                                                <materialDesign:Card
+                                                    Width="220"
+                                                    Height="140"
+                                                    Margin="10,30,0,0"
+                                                    Background="Transparent"
+                                                    UniformCornerRadius="6">
+                                                    <Grid>
+                                                        <Border CornerRadius="8,8,8,8">
+                                                            <Border.Background>
+                                                                <ImageBrush ImageSource="/Views/Productos/Batido-pie.jpg" Stretch="Fill" />
+                                                            </Border.Background>
+                                                        </Border>
+                                                        <Border
+                                                            Margin="0,108,0,0"
+                                                            Background="Black"
+                                                            CornerRadius="5"
+                                                            Cursor="Hand"
+                                                            Opacity="0.8">
+                                                            <Grid>
+                                                                <TextBlock
+                                                                    Margin="0,5,0,0"
+                                                                    VerticalAlignment="Top"
+                                                                    Panel.ZIndex="3"
+                                                                    FontSize="15"
+                                                                    FontWeight="Bold"
+                                                                    Foreground="White"
+                                                                    Text="{Binding name}" />
+                                                                <Button
+                                                                    Name="BtnEditarCard"
+                                                                    Width="30"
+                                                                    Height="30"
+                                                                    Margin="150,0,0,0"
+                                                                    Panel.ZIndex="3"
+                                                                    Background="#00695c"
+                                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                                    <materialDesign:PackIcon
+                                                                        Width="20"
+                                                                        Height="20"
+                                                                        Kind="Pencil" />
+                                                                </Button>
+                                                            </Grid>
+                                                        </Border>
+                                                    </Grid>
+                                                </materialDesign:Card>
+                                            </materialDesign:Badged>
+                                            <!--#endregion-->
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </ScrollViewer>
+                            <materialDesign:ColorZone
+                                Grid.Row="0"
+                                Height="50"
+                                Background="#00695c"
+                                Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                Mode="Custom">
                                 <TextBlock
-                                    HorizontalAlignment="Center"
+                                    Margin="16"
+                                    FontSize="15"
                                     FontStyle="Italic"
                                     FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Categorias" />
-                            </StackPanel>
-                        </TabItem.Header>
+                                    Foreground="White"
+                                    Text="Todas las categorias" />
+                            </materialDesign:ColorZone>
+                            <materialDesign:PopupBox
+                                Grid.Row="0"
+                                Margin="0,0,28,20"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Background="#099faf"
+                                BorderBrush="Transparent"
+                                Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
+                                                                  Size=24}"
+                                Cursor="Hand"
+                                Foreground="White"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                PlacementMode="TopAndAlignCentres"
+                                Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
+                                ToggleCheckedContentCommandParameter="wowsers">
+                                <materialDesign:PopupBox.ToggleCheckedContent>
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        Kind="BookmarkAddOutline" />
+                                </materialDesign:PopupBox.ToggleCheckedContent>
+                                <StackPanel>
+                                    <Button
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                        Content="1"
+                                        ToolTip="Agregar" />
+                                    <Button
+                                        Name="BtnElimina"
+                                        Click="BtnElimina_Click"
+                                        Content="2"
+                                        ToolTip="Eliminar" />
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </Grid>
+                    </materialDesign:DialogHost>
+                </TabItem>
+                <!--#region Tab productos-->
+                <TabItem Width="250" Height="50">
+                    <TabItem.Header>
+                        <StackPanel Width="auto" Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Foreground="#00695c"
+                                Kind="FoodForkDrink" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontStyle="Italic"
+                                FontWeight="Bold"
+                                Foreground="#00695c"
+                                Text="Productos" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--#region Contenido de prodcutos-->
+                    <TabItem.Content>
+                        <Grid>
+                            <!--#region Formulario Productos-->
+                            <materialDesign:DialogHost
+                                x:Name="DialogHostProductos"
+                                Grid.RowSpan="5"
+                                Grid.ColumnSpan="5"
+                                Background="#00695c"
+                                DialogTheme="Inherit"
+                                IsOpen="False">
+                                <!--#region Contenido del formulario-->
+                                <materialDesign:DialogHost.DialogContent>
+                                    <StackPanel Width="500" Height="450">
+                                        <!--#region TITULO DEL DIALOG-->
+                                        <Grid>
+                                            <!--#region FILAS DEL STACKPANEL DEL DIALOG-->
 
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <!--#endregion-->
+                                            <!--#region Titulo y texbox NOMBRE-->
+                                            <TextBlock
+                                                x:Name="TituloFormProdu"
+                                                Grid.Row="0"
+                                                Margin="0,20,0,0"
+                                                HorizontalAlignment="Center"
+                                                FontSize="20"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="TITULO" />
+                                            <StackPanel Grid.Row="1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                        <RowDefinition />
+                                                    </Grid.RowDefinitions>
+                                                    <TextBox
+                                                        x:Name="TxtNombreProducto"
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Width="190"
+                                                        Height="50"
+                                                        Margin="0,0,0,0"
+                                                        materialDesign:HintAssist.Foreground="#00695c"
+                                                        materialDesign:HintAssist.Hint="Nombre Producto"
+                                                        AcceptsReturn="True"
+                                                        BorderBrush="#00695c"
+                                                        BorderThickness="2"
+                                                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                                    <ComboBox
+                                                        x:Name="CbCategoriaProducto"
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        Width="190"
+                                                        Height="50"
+                                                        Margin="0,0,0,0"
+                                                        materialDesign:HintAssist.Foreground="#00695c"
+                                                        materialDesign:HintAssist.Hint="Nombre categoria"
+                                                        BorderBrush="#00695c"
+                                                        BorderThickness="2"
+                                                        DisplayMemberPath="name"
+                                                        KeyDown="CbCategoriaProducto_KeyDown"
+                                                        SelectionChanged="CbCategoriaProducto_SelectionChanged"
+                                                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                                    <TextBox
+                                                        x:Name="TxtStockProducto"
+                                                        Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        Width="190"
+                                                        Height="50"
+                                                        Margin="0,10,0,0"
+                                                        materialDesign:HintAssist.Foreground="#00695c"
+                                                        materialDesign:HintAssist.Hint="En stock"
+                                                        AcceptsReturn="True"
+                                                        BorderBrush="#00695c"
+                                                        BorderThickness="2"
+                                                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                                    <TextBox
+                                                        x:Name="TxtPrecioProducto"
+                                                        Grid.Row="2"
+                                                        Grid.Column="1"
+                                                        Width="190"
+                                                        Height="50"
+                                                        Margin="0,10,0,0"
+                                                        materialDesign:HintAssist.Foreground="#00695c"
+                                                        materialDesign:HintAssist.Hint="Precio"
+                                                        AcceptsReturn="True"
+                                                        BorderBrush="#00695c"
+                                                        BorderThickness="2"
+                                                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                                </Grid>
+                                            </StackPanel>
+                                            <TextBox
+                                                x:Name="TxtDescripcionProducto"
+                                                Grid.Row="3"
+                                                Width="300"
+                                                Height="95"
+                                                Margin="0,10,0,0"
+                                                VerticalAlignment="Top"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Descripción"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                                TextWrapping="Wrap"
+                                                VerticalScrollBarVisibility="Auto" />
+                                            <ComboBox
+                                                x:Name="CBToppings"
+                                                Grid.Row="4"
+                                                Width="190"
+                                                Height="50"
+                                                Margin="25,10,0,0"
+                                                HorizontalAlignment="Left"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Añadir Extras"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                DisplayMemberPath="name"
+                                                Foreground="#FF00695C"
+                                                KeyDown="CBToppings_KeyDown"
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                            <StackPanel
+                                                Grid.Row="4"
+                                                Grid.Column="0"
+                                                Width="250"
+                                                Margin="-10,14,0,0">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150" />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <ListBox
+                                                        x:Name="ListToppings"
+                                                        Grid.Column="1"
+                                                        Loaded="ListToppings_Loaded"
+                                                        MouseDoubleClick="ListToppings_MouseDoubleClick"
+                                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                        Style="{StaticResource MaterialDesignFilterChipListBox}">
+                                                        <ListBox.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel />
+                                                            </ItemsPanelTemplate>
+                                                        </ListBox.ItemsPanel>
+                                                        <ListBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="50" />
+                                                                        <ColumnDefinition />
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBlock Grid.Column="0" Text="{Binding name}" />
+                                                                    <Button
+                                                                        Name="BtnEliminarTopping"
+                                                                        Grid.Column="1"
+                                                                        Width="17"
+                                                                        Height="17"
+                                                                        Background="Transparent"
+                                                                        BorderBrush="Transparent"
+                                                                        Click="BtnEliminarTopping_Click"
+                                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                                        <materialDesign:PackIcon
+                                                                            Width="16"
+                                                                            Height="16"
+                                                                            Foreground="Black"
+                                                                            Kind="CloseCircle" />
+                                                                    </Button>
+                                                                </Grid>
+                                                            </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                    </ListBox>
+                                                </Grid>
+                                            </StackPanel>
+                                            <StackPanel
+                                                Grid.Row="5"
+                                                Margin="0,20,0,0"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Button
+                                                    x:Name="BtnEnviarProducto"
+                                                    Margin="0,8,108,0"
+                                                    Background="Transparent"
+                                                    BorderBrush="#00695c"
+                                                    Click="BtnEnviarProducto_Click"
+                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Content="Agregar"
+                                                    Foreground="#00695c"
+                                                    IsDefault="False">
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                                <Button
+                                                    Margin="0,8,8,0"
+                                                    Background="Transparent"
+                                                    BorderBrush="#00695c"
+                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Content="Cancelar"
+                                                    Foreground="#00695c"
+                                                    IsCancel="True">
+                                                    <Button.CommandParameter>
+                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                                    </Button.CommandParameter>
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                        <!--#endregion-->
+                                    </StackPanel>
+                                </materialDesign:DialogHost.DialogContent>
+                                <Grid>
+                                    <!--#endregion-->
+                                    <!--#region  Colorzone producto-->
+                                    <materialDesign:ColorZone
+                                        Grid.Row="0"
+                                        Height="50"
+                                        Background="#00695c"
+                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                        Mode="Custom">
+                                        <TextBlock
+                                            Margin="16"
+                                            FontSize="15"
+                                            FontStyle="Italic"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            Text="Todos los productos" />
+
+                                    </materialDesign:ColorZone>
+                                    <materialDesign:PopupBox
+                                        Grid.Row="0"
+                                        Margin="0,0,28,20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Panel.ZIndex="5"
+                                        Background="#099faf"
+                                        BorderBrush="Transparent"
+                                        Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
+                                                                          Size=24}"
+                                        Cursor="Hand"
+                                        Foreground="White"
+                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                        PlacementMode="TopAndAlignCentres"
+                                        Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
+                                        ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
+                                        ToggleCheckedContentCommandParameter="wowsers">
+                                        <materialDesign:PopupBox.ToggleCheckedContent>
+                                            <materialDesign:PackIcon
+                                                Width="24"
+                                                Height="24"
+                                                Kind="BookmarkAddOutline" />
+                                        </materialDesign:PopupBox.ToggleCheckedContent>
+                                        <StackPanel>
+                                            <Button
+                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                                Content="1"
+                                                ToolTip="Agregar" />
+                                            <Button
+                                                Click="BtnElimina_Click"
+                                                Content="2"
+                                                ToolTip="Eliminar" />
+                                        </StackPanel>
+                                    </materialDesign:PopupBox>
+                                    <!--#endregion-->
+                                    <TabControl
+                                        x:Name="TabsProductos"
+                                        Margin="0,50,0,0"
+                                        HorizontalContentAlignment="Left"
+                                        materialDesign:ColorZoneAssist.Mode="Light"
+                                        ItemsSource="{Binding Grupos}">
+                                        <TabControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding categorie}" />
+                                            </DataTemplate>
+                                        </TabControl.ItemTemplate>
+                                        <TabControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <ListBox ItemsSource="{Binding products}">
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <materialDesign:Card
+                                                                Width="200"
+                                                                Height="300"
+                                                                Background="GhostWhite">
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="140" />
+                                                                        <RowDefinition Height="*" />
+                                                                        <RowDefinition Height="Auto" />
+                                                                    </Grid.RowDefinitions>
+                                                                    <materialDesign:Badged
+                                                                        Badge="{Binding stock}"
+                                                                        BadgeBackground="#00695c"
+                                                                        BadgeForeground="White">
+                                                                        <Image
+                                                                            Height="140"
+                                                                            Source="/Views/Productos/Batido-pie.jpg"
+                                                                            Stretch="Fill" />
+                                                                    </materialDesign:Badged>
+                                                                    <materialDesign:Badged
+                                                                        Grid.Row="0"
+                                                                        Margin="0,0,14,-10"
+                                                                        HorizontalAlignment="Right"
+                                                                        VerticalAlignment="Bottom"
+                                                                        Badge="{Binding stock}"
+                                                                        BadgeBackground="White"
+                                                                        BadgeForeground="Black"
+                                                                        FlowDirection="LeftToRight">
+                                                                        <Button
+                                                                            Grid.Row="0"
+                                                                            Margin="0,0,0,0"
+                                                                            HorizontalAlignment="Right"
+                                                                            VerticalAlignment="Bottom"
+                                                                            Background="#00695c"
+                                                                            BorderBrush="White"
+                                                                            Cursor="Hand"
+                                                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                                                                            <materialDesign:PackIcon
+                                                                                Width="32"
+                                                                                Height="36"
+                                                                                Foreground="White"
+                                                                                Kind="BookmarkCheckOutline" />
+                                                                        </Button>
+                                                                    </materialDesign:Badged>
+                                                                    <StackPanel Grid.Row="1" Margin="8,15,8,8">
+                                                                        <TextBlock
+                                                                            Margin="0,0,0,3"
+                                                                            HorizontalAlignment="Center"
+                                                                            FontSize="15"
+                                                                            FontWeight="Bold"
+                                                                            Text="{Binding name}" />
+                                                                        <TextBlock
+                                                                            Margin="0,0,0,4"
+                                                                            FontSize="14"
+                                                                            FontWeight="Bold"
+                                                                            Text="Toppings:" />
+                                                                        <TextBlock
+                                                                            Margin="0,0,0,3"
+                                                                            VerticalAlignment="Center"
+                                                                            FontSize="13"
+                                                                            Text="{Binding description}"
+                                                                            TextWrapping="Wrap" />
+                                                                    </StackPanel>
+                                                                </Grid>
+                                                            </materialDesign:Card>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                </ListBox>
+                                            </DataTemplate>
+                                        </TabControl.ContentTemplate>
+                                    </TabControl>
+                                    <!--#region Contenido productos-->
+                                </Grid>
+                            </materialDesign:DialogHost>
+                            <!--#region Tabs de productos-->
+                            <!--#endregion-->
+                        </Grid>
+                        <!--#endregion-->
+                    </TabItem.Content>
+                    <!--#endregion-->
+                </TabItem>
+                <!--#endregion-->
+                <TabItem Width="250" Height="50">
+                    <TabItem.Header>
+                        <StackPanel Width="auto" Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Foreground="#00695c"
+                                Kind="TagAdd" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontStyle="Italic"
+                                FontWeight="Bold"
+                                Foreground="#00695c"
+                                Text="Extras" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--#region Contenido de los toppings-->
+                    <TabItem.Content>
                         <materialDesign:DialogHost
-                            x:Name="DialogHostCategorias"
+                            x:Name="DialogHostToppings"
                             Grid.RowSpan="5"
                             Grid.ColumnSpan="5"
                             Background="#00695c"
                             DialogTheme="Inherit"
                             IsOpen="False">
                             <materialDesign:DialogHost.DialogContent>
-                                <StackPanel Margin="25,0,0,0">
-                                    <!--#region TITULO DEL DIALOG-->
-                                    <!--#endregion-->
-                                    <Grid>
-                                        <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="55" />
-                                            <RowDefinition Height="55" />
-                                            <RowDefinition Height="55" />
-                                        </Grid.RowDefinitions>
+                                <Grid>
+                                    <TextBlock
+                                        x:Name="TxtTituloDiagToppings"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Margin="0,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        FontSize="20"
+                                        FontWeight="Bold"
+                                        Foreground="#00695c"
+                                        Text="TITULO" />
+                                    <StackPanel Width="450" Height="250">
+                                        <!--#region TITULO DEL DIALOG-->
                                         <!--#endregion-->
-                                        <!--#region Titulo y texbox NOMBRE-->
-                                        <TextBlock
-                                            x:Name="TxtTituloDialg"
-                                            Grid.Row="0"
-                                            Margin="0,0,0,0"
-                                            HorizontalAlignment="Center"
-                                            FontSize="20"
-                                            FontWeight="Bold"
-                                            Foreground="#00695c"
-                                            Text="TITULO" />
+                                        <Grid>
+                                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="55" />
+                                                <RowDefinition Height="55" />
+                                                <RowDefinition Height="55" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <!--#endregion-->
+                                            <!--#region Titulo y texbox NOMBRE-->
+
+                                            <TextBox
+                                                Name="TxtNombreTopping"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Width="190"
+                                                Height="50"
+                                                Margin="0,-13,10,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Nombre del Topping"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <TextBox
+                                                Name="TxtStockTopping"
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Width="190"
+                                                Height="50"
+                                                Margin="0,-13,10,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="En Stock"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                        </Grid>
                                         <TextBox
-                                            x:Name="TxtNombreCategoria"
-                                            Grid.Row="1"
+                                            Name="TxtPrecioTopping"
                                             Width="190"
                                             Height="50"
-                                            Margin="0,-13,10,0"
+                                            Margin="0,-50,0,0"
                                             materialDesign:HintAssist.Foreground="#00695c"
-                                            materialDesign:HintAssist.Hint="Nombre categoria"
+                                            materialDesign:HintAssist.Hint="Precio"
                                             AcceptsReturn="True"
                                             BorderBrush="#00695c"
                                             BorderThickness="2"
-                                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                            TextWrapping="Wrap" />
+                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                         <StackPanel
-                                            Grid.Row="2"
+                                            Margin="0,30,0,0"
                                             HorizontalAlignment="Center"
                                             Orientation="Horizontal">
                                             <Button
-                                                x:Name="BtnEnviar"
+                                                x:Name="BtnEnviarTopping"
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="BtnEnviarCategoria_Click"
+                                                Click="BtnEnviarTopping_Click"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"
@@ -112,9 +785,9 @@
                                                 </Button.CommandParameter>
                                             </Button>
                                         </StackPanel>
-                                    </Grid>
-                                    <!--#endregion-->
-                                </StackPanel>
+                                        <!--#endregion-->
+                                    </StackPanel>
+                                </Grid>
                             </materialDesign:DialogHost.DialogContent>
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -123,92 +796,102 @@
                                 </Grid.RowDefinitions>
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <ListBox
-                                        x:Name="itemsCardsCategorias"
-                                        Margin="0,60,0,0"
+                                        x:Name="ListBoxToppings"
+                                        Height="455"
+                                        Margin="0,50,0,0"
                                         AllowDrop="True"
                                         Background="Transparent"
                                         Focusable="False"
                                         IsHitTestVisible="False"
-                                        ItemsSource="{Binding categories}">
+                                        ItemsSource="{Binding toppings}">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <UniformGrid Columns="3" Rows="3" />
+                                                <WrapPanel />
                                             </ItemsPanelTemplate>
                                         </ListBox.ItemsPanel>
-                                        <!--#endregion-->
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
-                                                <!--#region cuerpo principal del card-->
-                                                <materialDesign:Badged
-                                                    Background="Transparent"
-                                                    BadgeBackground="Transparent"
-                                                    BorderBrush="Transparent">
-                                                    <materialDesign:Badged.Badge>
-                                                        <Button
-                                                            x:Name="BtnEliminar"
-                                                            Width="28"
-                                                            Height="28"
-                                                            Margin="0,50,0,0"
-                                                            Background="Red"
-                                                            BorderBrush="Transparent"
-                                                            Cursor="Hand"
-                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                            Visibility="Hidden">
-                                                            <materialDesign:PackIcon
-                                                                Width="20"
-                                                                Height="25"
-                                                                Foreground="White"
-                                                                Kind="CloseCircle" />
-                                                        </Button>
-                                                    </materialDesign:Badged.Badge>
-                                                    <materialDesign:Card
-                                                        Width="220"
-                                                        Height="140"
-                                                        Margin="10,30,0,0"
-                                                        Background="Transparent"
-                                                        UniformCornerRadius="6">
-                                                        <Grid>
-                                                            <Border CornerRadius="8,8,8,8">
-                                                                <Border.Background>
-                                                                    <ImageBrush ImageSource="/Views/Productos/Batido-pie.jpg" Stretch="Fill" />
-                                                                </Border.Background>
-                                                            </Border>
-                                                            <Border
-                                                                Margin="0,108,0,0"
-                                                                Background="Black"
-                                                                CornerRadius="5"
-                                                                Cursor="Hand"
-                                                                Opacity="0.8">
-                                                                <Grid>
-                                                                    <TextBlock
-                                                                        Margin="0,5,0,0"
-                                                                        VerticalAlignment="Top"
-                                                                        Panel.ZIndex="3"
-                                                                        FontSize="15"
-                                                                        FontWeight="Bold"
-                                                                        Foreground="White"
-                                                                        Text="{Binding name}" />
-                                                                    <Button
-                                                                        Name="BtnEditarCard"
-                                                                        Width="30"
-                                                                        Height="30"
-                                                                        Margin="150,0,0,0"
-                                                                        Panel.ZIndex="3"
-                                                                        Background="#00695c"
-                                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                                        <materialDesign:PackIcon
-                                                                            Width="20"
-                                                                            Height="20"
-                                                                            Kind="Pencil" />
-                                                                    </Button>
-                                                                </Grid>
-                                                            </Border>
-                                                        </Grid>
-                                                    </materialDesign:Card>
-                                                </materialDesign:Badged>
-                                                <!--#endregion-->
+                                                <materialDesign:Card
+                                                    Width="240"
+                                                    Height="110"
+                                                    Background="GhostWhite"
+                                                    Foreground="#00695c">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="auto" />
+                                                            <RowDefinition Height="auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock
+                                                            Grid.Row="0"
+                                                            Margin="10,16,10,10"
+                                                            Foreground="#00695c"
+                                                            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                                                            Text="{Binding name}"
+                                                            TextWrapping="WrapWithOverflow" />
+
+                                                        <StackPanel Grid.Row="1">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="78" />
+                                                                    <ColumnDefinition Width="auto" />
+
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock
+                                                                    Grid.Column="0"
+                                                                    Margin="10,0,5,0"
+                                                                    HorizontalAlignment="Left"
+                                                                    VerticalAlignment="Center"
+                                                                    FontSize="13"
+                                                                    FontWeight="Bold"
+                                                                    Text="En stock :" />
+                                                                <TextBlock
+                                                                    Grid.Column="0"
+                                                                    HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Center"
+                                                                    FontSize="13"
+                                                                    FontWeight="Bold"
+                                                                    Text="{Binding stock}" />
+                                                                <TextBlock
+                                                                    Grid.Column="1"
+                                                                    Margin="40,0,0,0"
+                                                                    FontWeight="Bold"
+                                                                    Text="Precio :" />
+                                                                <TextBlock
+                                                                    Grid.Column="1"
+                                                                    Margin="90,0,0,0"
+                                                                    FontWeight="Bold"
+                                                                    Text="{Binding price}" />
+                                                                <TextBlock
+                                                                    Grid.Column="1"
+                                                                    Margin="110,0,0,0"
+                                                                    FontWeight="Bold"
+                                                                    Text="$" />
+                                                            </Grid>
+                                                        </StackPanel>
+
+                                                        <StackPanel
+                                                            Grid.Row="1"
+                                                            Width="32"
+                                                            Margin="0,17,22,8"
+                                                            HorizontalAlignment="Right"
+                                                            Orientation="Horizontal">
+                                                            <Button
+                                                                Width="30"
+                                                                Padding="2,0,2,0"
+                                                                HorizontalAlignment="Right"
+                                                                materialDesign:RippleAssist.IsCentered="True"
+                                                                Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                                                <materialDesign:PackIcon Kind="Pencil" />
+                                                            </Button>
+
+
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </materialDesign:Card>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
+
                                     </ListBox>
                                 </ScrollViewer>
                                 <materialDesign:ColorZone
@@ -223,7 +906,7 @@
                                         FontStyle="Italic"
                                         FontWeight="Bold"
                                         Foreground="White"
-                                        Text="Todas las categorias" />
+                                        Text="Todos los Toppings" />
                                 </materialDesign:ColorZone>
                                 <materialDesign:PopupBox
                                     Grid.Row="0"
@@ -253,7 +936,6 @@
                                             Content="1"
                                             ToolTip="Agregar" />
                                         <Button
-                                            Name="BtnElimina"
                                             Click="BtnElimina_Click"
                                             Content="2"
                                             ToolTip="Eliminar" />
@@ -261,691 +943,10 @@
                                 </materialDesign:PopupBox>
                             </Grid>
                         </materialDesign:DialogHost>
-                    </TabItem>
-                    <!--#region Tab productos-->
-                    <TabItem Width="250" Height="50">
-                        <TabItem.Header>
-                            <StackPanel Width="auto" Height="auto">
-                                <materialDesign:PackIcon
-                                    Width="24"
-                                    Height="24"
-                                    HorizontalAlignment="Center"
-                                    Foreground="#00695c"
-                                    Kind="FoodForkDrink" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontStyle="Italic"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Productos" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <!--#region Contenido de prodcutos-->
-                        <TabItem.Content>
-                            <Grid>
-                                <!--#region Formulario Productos-->
-                                <materialDesign:DialogHost
-                                    x:Name="DialogHostProductos"
-                                    Grid.RowSpan="5"
-                                    Grid.ColumnSpan="5"
-                                    Background="#00695c"
-                                    DialogTheme="Inherit"
-                                    IsOpen="False">
-                                    <!--#region Contenido del formulario-->
-                                    <materialDesign:DialogHost.DialogContent>
-                                        <StackPanel Width="500" Height="450">
-                                            <!--#region TITULO DEL DIALOG-->
-                                            <Grid>
-                                                <!--#region FILAS DEL STACKPANEL DEL DIALOG-->
-
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="60" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                    <RowDefinition Height="*" />
-                                                </Grid.RowDefinitions>
-                                                <!--#endregion-->
-                                                <!--#region Titulo y texbox NOMBRE-->
-                                                <TextBlock
-                                                    x:Name="TituloFormProdu"
-                                                    Grid.Row="0"
-                                                    Margin="0,20,0,0"
-                                                    HorizontalAlignment="Center"
-                                                    FontSize="20"
-                                                    FontWeight="Bold"
-                                                    Foreground="#00695c"
-                                                    Text="TITULO" />
-                                                <StackPanel Grid.Row="1">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition />
-                                                            <RowDefinition Height="*" />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                            <RowDefinition />
-                                                        </Grid.RowDefinitions>
-                                                        <TextBox
-                                                            x:Name="TxtNombreProducto"
-                                                            Grid.Row="0"
-                                                            Grid.Column="0"
-                                                            Width="190"
-                                                            Height="50"
-                                                            Margin="0,0,0,0"
-                                                            materialDesign:HintAssist.Foreground="#00695c"
-                                                            materialDesign:HintAssist.Hint="Nombre Producto"
-                                                            AcceptsReturn="True"
-                                                            BorderBrush="#00695c"
-                                                            BorderThickness="2"
-                                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                                        <ComboBox
-                                                            x:Name="CbCategoriaProducto"
-                                                            Grid.Row="0"
-                                                            Grid.Column="1"
-                                                            Width="190"
-                                                            Height="50"
-                                                            Margin="0,0,0,0"
-                                                            materialDesign:HintAssist.Foreground="#00695c"
-                                                            materialDesign:HintAssist.Hint="Nombre categoria"
-                                                            BorderBrush="#00695c"
-                                                            BorderThickness="2"
-                                                            DisplayMemberPath="name"
-                                                            KeyDown="CbCategoriaProducto_KeyDown"
-                                                            SelectionChanged="CbCategoriaProducto_SelectionChanged"
-                                                            Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                                                        <TextBox
-                                                            x:Name="TxtStockProducto"
-                                                            Grid.Row="2"
-                                                            Grid.Column="0"
-                                                            Width="190"
-                                                            Height="50"
-                                                            Margin="0,10,0,0"
-                                                            materialDesign:HintAssist.Foreground="#00695c"
-                                                            materialDesign:HintAssist.Hint="En stock"
-                                                            AcceptsReturn="True"
-                                                            BorderBrush="#00695c"
-                                                            BorderThickness="2"
-                                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                                        <TextBox
-                                                            x:Name="TxtPrecioProducto"
-                                                            Grid.Row="2"
-                                                            Grid.Column="1"
-                                                            Width="190"
-                                                            Height="50"
-                                                            Margin="0,10,0,0"
-                                                            materialDesign:HintAssist.Foreground="#00695c"
-                                                            materialDesign:HintAssist.Hint="Precio"
-                                                            AcceptsReturn="True"
-                                                            BorderBrush="#00695c"
-                                                            BorderThickness="2"
-                                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                                    </Grid>
-                                                </StackPanel>
-                                                <TextBox
-                                                    x:Name="TxtDescripcionProducto"
-                                                    Grid.Row="3"
-                                                    Width="300"
-                                                    Height="95"
-                                                    Margin="0,10,0,0"
-                                                    VerticalAlignment="Top"
-                                                    materialDesign:HintAssist.Foreground="#00695c"
-                                                    materialDesign:HintAssist.Hint="Descripción"
-                                                    BorderBrush="#00695c"
-                                                    BorderThickness="2"
-                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                    TextWrapping="Wrap"
-                                                    VerticalScrollBarVisibility="Auto" />
-                                                <ComboBox
-                                                    x:Name="CBToppings"
-                                                    Grid.Row="4"
-                                                    Width="190"
-                                                    Height="50"
-                                                    Margin="25,10,0,0"
-                                                    HorizontalAlignment="Left"
-                                                    materialDesign:HintAssist.Foreground="#00695c"
-                                                    materialDesign:HintAssist.Hint="Añadir Extras"
-                                                    BorderBrush="#00695c"
-                                                    BorderThickness="2"
-                                                    DisplayMemberPath="name"
-                                                    Foreground="#FF00695C"
-                                                    KeyDown="CBToppings_KeyDown"
-                                                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                                                <StackPanel
-                                                    Grid.Row="4"
-                                                    Grid.Column="0"
-                                                    Width="250"
-                                                    Margin="-10,14,0,0">
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="150" />
-                                                            <ColumnDefinition />
-                                                        </Grid.ColumnDefinitions>
-                                                        <ListBox
-                                                            x:Name="ListToppings"
-                                                            Grid.Column="1"
-                                                            Loaded="ListToppings_Loaded"
-                                                            MouseDoubleClick="ListToppings_MouseDoubleClick"
-                                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                                            Style="{StaticResource MaterialDesignFilterChipListBox}">
-                                                            <ListBox.ItemsPanel>
-                                                                <ItemsPanelTemplate>
-                                                                    <WrapPanel />
-                                                                </ItemsPanelTemplate>
-                                                            </ListBox.ItemsPanel>
-                                                            <ListBox.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <Grid>
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="50" />
-                                                                            <ColumnDefinition />
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <TextBlock Grid.Column="0" Text="{Binding name}" />
-                                                                        <Button
-                                                                            Name="BtnEliminarTopping"
-                                                                            Grid.Column="1"
-                                                                            Width="17"
-                                                                            Height="17"
-                                                                            Background="Transparent"
-                                                                            BorderBrush="Transparent"
-                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" Click="BtnEliminarTopping_Click">
-                                                                            <materialDesign:PackIcon
-                                                                                Width="16"
-                                                                                Height="16"
-                                                                                Foreground="Black"
-                                                                                Kind="CloseCircle" />
-                                                                        </Button>
-                                                                    </Grid>
-                                                                </DataTemplate>
-                                                            </ListBox.ItemTemplate>
-                                                        </ListBox>
-                                                    </Grid>
-                                                </StackPanel>
-                                                <StackPanel
-                                                    Grid.Row="5"
-                                                    Margin="0,20,0,0"
-                                                    HorizontalAlignment="Center"
-                                                    Orientation="Horizontal">
-                                                    <Button
-                                                        x:Name="BtnEnviarProducto"
-                                                        Margin="0,8,108,0"
-                                                        Background="Transparent"
-                                                        BorderBrush="#00695c"
-                                                        Click="BtnEnviarProducto_Click"
-                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                        Content="Agregar"
-                                                        Foreground="#00695c"
-                                                        IsDefault="False">
-                                                        <Button.CommandParameter>
-                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                                        </Button.CommandParameter>
-                                                    </Button>
-                                                    <Button
-                                                        Margin="0,8,8,0"
-                                                        Background="Transparent"
-                                                        BorderBrush="#00695c"
-                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                        Content="Cancelar"
-                                                        Foreground="#00695c"
-                                                        IsCancel="True">
-                                                        <Button.CommandParameter>
-                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                                        </Button.CommandParameter>
-                                                    </Button>
-                                                </StackPanel>
-                                            </Grid>
-                                            <!--#endregion-->
-                                        </StackPanel>
-                                    </materialDesign:DialogHost.DialogContent>
-                                    <Grid>
-                                        <!--#endregion-->
-                                        <!--#region  Colorzone producto-->
-                                        <materialDesign:ColorZone
-                                            Grid.Row="0"
-                                            Height="50"
-                                            Background="#00695c"
-                                            Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                            Mode="Custom">
-                                            <TextBlock
-                                                Margin="16"
-                                                FontSize="15"
-                                                FontStyle="Italic"
-                                                FontWeight="Bold"
-                                                Foreground="White"
-                                                Text="Todos los productos" />
-
-                                        </materialDesign:ColorZone>
-                                        <materialDesign:PopupBox
-                                            Grid.Row="0"
-                                            Margin="0,0,28,20"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            Panel.ZIndex="5"
-                                            Background="#099faf"
-                                            BorderBrush="Transparent"
-                                            Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
-                                                                              Size=24}"
-                                            Cursor="Hand"
-                                            Foreground="White"
-                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                                            PlacementMode="TopAndAlignCentres"
-                                            Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                            ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
-                                            ToggleCheckedContentCommandParameter="wowsers">
-                                            <materialDesign:PopupBox.ToggleCheckedContent>
-                                                <materialDesign:PackIcon
-                                                    Width="24"
-                                                    Height="24"
-                                                    Kind="BookmarkAddOutline" />
-                                            </materialDesign:PopupBox.ToggleCheckedContent>
-                                            <StackPanel>
-                                                <Button
-                                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                                    Content="1"
-                                                    ToolTip="Agregar" />
-                                                <Button
-                                                    Click="BtnElimina_Click"
-                                                    Content="2"
-                                                    ToolTip="Eliminar" />
-                                            </StackPanel>
-                                        </materialDesign:PopupBox>
-                                        <!--#endregion-->
-                                        <TabControl
-                                            x:Name="TabsProductos"
-                                            Margin="0,50,0,0"
-                                            HorizontalContentAlignment="Left"
-                                            materialDesign:ColorZoneAssist.Mode="Light"
-                                            ItemsSource="{Binding Grupos}">
-                                            <TabControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock Text="{Binding categorie}" />
-                                                </DataTemplate>
-                                            </TabControl.ItemTemplate>
-                                            <TabControl.ContentTemplate>
-                                                <DataTemplate>
-                                                    <ListBox ItemsSource="{Binding products}">
-                                                        <ListBox.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel />
-                                                            </ItemsPanelTemplate>
-                                                        </ListBox.ItemsPanel>
-                                                        <ListBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <materialDesign:Card
-                                                                    Width="200"
-                                                                    Height="300"
-                                                                    Background="GhostWhite">
-                                                                    <Grid>
-                                                                        <Grid.RowDefinitions>
-                                                                            <RowDefinition Height="140" />
-                                                                            <RowDefinition Height="*" />
-                                                                            <RowDefinition Height="Auto" />
-                                                                        </Grid.RowDefinitions>
-                                                                        <materialDesign:Badged
-                                                                            Badge="{Binding stock}"
-                                                                            BadgeBackground="#00695c"
-                                                                            BadgeForeground="White">
-                                                                            <Image
-                                                                                Height="140"
-                                                                                Source="/Views/Productos/Batido-pie.jpg"
-                                                                                Stretch="Fill" />
-                                                                        </materialDesign:Badged>
-                                                                        <materialDesign:Badged
-                                                                            Grid.Row="0"
-                                                                            Margin="0,0,14,-10"
-                                                                            HorizontalAlignment="Right"
-                                                                            VerticalAlignment="Bottom"
-                                                                            Badge="{Binding stock}"
-                                                                            BadgeBackground="White"
-                                                                            BadgeForeground="Black"
-                                                                            FlowDirection="LeftToRight">
-                                                                            <Button
-                                                                                Grid.Row="0"
-                                                                                Margin="0,0,0,0"
-                                                                                HorizontalAlignment="Right"
-                                                                                VerticalAlignment="Bottom"
-                                                                                Background="#00695c"
-                                                                                BorderBrush="White"
-                                                                                Cursor="Hand"
-                                                                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                                                                Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-                                                                                <materialDesign:PackIcon
-                                                                                    Width="32"
-                                                                                    Height="36"
-                                                                                    Foreground="White"
-                                                                                    Kind="BookmarkCheckOutline" />
-                                                                            </Button>
-                                                                        </materialDesign:Badged>
-                                                                        <StackPanel Grid.Row="1" Margin="8,15,8,8">
-                                                                            <TextBlock
-                                                                                Margin="0,0,0,3"
-                                                                                HorizontalAlignment="Center"
-                                                                                FontSize="15"
-                                                                                FontWeight="Bold"
-                                                                                Text="{Binding name}" />
-                                                                            <TextBlock
-                                                                                Margin="0,0,0,4"
-                                                                                FontSize="14"
-                                                                                FontWeight="Bold"
-                                                                                Text="Toppings:" />
-                                                                            <TextBlock
-                                                                                Margin="0,0,0,3"
-                                                                                VerticalAlignment="Center"
-                                                                                FontSize="13"
-                                                                                Text="{Binding description}"
-                                                                                TextWrapping="Wrap" />
-                                                                        </StackPanel>
-                                                                    </Grid>
-                                                                </materialDesign:Card>
-                                                            </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                    </ListBox>
-                                                </DataTemplate>
-                                            </TabControl.ContentTemplate>
-                                        </TabControl>
-                                        <!--#region Contenido productos-->
-                                    </Grid>
-                                </materialDesign:DialogHost>
-                                <!--#region Tabs de productos-->
-                                <!--#endregion-->
-                            </Grid>
-                            <!--#endregion-->
-                        </TabItem.Content>
-                        <!--#endregion-->
-                    </TabItem>
-                    <!--#endregion-->
-                    <TabItem Width="250" Height="50">
-                        <TabItem.Header>
-                            <StackPanel Width="auto" Height="auto">
-                                <materialDesign:PackIcon
-                                    Width="24"
-                                    Height="24"
-                                    HorizontalAlignment="Center"
-                                    Foreground="#00695c"
-                                    Kind="TagAdd" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontStyle="Italic"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Extras" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <!--#region Contenido de los toppings-->
-                        <TabItem.Content>
-                            <materialDesign:DialogHost
-                                x:Name="DialogHostToppings"
-                                Grid.RowSpan="5"
-                                Grid.ColumnSpan="5"
-                                Background="#00695c"
-                                DialogTheme="Inherit"
-                                IsOpen="False">
-                                <materialDesign:DialogHost.DialogContent>
-                                    <Grid>
-                                        <TextBlock
-                                            x:Name="TxtTituloDiagToppings"
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Margin="0,0,0,0"
-                                            HorizontalAlignment="Center"
-                                            FontSize="20"
-                                            FontWeight="Bold"
-                                            Foreground="#00695c"
-                                            Text="TITULO" />
-                                        <StackPanel Width="450" Height="250">
-                                            <!--#region TITULO DEL DIALOG-->
-                                            <!--#endregion-->
-                                            <Grid>
-                                                <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="55" />
-                                                    <RowDefinition Height="55" />
-                                                    <RowDefinition Height="55" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <!--#endregion-->
-                                                <!--#region Titulo y texbox NOMBRE-->
-
-                                                <TextBox
-                                                    Name="TxtNombreTopping"
-                                                    Grid.Row="1"
-                                                    Grid.Column="0"
-                                                    Width="190"
-                                                    Height="50"
-                                                    Margin="0,-13,10,0"
-                                                    materialDesign:HintAssist.Foreground="#00695c"
-                                                    materialDesign:HintAssist.Hint="Nombre del Topping"
-                                                    AcceptsReturn="True"
-                                                    BorderBrush="#00695c"
-                                                    BorderThickness="2"
-                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                                <TextBox
-                                                    Name="TxtStockTopping"
-                                                    Grid.Row="1"
-                                                    Grid.Column="1"
-                                                    Width="190"
-                                                    Height="50"
-                                                    Margin="0,-13,10,0"
-                                                    materialDesign:HintAssist.Foreground="#00695c"
-                                                    materialDesign:HintAssist.Hint="En Stock"
-                                                    AcceptsReturn="True"
-                                                    BorderBrush="#00695c"
-                                                    BorderThickness="2"
-                                                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                            </Grid>
-                                            <TextBox
-                                                Name="TxtPrecioTopping"
-                                                Width="190"
-                                                Height="50"
-                                                Margin="0,-50,0,0"
-                                                materialDesign:HintAssist.Foreground="#00695c"
-                                                materialDesign:HintAssist.Hint="Precio"
-                                                AcceptsReturn="True"
-                                                BorderBrush="#00695c"
-                                                BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                            <StackPanel
-                                                Margin="0,30,0,0"
-                                                HorizontalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <Button
-                                                    x:Name="BtnEnviarTopping"
-                                                    Margin="0,8,108,0"
-                                                    Background="Transparent"
-                                                    BorderBrush="#00695c"
-                                                    Click="BtnEnviarTopping_Click"
-                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                    Content="Agregar"
-                                                    Foreground="#00695c"
-                                                    IsDefault="False">
-                                                    <Button.CommandParameter>
-                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                                    </Button.CommandParameter>
-                                                </Button>
-                                                <Button
-                                                    Margin="0,8,8,0"
-                                                    Background="Transparent"
-                                                    BorderBrush="#00695c"
-                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                    Content="Cancelar"
-                                                    Foreground="#00695c"
-                                                    IsCancel="True">
-                                                    <Button.CommandParameter>
-                                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                                    </Button.CommandParameter>
-                                                </Button>
-                                            </StackPanel>
-                                            <!--#endregion-->
-                                        </StackPanel>
-                                    </Grid>
-                                </materialDesign:DialogHost.DialogContent>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                        <ListBox
-                                            x:Name="ListBoxToppings"
-                                            Height="455"
-                                            Margin="0,50,0,0"
-                                            AllowDrop="True"
-                                            Background="Transparent"
-                                            Focusable="False"
-                                            IsHitTestVisible="False"
-                                            ItemsSource="{Binding toppings}">
-                                            <ListBox.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel />
-                                                </ItemsPanelTemplate>
-                                            </ListBox.ItemsPanel>
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <materialDesign:Card
-                                                        Width="240"
-                                                        Height="110"
-                                                        Background="GhostWhite"
-                                                        Foreground="#00695c">
-                                                        <Grid>
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="auto" />
-                                                                <RowDefinition Height="auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <TextBlock
-                                                                Grid.Row="0"
-                                                                Margin="10,16,10,10"
-                                                                Foreground="#00695c"
-                                                                Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                                                                Text="{Binding name}"
-                                                                TextWrapping="WrapWithOverflow" />
-
-                                                            <StackPanel Grid.Row="1">
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="78" />
-                                                                        <ColumnDefinition Width="auto" />
-
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <TextBlock
-                                                                        Grid.Column="0"
-                                                                        Margin="10,0,5,0"
-                                                                        HorizontalAlignment="Left"
-                                                                        VerticalAlignment="Center"
-                                                                        FontSize="13"
-                                                                        FontWeight="Bold"
-                                                                        Text="En stock :" />
-                                                                    <TextBlock
-                                                                        Grid.Column="0"
-                                                                        HorizontalAlignment="Right"
-                                                                        VerticalAlignment="Center"
-                                                                        FontSize="13"
-                                                                        FontWeight="Bold"
-                                                                        Text="{Binding stock}" />
-                                                                    <TextBlock
-                                                                        Grid.Column="1"
-                                                                        Margin="40,0,0,0"
-                                                                        FontWeight="Bold"
-                                                                        Text="Precio :" />
-                                                                    <TextBlock
-                                                                        Grid.Column="1"
-                                                                        Margin="90,0,0,0"
-                                                                        FontWeight="Bold"
-                                                                        Text="{Binding price}" />
-                                                                    <TextBlock
-                                                                        Grid.Column="1"
-                                                                        Margin="110,0,0,0"
-                                                                        FontWeight="Bold"
-                                                                        Text="$" />
-                                                                </Grid>
-                                                            </StackPanel>
-
-                                                            <StackPanel
-                                                                Grid.Row="1"
-                                                                Width="32"
-                                                                Margin="0,17,22,8"
-                                                                HorizontalAlignment="Right"
-                                                                Orientation="Horizontal">
-                                                                <Button
-                                                                    Width="30"
-                                                                    Padding="2,0,2,0"
-                                                                    HorizontalAlignment="Right"
-                                                                    materialDesign:RippleAssist.IsCentered="True"
-                                                                    Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                                                    <materialDesign:PackIcon Kind="Pencil" />
-                                                                </Button>
-
-
-                                                            </StackPanel>
-                                                        </Grid>
-                                                    </materialDesign:Card>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-
-                                        </ListBox>
-                                    </ScrollViewer>
-                                    <materialDesign:ColorZone
-                                        Grid.Row="0"
-                                        Height="50"
-                                        Background="#00695c"
-                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                        Mode="Custom">
-                                        <TextBlock
-                                            Margin="16"
-                                            FontSize="15"
-                                            FontStyle="Italic"
-                                            FontWeight="Bold"
-                                            Foreground="White"
-                                            Text="Todos los Toppings" />
-                                    </materialDesign:ColorZone>
-                                    <materialDesign:PopupBox
-                                        Grid.Row="0"
-                                        Margin="0,0,28,20"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-                                        Background="#099faf"
-                                        BorderBrush="Transparent"
-                                        Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
-                                                                          Size=24}"
-                                        Cursor="Hand"
-                                        Foreground="White"
-                                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                                        PlacementMode="TopAndAlignCentres"
-                                        Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                        ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
-                                        ToggleCheckedContentCommandParameter="wowsers">
-                                        <materialDesign:PopupBox.ToggleCheckedContent>
-                                            <materialDesign:PackIcon
-                                                Width="24"
-                                                Height="24"
-                                                Kind="BookmarkAddOutline" />
-                                        </materialDesign:PopupBox.ToggleCheckedContent>
-                                        <StackPanel>
-                                            <Button
-                                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                                Content="1"
-                                                ToolTip="Agregar" />
-                                            <Button
-                                                Click="BtnElimina_Click"
-                                                Content="2"
-                                                ToolTip="Eliminar" />
-                                        </StackPanel>
-                                    </materialDesign:PopupBox>
-                                </Grid>
-                            </materialDesign:DialogHost>
-                        </TabItem.Content>
-                    </TabItem>
-                </TabControl>
-            </materialDesign:Card>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
         </materialDesign:Card>
+
     </Border>
 </UserControl>
