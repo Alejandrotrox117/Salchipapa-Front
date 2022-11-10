@@ -21,18 +21,17 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Nancy.Json;
-
-namespace Front.Views.Productos
+namespace Front.Views.Carta
 {
     /// <summary>
-    /// Lógica de interacción para AgregarCategoria.xaml
+    /// Lógica de interacción para Menu.xaml
     /// </summary>
-    public partial class AgregarCategoria : UserControl
+    public partial class Carta : UserControl
     {
         public ObservableCollection<categories> categories;
         public ObservableCollection<products> productos;
         private static readonly HttpClient client = new HttpClient();
-        public AgregarCategoria()
+        public Carta()
         {
             InitializeComponent();
         }
@@ -124,9 +123,9 @@ namespace Front.Views.Productos
             Toppings toppings = new Toppings()
             {
                 name = TxtNombreTopping.Text,
-                stock= Convert.ToInt32(TxtStockTopping.Text),
-                price=Convert.ToInt32(TxtPrecioTopping.Text),
-                _id=null
+                stock = Convert.ToInt32(TxtStockTopping.Text),
+                price = Convert.ToInt32(TxtPrecioTopping.Text),
+                _id = null
             };
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
@@ -178,12 +177,12 @@ namespace Front.Views.Productos
         {
             PostCategorie(" http://localhost:3000/api/categories");
         }
-        
+
         private void BtnElimina_Click(object sender, RoutedEventArgs e)
         {
             itemsCardsCategorias.Focusable = true;
             itemsCardsCategorias.IsHitTestVisible = true;
-            for (int i=0;i<itemsCardsCategorias.Items.Count;i++)
+            for (int i = 0; i < itemsCardsCategorias.Items.Count; i++)
             {
                 ListBoxItem myListBoxItem =
                 (ListBoxItem)(itemsCardsCategorias.ItemContainerGenerator.ContainerFromItem(itemsCardsCategorias.Items[i]));
@@ -196,18 +195,18 @@ namespace Front.Views.Productos
                 Button myButton = (Button)myDataTemplate.FindName("BtnEliminar", myContentPresenter);
 
                 // Do something to the DataTemplate-generated TextBlock
-               
+
                 myButton.Visibility = Visibility.Visible;
-              
+
             }
         }
 
         private void AgregarTopping_Click(object sender, RoutedEventArgs e)
         {
-         
+
         }
 
-       
+
 
         private void CBToppings_KeyDown(object sender, KeyEventArgs e)
         {
@@ -236,8 +235,8 @@ namespace Front.Views.Productos
 
         private void BtnEliminarTopping_Click(object sender, RoutedEventArgs e)
         {
-           
-            for(int i=0; i<ListToppings.Items.Count; i++)
+
+            for (int i = 0; i < ListToppings.Items.Count; i++)
             {
 
 
@@ -250,7 +249,7 @@ namespace Front.Views.Productos
 
         private void CbCategoriaProducto_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
@@ -289,7 +288,7 @@ namespace Front.Views.Productos
 
         private void CbCategoriaProducto_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
         }
 
         private void CbCategoriaProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -302,13 +301,14 @@ namespace Front.Views.Productos
         private void ListToppings_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
-            for(int i = 0; i < ListToppings.Items.Count; i++)
+            for (int i = 0; i < ListToppings.Items.Count; i++)
             {
-               List<Toppings> top = ListToppings.Items[i] as List<Toppings>;
+                List<Toppings> top = ListToppings.Items[i] as List<Toppings>;
 
                 MessageBox.Show(top.ToString());
 
             }
         }
+
     }
 }

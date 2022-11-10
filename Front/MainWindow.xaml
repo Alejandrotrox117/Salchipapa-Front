@@ -367,66 +367,6 @@
                                         </Grid>
                                     </StackPanel>
                                     <!--#endregion-->
-                                    <!--#region PAGOS-->
-                                    <StackPanel Orientation="Horizontal">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <materialDesign:PackIcon
-                                                Grid.Column="0"
-                                                Width="24"
-                                                Height="24"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Foreground="#00695c"
-                                                Kind="Payment" />
-                                            <!--#region BTN PAGOS-->
-                                            <Button
-                                                Grid.Column="1"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent">
-                                                <TextBlock
-                                                    FontSize="17"
-                                                    Style="{StaticResource PrimaryColor}"
-                                                    Text="Pagos" />
-                                            </Button>
-                                            <!--#endregion-->
-                                        </Grid>
-                                    </StackPanel>
-                                    <!--#endregion-->
-                                    <!--#region STOCK-->
-                                    <StackPanel Orientation="Horizontal">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <materialDesign:PackIcon
-                                                Grid.Column="0"
-                                                Width="24"
-                                                Height="24"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Foreground="#00695c"
-                                                Kind="BoxAdd" />
-                                            <!--#region BTN STOCK-->
-                                            <Button
-                                                x:Name="BtnStock"
-                                                Grid.Column="1"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Click="BtnStock_Click">
-                                                <TextBlock
-                                                    FontSize="17"
-                                                    Style="{StaticResource PrimaryColor}"
-                                                    Text="Stock" />
-                                            </Button>
-                                            <!--#endregion-->
-                                        </Grid>
-                                    </StackPanel>
-                                    <!--#endregion-->
                                 </TreeViewItem>
                                 <!--#endregion-->
                             </TreeView>

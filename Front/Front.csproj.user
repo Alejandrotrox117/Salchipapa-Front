@@ -17,6 +17,9 @@
     <Compile Update="Views\Inicio.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Menu\Menu.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Metodos de pago\MetodosPagos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -24,12 +27,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Productos\Menu.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Productos\Productos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Stock\Stock.xaml.cs">
@@ -52,6 +49,9 @@
     <Page Update="Views\Inicio.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Menu\Menu.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Metodos de pago\MetodosPagos.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -59,12 +59,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pedidos\Pedidos.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Productos\Menu.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Productos\Productos.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Stock\Stock.xaml">

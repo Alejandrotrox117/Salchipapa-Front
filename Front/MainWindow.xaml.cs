@@ -2,15 +2,13 @@
 using Front.Views;
 using Front.Views.Clientes;
 using Front.Views.Empleados;
+using Front.Views.Carta;
 using Front.Views.Pedidos;
-using Front.Views.Productos;
 using Front.Views.Stock;
 using Newtonsoft.Json;
 using SocketIOClient;
 using SocketIOClient.JsonSerializer;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
@@ -110,7 +108,8 @@ namespace Front
         }
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Productos());
+            MyFrame.NavigationService.Navigate(new Carta());
+            
         }
         private void BtnStock_Click(object sender, RoutedEventArgs e)
         {

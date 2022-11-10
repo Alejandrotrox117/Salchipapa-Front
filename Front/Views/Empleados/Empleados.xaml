@@ -41,15 +41,13 @@
                         <TabItem.Content>
                             <!--#region Formulario Empleados-->
                             <materialDesign:DialogHost
-                                x:Name="DialogHostClientes"
+                                x:Name="DialogHostEmpleados"
                                 Grid.RowSpan="5"
                                 Grid.ColumnSpan="5"
                                 Margin="0,0,0,-49"
                                 Background="#00695c"
-                                DialogClosing="DialogHostClientes_DialogClosing"
                                 DialogTheme="Inherit"
-                                IsOpen="True"
-                                Loaded="DialogHostClientes_Loaded">
+                                IsOpen="False">
                                 <materialDesign:DialogHost.DialogContent>
                                     <StackPanel
                                         Width="430"
@@ -159,11 +157,10 @@
                                             HorizontalAlignment="Center"
                                             Orientation="Horizontal">
                                             <Button
-                                                x:Name="BtnEnviar"
+                                                x:Name="BtnEnviarEmpleado"
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="BtnEnviar_Click"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"
@@ -214,7 +211,8 @@
                                         Grid.Column="2"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontSize="40"
+                                        FontSize="25"
+                                        FontWeight="Bold"
                                         Foreground="#00695c"
                                         Text="Empleados" />
                                     <!--#endregion-->
@@ -254,18 +252,17 @@
                                                     <DataTemplate>
                                                         <DockPanel>
                                                             <Button
-                                                                Name="BtnEliminar"
+                                                                Name="BtnEliminarEmpleado"
                                                                 Width="50"
                                                                 Background="#f44c58"
                                                                 BorderBrush="Transparent">
                                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                                             </Button>
                                                             <Button
-                                                                Name="BtnEditar"
+                                                                Name="BtnEditarEmpleado"
                                                                 Width="50"
                                                                 Background="#00695c"
-                                                                BorderBrush="Transparent"
-                                                                Click="BtnEditar_Click">
+                                                                BorderBrush="Transparent">
                                                                 <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                                             </Button>
                                                         </DockPanel>
@@ -277,7 +274,7 @@
                                     <!--#endregion-->
                                     <!--#region BTN AGREGAR EMPLEADO-->
                                     <Button
-                                        x:Name="BtnAgregar"
+                                        x:Name="BtnAbrirFormulario"
                                         Grid.Row="3"
                                         Grid.Column="3"
                                         Width="70"
@@ -287,7 +284,6 @@
                                         Panel.ZIndex="1"
                                         Background="#00695c"
                                         BorderBrush="Transparent"
-                                        Click="BtnAgregar_Click"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                         <materialDesign:PackIcon
@@ -346,11 +342,12 @@
                                     Grid.Column="2"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontSize="40"
+                                    FontSize="25"
+                                    FontWeight="Bold"
                                     Foreground="#00695c"
                                     Text="Bítacora de Registros " />
                                 <!--#endregion-->
-                                <!--#region Datagrid EMPLEADOS-->
+                                <!--#region Datagrid  BITACORA EMPLEADOS-->
                                 <DataGrid
                                     x:Name="DataGridBitacora"
                                     Grid.Row="1"
