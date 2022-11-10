@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\Caja\Caja.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Clientes\Clientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,20 +23,17 @@
     <Compile Update="Views\Menu\Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Metodos de pago\MetodosPagos.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Pedidos\CardFlipper.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Stock\Stock.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Caja\Caja.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Clientes\Clientes.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -52,16 +52,10 @@
     <Page Update="Views\Menu\Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Metodos de pago\MetodosPagos.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Pedidos\CardFlipper.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pedidos\Pedidos.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Stock\Stock.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Style\Colors.xaml">

@@ -284,11 +284,11 @@
                                                     Foreground="#00695c"
                                                     Kind="CashRegister" />
                                                 <!--#region Boton CAJA-->
-                                                <Button
+                                                <Button x:Name="BtnCaja"
                                                     Grid.Column="1"
                                                     Background="Transparent"
                                                     BorderBrush="Transparent"
-                                                    Cursor="Hand">
+                                                    Cursor="Hand" Click="BtnCaja_Click">
                                                     <TextBlock
                                                         FontSize="18"
                                                         Style="{StaticResource PrimaryColor}"

@@ -8,17 +8,8 @@ namespace Entities
     public class clientes
     {
 
-        public clientes()
-        {
-            //Nombre = name;
-            //Apellido = surname;
-            //Direccion = address;
-            //Cedula = ci;
-            //Telefono = phone;
 
-        }
-
-
+        public string _id { get; set; }
         public string ci { get; set; }
         public string name { get; set; }
 
@@ -26,18 +17,7 @@ namespace Entities
         public string address { get; set; }
         public string phone { get; set; }
 
-        //public bool Error()
-        //{
-        //    if (ci is null || name is null || surname is null ||
-        //        dir is null || telf is null)
-        //    {
-        //        return true  
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+       
 
     }
 }

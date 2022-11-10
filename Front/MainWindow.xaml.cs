@@ -4,7 +4,7 @@ using Front.Views.Clientes;
 using Front.Views.Empleados;
 using Front.Views.Carta;
 using Front.Views.Pedidos;
-using Front.Views.Stock;
+
 using Newtonsoft.Json;
 using SocketIOClient;
 using SocketIOClient.JsonSerializer;
@@ -17,6 +17,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
+using Front.Views.Caja;
 
 namespace Front
 {
@@ -111,10 +112,7 @@ namespace Front
             MyFrame.NavigationService.Navigate(new Carta());
             
         }
-        private void BtnStock_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(new Stock());
-        }
+       
         private void MyFrame_Loaded(object sender, RoutedEventArgs e)
         {
             SocketClient();
@@ -127,6 +125,11 @@ namespace Front
         private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new Empleados());
+        }
+
+        private void BtnCaja_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.NavigationService.Navigate(new Caja());
         }
     }
 }

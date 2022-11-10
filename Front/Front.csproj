@@ -13,12 +13,10 @@
     <None Remove="Views\logoFondoBlanco.png" />
     <None Remove="Views\Menu\Batido-pie.jpg" />
     <None Remove="Views\Pedidos\Batido-pie.jpg" />
-    <None Remove="Views\Stock\Batido-pie.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="IMG\" />
-    <Folder Include="Views\Administracion\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +43,6 @@
     <Resource Include="Views\logoFondoBlanco.png" />
     <Resource Include="Views\Menu\Batido-pie.jpg" />
     <Resource Include="Views\Pedidos\Batido-pie.jpg" />
-    <Resource Include="Views\Stock\Batido-pie.jpg" />
   </ItemGroup>
 
 </Project>
