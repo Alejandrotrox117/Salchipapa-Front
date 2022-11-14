@@ -4,7 +4,6 @@ using Front.Views.Clientes;
 using Front.Views.Empleados;
 using Front.Views.Carta;
 using Front.Views.Pedidos;
-
 using Newtonsoft.Json;
 using SocketIOClient;
 using SocketIOClient.JsonSerializer;
@@ -26,12 +25,20 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
+        private employes session = null ;
+        public employes Session { get { return this.session; } set { this.session = value; } }
         private SocketIO client;
         Pedidos pedidos;
         public MainWindow()
         {
             InitializeComponent();
-           
+            if (session is null)
+            {
+                Session login = new Session();
+                login.ShowDialog();
+                this.session = login.session;
+                TxtNombreUser.Text = Session.ci;  
+            } 
         }
 
         public async Task<string> GetHttp()
@@ -47,11 +54,7 @@ namespace Front
         public async void SocketClient()
         {
             this.client = new SocketIO("http://192.168.1.105:3000");
-            //this.client.OnConnected += (sender, arg) =>
-            //{
-            //    MessageBox.Show("Conectado al servidor");
-            //};
-
+            
             this.client.On("newOrder", async response =>
              {
                  this.Dispatcher.Invoke(() =>
@@ -71,7 +74,6 @@ namespace Front
             MyFrame.NavigationService.Navigate(pedidos);
         }
 
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Funcion para que la ventana se pueda mover usando el mouse
@@ -80,7 +82,6 @@ namespace Front
                 DragMove();
             }
         }
-
         private void BtnPedidos_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);

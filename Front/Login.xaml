@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="Front.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="400"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+    <Grid Margin="0,0,0,-116" Background="White">
+
+        <Border Margin="70,0,70,326" CornerRadius="8,8,8,8">
+            <Border.Background>
+                <ImageBrush ImageSource="/Insignia Brillante Logo Tienda de Etsy Ícono.png" Stretch="Fill" />
+            </Border.Background>
+        </Border>
+        <TextBox
+            x:Name="TxtUsuario"
+            Height="50"
+            Margin="70,222,70,244"
+            materialDesign:HintAssist.Foreground="#00695c"
+            materialDesign:HintAssist.Hint="Nombre de Usuario"
+            AcceptsReturn="True"
+            BorderBrush="#00695c"
+            BorderThickness="2"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+        <TextBox
+            x:Name="TxtContrasena"
+            Height="50"
+            Margin="70,309,70,157"
+            materialDesign:HintAssist.Foreground="#00695c"
+            materialDesign:HintAssist.Hint="Contraseña"
+            AcceptsReturn="True"
+            BorderBrush="#00695c"
+            BorderThickness="2"
+            Cursor="Arrow"
+            InputScope="Password"
+            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+        <Button
+            Margin="31,445,237,39"
+            Background="#00695c"
+            BorderBrush="Transparent"
+            Content="Aceptar"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+        <Button
+            Margin="232,445,36,39"
+            Background="#00695c"
+            BorderBrush="Transparent"
+            Content="Cerrar"
+            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+
+
+
+
+
+    </Grid>
+</UserControl>

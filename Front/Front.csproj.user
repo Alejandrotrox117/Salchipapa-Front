@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Login.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Session.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Caja\Caja.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +37,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Session.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Caja\Caja.xaml">
       <SubType>Designer</SubType>
     </Page>

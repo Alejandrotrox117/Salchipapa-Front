@@ -284,11 +284,13 @@
                                                     Foreground="#00695c"
                                                     Kind="CashRegister" />
                                                 <!--#region Boton CAJA-->
-                                                <Button x:Name="BtnCaja"
+                                                <Button
+                                                    x:Name="BtnCaja"
                                                     Grid.Column="1"
                                                     Background="Transparent"
                                                     BorderBrush="Transparent"
-                                                    Cursor="Hand" Click="BtnCaja_Click">
+                                                    Click="BtnCaja_Click"
+                                                    Cursor="Hand">
                                                     <TextBlock
                                                         FontSize="18"
                                                         Style="{StaticResource PrimaryColor}"
@@ -398,13 +400,13 @@
                                             </Grid.ColumnDefinitions>
                                             <!--#region Nombre sesion-->
                                             <TextBlock
+                                                x:Name="TxtNombreUser"
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="2"
                                                 Margin="0,0,23,0"
                                                 VerticalAlignment="Center"
                                                 FontSize="13"
-                                                FontWeight="Bold"
-                                                Text="Administrador" />
+                                                FontWeight="Bold" />
                                             <!--#endregion-->
                                             <!--#region PopupBox button-->
                                             <materialDesign:PopupBox

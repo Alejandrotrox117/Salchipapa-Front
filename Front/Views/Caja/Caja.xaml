@@ -425,7 +425,7 @@
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="BtnEnviarCategoria_Click"
+                                               
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"
