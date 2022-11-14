@@ -34,24 +34,31 @@
             </Grid.RowDefinitions>
             <!--#endregion Filas y columnas-->
             <!--#region Contenido-->
-            <TextBlock
+            <materialDesign:ColorZone
                 Grid.Row="0"
-                Grid.Column="2"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="40"
-                Foreground="#00695c"
-                Text="Clientes" />
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Height="50"
+                Background="#00695c"
+                Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                Mode="Custom">
+                <TextBlock
+                    Margin="16"
+                    FontSize="15"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Todos los Clientes" />
+            </materialDesign:ColorZone>
             <DataGrid
                 x:Name="DataGridClientes"
                 Grid.Row="1"
-                Grid.RowSpan="3"
-                Grid.Column="1"
-                Grid.ColumnSpan="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
                 Width="755"
-                Height="346"
+                Height="388"
                 Margin="0,10,0,0"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 AutoGenerateColumns="False"
                 Background="GhostWhite"

@@ -32,13 +32,13 @@ namespace Front
         public MainWindow()
         {
             InitializeComponent();
-            if (session is null)
-            {
-                Session login = new Session();
-                login.ShowDialog();
-                this.session = login.session;
-                TxtNombreUser.Text = Session.ci;  
-            } 
+            //if (session is null)
+            //{
+            //    Session login = new Session();
+            //   // login.ShowDialog();
+            //    this.session = login.session;
+            //    TxtNombreUser.Text = Session.ci;  
+            //} 
         }
 
         public async Task<string> GetHttp()
@@ -73,7 +73,6 @@ namespace Front
             pedidos = new Pedidos(this.client);
             MyFrame.NavigationService.Navigate(pedidos);
         }
-
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Funcion para que la ventana se pueda mover usando el mouse
@@ -123,14 +122,14 @@ namespace Front
             MyFrame.NavigationService.Navigate(pedidos);
         }
 
-        private void BtnEmpleados_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(new Empleados());
-        }
-
         private void BtnCaja_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new Caja());
+        }
+
+        private void BtnAdministracion_Click(object sender, RoutedEventArgs e)
+        {
+            MyFrame.NavigationService.Navigate(new Empleados());
         }
     }
 }

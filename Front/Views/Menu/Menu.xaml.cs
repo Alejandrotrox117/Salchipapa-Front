@@ -59,7 +59,7 @@ namespace Front.Views.Carta
             if (group != null)
             {
                 TabsProductos.ItemsSource = group;
-                ListBoxToppings.ItemsSource = toppings;
+                DataGridToppings.ItemsSource = toppings;
                 itemsCardsCategorias.ItemsSource = categories;
                 CbCategoriaProducto.ItemsSource = categorie;
                 CBToppings.ItemsSource = toppings;

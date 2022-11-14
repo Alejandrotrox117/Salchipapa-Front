@@ -788,112 +788,94 @@
                                 </Grid>
                             </materialDesign:DialogHost.DialogContent>
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="20" />
+                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="45" />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="20" />
                                 </Grid.RowDefinitions>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <ListBox
-                                        x:Name="ListBoxToppings"
-                                        Height="455"
-                                        Margin="0,50,0,0"
-                                        AllowDrop="True"
-                                        Background="Transparent"
-                                        Focusable="False"
-                                        IsHitTestVisible="False"
-                                        ItemsSource="{Binding toppings}">
-                                        <ListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel />
-                                            </ItemsPanelTemplate>
-                                        </ListBox.ItemsPanel>
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <materialDesign:Card
-                                                    Width="240"
-                                                    Height="110"
-                                                    Background="GhostWhite"
-                                                    Foreground="#00695c">
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto" />
-                                                            <RowDefinition Height="auto" />
-                                                            <RowDefinition Height="auto" />
-                                                        </Grid.RowDefinitions>
-                                                        <TextBlock
-                                                            Grid.Row="0"
-                                                            Margin="10,16,10,10"
-                                                            Foreground="#00695c"
-                                                            Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                                                            Text="{Binding name}"
-                                                            TextWrapping="WrapWithOverflow" />
+                                <!--#endregion Filas y columnas-->
+                                <!--#region Contenido-->
 
-                                                        <StackPanel Grid.Row="1">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="78" />
-                                                                    <ColumnDefinition Width="auto" />
-
-                                                                </Grid.ColumnDefinitions>
-                                                                <TextBlock
-                                                                    Grid.Column="0"
-                                                                    Margin="10,0,5,0"
-                                                                    HorizontalAlignment="Left"
-                                                                    VerticalAlignment="Center"
-                                                                    FontSize="13"
-                                                                    FontWeight="Bold"
-                                                                    Text="En stock :" />
-                                                                <TextBlock
-                                                                    Grid.Column="0"
-                                                                    HorizontalAlignment="Right"
-                                                                    VerticalAlignment="Center"
-                                                                    FontSize="13"
-                                                                    FontWeight="Bold"
-                                                                    Text="{Binding stock}" />
-                                                                <TextBlock
-                                                                    Grid.Column="1"
-                                                                    Margin="40,0,0,0"
-                                                                    FontWeight="Bold"
-                                                                    Text="Precio :" />
-                                                                <TextBlock
-                                                                    Grid.Column="1"
-                                                                    Margin="90,0,0,0"
-                                                                    FontWeight="Bold"
-                                                                    Text="{Binding price}" />
-                                                                <TextBlock
-                                                                    Grid.Column="1"
-                                                                    Margin="110,0,0,0"
-                                                                    FontWeight="Bold"
-                                                                    Text="$" />
-                                                            </Grid>
-                                                        </StackPanel>
-
-                                                        <StackPanel
-                                                            Grid.Row="1"
-                                                            Width="32"
-                                                            Margin="0,17,22,8"
-                                                            HorizontalAlignment="Right"
-                                                            Orientation="Horizontal">
-                                                            <Button
-                                                                Width="30"
-                                                                Padding="2,0,2,0"
-                                                                HorizontalAlignment="Right"
-                                                                materialDesign:RippleAssist.IsCentered="True"
-                                                                Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                                                <materialDesign:PackIcon Kind="Pencil" />
-                                                            </Button>
-
-
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </materialDesign:Card>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-
-                                    </ListBox>
-                                </ScrollViewer>
+                                <DataGrid
+                                    x:Name="DataGridToppings"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="3"
+                                    Width="755"
+                                    Height="346"
+                                    Margin="0,10,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    AutoGenerateColumns="False"
+                                    Background="GhostWhite"
+                                    CanUserAddRows="False"
+                                    CanUserDeleteRows="False"
+                                    CanUserReorderColumns="False"
+                                    CanUserResizeRows="False"
+                                    CanUserSortColumns="False"
+                                    FontSize="15"
+                                    Foreground="#00695c"
+                                    GridLinesVisibility="Horizontal"
+                                    HeadersVisibility="All"
+                                    HorizontalGridLinesBrush="#00695c"
+                                    IsReadOnly="True"
+                                    ItemsSource="{Binding Toppings}"
+                                    RowBackground="Transparent"
+                                    SelectionMode="Single"
+                                    SelectionUnit="FullRow"
+                                    VerticalGridLinesBrush="#FF00695C">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Nombre del Topping">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <materialDesign:Chip Content="{Binding name}">
+                                                        <materialDesign:Chip.Icon>
+                                                            <Image Source="/Views/Menu/Batido-pie.jpg" />
+                                                        </materialDesign:Chip.Icon>
+                                                    </materialDesign:Chip>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Binding="{Binding price}" Header="Precio" />
+                                        <DataGridTextColumn Binding="{Binding stock}" Header="Disponible" />
+                                        <DataGridTemplateColumn Header="Opciones">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <DockPanel>
+                                                        <Button
+                                                            Name="BtnEliminar"
+                                                            Width="50"
+                                                            Background="#f44c58"
+                                                            BorderBrush="Transparent">
+                                                            <materialDesign:PackIcon Foreground="White" Kind="Delete" />
+                                                        </Button>
+                                                        <Button
+                                                            Name="BtnEditar"
+                                                            Width="50"
+                                                            Background="#00695c"
+                                                            BorderBrush="Transparent">
+                                                            <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
+                                                        </Button>
+                                                    </DockPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                                 <materialDesign:ColorZone
                                     Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
                                     Height="50"
                                     Background="#00695c"
                                     Effect="{DynamicResource MaterialDesignShadowDepth5}"
@@ -904,10 +886,11 @@
                                         FontStyle="Italic"
                                         FontWeight="Bold"
                                         Foreground="White"
-                                        Text="Todos los Toppings" />
+                                        Text="Todos Toppings" />
                                 </materialDesign:ColorZone>
                                 <materialDesign:PopupBox
-                                    Grid.Row="0"
+                                    Grid.Row="3"
+                                    Grid.Column="3"
                                     Margin="0,0,28,20"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"

@@ -205,17 +205,22 @@
                                     </Grid.RowDefinitions>
                                     <!--#endregion Filas y columnas-->
                                     <!--#region Contenido-->
-                                    <!--#region Titulo Empleados-->
-                                    <TextBlock
+                                    <materialDesign:ColorZone
                                         Grid.Row="0"
-                                        Grid.Column="2"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        FontSize="25"
-                                        FontWeight="Bold"
-                                        Foreground="#00695c"
-                                        Text="Empleados" />
-                                    <!--#endregion-->
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="5"
+                                        Height="50"
+                                        Background="#00695c"
+                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                        Mode="Custom">
+                                        <TextBlock
+                                            Margin="16"
+                                            FontSize="15"
+                                            FontStyle="Italic"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            Text="Todas los Empleados" />
+                                    </materialDesign:ColorZone>
                                     <!--#region Datagrid EMPLEADOS-->
                                     <DataGrid
                                         x:Name="DataGridEmpleados"
@@ -336,17 +341,23 @@
                                 </Grid.RowDefinitions>
                                 <!--#endregion Filas y columnas-->
                                 <!--#region Contenido-->
-                                <!--#region Titulo Empleados-->
-                                <TextBlock
+
+                                <materialDesign:ColorZone
                                     Grid.Row="0"
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="25"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Bítacora de Registros " />
-                                <!--#endregion-->
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
+                                    Height="50"
+                                    Background="#00695c"
+                                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                    Mode="Custom">
+                                    <TextBlock
+                                        Margin="16"
+                                        FontSize="15"
+                                        FontStyle="Italic"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Todos los Registros" />
+                                </materialDesign:ColorZone>
                                 <!--#region Datagrid  BITACORA EMPLEADOS-->
                                 <DataGrid
                                     x:Name="DataGridBitacora"
@@ -382,7 +393,6 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <!--#endregion-->
-
                             </Grid>
                         </TabItem.Content>
                     </TabItem>

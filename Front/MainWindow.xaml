@@ -305,70 +305,41 @@
                                 <!--#region Administracion-->
                                 <TreeViewItem
                                     FontSize="17"
+                                    
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    Header="Administración"
-                                    IsExpanded="True">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <materialDesign:PackIcon
-                                                Grid.Column="0"
-                                                Width="24"
-                                                Height="24"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Foreground="#00695c"
-                                                Kind="AccountGroup" />
-                                            <!--#region BTN CLIENTES-->
-                                            <Button
-                                                x:Name="BtnClientes"
-                                                Grid.Column="1"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Click="BtnClientes_Click">
-                                                <TextBlock
-                                                    FontSize="17"
-                                                    Style="{StaticResource PrimaryColor}"
-                                                    Text="Clientes" />
-                                            </Button>
-                                            <!--#endregion-->
-                                        </Grid>
-                                    </StackPanel>
-                                    <!--#region EMPLEADOS-->
-                                    <StackPanel Orientation="Horizontal">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <materialDesign:PackIcon
-                                                Grid.Column="0"
-                                                Width="24"
-                                                Height="24"
-                                                HorizontalAlignment="Right"
-                                                VerticalAlignment="Center"
-                                                Foreground="#00695c"
-                                                Kind="ClipboardAccount" />
-                                            <!--#region BTN EMPLEADOS-->
-                                            <Button
-                                                x:Name="BtnEmpleados"
-                                                Grid.Column="1"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Click="BtnEmpleados_Click">
-                                                <TextBlock
-                                                    FontSize="17"
-                                                    Style="{StaticResource PrimaryColor}"
-                                                    Text="Empleados" />
-                                            </Button>
-                                            <!--#endregion-->
-                                        </Grid>
-                                    </StackPanel>
-                                    <!--#endregion-->
+                                    IsExpanded="True" Width="187">
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <materialDesign:PackIcon
+                                                    Grid.Column="0"
+                                                    Width="24"
+                                                    Height="24"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Foreground="#00695c"
+                                                    Kind="Tools" />
+                                                <!--#region BTN EMPLEADOS-->
+                                                <Button x:Name="BtnAdministracion"
+                                                    Grid.Column="1"
+                                                    Background="Transparent"
+                                                    BorderBrush="Transparent" Click="BtnAdministracion_Click">
+                                                    <TextBlock
+                                                        FontSize="17"
+                                                        Style="{StaticResource PrimaryColor}"
+                                                        Text="Administración" />
+                                                </Button>
+                                                <!--#endregion-->
+                                            </Grid>
+                                        </StackPanel>
+
+                                    </TreeViewItem.Header>
+
                                 </TreeViewItem>
                                 <!--#endregion-->
                             </TreeView>
