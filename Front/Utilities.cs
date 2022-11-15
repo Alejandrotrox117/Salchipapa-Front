@@ -19,7 +19,6 @@ namespace Front
         public static string url = "http://localhost:3000/api/";
         public static HttpClient client = new HttpClient();
 
-
         public static async Task<string> Get(string link)
         {
             //Peticion get al API mediante URL
@@ -28,22 +27,45 @@ namespace Front
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
             return await sr.ReadToEndAsync();
         }
-
-      
-
-        public async static void Post(string link, string clase,string message)
+        public static async Task<HttpResponseMessage> Post(string link, string clase)
         {
-            HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(url+link, content);
-            //evaluar si la solicitud ha sido exitosa
-            string result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show(message);
+                HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
+                var httpResponse = await client.PostAsync(url + link, content);
+                return httpResponse;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
-            else
+        }
+        public static async Task<HttpResponseMessage> Put(string link, string clase)
+        {
+            try
             {
-                MessageBox.Show("Error:"+result);
+
+                HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
+                var httpResponse = await client.PutAsync(url + link, content);
+                return httpResponse;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+        public static async Task<HttpResponseMessage> Delete(string clase,string link)
+        {
+            try
+            {
+                var httpResponse = await client.DeleteAsync(url +clase+ link);
+                return httpResponse;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
             }
         }
     }

@@ -23,13 +23,13 @@ namespace Front.Views.Caja
     public partial class Caja : UserControl
     {
         private static readonly HttpClient client = new HttpClient();
-       
+        private string _id = null;
+        private List<clientes> listaClientes = new List<clientes>();
         public Caja()
         {
             InitializeComponent();
         }
-       
-
+      
         //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
@@ -80,9 +80,8 @@ namespace Front.Views.Caja
                         int indice = DataGridClientes.Items.IndexOf(DataGridClientes.SelectedItems[i]);
                         //Almacena en la variable item el item seleccionado del datagrid
                         clientes item = DataGridClientes.SelectedItem as clientes;
-                        //En la variable id almacena la cedula y la pasa por parametros al metodo
-                       
-                        DeleteElement(item.ci.ToString());
+                        //En la variable id almacena la cedula y la pasa por parametros al metodo                 
+                        Utilities.Delete("clients/",item.ci.ToString());
                         //Remueve la fila completa seleccionada solo visualmente
                         miLista.RemoveAt(indice);
                     }
@@ -95,75 +94,25 @@ namespace Front.Views.Caja
                 MessageBox.Show("Debe seleccionar por lo menos una fila.");
             }
         }
-       
-        async private void PutElement(string id)
-        {
-            string link = ("http://localhost:3000/api/clients/" + id);
-            clientes cliente = new clientes()
-            {
-                name = TxtNombre.Text,
-                surname = TxtApellido.Text,
-                ci = CBCedula.Text + TxtCedula.Text,
-                address = TxtDireccion.Text,
-                phone = CBTelefono.Text + TxtTelefono.Text
-
-            };
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string data = js.Serialize(cliente);
-            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await client.PutAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se han editado los datos correctamente");
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
-
-        public void PutViewElement()
-        {
-            if (DataGridClientes.SelectedItems.Count > 0)
-            {
-                List<clientes> miLista = (List<clientes>)DataGridClientes.ItemsSource;
-                //Certifica si la lista esta vacia
-                if (miLista != null)
-                {
-                    for (int i = 0; i < DataGridClientes.SelectedItems.Count; i++)
-                    {
-                        clientes item = DataGridClientes.SelectedItem as clientes;
-                        //EVALUA SI LA LISTA ESTA VACIA Y CARGA EL FORMULARIO CON LOS DATOS
-                        //DADA LA CONDICION
-
-                        if (item != null)
-                        {
-                            DialogHostClientes.IsOpen = true;
-                            TxtNombre.Text = item.name;
-                            TxtApellido.Text = item.surname;
-                            TxtCedula.Text = item.ci;
-                            TxtTelefono.Text = item.phone;
-                            TxtDireccion.Text = item.address;
-                        }
-                    }
-                    DataGridClientes.ItemsSource = null;
-                    DataGridClientes.ItemsSource = miLista;
-                }
-            }
-        }
-
+        
         private void BtnEditar_Click(object sender, RoutedEventArgs e)
         {
-            //METODO QUE ABRE EL FORMULARIO Y EL INDEX DE LA FILA DE LOS CLIENTES
-            PutViewElement();
+            FrameworkElement element = e.Source as FrameworkElement;
+            clientes cliente = element.DataContext as clientes;
+            DialogHostClientes.IsOpen = true;
+            this._id = cliente._id;
+            TxtNombre.Text = cliente.name;
+            TxtApellido.Text = cliente.surname;
+            TxtCedula.Text = cliente.ci;
+            string[] splitPhone = cliente.phone.Split('-');
+            CBTelefono.Text = splitPhone[0]+'-';
+            TxtTelefono.Text = splitPhone[1];
+            TxtDireccion.Text = cliente.address;
             TxtTituloDialg.Text = "Editar Clientes";
+            BtnEviarActualizar.Visibility = Visibility.Visible;
         }
 
-      
-        
-        private void BtnEnviar_Click(object sender, RoutedEventArgs e)
+        private async void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             string js = new JavaScriptSerializer().Serialize(new
             {
@@ -174,11 +123,52 @@ namespace Front.Views.Caja
                 phone = CBTelefono.Text + TxtTelefono.Text,
 
             });
-            Utilities.Post("clients", js,"Se ha agregado un nuevo Cliente");
-          
+            var Response = await Utilities.Put("clients/" + _id + "/", js);
+            if (Response.IsSuccessStatusCode)
+                CerrarForm();
+            else
+                MessageBox.Show("hubo un error");
+
+        }
+        
+        private async void BtnEnviar_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string js = new JavaScriptSerializer().Serialize(new
+                {
+                    ci = TxtCedula.Text,
+                    name = TxtNombre.Text,
+                    surname = TxtApellido.Text,
+                    address = TxtDireccion.Text,
+                    phone = CBTelefono.Text + TxtTelefono.Text,
+
+                });
+                var Response = await Utilities.Post("clients", js);
+                if (Response.IsSuccessStatusCode)
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+
+                    clientes cliente = JsonConvert.DeserializeObject<clientes>(sr);
+                    this.listaClientes.Add(cliente);
+                    CerrarForm();
+                }
+                else
+                    MessageBox.Show("hubo un error");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
-
+        private void CerrarForm()
+        {
+            DialogHostClientes.IsOpen = false;
+            BtnEnviar.Visibility = Visibility.Hidden;
+            BtnEviarActualizar.Visibility = Visibility.Hidden;
+        }
 
         private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
@@ -201,6 +191,17 @@ namespace Front.Views.Caja
         private void BtnEliminar_Click_1(object sender, RoutedEventArgs e)
         {
             EliminateViewElement();
+        }
+
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            TxtTituloDialg.Text = "Agregar Nuevo Cliente";
+            BtnEnviar.Visibility = Visibility.Visible;
+        }
+
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            CerrarForm();
         }
     }
 }

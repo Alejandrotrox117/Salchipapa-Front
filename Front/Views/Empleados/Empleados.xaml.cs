@@ -57,11 +57,12 @@ namespace Front.Views.Empleados
                 ci = TxtCedulaEmpleado.Text,
                 name = TxtNombreEmpleado.Text,
                 surname = TxtApellidoEmpleado.Text,
-               account=CbAccount.Text
+               account=CbAccount.Text,
+                password=TxtContra.Text
                 
 
             });
-            Utilities.Post("clients", empleado,"Se ha Agregado un nuevo Empleado");
+            Utilities.Post("clients", empleado);
         }
     }
 }

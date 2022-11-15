@@ -185,14 +185,14 @@
                                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                                         <Button
                                             x:Name="BtnEnviar"
-                                            Margin="0,8,108,0"
+                                            Margin="0,8,0,0"
                                             Background="Transparent"
                                             BorderBrush="#00695c"
                                             Click="BtnEnviar_Click"
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                             Content="Agregar"
                                             Foreground="#00695c"
-                                            IsDefault="False">
+                                            IsDefault="False"
+                                            Visibility="Hidden">
                                             <Button.CommandParameter>
                                                 <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                     True
@@ -200,10 +200,27 @@
                                             </Button.CommandParameter>
                                         </Button>
                                         <Button
+                                            x:Name="BtnEviarActualizar"
+                                            Margin="-100,8,100,0"
+                                            Background="Transparent"
+                                            BorderBrush="#00695c"
+                                            Click="BtnActualizar_Click"
+                                            Content="Actualizar"
+                                            Foreground="#00695c"
+                                            IsDefault="False"
+                                            Visibility="Hidden">
+                                            <Button.CommandParameter>
+                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    True
+                                                </system:Boolean>
+                                            </Button.CommandParameter>
+                                        </Button>
+                                        <Button
+                                            x:Name="BtnCerrarForm"
                                             Margin="0,8,8,0"
                                             Background="Transparent"
                                             BorderBrush="#00695c"
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            Click="BtnCerrarForm_Click"
                                             Content="Cancelar"
                                             Foreground="#00695c"
                                             IsCancel="True">
@@ -272,11 +289,10 @@
                                     CanUserSortColumns="False"
                                     FontSize="15"
                                     Foreground="#00695c"
-                                    FrozenColumnCount="1"
                                     HeadersVisibility="All"
                                     HorizontalGridLinesBrush="#00695c"
                                     IsReadOnly="True"
-                                    ItemsSource="{Binding clientes}"
+                                    ItemsSource="{Binding listClientes}"
                                     RowBackground="Transparent">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
@@ -313,6 +329,7 @@
                                 </DataGrid>
                                 <!--#region BTN AGREGAR EMPLEADO-->
                                 <Button
+                                    x:Name="BtnAgregar"
                                     Grid.Row="3"
                                     Grid.Column="3"
                                     Width="70"
@@ -322,6 +339,7 @@
                                     Panel.ZIndex="1"
                                     Background="#00695c"
                                     BorderBrush="Transparent"
+                                    Click="BtnAgregar_Click"
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     Cursor="Hand"
                                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">

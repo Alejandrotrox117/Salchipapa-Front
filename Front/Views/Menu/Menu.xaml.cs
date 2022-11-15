@@ -93,7 +93,7 @@ namespace Front.Views.Carta
             {
                 name = TxtNombreCategoria.Text,
             });
-            Utilities.Post("categories",categorie,"Se ha Agregado una nueva Categoria");
+            Utilities.Post("categories",categorie);
         }
 
         private void BtnElimina_Click(object sender, RoutedEventArgs e)
@@ -182,7 +182,7 @@ namespace Front.Views.Carta
             });
 
 
-            Utilities.Post("products?extendeData=true", producto, "Se ha Agregado un nuevo Producto");
+            Utilities.Post("products?extendeData=true", producto);
            
         }
 
@@ -195,7 +195,7 @@ namespace Front.Views.Carta
                 stock= Convert.ToInt32(TxtStockTopping.Text),
             });
 
-            Utilities.Post("toppings", toppings, "Se ha agregado un nuevo Topping");
+            Utilities.Post("toppings", toppings);
             
         }
 

@@ -47,11 +47,11 @@
                                 Margin="0,0,0,-49"
                                 Background="#00695c"
                                 DialogTheme="Inherit"
-                                IsOpen="False">
+                                IsOpen="True">
                                 <materialDesign:DialogHost.DialogContent>
                                     <StackPanel
                                         Width="430"
-                                        Height="250"
+                                        Height="350"
                                         Margin="15">
                                         <!--#region TITULO DEL DIALOG-->
                                         <TextBlock
@@ -73,6 +73,7 @@
                                                 <RowDefinition Height="*" />
                                                 <RowDefinition Height="60" />
                                                 <RowDefinition Height="60" />
+                                                <RowDefinition Height="70" />
                                             </Grid.RowDefinitions>
                                             <!--#endregion-->
                                             <!--#region Titulo y texbox NOMBRE-->
@@ -107,7 +108,7 @@
                                             <!--#region TITULO Y COMBOBOX CEDULA-->
                                             <ComboBox
                                                 x:Name="CBCedula"
-                                                Grid.Row="3"
+                                                Grid.Row="2"
                                                 Grid.Column="0"
                                                 Width="73"
                                                 Height="49"
@@ -123,7 +124,7 @@
                                             </ComboBox>
                                             <TextBox
                                                 x:Name="TxtCedulaEmpleado"
-                                                Grid.Row="3"
+                                                Grid.Row="2"
                                                 Grid.Column="0"
                                                 Width="120"
                                                 Height="49"
@@ -133,8 +134,7 @@
                                                 AcceptsReturn="True"
                                                 BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                TextWrapping="Wrap" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                             <!--#endregion-->
                                             <ComboBox
                                                 x:Name="CbAccount"
@@ -144,12 +144,38 @@
                                                 Height="53"
                                                 Margin="0,0,0,0"
                                                 materialDesign:HintAssist.Foreground="#00695c"
-                                                materialDesign:HintAssist.Hint="Privilegio"
+                                                materialDesign:HintAssist.Hint="Rol"
                                                 BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                                Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                                                <ComboBoxItem Content="Admin" />
+                                                <ComboBoxItem Content="Mesero" />
+                                                <ComboBoxItem Content="Cocinero" />
+                                                <ComboBoxItem Content="Cajero" />
+                                            </ComboBox>
+                                            <TextBox
+                                                x:Name="TxtContra"
+                                                Grid.Row="3"
+                                                Grid.Column="1"
+                                                Width="190"
+                                                Height="50"
+                                                Margin="0,20,0,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Contraseña"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <CheckBox
+                                                Grid.Row="3"
+                                                Grid.Column="0"
+                                                Margin="10,20,0,0"
+                                                Content="Administrador"
+                                                IsChecked="False"
+                                                Style="{StaticResource MaterialDesignFilterChipCheckBox}" />
                                         </Grid>
                                         <!--#endregion-->
+
                                         <StackPanel
                                             Margin="0,50,0,0"
                                             HorizontalAlignment="Center"
