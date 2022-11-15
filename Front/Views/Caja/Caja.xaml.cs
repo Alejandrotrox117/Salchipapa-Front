@@ -81,7 +81,8 @@ namespace Front.Views.Caja
                         //Almacena en la variable item el item seleccionado del datagrid
                         clientes item = DataGridClientes.SelectedItem as clientes;
                         //En la variable id almacena la cedula y la pasa por parametros al metodo
-                        DeleteElement(item._id);
+                       
+                        DeleteElement(item.ci.ToString());
                         //Remueve la fila completa seleccionada solo visualmente
                         miLista.RemoveAt(indice);
                     }
@@ -173,7 +174,7 @@ namespace Front.Views.Caja
                 phone = CBTelefono.Text + TxtTelefono.Text,
 
             });
-            Utilities.Post("clients", js);
+            Utilities.Post("clients", js,"Se ha agregado un nuevo Cliente");
           
         }
 

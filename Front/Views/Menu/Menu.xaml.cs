@@ -36,24 +36,15 @@ namespace Front.Views.Carta
             InitializeComponent();
         }
 
-        public async Task<string> GetHttp(string url)
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-
+       
         private async void Main()
         {
-            string response = await GetHttp("http://localhost:3000/api/products?extendeData=true");
-            string RespondCategorie = await GetHttp("http://localhost:3000/api/categories");
-            string RespondTopping = await GetHttp("http://localhost:3000/api/toppings");
-
-            List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(response);
+            string responseGrupos = await Utilities.Get("products?extendeData=true");
+            string RespondCategorie = await Utilities.Get("categories");
+            string RespondTopping = await Utilities.Get("toppings");
+            List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(responseGrupos);
             List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
             List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
-
             categories = new ObservableCollection<categories>(categorie);
 
             if (group != null)
@@ -69,84 +60,7 @@ namespace Front.Views.Carta
                 MessageBox.Show("Error");
             }
         }
-
-
-        private async void PostCategorie(string link)
-        {
-            categories categories = new categories()
-            {
-                name = TxtNombreCategoria.Text,
-                _id = null
-            };
-            //Para ignorar el ID de las categorias
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-            
-            var DataSerializer = Newtonsoft.Json.JsonConvert.SerializeObject(categories, settings);
-            HttpContent content = new StringContent(DataSerializer, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se han enviado los datos" + DataSerializer);
-
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
-
-        private async void PostProduct(string js)
-        {
-
-            string link = "http://localhost:3000/api/products?extendeData=true";
-            HttpContent content = new StringContent(js, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se han enviado los datos");
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
-        private async void PostTopping(string link)
-        {
-            Toppings toppings = new Toppings()
-            {
-                name = TxtNombreTopping.Text,
-                stock = Convert.ToInt32(TxtStockTopping.Text),
-                price = Convert.ToDouble(TxtPrecioTopping.Text),
-                _id = null
-            };
-            JsonSerializerSettings settings = new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            };
-
-       
-            var DataSerializer = Newtonsoft.Json.JsonConvert.SerializeObject(toppings, settings);
-            HttpContent content = new StringContent(DataSerializer, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se han enviado los datos");
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
+        
 
         private childItem FindVisualChild<childItem>(DependencyObject obj)
            where childItem : DependencyObject
@@ -175,7 +89,11 @@ namespace Front.Views.Carta
 
         private void BtnEnviarCategoria_Click(object sender, RoutedEventArgs e)
         {
-            PostCategorie(" http://localhost:3000/api/categories");
+            string categorie = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreCategoria.Text,
+            });
+            Utilities.Post("categories",categorie,"Se ha Agregado una nueva Categoria");
         }
 
         private void BtnElimina_Click(object sender, RoutedEventArgs e)
@@ -236,15 +154,7 @@ namespace Front.Views.Carta
         private void BtnEliminarTopping_Click(object sender, RoutedEventArgs e)
         {
 
-            for (int i = 0; i < ListToppings.Items.Count; i++)
-            {
-
-
-
-
-
-            }
-
+           
         }
 
         private void CbCategoriaProducto_Loaded(object sender, RoutedEventArgs e)
@@ -261,7 +171,7 @@ namespace Front.Views.Carta
             }
             categories categoria = CbCategoriaProducto.SelectedItem as categories;
 
-            string js = new JavaScriptSerializer().Serialize(new
+            string producto = new JavaScriptSerializer().Serialize(new
             {
                 name = TxtNombreProducto.Text,
                 price = Convert.ToDouble(TxtPrecioProducto.Text),
@@ -271,14 +181,22 @@ namespace Front.Views.Carta
                 toppings = ListaToppings.Select(x => x._id)
             });
 
-            MessageBox.Show(js);
 
-            PostProduct(js);
+            Utilities.Post("products?extendeData=true", producto, "Se ha Agregado un nuevo Producto");
+           
         }
 
         private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
         {
-            PostTopping("http://localhost:3000/api/toppings");
+            string toppings = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreTopping.Text,
+                price = Convert.ToDouble(TxtPrecioTopping.Text),
+                stock= Convert.ToInt32(TxtStockTopping.Text),
+            });
+
+            Utilities.Post("toppings", toppings, "Se ha agregado un nuevo Topping");
+            
         }
 
         private void CbCategoriaProducto_Selected(object sender, RoutedEventArgs e)

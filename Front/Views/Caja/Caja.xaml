@@ -234,15 +234,22 @@
                                 <!--#endregion Filas y columnas-->
                                 <!--#region Contenido-->
                                 <!--#region Titulo CLIENTES-->
-                                <TextBlock
+                                <materialDesign:ColorZone
                                     Grid.Row="0"
-                                    Grid.Column="2"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="25"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Clientes" />
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="5"
+                                    Height="50"
+                                    Background="#00695c"
+                                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                    Mode="Custom">
+                                    <TextBlock
+                                        Margin="16"
+                                        FontSize="15"
+                                        FontStyle="Italic"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Todas los Clientes" />
+                                </materialDesign:ColorZone>
                                 <!--#endregion-->
                                 <!--#region Datagrid CLIENTES-->
                                 <DataGrid

@@ -31,7 +31,7 @@ namespace Front
 
       
 
-        public async static void Post(string link, string clase)
+        public async static void Post(string link, string clase,string message)
         {
             HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
             var httpResponse = await client.PostAsync(url+link, content);
@@ -39,7 +39,7 @@ namespace Front
             string result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
-                MessageBox.Show("Enviado correctamente");
+                MessageBox.Show(message);
             }
             else
             {

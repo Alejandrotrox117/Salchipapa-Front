@@ -87,8 +87,7 @@
                                                 AcceptsReturn="True"
                                                 BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                TextWrapping="Wrap" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                             <!--#endregion TITULO Y TEXBOX NOMBRE-->
                                             <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
                                             <TextBox
@@ -103,8 +102,7 @@
                                                 AcceptsReturn="True"
                                                 BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                TextWrapping="Wrap" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                             <!--#endregion-->
                                             <!--#region TITULO Y COMBOBOX CEDULA-->
                                             <ComboBox
@@ -124,7 +122,7 @@
                                                 <ComboBoxItem Content="E-" />
                                             </ComboBox>
                                             <TextBox
-                                                x:Name="TxtCedula"
+                                                x:Name="TxtCedulaEmpleado"
                                                 Grid.Row="3"
                                                 Grid.Column="0"
                                                 Width="120"
@@ -161,6 +159,7 @@
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
+                                                Click="BtnEnviarEmpleado_Click"
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"
@@ -244,6 +243,7 @@
                                         Foreground="#00695c"
                                         HeadersVisibility="All"
                                         HorizontalGridLinesBrush="#00695c"
+                                        Initialized="DataGridEmpleados_Initialized"
                                         IsReadOnly="True"
                                         ItemsSource="{Binding clientes}"
                                         RowBackground="Transparent">
@@ -251,7 +251,7 @@
                                             <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
                                             <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
                                             <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
-                                            <DataGridTextColumn Binding="{Binding account}" Header="Teléfono" />
+                                            <DataGridTextColumn Binding="{Binding account}" Header="Permisos" />
                                             <DataGridTemplateColumn Header="Opciones">
                                                 <DataGridTemplateColumn.CellTemplate>
                                                     <DataTemplate>
@@ -289,6 +289,7 @@
                                         Panel.ZIndex="1"
                                         Background="#00695c"
                                         BorderBrush="Transparent"
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                         <materialDesign:PackIcon
