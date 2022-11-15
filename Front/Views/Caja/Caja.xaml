@@ -286,7 +286,8 @@
                                                             Name="BtnEliminar"
                                                             Width="50"
                                                             Background="#f44c58"
-                                                            BorderBrush="Transparent">
+                                                            BorderBrush="Transparent"
+                                                            Click="BtnEliminar_Click_1">
                                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                                         </Button>
                                                         <Button

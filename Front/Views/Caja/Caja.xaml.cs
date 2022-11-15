@@ -34,12 +34,8 @@ namespace Front.Views.Caja
         public async void Main()
         {
             string respuesta = await Utilities.Get("clients/");
-
-          
             //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
-
             List<clientes> returnedData = JsonConvert.DeserializeObject<List<clientes>>(respuesta);
-
             //VALIDACION DE RETORNO DE DATOS 
             if (returnedData != null)
             {
@@ -99,7 +95,6 @@ namespace Front.Views.Caja
             }
         }
        
-
         async private void PutElement(string id)
         {
             string link = ("http://localhost:3000/api/clients/" + id);
@@ -166,11 +161,7 @@ namespace Front.Views.Caja
         }
 
       
-        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            EliminateViewElement();
-        }
-
+        
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             string js = new JavaScriptSerializer().Serialize(new
@@ -204,6 +195,11 @@ namespace Front.Views.Caja
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Main();
+        }
+
+        private void BtnEliminar_Click_1(object sender, RoutedEventArgs e)
+        {
+            EliminateViewElement();
         }
     }
 }
