@@ -2,9 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Login.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Session.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -12,15 +9,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\Caja.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Clientes\Clientes.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Clientes\Dialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Clientes\FormCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Empleados\Empleados.xaml.cs">
@@ -40,9 +28,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Login.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Session.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -50,15 +35,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Caja.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Clientes\Clientes.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Clientes\Dialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Clientes\FormCliente.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Empleados\Empleados.xaml">

@@ -1,6 +1,6 @@
 ﻿using Entities;
 using Front.Views;
-using Front.Views.Clientes;
+
 using Front.Views.Empleados;
 using Front.Views.Carta;
 using Front.Views.Pedidos;
@@ -81,14 +81,7 @@ namespace Front
                 DragMove();
             }
         }
-        private void BtnPedidos_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(pedidos);
-        }
-        private void BtnClientes_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(new Clientes());
-        }
+     
        
         private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
@@ -117,7 +110,7 @@ namespace Front
         {
             SocketClient();
         }
-        private void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
+        private void BtnPedidos_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);
         }

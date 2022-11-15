@@ -84,7 +84,7 @@ namespace Front.Views.Carta
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
+            
             var DataSerializer = Newtonsoft.Json.JsonConvert.SerializeObject(categories, settings);
             HttpContent content = new StringContent(DataSerializer, System.Text.Encoding.UTF8, "application/json");
             var httpResponse = await client.PostAsync(link, content);
@@ -124,7 +124,7 @@ namespace Front.Views.Carta
             {
                 name = TxtNombreTopping.Text,
                 stock = Convert.ToInt32(TxtStockTopping.Text),
-                price = Convert.ToInt32(TxtPrecioTopping.Text),
+                price = Convert.ToDouble(TxtPrecioTopping.Text),
                 _id = null
             };
             JsonSerializerSettings settings = new JsonSerializerSettings
@@ -132,7 +132,7 @@ namespace Front.Views.Carta
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            JavaScriptSerializer js = new JavaScriptSerializer();
+       
             var DataSerializer = Newtonsoft.Json.JsonConvert.SerializeObject(toppings, settings);
             HttpContent content = new StringContent(DataSerializer, System.Text.Encoding.UTF8, "application/json");
             var httpResponse = await client.PostAsync(link, content);

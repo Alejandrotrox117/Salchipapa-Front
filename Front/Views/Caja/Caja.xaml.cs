@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Front.Views.Clientes;
+
 using System.Net.Http;
 using System.Net;
 using Entities;
@@ -28,20 +28,14 @@ namespace Front.Views.Caja
         {
             InitializeComponent();
         }
-        //METODO ASINCRONO TASK PARA EJECUTAR METODO GET
-        public async Task<string> GetHttp(string url)
-        {
-            //Peticion get al API mediante URL
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
+       
 
         //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
-            string respuesta = await GetHttp("http://localhost:3000/api/clients");
+            string respuesta = await Utilities.Get("clients/");
+
+          
             //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
 
             List<clientes> returnedData = JsonConvert.DeserializeObject<List<clientes>>(respuesta);
@@ -104,34 +98,7 @@ namespace Front.Views.Caja
                 MessageBox.Show("Debe seleccionar por lo menos una fila.");
             }
         }
-        private async void PostElement()
-        {
-            string link = ("http://localhost:3000/api/clients");
-            clientes cliente = new clientes()
-            {
-                name = TxtNombre.Text,
-                surname = TxtApellido.Text,
-                ci = CBCedula.Text + TxtCedula.Text,
-                address = TxtDireccion.Text,
-                phone = CBTelefono.Text + TxtTelefono.Text
-
-            };
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            string data = js.Serialize(cliente);
-            HttpContent content = new StringContent(data, System.Text.Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se ha enviado los datos");
-
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
+       
 
         async private void PutElement(string id)
         {
@@ -198,13 +165,7 @@ namespace Front.Views.Caja
             TxtTituloDialg.Text = "Editar Clientes";
         }
 
-        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            DialogHostClientes.IsOpen = true;
-            TxtTituloDialg.Text = "Agregar Clientes";
-
-
-        }
+      
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             EliminateViewElement();
@@ -212,13 +173,19 @@ namespace Front.Views.Caja
 
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            PostElement();
+            string js = new JavaScriptSerializer().Serialize(new
+            {
+                ci = TxtCedula.Text,
+                name = TxtNombre.Text,
+                surname = TxtApellido.Text,
+                address = TxtDireccion.Text,
+                phone = CBTelefono.Text + TxtTelefono.Text,
+
+            });
+            Utilities.Post("clients", js);
+          
         }
 
-        private void DataGridClientes_Initialized(object sender, EventArgs e)
-        {
-
-        }
 
 
         private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
@@ -229,6 +196,7 @@ namespace Front.Views.Caja
             this.CBTelefono.Text = "";
             this.TxtTelefono.Clear();
             this.TxtCedula.Clear();
+            this.TxtDireccion.Clear();
 
         }
 

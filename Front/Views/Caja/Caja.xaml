@@ -305,7 +305,6 @@
                                 </DataGrid>
                                 <!--#region BTN AGREGAR EMPLEADO-->
                                 <Button
-                                    x:Name="BtnAbrirFormulario"
                                     Grid.Row="3"
                                     Grid.Column="3"
                                     Width="70"
@@ -425,7 +424,6 @@
                                                 Margin="0,8,108,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                               
                                                 Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                 Content="Agregar"
                                                 Foreground="#00695c"

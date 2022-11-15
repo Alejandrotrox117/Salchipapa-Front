@@ -106,7 +106,7 @@
                                     Margin="40,-9,-56,1"
                                     Background="#20786b"
                                     BorderBrush="Transparent"
-                                    Click="BtnAceptarPedido_Click"
+                                    Click="BtnPedidos_Click"
                                     Content="Aceptar" />
                             </Grid>
                         </materialDesign:SnackbarMessage>
