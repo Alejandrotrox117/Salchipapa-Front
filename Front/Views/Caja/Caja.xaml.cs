@@ -30,7 +30,6 @@ namespace Front.Views.Caja
         {
             InitializeComponent();
         }
-      
         //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
@@ -53,22 +52,6 @@ namespace Front.Views.Caja
         }
 
         //METODO PARA BORRAR UN CLIENTE PASANDO POR PARAMETRO LA CEDULA COMO REQUISITO PARA EL INDICE
-        //EL METODO DELETE DEBE USAR UN ID EN ESTE CASO ES LA CEDULA PARA BORRAR LA COLECCION
-        public async void DeleteElement(string _id)
-        {
-            string url = ("http://localhost:3000/api/clients/" +_id);
-            var httpResponse = await client.DeleteAsync(url);
-            var result = await httpResponse.Content.ReadAsStringAsync();
-            //CONDICION QUE ASEGURA EL PROCESO HA SIDO EXITOSO
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Se ha eliminado correctamente");
-            }
-            else
-            {
-                MessageBox.Show("Error" + result);
-            }
-        }
         //ELIMINAR EL ELEMENTO DE MANERA VISUAL DEL DATAGRID 
         public void EliminateViewElement()
         {
@@ -99,7 +82,7 @@ namespace Front.Views.Caja
             }
         }
         
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        private void BtnAbrirFormEditarCliente_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             clientes cliente = element.DataContext as clientes;
@@ -113,10 +96,12 @@ namespace Front.Views.Caja
             TxtTelefono.Text = splitPhone[1];
             TxtDireccion.Text = cliente.address;
             TxtTituloDialg.Text = "Editar Clientes";
-            BtnEviarActualizar.Visibility = Visibility.Visible;
+            BtnAbrirDrawerActualizarCliente.Visibility = Visibility.Visible;
+            
+
         }
 
-        private async void BtnActualizar_Click(object sender, RoutedEventArgs e)
+        private async void BtnEnviarClienteActualizado_Click(object sender, RoutedEventArgs e)
         {
             string js = new JavaScriptSerializer().Serialize(new
             {
@@ -135,6 +120,7 @@ namespace Front.Views.Caja
 
         }
         
+        //EVENTOS PARA BOTONES DE PANTALLA CLIENTES
         private async void BtnEnviarCliente_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -152,13 +138,11 @@ namespace Front.Views.Caja
                 if (Response.IsSuccessStatusCode)
                 {
                     string sr = await Response.Content.ReadAsStringAsync();
-
                     clientes cliente = JsonConvert.DeserializeObject<clientes>(sr);
-                    this.listaClientes.Add(cliente);
                     CerrarForm();
                 }
                 else
-                    MessageBox.Show("hubo un error");
+                    MessageBox.Show("hubo un error"+js);
             }
             catch(Exception ex)
             {
@@ -166,13 +150,36 @@ namespace Front.Views.Caja
             }
             
         }
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Main();
+        }
 
         private void CerrarForm()
         {
             DialogHostClientes.IsOpen = false;
-            BtnEnviar.Visibility = Visibility.Hidden;
-            BtnEviarActualizar.Visibility = Visibility.Hidden;
+            DrawerHostClientes.IsBottomDrawerOpen = false;
+            BtnEnviarCliente.Visibility = Visibility.Hidden;
+            BtnAbrirDrawerActualizarCliente.Visibility = Visibility.Hidden;
         }
+
+        private void BtnAbrirDrawerActualizarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostClientes.IsBottomDrawerOpen = true;
+            TxtTituloDrawerHost.Text = "¿Desea Actualizar este nuevo cliente?";
+            BtnEnviarClienteActualizado.Visibility = Visibility.Visible;
+            BtnEnviarCliente.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnAbrirFormularioAgregar_Click(object sender, RoutedEventArgs e)
+        {
+
+            DialogHostClientes.IsOpen = true;
+            TxtTituloDialg.Text = "Agregar Nuevo Cliente";
+            BtnAbrirDrawerClientes.Visibility = Visibility.Visible;
+
+        }
+
         private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             this.TxtNombre.Clear();
@@ -185,67 +192,33 @@ namespace Front.Views.Caja
 
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            Main();
-        }
-        private void BtnEliminar_Click_1(object sender, RoutedEventArgs e)
-        {
-            EliminateViewElement();
-        }
-
-        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
-        {
-            TxtTituloDialg.Text = "Agregar Nuevo Cliente";
-            BtnEnviar.Visibility = Visibility.Visible;
-        }
-
         private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
         {
             CerrarForm();
         }
 
-        private async void BtnEnviarPago_Click(object sender, RoutedEventArgs e)
+        private void BtnAbrirDrawerClientes_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string pago = new JavaScriptSerializer().Serialize(new
-                {
-                    name = TxtNombrePago.Text,
-                    money=TxtMoneda.Text
-                });
-                var Response = await Utilities.Post("payments", pago);
-                if (Response.IsSuccessStatusCode)
-                {
-                    string sr = await Response.Content.ReadAsStringAsync();
-
-                    DialogHostMetodosPago.IsOpen = false;
-                }
-                else
-                    MessageBox.Show("hubo un error");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            
+            DrawerHostClientes.IsBottomDrawerOpen = true;
+            TxtTituloDrawerHost.Text = "¿Desea agregar este nuevo cliente?";
+            BtnEnviarCliente.Visibility = Visibility.Visible;
+            
         }
 
-
-        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
+        private void BtnAbrirDrawerEliminar_Click(object sender, RoutedEventArgs e)
         {
-            DialogHostMetodosPago.IsOpen = true;
-            TituloDialogPagos.Text = "Agregar un nuevo Método de Pago";
-            BtnEnviarPago.Visibility = Visibility.Visible;
-        }
-
-       
-
-
-        private void BtnActualizarPago_Click(object sender, RoutedEventArgs e)
-        {
+            DrawerHostClientes.IsBottomDrawerOpen = true;
+            TxtTituloDrawerHost.Text = "¿Está seguro de Eliminar este cliente?";
+            BtnEliminarCliente.Visibility = Visibility.Visible;
+            BtnEnviarCliente.Visibility = Visibility.Hidden;
 
         }
-       
+        private void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
+        {
+                EliminateViewElement();
+        }
+        //EVENTOS PARA BOTONES PANTALLA METODOS DE PAGO
         private  async void BtnAbrirFormEditarPagos_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
@@ -255,10 +228,10 @@ namespace Front.Views.Caja
             TxtNombrePago.Text = payment.name;
             TxtMoneda.Text = payment.money;
             TxtTituloDialg.Text = "Editar Métodos de pago";
-            BtnEnviarActualizarPago.Visibility = Visibility.Visible;
-        }
+            BtnAbrirDrawerAgregarPago.Visibility = Visibility.Hidden;
+            BtnAbrirDrawerActualizarPago.Visibility = Visibility.Visible;
 
-       
+        }
 
         private async void BtnEnviarActualizarPago_Click(object sender, RoutedEventArgs e)
         {
@@ -275,6 +248,87 @@ namespace Front.Views.Caja
                 MessageBox.Show("hubo un error");
         }
 
+        private async void BtnEnviarPago_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string pago = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombrePago.Text,
+                    money=TxtMoneda.Text
+                });
+                var Response = await Utilities.Post("payments", pago);
+                if (Response.IsSuccessStatusCode)
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Se ha agregado un nuevo pago");
+                    DialogHostMetodosPago.IsOpen = false;
+                    TxtNombrePago.Clear();
+                    TxtMoneda.Clear();
+                    TabPagos.UpdateLayout();
+                    
+
+                }
+                else
+                    MessageBox.Show("hubo un error");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHostMetodosPago.IsOpen = true;
+            TituloDialogPagos.Text = "Agregar un nuevo Método de Pago";
+            BtnAbrirDrawerAgregarPago.Visibility = Visibility.Visible;
+        }
+
+        private async void BtnEliminarPago_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ListBoxMetodosPagos.SelectedItems.Count > 0)
+                {
+                List<payments> pay = (List<payments>)ListBoxMetodosPagos.ItemsSource as List<payments>;
+                    //Certifica si la lista esta vacia
+                    if (pay != null)
+                    {
+                        for (int i = 0; i < ListBoxMetodosPagos.SelectedItems.Count; i++)
+                        {
+                            //Obtiene el indice de la fila seleccionada mediante el boton
+                            int indice = ListBoxMetodosPagos.Items.IndexOf(ListBoxMetodosPagos.SelectedItems[i]);
+                            //Almacena en la variable item el item seleccionado del datagrid
+                            payments item = ListBoxMetodosPagos.Items.CurrentItem as payments;
+                            //En la variable id almacena la cedula y la pasa por parametros al metodo                 
+                            Utilities.Delete("payments/", item._id.ToString());
+                            //Remueve la fila completa seleccionada solo visualmente
+                            pay.RemoveAt(indice);
+                        }
+                        ListBoxMetodosPagos.ItemsSource = null;
+                        ListBoxMetodosPagos.ItemsSource = pay;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex+"Error");
+            }
+        }
        
+        private void BtnAbrirDrawerEliminarPago_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostPagos.IsBottomDrawerOpen = true;
+            TxtTituloDrawerHostPagos.Text = "¿Esta seguro de eliminar este método de pago?";
+            BtnEliminarPago.Visibility = Visibility.Visible;
+        }
+
+        private void BtnAbrirDrawerAgregarPago_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostPagos.IsBottomDrawerOpen = true;
+            TxtTituloDrawerHostPagos.Text= "¿Desea agregar un método de pago nuevo?";
+            BtnAgregarPago.Visibility = Visibility.Visible;
+        }
     }
 }
