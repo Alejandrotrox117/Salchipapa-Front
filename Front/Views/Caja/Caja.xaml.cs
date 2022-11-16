@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Nancy.Json;
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace Front.Views.Caja
 {
@@ -33,14 +34,17 @@ namespace Front.Views.Caja
         //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
-            string respuesta = await Utilities.Get("clients/");
+            string responseClients = await Utilities.Get("clients/");
+            string responsePay = await Utilities.Get("payments/");
             //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
-            List<clientes> returnedData = JsonConvert.DeserializeObject<List<clientes>>(respuesta);
+            List<clientes> returnedDataClients = JsonConvert.DeserializeObject<List<clientes>>(responseClients);
+            List<payments> returnedPayment = JsonConvert.DeserializeObject<List<payments>>(responsePay);
             //VALIDACION DE RETORNO DE DATOS 
-            if (returnedData != null)
+            if (returnedDataClients != null)
             {
                 //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
-                DataGridClientes.ItemsSource = returnedData;
+                DataGridClientes.ItemsSource = returnedDataClients;
+                ListBoxMetodosPagos.ItemsSource= returnedPayment;
             }
             else
             {
@@ -131,7 +135,7 @@ namespace Front.Views.Caja
 
         }
         
-        private async void BtnEnviar_Click(object sender, RoutedEventArgs e)
+        private async void BtnEnviarCliente_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -169,7 +173,6 @@ namespace Front.Views.Caja
             BtnEnviar.Visibility = Visibility.Hidden;
             BtnEviarActualizar.Visibility = Visibility.Hidden;
         }
-
         private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
         {
             this.TxtNombre.Clear();
@@ -182,12 +185,10 @@ namespace Front.Views.Caja
 
         }
 
-     
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Main();
         }
-
         private void BtnEliminar_Click_1(object sender, RoutedEventArgs e)
         {
             EliminateViewElement();
@@ -203,5 +204,77 @@ namespace Front.Views.Caja
         {
             CerrarForm();
         }
+
+        private async void BtnEnviarPago_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string pago = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombrePago.Text,
+                    money=TxtMoneda.Text
+                });
+                var Response = await Utilities.Post("payments", pago);
+                if (Response.IsSuccessStatusCode)
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+
+                    DialogHostMetodosPago.IsOpen = false;
+                }
+                else
+                    MessageBox.Show("hubo un error");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHostMetodosPago.IsOpen = true;
+            TituloDialogPagos.Text = "Agregar un nuevo Método de Pago";
+            BtnEnviarPago.Visibility = Visibility.Visible;
+        }
+
+       
+
+
+        private void BtnActualizarPago_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+       
+        private  async void BtnAbrirFormEditarPagos_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            payments payment = element.DataContext as payments;
+            DialogHostMetodosPago.IsOpen = true;
+            this._id = payment._id;
+            TxtNombrePago.Text = payment.name;
+            TxtMoneda.Text = payment.money;
+            TxtTituloDialg.Text = "Editar Métodos de pago";
+            BtnEnviarActualizarPago.Visibility = Visibility.Visible;
+        }
+
+       
+
+        private async void BtnEnviarActualizarPago_Click(object sender, RoutedEventArgs e)
+        {
+            string payment = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombrePago.Text,
+                money=TxtMoneda.Text
+                
+            });
+            var Response = await Utilities.Put("payments/" + _id + "/", payment);
+            if (Response.IsSuccessStatusCode)
+                DialogHostMetodosPago.IsOpen = false;
+            else
+                MessageBox.Show("hubo un error");
+        }
+
+       
     }
 }
