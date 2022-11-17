@@ -55,11 +55,11 @@ namespace Front
                 return null;
             }
         }
-        public static async Task<HttpResponseMessage> Delete(string clase,string link)
+        public static async Task<HttpResponseMessage> Delete(string link)
         {
             try
             {
-                var httpResponse = await client.DeleteAsync(url +clase+ link);
+                var httpResponse = await client.DeleteAsync(url + link);
                 return httpResponse;
             }
             catch (Exception ex)
