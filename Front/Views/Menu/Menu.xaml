@@ -36,229 +36,315 @@
                                 Text="Categorias" />
                         </StackPanel>
                     </TabItem.Header>
-
-                    <materialDesign:DialogHost
-                        x:Name="DialogHostCategorias"
-                        Grid.RowSpan="5"
-                        Grid.ColumnSpan="5"
-                        Background="#00695c"
-                        DialogTheme="Inherit"
-                        IsOpen="False">
-                        <materialDesign:DialogHost.DialogContent>
-                            <StackPanel Margin="25,0,0,0">
-                                <!--#region TITULO DEL DIALOG-->
-                                <!--#endregion-->
-                                <Grid>
-                                    <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="55" />
-                                        <RowDefinition Height="55" />
-                                        <RowDefinition Height="55" />
-                                    </Grid.RowDefinitions>
-                                    <!--#endregion-->
-                                    <!--#region Titulo y texbox NOMBRE-->
-                                    <TextBlock
-                                        x:Name="TxtTituloDialg"
-                                        Grid.Row="0"
-                                        Margin="0,0,0,0"
-                                        HorizontalAlignment="Center"
-                                        FontSize="20"
-                                        FontWeight="Bold"
-                                        Foreground="#00695c"
-                                        Text="TITULO" />
-                                    <TextBox
-                                        x:Name="TxtNombreCategoria"
-                                        Grid.Row="1"
-                                        Width="190"
-                                        Height="50"
-                                        Margin="0,-13,10,0"
-                                        materialDesign:HintAssist.Foreground="#00695c"
-                                        materialDesign:HintAssist.Hint="Nombre categoria"
-                                        AcceptsReturn="True"
-                                        BorderBrush="#00695c"
-                                        BorderThickness="2"
-                                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                        TextWrapping="Wrap" />
+                    <TabItem.Content>
+                        <Grid>
+                            <materialDesign:DrawerHost
+                                x:Name="DrawerHostCategorias"
+                                Grid.RowSpan="6"
+                                Grid.ColumnSpan="6"
+                                Width="800"
+                                Height="560"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="8"
+                                BorderThickness="1"
+                                BottomDrawerBackground="#00695c"
+                                BottomDrawerCornerRadius="20 20 0 0"
+                                IsBottomDrawerOpen="False">
+                                <materialDesign:DrawerHost.BottomDrawerContent>
                                     <StackPanel
-                                        Grid.Row="2"
+                                        Width="490"
+                                        Height="50"
+                                        Margin="0,0,0,30"
                                         HorizontalAlignment="Center"
                                         Orientation="Horizontal">
+                                        <TextBlock
+                                            x:Name="TxtTituloDrawerHostCategorias"
+                                            Margin="4"
+                                            VerticalAlignment="Center"
+                                            FontSize="13"
+                                            FontWeight="Bold"
+                                            Foreground="White" />
                                         <Button
-                                            x:Name="BtnEnviar"
-                                            Margin="0,8,108,0"
+                                            x:Name="BtnAgregarCategoria"
+                                            Margin="4"
+                                            VerticalAlignment="Center"
                                             Background="Transparent"
-                                            BorderBrush="#00695c"
-                                            Click="BtnEnviarCategoria_Click"
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            BorderBrush="Transparent"
+                                            Click="BtnAgregarCategoria_Click"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             Content="Agregar"
-                                            Foreground="#00695c"
-                                            IsDefault="False">
-                                            <Button.CommandParameter>
-                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                            </Button.CommandParameter>
-                                        </Button>
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
                                         <Button
-                                            Margin="0,8,8,0"
+                                            x:Name="BtnActualizarCategoria"
+                                            Margin="-90,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Panel.ZIndex="3"
                                             Background="Transparent"
-                                            BorderBrush="#00695c"
-                                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                            BorderBrush="Transparent"
+                                            Click="BtnActualizarCategoria_Click"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Content="Actualizar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
+                                        <Button
+                                            x:Name="BtnEliminarCategoria"
+                                            Margin="-90,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Panel.ZIndex="3"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Content="Actualizar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
+                                        <Button
+                                            Margin="4"
+                                            VerticalAlignment="Center"
+                                            BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
-                                            Foreground="#00695c"
-                                            IsCancel="True">
-                                            <Button.CommandParameter>
-                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                            </Button.CommandParameter>
-                                        </Button>
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
                                     </StackPanel>
-                                </Grid>
-                                <!--#endregion-->
-                            </StackPanel>
-                        </materialDesign:DialogHost.DialogContent>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                <ListBox
-                                    x:Name="itemsCardsCategorias"
-                                    Margin="0,60,0,0"
-                                    AllowDrop="True"
-                                    Background="Transparent"
-                                    Focusable="False"
-                                    IsHitTestVisible="False"
-                                    ItemsSource="{Binding categories}">
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Columns="3" Rows="3" />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-                                    <!--#endregion-->
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <!--#region cuerpo principal del card-->
-                                            <materialDesign:Badged
-                                                Background="Transparent"
-                                                BadgeBackground="Transparent"
-                                                BorderBrush="Transparent">
-                                                <materialDesign:Badged.Badge>
-                                                    <Button
-                                                        x:Name="BtnEliminar"
-                                                        Width="28"
-                                                        Height="28"
-                                                        Margin="0,50,0,0"
-                                                        Background="Red"
-                                                        BorderBrush="Transparent"
-                                                        Cursor="Hand"
-                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                        Visibility="Hidden">
-                                                        <materialDesign:PackIcon
-                                                            Width="20"
-                                                            Height="25"
-                                                            Foreground="White"
-                                                            Kind="CloseCircle" />
-                                                    </Button>
-                                                </materialDesign:Badged.Badge>
-                                                <materialDesign:Card
-                                                    Width="220"
-                                                    Height="140"
-                                                    Margin="10,30,0,0"
-                                                    Background="Transparent"
-                                                    UniformCornerRadius="6">
-                                                    <Grid>
-                                                        <Border CornerRadius="8,8,8,8">
-                                                            <Border.Background>
-                                                                <ImageBrush ImageSource="/Views/Menu/Batido-pie.jpg" Stretch="Fill" />
-                                                            </Border.Background>
-                                                        </Border>
-                                                        <Border
-                                                            Margin="0,108,0,0"
-                                                            Background="Black"
-                                                            CornerRadius="5"
-                                                            Cursor="Hand"
-                                                            Opacity="0.8">
-                                                            <Grid>
-                                                                <TextBlock
-                                                                    Margin="0,5,0,0"
-                                                                    VerticalAlignment="Top"
-                                                                    Panel.ZIndex="3"
-                                                                    FontSize="15"
-                                                                    FontWeight="Bold"
-                                                                    Foreground="White"
-                                                                    Text="{Binding name}" />
-                                                                <Button
-                                                                    Name="BtnEditarCard"
-                                                                    Width="30"
-                                                                    Height="30"
-                                                                    Margin="150,0,0,0"
-                                                                    Panel.ZIndex="3"
-                                                                    Background="#00695c"
-                                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                                    <materialDesign:PackIcon
-                                                                        Width="20"
-                                                                        Height="20"
-                                                                        Kind="Pencil" />
-                                                                </Button>
-                                                            </Grid>
-                                                        </Border>
-                                                    </Grid>
-                                                </materialDesign:Card>
-                                            </materialDesign:Badged>
-                                            <!--#endregion-->
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </ScrollViewer>
-                            <materialDesign:ColorZone
-                                Grid.Row="0"
-                                Height="50"
+                                </materialDesign:DrawerHost.BottomDrawerContent>
+                            </materialDesign:DrawerHost>
+
+                            <materialDesign:DialogHost
+                                x:Name="DialogHostCategorias"
+                                Grid.RowSpan="5"
+                                Grid.ColumnSpan="5"
                                 Background="#00695c"
-                                Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                Mode="Custom">
-                                <TextBlock
-                                    Margin="16"
-                                    FontSize="15"
-                                    FontStyle="Italic"
-                                    FontWeight="Bold"
-                                    Foreground="White"
-                                    Text="Todas las categorias" />
-                            </materialDesign:ColorZone>
-                            <materialDesign:PopupBox
-                                Grid.Row="0"
-                                Margin="0,0,28,20"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Background="#099faf"
-                                BorderBrush="Transparent"
-                                Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
-                                                                  Size=24}"
-                                Cursor="Hand"
-                                Foreground="White"
-                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                                PlacementMode="TopAndAlignCentres"
-                                Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
-                                ToggleCheckedContentCommandParameter="wowsers">
-                                <materialDesign:PopupBox.ToggleCheckedContent>
-                                    <materialDesign:PackIcon
-                                        Width="24"
-                                        Height="24"
-                                        Kind="BookmarkAddOutline" />
-                                </materialDesign:PopupBox.ToggleCheckedContent>
-                                <StackPanel>
+                                DialogTheme="Inherit"
+                                IsOpen="False">
+                                <materialDesign:DialogHost.DialogContent>
+                                    <StackPanel Width="300" Margin="10">
+                                        <!--#region TITULO DEL DIALOG-->
+                                        <!--#endregion-->
+                                        <Grid>
+                                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="55" />
+                                                <RowDefinition Height="55" />
+                                                <RowDefinition Height="55" />
+                                            </Grid.RowDefinitions>
+                                            <!--#endregion-->
+                                            <!--#region Titulo y texbox NOMBRE-->
+                                            <TextBlock
+                                                x:Name="TxtTituloDialgCategorias"
+                                                Grid.Row="0"
+                                                Margin="0,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                FontSize="20"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="TITULO" />
+                                            <TextBox
+                                                x:Name="TxtNombreCategoria"
+                                                Grid.Row="1"
+                                                Width="190"
+                                                Height="50"
+                                                Margin="0,-13,10,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
+                                                materialDesign:HintAssist.Hint="Nombre categoria"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
+                                                BorderThickness="2"
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                            <StackPanel
+                                                Grid.Row="2"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Button
+                                                        x:Name="BtnAbrirDrawerAgregarCategoria"
+                                                        Grid.Column="0"
+                                                        Margin="-20,0,0,0"
+                                                        Background="Transparent"
+                                                        BorderBrush="#00695c"
+                                                        Click="BtnAbrirDrawerAgregarCategoria_Click"
+                                                        Content="Agregar"
+                                                        Foreground="#00695c"
+                                                        Visibility="Hidden">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                                        </Button.CommandParameter>
+                                                    </Button>
+                                                    <Button
+                                                        x:Name="BtnAbrirDrawerEditarCategoria"
+                                                        Grid.Column="0"
+                                                        Margin="-20,0,0,0"
+                                                        Background="Transparent"
+                                                        BorderBrush="#00695c"
+                                                        Click="BtnAbrirDrawerEditarCategoria_Click"
+                                                        Content="Editar"
+                                                        Foreground="#00695c"
+                                                        Visibility="Hidden">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                                        </Button.CommandParameter>
+                                                    </Button>
+                                                    <Button
+                                                        Grid.Column="1"
+                                                        Margin="35,0,0,0"
+                                                        Background="Transparent"
+                                                        BorderBrush="#00695c"
+                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                        Content="Cancelar"
+                                                        Foreground="#00695c"
+                                                        IsCancel="True">
+                                                        <Button.CommandParameter>
+                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                                        </Button.CommandParameter>
+                                                    </Button>
+
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                        <!--#endregion-->
+                                    </StackPanel>
+                                </materialDesign:DialogHost.DialogContent>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <ListBox
+                                        x:Name="itemsCardsCategorias"
+                                        Margin="0,60,0,0"
+                                        Background="Transparent"
+                                        ItemsSource="{Binding categories}"
+                                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <!--#endregion-->
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <!--#region cuerpo principal del card-->
+                                                <materialDesign:Badged
+                                                    Background="Transparent"
+                                                    BadgeBackground="Transparent"
+                                                    BorderBrush="Transparent">
+                                                    <materialDesign:Badged.Badge>
+                                                        <Button
+                                                            x:Name="BtnEliminar"
+                                                            Width="28"
+                                                            Height="28"
+                                                            Margin="-33,30,0,0"
+                                                            Background="Red"
+                                                            BorderBrush="Transparent"
+                                                            Cursor="Hand"
+                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                                                            Visibility="Visible">
+                                                            <materialDesign:PackIcon
+                                                                Width="20"
+                                                                Height="25"
+                                                                Foreground="White"
+                                                                Kind="CloseCircle" />
+                                                        </Button>
+                                                    </materialDesign:Badged.Badge>
+                                                    <materialDesign:Card
+                                                        Width="220"
+                                                        Height="140"
+                                                        Margin="5,0,0,0"
+                                                        Background="Transparent"
+                                                        UniformCornerRadius="6">
+                                                        <Grid>
+                                                            <Border CornerRadius="8,8,8,8">
+                                                                <Border.Background>
+                                                                    <ImageBrush ImageSource="/Views/Menu/Batido-pie.jpg" Stretch="Fill" />
+                                                                </Border.Background>
+                                                            </Border>
+                                                            <Border
+                                                                Margin="0,108,0,0"
+                                                                Background="Black"
+                                                                CornerRadius="5"
+                                                                Cursor="Hand"
+                                                                Opacity="0.8">
+                                                                <Grid>
+                                                                    <TextBlock
+                                                                        Margin="0,0,50,0"
+                                                                        VerticalAlignment="Center"
+                                                                        Panel.ZIndex="3"
+                                                                        FontSize="15"
+                                                                        FontWeight="Bold"
+                                                                        Foreground="White"
+                                                                        Text="{Binding name}" />
+                                                                    <Button
+                                                                        Name="BtnAbrirFormEditarCategorias"
+                                                                        Width="30"
+                                                                        Height="30"
+                                                                        Margin="180,0,0,0"
+                                                                        Panel.ZIndex="3"
+                                                                        Background="#ffc107"
+                                                                        BorderBrush="Transparent"
+                                                                        Click="BtnAbrirFormEditarCategorias_Click"
+                                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                                        <materialDesign:PackIcon
+                                                                            Width="20"
+                                                                            Height="20"
+                                                                            Foreground="Black"
+                                                                            Kind="Pencil" />
+                                                                    </Button>
+                                                                </Grid>
+                                                            </Border>
+                                                        </Grid>
+                                                    </materialDesign:Card>
+                                                </materialDesign:Badged>
+                                                <!--#endregion-->
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    <materialDesign:ColorZone
+                                        Grid.Row="0"
+                                        Height="50"
+                                        Background="#00695c"
+                                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                                        Mode="Custom">
+                                        <TextBlock
+                                            Margin="16"
+                                            FontSize="15"
+                                            FontStyle="Italic"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            Text="Todas las categorias" />
+                                    </materialDesign:ColorZone>
                                     <Button
+                                        x:Name="BtnAbrirFormAgregarCategoria"
+                                        Grid.Row="0"
+                                        Width="70"
+                                        Height="70"
+                                        Margin="0,0,28,20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Background="#099faf"
+                                        BorderBrush="Transparent"
+                                        Click="BtnAbrirFormAgregarCategoria_Click"
                                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                        Content="1"
-                                        ToolTip="Agregar" />
-                                    <Button
-                                        Name="BtnElimina"
-                                        Click="BtnElimina_Click"
-                                        Content="2"
-                                        ToolTip="Eliminar" />
-                                </StackPanel>
-                            </materialDesign:PopupBox>
+                                        Cursor="Hand"
+                                        Foreground="White"
+                                        Style="{StaticResource MaterialDesignFloatingActionButton}">
+                                        <materialDesign:PackIcon
+                                            Width="32"
+                                            Height="32"
+                                            Kind="BookmarkAddOutline" />
+                                    </Button>
+                                </Grid>
+                            </materialDesign:DialogHost>
                         </Grid>
-                    </materialDesign:DialogHost>
+                    </TabItem.Content>
                 </TabItem>
                 <!--#region Tab productos-->
                 <TabItem Width="250" Height="50">
@@ -281,6 +367,81 @@
                     <!--#region Contenido de prodcutos-->
                     <TabItem.Content>
                         <Grid>
+                            <materialDesign:DrawerHost
+                                x:Name="DrawerHostProductos"
+                                Grid.RowSpan="6"
+                                Grid.ColumnSpan="6"
+                                Width="800"
+                                Height="560"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="8"
+                                BorderThickness="1"
+                                BottomDrawerBackground="#00695c"
+                                BottomDrawerCornerRadius="20 20 0 0"
+                                IsBottomDrawerOpen="False">
+                                <materialDesign:DrawerHost.BottomDrawerContent>
+                                    <StackPanel
+                                        Width="490"
+                                        Height="50"
+                                        Margin="0,0,0,30"
+                                        HorizontalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <TextBlock
+                                            Margin="4"
+                                            VerticalAlignment="Center"
+                                            FontSize="13"
+                                            FontWeight="Bold"
+                                            Foreground="White" />
+                                        <Button
+                                           
+                                            Margin="4"
+                                            VerticalAlignment="Center"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Click="BtnAgregarCategoria_Click"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Content="Agregar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
+                                        <Button
+                                           
+                                            Margin="-90,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Panel.ZIndex="3"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Click="BtnActualizarCategoria_Click"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Content="Actualizar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
+                                        <Button
+                                            
+                                            Margin="-90,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Panel.ZIndex="3"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Content="Actualizar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Visibility="Hidden" />
+                                        <Button
+                                            Margin="4"
+                                            VerticalAlignment="Center"
+                                            BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            CommandParameter="{x:Static Dock.Bottom}"
+                                            Content="Cancelar"
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
+                                    </StackPanel>
+                                </materialDesign:DrawerHost.BottomDrawerContent>
+                            </materialDesign:DrawerHost>
                             <!--#region Formulario Productos-->
                             <materialDesign:DialogHost
                                 x:Name="DialogHostProductos"
@@ -425,45 +586,45 @@
                                                         <ColumnDefinition Width="150" />
                                                         <ColumnDefinition />
                                                     </Grid.ColumnDefinitions>
-                                                    <ListBox
-                                                        x:Name="ListToppings"
-                                                        Grid.Column="1"
-                                                        Loaded="ListToppings_Loaded"
-                                                        MouseDoubleClick="ListToppings_MouseDoubleClick"
-                                                        ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                                        Style="{StaticResource MaterialDesignFilterChipListBox}">
-                                                        <ListBox.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel />
-                                                            </ItemsPanelTemplate>
-                                                        </ListBox.ItemsPanel>
-                                                        <ListBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="50" />
-                                                                        <ColumnDefinition />
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <TextBlock Grid.Column="0" Text="{Binding name}" />
-                                                                    <Button
-                                                                        Name="BtnEliminarTopping"
-                                                                        Grid.Column="1"
-                                                                        Width="17"
-                                                                        Height="17"
-                                                                        Background="Transparent"
-                                                                        BorderBrush="Transparent"
-                                                                        Click="BtnEliminarTopping_Click"
-                                                                        Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                                        <materialDesign:PackIcon
-                                                                            Width="16"
-                                                                            Height="16"
-                                                                            Foreground="Black"
-                                                                            Kind="CloseCircle" />
-                                                                    </Button>
-                                                                </Grid>
-                                                            </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                    </ListBox>
+                                                    <ScrollViewer>
+                                                        <ListBox
+                                                            x:Name="ListToppings"
+                                                            Grid.Column="1"
+                                                            MouseDoubleClick="ListToppings_MouseDoubleClick"
+                                                            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                            Style="{StaticResource MaterialDesignFilterChipListBox}">
+                                                            <ListBox.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <WrapPanel />
+                                                                </ItemsPanelTemplate>
+                                                            </ListBox.ItemsPanel>
+                                                            <ListBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="50" />
+                                                                            <ColumnDefinition />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <TextBlock Grid.Column="0" Text="{Binding name}" />
+                                                                        <Button
+                                                                            Name="BtnEliminarTopping"
+                                                                            Grid.Column="1"
+                                                                            Width="17"
+                                                                            Height="17"
+                                                                            Background="Transparent"
+                                                                            BorderBrush="Transparent"
+                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                                            <materialDesign:PackIcon
+                                                                                Width="16"
+                                                                                Height="16"
+                                                                                Foreground="Black"
+                                                                                Kind="CloseCircle" />
+                                                                        </Button>
+                                                                    </Grid>
+                                                                </DataTemplate>
+                                                            </ListBox.ItemTemplate>
+                                                        </ListBox>
+                                                    </ScrollViewer>
                                                 </Grid>
                                             </StackPanel>
                                             <StackPanel
@@ -548,10 +709,7 @@
                                                 Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                                 Content="1"
                                                 ToolTip="Agregar" />
-                                            <Button
-                                                Click="BtnElimina_Click"
-                                                Content="2"
-                                                ToolTip="Eliminar" />
+                                            <Button Content="2" ToolTip="Eliminar" />
                                         </StackPanel>
                                     </materialDesign:PopupBox>
                                     <!--#endregion-->
@@ -916,10 +1074,7 @@
                                             Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                             Content="1"
                                             ToolTip="Agregar" />
-                                        <Button
-                                            Click="BtnElimina_Click"
-                                            Content="2"
-                                            ToolTip="Eliminar" />
+                                        <Button Content="2" ToolTip="Eliminar" />
                                     </StackPanel>
                                 </materialDesign:PopupBox>
                             </Grid>

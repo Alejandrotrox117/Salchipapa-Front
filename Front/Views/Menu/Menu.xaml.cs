@@ -30,6 +30,7 @@ namespace Front.Views.Carta
     {
         public ObservableCollection<categories> categories;
         public ObservableCollection<products> productos;
+        private string _id = null;
         private static readonly HttpClient client = new HttpClient();
         public Carta()
         {
@@ -60,107 +61,23 @@ namespace Front.Views.Carta
                 MessageBox.Show("Error");
             }
         }
-        
 
-        private childItem FindVisualChild<childItem>(DependencyObject obj)
-           where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                {
-                    return (childItem)child;
-                }
-                else
-                {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }
+
+       
 
         private void Border_Initialized(object sender, EventArgs e)
         {
             Main();
         }
 
-        private void BtnEnviarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-            string categorie = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombreCategoria.Text,
-            });
-            Utilities.Post("categories",categorie);
-        }
-
-        private void BtnElimina_Click(object sender, RoutedEventArgs e)
-        {
-            itemsCardsCategorias.Focusable = true;
-            itemsCardsCategorias.IsHitTestVisible = true;
-            for (int i = 0; i < itemsCardsCategorias.Items.Count; i++)
-            {
-                ListBoxItem myListBoxItem =
-                (ListBoxItem)(itemsCardsCategorias.ItemContainerGenerator.ContainerFromItem(itemsCardsCategorias.Items[i]));
-
-                // Getting the ContentPresenter of myListBoxItem
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-
-                // Finding textBlock from the DataTemplate that is set on that ContentPresenter
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                Button myButton = (Button)myDataTemplate.FindName("BtnEliminar", myContentPresenter);
-
-                // Do something to the DataTemplate-generated TextBlock
-
-                myButton.Visibility = Visibility.Visible;
-
-            }
-        }
-
-        private void AgregarTopping_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
+       
 
         private void CBToppings_KeyDown(object sender, KeyEventArgs e)
         {
             ListToppings.Items.Add(CBToppings.SelectedItem);
         }
 
-        private void ListToppings_Loaded(object sender, RoutedEventArgs e)
-        {
-            for (int i = 0; i < ListToppings.Items.Count; i++)
-            {
-                ListBoxItem myListBoxItem =
-    (ListBoxItem)(ListToppings.ItemContainerGenerator.ContainerFromItem(ListToppings.Items[i]));
-
-                // Getting the ContentPresenter of myListBoxItem
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-
-                // Finding textBlock from the DataTemplate that is set on that ContentPresenter
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                Button myButton = (Button)myDataTemplate.FindName("BtnEliminarTopping", myContentPresenter);
-
-                // Do something to the DataTemplate-generated TextBlock
-                myButton.Click += new RoutedEventHandler(BtnEliminarTopping_Click);
-
-            }
-        }
-
-        private void BtnEliminarTopping_Click(object sender, RoutedEventArgs e)
-        {
-
-           
-        }
-
-        private void CbCategoriaProducto_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
         {
@@ -204,11 +121,7 @@ namespace Front.Views.Carta
             MessageBox.Show(CbCategoriaProducto.Text);
         }
 
-        private void CbCategoriaProducto_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
+        
         private void CbCategoriaProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             categories x = CbCategoriaProducto.SelectedItem as categories;
@@ -228,5 +141,84 @@ namespace Front.Views.Carta
             }
         }
 
+
+
+
+
+
+        //EVENTOS CATEGORIAS
+        private void BtnAbrirDrawerAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostCategorias.IsBottomDrawerOpen = true;
+            
+            TxtTituloDrawerHostCategorias.Text = "¿Desea agregar una nueva Categoría";
+            BtnAgregarCategoria.Visibility = Visibility.Visible;
+        }
+
+        private void BtnAbrirFormAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            TxtTituloDialgCategorias.Text = "Agregar nueva Categoría";
+            BtnAbrirDrawerAgregarCategoria.Visibility = Visibility.Visible;
+
+        }
+        private async void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string js = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombreCategoria.Text
+                });
+                var Response = await Utilities.Post("categories", js);
+                if (Response.IsSuccessStatusCode)
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+                   // List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(sr);
+                    DialogHostCategorias.IsOpen = false;
+                    TxtNombreCategoria.Clear();
+                    
+                }
+                else
+                    MessageBox.Show("hubo un error" + js);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void BtnAbrirFormEditarCategorias_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            categories categorie = element.DataContext as categories;
+            DialogHostCategorias.IsOpen = true;
+            this._id = categorie._id;
+            TxtNombreCategoria.Text = categorie.name;
+            TxtTituloDialgCategorias.Text = "Editar Categorías";
+            BtnAbrirDrawerEditarCategoria.Visibility = Visibility.Visible;
+            
+
+        }
+
+        private void BtnAbrirDrawerEditarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHostCategorias.IsBottomDrawerOpen = true;
+            BtnActualizarCategoria.Visibility = Visibility.Visible;
+            TxtTituloDrawerHostCategorias.Text="¿Desea Editar esta categoría?";
+
+        }
+
+        private async void BtnActualizarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            string categorias = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreCategoria.Text,
+            });
+            var Response = await Utilities.Put("categories/" + _id + "/", categorias);
+            if (Response.IsSuccessStatusCode)
+                DialogHostCategorias.IsOpen = false;
+            else
+                MessageBox.Show("hubo un error");
+        }
     }
 }
