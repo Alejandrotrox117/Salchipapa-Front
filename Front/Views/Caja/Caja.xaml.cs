@@ -50,44 +50,19 @@ namespace Front.Views.Caja
                 MessageBox.Show("Error");
             }
         }
-
-        //METODO PARA BORRAR UN CLIENTE PASANDO POR PARAMETRO LA CEDULA COMO REQUISITO PARA EL INDICE
-        //ELIMINAR EL ELEMENTO DE MANERA VISUAL DEL DATAGRID 
-        public void EliminateViewElement()
+        //evento aceptar dialgo form cliente
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridClientes.SelectedItems.Count > 0)
-            {
-                List<clientes> miLista = (List<clientes>)DataGridClientes.ItemsSource;
-                //Certifica si la lista esta vacia
-                if (miLista != null)
-                {
-                    for (int i = 0; i < DataGridClientes.SelectedItems.Count; i++)
-                    {
-                        //Obtiene el indice de la fila seleccionada mediante el boton
-                        int indice = DataGridClientes.Items.IndexOf(DataGridClientes.SelectedItems[i]);
-                        //Almacena en la variable item el item seleccionado del datagrid
-                        clientes item = DataGridClientes.SelectedItem as clientes;
-                        //En la variable id almacena la cedula y la pasa por parametros al metodo                 
-                        Utilities.Delete("clients/"+ this._id + '/');
-                        //Remueve la fila completa seleccionada solo visualmente
-                        miLista.RemoveAt(indice);
-                    }
-                    DataGridClientes.ItemsSource = null;
-                    DataGridClientes.ItemsSource = miLista;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar por lo menos una fila.");
-            }
+            this.DialogHostClientes.IsOpen = false;
+            this.DrawerHostClientes.IsBottomDrawerOpen = true;
         }
-        
-        private void BtnAbrirFormEditarCliente_Click(object sender, RoutedEventArgs e)
+        //Evento click btn actualizar cliente
+        private void BtnActualizarCliente_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             clientes cliente = element.DataContext as clientes;
-            DialogHostClientes.IsOpen = true;
             this._id = cliente._id;
+
             TxtNombre.Text = cliente.name;
             TxtApellido.Text = cliente.surname;
             TxtCedula.Text = cliente.ci;
@@ -95,13 +70,15 @@ namespace Front.Views.Caja
             CBTelefono.Text = splitPhone[0]+'-';
             TxtTelefono.Text = splitPhone[1];
             TxtDireccion.Text = cliente.address;
-            TxtTituloDialg.Text = "Editar Clientes";
-            BtnAbrirDrawerActualizarCliente.Visibility = Visibility.Visible;
-            
+
+            this.DialogHostClientes.IsOpen = true;
+            this.TxtTituloDialg.Text = "Actualizar Cliente";
+            this.TxtTituloDrawerCliente.Text = "¿Desea actualizar este cliente?";
+            this.BtnConfirmarClienteDrawner.Click += this.ActualizarCliente_Click;
 
         }
-
-        private async void BtnEnviarClienteActualizado_Click(object sender, RoutedEventArgs e)
+        //evento actualizar cliente
+        private async void ActualizarCliente_Click(object sender, RoutedEventArgs e)
         {
             string js = new JavaScriptSerializer().Serialize(new
             {
@@ -114,14 +91,24 @@ namespace Front.Views.Caja
             });
             var Response = await Utilities.Put("clients/" + _id + "/", js);
             if (Response.IsSuccessStatusCode)
-                CerrarForm();
+                CerrarCliente();
             else
                 MessageBox.Show("hubo un error");
 
         }
         
-        //EVENTOS PARA BOTONES DE PANTALLA CLIENTES
-        private async void BtnEnviarCliente_Click(object sender, RoutedEventArgs e)
+        //evento btn agregar cliente click
+        private void BtnAgregarCliente_Click(object sender, RoutedEventArgs e)
+        {
+
+            this.DialogHostClientes.IsOpen = true;
+            this.TxtTituloDialg.Text = "Agregar Nuevo Cliente";
+            this.TxtTituloDrawerCliente.Text = "¿Desea agregar este cliente?";
+            this.BtnConfirmarClienteDrawner.Click += this.EnviarCliente_Click;
+
+        }
+        //evento agregar cliente
+        private async void EnviarCliente_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -139,7 +126,7 @@ namespace Front.Views.Caja
                 {
                     string sr = await Response.Content.ReadAsStringAsync();
                     clientes cliente = JsonConvert.DeserializeObject<clientes>(sr);
-                    CerrarForm();
+                    CerrarCliente();
                 }
                 else
                     MessageBox.Show("hubo un error"+js);
@@ -150,73 +137,75 @@ namespace Front.Views.Caja
             }
             
         }
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            Main();
-        }
 
-        private void CerrarForm()
-        {
-            DialogHostClientes.IsOpen = false;
-            DrawerHostClientes.IsBottomDrawerOpen = false;
-            BtnEnviarCliente.Visibility = Visibility.Hidden;
-            BtnAbrirDrawerActualizarCliente.Visibility = Visibility.Hidden;
-        }
-
-        private void BtnAbrirDrawerActualizarCliente_Click(object sender, RoutedEventArgs e)
-        {
-            DrawerHostClientes.IsBottomDrawerOpen = true;
-            TxtTituloDrawerHost.Text = "¿Desea Actualizar este nuevo cliente?";
-            BtnEnviarClienteActualizado.Visibility = Visibility.Visible;
-            BtnEnviarCliente.Visibility = Visibility.Hidden;
-        }
-
-        private void BtnAbrirFormularioAgregar_Click(object sender, RoutedEventArgs e)
-        {
-
-            DialogHostClientes.IsOpen = true;
-            TxtTituloDialg.Text = "Agregar Nuevo Cliente";
-            BtnAbrirDrawerClientes.Visibility = Visibility.Visible;
-
-        }
-
-        private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
-        {
-            this.TxtNombre.Clear();
-            this.TxtApellido.Clear();
-            this.CBCedula.Text = "";
-            this.CBTelefono.Text = "";
-            this.TxtTelefono.Clear();
-            this.TxtCedula.Clear();
-            this.TxtDireccion.Clear();
-
-        }
-
-        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
-        {
-            CerrarForm();
-        }
-
-        private void BtnAbrirDrawerClientes_Click(object sender, RoutedEventArgs e)
-        {
-            
-            DrawerHostClientes.IsBottomDrawerOpen = true;
-            TxtTituloDrawerHost.Text = "¿Desea agregar este nuevo cliente?";
-            BtnEnviarCliente.Visibility = Visibility.Visible;
-            
-        }
-
-        private void BtnAbrirDrawerEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            DrawerHostClientes.IsBottomDrawerOpen = true;
-            TxtTituloDrawerHost.Text = "¿Está seguro de Eliminar este cliente?";
-            BtnEliminarCliente.Visibility = Visibility.Visible;
-            BtnEnviarCliente.Visibility = Visibility.Hidden;
-
-        }
+        //evento btn eliminar clente 
         private void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
         {
-                EliminateViewElement();
+            FrameworkElement element = e.Source as FrameworkElement;
+            clientes cliente = element.DataContext as clientes;
+            this._id = cliente._id;
+
+            DrawerHostClientes.IsBottomDrawerOpen = true;
+            TxtTituloDrawerCliente.Text = "¿Está seguro de Eliminar este cliente?";
+            this.BtnConfirmarClienteDrawner.Click += this.EliminarCliente_Click;
+
+        }
+        //evento eliminar cliente
+        private async void EliminarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string js = new JavaScriptSerializer().Serialize(new
+                {
+                    ci = TxtCedula.Text,
+                    name = TxtNombre.Text,
+                    surname = TxtApellido.Text,
+                    address = TxtDireccion.Text,
+                    phone = CBTelefono.Text + TxtTelefono.Text,
+
+                });
+                var Response = await Utilities.Delete("clients/"+this._id+'/');
+                if (Response.IsSuccessStatusCode)
+                {
+                    CerrarCliente();
+                }
+                else
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+                    MessageBox.Show(sr);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        //funcion limpiar dialog
+        private void CerrarCliente()
+        {
+            this._id = null;
+            DialogHostClientes.IsOpen = false;
+            DrawerHostClientes.IsBottomDrawerOpen = false;
+            this.BtnConfirmarClienteDrawner.Click -= this.EliminarCliente_Click;
+            this.BtnConfirmarClienteDrawner.Click -= this.ActualizarCliente_Click;
+            this.BtnConfirmarClienteDrawner.Click -= this.EnviarCliente_Click;
+        }
+        //Evento btn cerrar form y drawner cliente
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            CerrarCliente();
+        }
+        //evento cerrar diaglogo cliente 
+        private void DialogHostClientes_DialogClosing(object sender, DialogClosingEventArgs eventArgs)
+        {
+            //this.TxtNombre.Clear();
+            //this.TxtApellido.Clear();
+            //this.CBCedula.Text = "";
+            //this.CBTelefono.Text = "";
+            //this.TxtTelefono.Clear();
+            //this.TxtCedula.Clear();
+            //this.TxtDireccion.Clear();
+
         }
 
         //FORMA PAGO
@@ -250,7 +239,7 @@ namespace Front.Views.Caja
                 {
                     string sr = await Response.Content.ReadAsStringAsync();
                     MessageBox.Show(sr);
-                    Cerrar();
+                    CerrarPago();
                 }
                 else
                     MessageBox.Show("hubo un error");
@@ -288,7 +277,7 @@ namespace Front.Views.Caja
                 });
                 var Response = await Utilities.Put("payments/" + this._id + "/", payment);
                 if (Response.IsSuccessStatusCode)
-                    Cerrar();
+                    CerrarPago();
                 else
                     MessageBox.Show("hubo un error");
             }
@@ -323,7 +312,7 @@ namespace Front.Views.Caja
                 });
                 var Response = await Utilities.Delete("payments/" + this._id + "/");
                 if (Response.IsSuccessStatusCode)
-                    Cerrar();
+                    CerrarPago();
                 else
                     MessageBox.Show("hubo un error");
             }
@@ -335,9 +324,9 @@ namespace Front.Views.Caja
         //Evento cancelar form y drawner
         private void BtnCancelarDrawnerPagos_Click(object sender, RoutedEventArgs e)
         {
-            Cerrar();
+            CerrarPago();
         }
-        private void Cerrar()
+        private void CerrarPago()
         {
             this._id = null;
             this.TxtNombrePago.Clear();
@@ -348,6 +337,11 @@ namespace Front.Views.Caja
             this.BtnConfirmarDrawnerPagos.Click -= this.EliminarPago_Click;
             this.BtnConfirmarDrawnerPagos.Click -= this.ActualizarPago_Click;
             this.BtnConfirmarDrawnerPagos.Click -= this.EnviarPago_Click;
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Main();
         }
     }
 }

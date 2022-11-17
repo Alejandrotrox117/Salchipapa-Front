@@ -61,55 +61,28 @@
                                         HorizontalAlignment="Center"
                                         Orientation="Horizontal">
                                         <TextBlock
-                                            x:Name="TxtTituloDrawerHost"
+                                            x:Name="TxtTituloDrawerCliente"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             FontSize="13"
                                             FontWeight="Bold"
                                             Foreground="White" />
                                         <Button
-                                            x:Name="BtnEnviarCliente"
+                                            Name="BtnConfirmarClienteDrawner"
                                             Margin="4"
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="BtnEnviarCliente_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Agregar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
-                                            Name="BtnEnviarClienteActualizado"
-                                            Margin="-90,0,0,0"
                                             VerticalAlignment="Center"
                                             Panel.ZIndex="3"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Click="BtnEnviarClienteActualizado_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Actualizar"
+                                            Content="Confirmar"
                                             Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
                                         <Button
-                                            Name="BtnEliminarCliente"
-                                            Margin="-90,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Panel.ZIndex="3"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="BtnEliminarCliente_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Eliminar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
+                                            Name="BtnCancelarClienteDrawner"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             BorderBrush="Transparent"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                                            Click="BtnCerrarForm_Click"
                                             CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
                                             Foreground="White"
@@ -265,25 +238,14 @@
                                             HorizontalAlignment="Center"
                                             Orientation="Horizontal">
                                             <Button
-                                                x:Name="BtnAbrirDrawerClientes"
-                                                Margin="0,8,0,0"
-                                                Background="Transparent"
-                                                BorderBrush="#00695c"
-                                                Click="BtnAbrirDrawerClientes_Click"
-                                                Content="Agregar"
-                                                Foreground="#00695c"
-                                                IsDefault="False"
-                                                Visibility="Hidden" />
-                                            <Button
-                                                x:Name="BtnAbrirDrawerActualizarCliente"
+                                                x:Name="BtnAceptarDialog"
                                                 Margin="-100,8,100,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="BtnAbrirDrawerActualizarCliente_Click"
-                                                Content="Actualizar"
+                                                Click="BtnAceptarDialog_Click"
+                                                Content="Aceptar"
                                                 Foreground="#00695c"
-                                                IsDefault="False"
-                                                Visibility="Hidden">
+                                                IsDefault="False">
                                                 <Button.CommandParameter>
                                                     <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                                         True
@@ -344,7 +306,7 @@
                                     </materialDesign:ColorZone>
                                     <!--#endregion-->
                                     <Button
-                                        x:Name="BtnAbrirFormularioAgregar"
+                                        x:Name="BtnAgregarCliente"
                                         Grid.Row="3"
                                         Grid.Column="3"
                                         Width="70"
@@ -354,7 +316,7 @@
                                         Panel.ZIndex="1"
                                         Background="#00695c"
                                         BorderBrush="Transparent"
-                                        Click="BtnAbrirFormularioAgregar_Click"
+                                        Click="BtnAgregarCliente_Click"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                         <materialDesign:PackIcon
@@ -418,19 +380,19 @@
                                                     <DataTemplate>
                                                         <DockPanel>
                                                             <Button
-                                                                x:Name="BtnAbrirDrawerEliminar"
+                                                                x:Name="BtnEliminarCliente"
                                                                 Width="50"
                                                                 Background="#f44c58"
                                                                 BorderBrush="Transparent"
-                                                                Click="BtnAbrirDrawerEliminar_Click">
+                                                                Click="BtnEliminarCliente_Click">
                                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                                             </Button>
                                                             <Button
-                                                                x:Name="BtnEditarCliente"
+                                                                x:Name="BtnActualizarCliente"
                                                                 Width="50"
                                                                 Background="#00695c"
                                                                 BorderBrush="Transparent"
-                                                                Click="BtnAbrirFormEditarCliente_Click">
+                                                                Click="BtnActualizarCliente_Click">
                                                                 <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                                             </Button>
                                                         </DockPanel>
