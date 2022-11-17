@@ -68,7 +68,7 @@ namespace Front.Views.Caja
                         //Almacena en la variable item el item seleccionado del datagrid
                         clientes item = DataGridClientes.SelectedItem as clientes;
                         //En la variable id almacena la cedula y la pasa por parametros al metodo                 
-                        Utilities.Delete("clients/",item.ci.ToString());
+                        Utilities.Delete("clients/"+ this._id + '/');
                         //Remueve la fila completa seleccionada solo visualmente
                         miLista.RemoveAt(indice);
                     }
@@ -218,56 +218,39 @@ namespace Front.Views.Caja
         {
                 EliminateViewElement();
         }
-        //EVENTOS PARA BOTONES PANTALLA METODOS DE PAGO
-        private  async void BtnAbrirFormEditarPagos_Click(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement element = e.Source as FrameworkElement;
-            payments payment = element.DataContext as payments;
-            DialogHostMetodosPago.IsOpen = true;
-            this._id = payment._id;
-            TxtNombrePago.Text = payment.name;
-            TxtMoneda.Text = payment.money;
-            TxtTituloDialg.Text = "Editar Métodos de pago";
-            BtnAbrirDrawerAgregarPago.Visibility = Visibility.Hidden;
-            BtnAbrirDrawerActualizarPago.Visibility = Visibility.Visible;
 
+        //FORMA PAGO
+        //boton aceptar form forma pago
+        private void BtnAceptarFormFormaPago_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogHostMetodosPago.IsOpen = false;
+            this.DrawerHostPagos.IsBottomDrawerOpen = true;
         }
-
-        private async void BtnEnviarActualizarPago_Click(object sender, RoutedEventArgs e)
+        //Abrir formulario para agregar forma pago
+        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
         {
-            string payment = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombrePago.Text,
-                money=TxtMoneda.Text
-                
-            });
-            var Response = await Utilities.Put("payments/" + _id + "/", payment);
-            if (Response.IsSuccessStatusCode)
-                DialogHostMetodosPago.IsOpen = false;
-            else
-                MessageBox.Show("hubo un error");
+            this.DialogHostMetodosPago.IsOpen = true;
+            this.TituloDialogPagos.Text = "Agregar un nuevo Método de Pago";
+            this.TxtTituloDrawerHostPagos.Text = "¿Esta seguro de agregar este método de pago?";
+            this.BtnConfirmarDrawnerPagos.Click += this.EnviarPago_Click;
         }
-
-        private async void BtnEnviarPago_Click(object sender, RoutedEventArgs e)
+        //evento agregar forma pago
+        private async void EnviarPago_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 string pago = new JavaScriptSerializer().Serialize(new
                 {
                     name = TxtNombrePago.Text,
-                    money=TxtMoneda.Text
+                    money = TxtMoneda.Text
                 });
                 var Response = await Utilities.Post("payments", pago);
                 if (Response.IsSuccessStatusCode)
                 {
                     string sr = await Response.Content.ReadAsStringAsync();
-                    MessageBox.Show("Se ha agregado un nuevo pago");
-                    DialogHostMetodosPago.IsOpen = false;
-                    TxtNombrePago.Clear();
-                    TxtMoneda.Clear();
-                    TabPagos.UpdateLayout();
-                    
-
+                    MessageBox.Show(sr);
+                    Cerrar();
                 }
                 else
                     MessageBox.Show("hubo un error");
@@ -277,58 +260,94 @@ namespace Front.Views.Caja
                 Console.WriteLine(ex.Message);
             }
         }
-
-        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
+        //evento boton actualizar METODOS DE PAGO
+        private  async void BtnAbrirFormEditarPagos_Click(object sender, RoutedEventArgs e)
         {
+            FrameworkElement element = e.Source as FrameworkElement;
+            payments payment = element.DataContext as payments;
             DialogHostMetodosPago.IsOpen = true;
-            TituloDialogPagos.Text = "Agregar un nuevo Método de Pago";
-            BtnAbrirDrawerAgregarPago.Visibility = Visibility.Visible;
-        }
+            this._id = payment._id;
+            TxtNombrePago.Text = payment.name;
+            TxtMoneda.Text = payment.money;
+            TxtTituloDialg.Text = "Editar Métodos de pago";
 
-        private async void BtnEliminarPago_Click_1(object sender, RoutedEventArgs e)
+            this.TxtTituloDrawerHostPagos.Text = "¿Esta seguro de actualizar este método de pago?";
+            this.BtnConfirmarDrawnerPagos.Click += this.ActualizarPago_Click;
+
+        }
+        //evento actualizar forma pago
+        private async void ActualizarPago_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (ListBoxMetodosPagos.SelectedItems.Count > 0)
+                string payment = new JavaScriptSerializer().Serialize(new
                 {
-                List<payments> pay = (List<payments>)ListBoxMetodosPagos.ItemsSource as List<payments>;
-                    //Certifica si la lista esta vacia
-                    if (pay != null)
-                    {
-                        for (int i = 0; i < ListBoxMetodosPagos.SelectedItems.Count; i++)
-                        {
-                            //Obtiene el indice de la fila seleccionada mediante el boton
-                            int indice = ListBoxMetodosPagos.Items.IndexOf(ListBoxMetodosPagos.SelectedItems[i]);
-                            //Almacena en la variable item el item seleccionado del datagrid
-                            payments item = ListBoxMetodosPagos.Items.CurrentItem as payments;
-                            //En la variable id almacena la cedula y la pasa por parametros al metodo                 
-                            Utilities.Delete("payments/", item._id.ToString());
-                            //Remueve la fila completa seleccionada solo visualmente
-                            pay.RemoveAt(indice);
-                        }
-                        ListBoxMetodosPagos.ItemsSource = null;
-                        ListBoxMetodosPagos.ItemsSource = pay;
-                    }
-                }
+                    name = TxtNombrePago.Text,
+                    money = TxtMoneda.Text
+
+                });
+                var Response = await Utilities.Put("payments/" + this._id + "/", payment);
+                if (Response.IsSuccessStatusCode)
+                    Cerrar();
+                else
+                    MessageBox.Show("hubo un error");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex+"Error");
+                Console.WriteLine(ex.Message);
             }
         }
-       
+
+
+        //evento boton eliminar forma pago card
         private void BtnAbrirDrawerEliminarPago_Click(object sender, RoutedEventArgs e)
         {
-            DrawerHostPagos.IsBottomDrawerOpen = true;
-            TxtTituloDrawerHostPagos.Text = "¿Esta seguro de eliminar este método de pago?";
-            BtnEliminarPago.Visibility = Visibility.Visible;
-        }
+            FrameworkElement element = e.Source as FrameworkElement;
+            payments pay = element.DataContext as payments;
+            this._id = pay._id;
 
-        private void BtnAbrirDrawerAgregarPago_Click(object sender, RoutedEventArgs e)
+            this.DrawerHostPagos.IsBottomDrawerOpen = true;
+            this.TxtTituloDrawerHostPagos.Text = "¿Esta seguro de eliminar este método de pago?";
+            this.BtnConfirmarDrawnerPagos.Click += this.EliminarPago_Click;
+        }
+        //Evento eliminar forma pago
+        private async void EliminarPago_Click(object sender, RoutedEventArgs e)
         {
-            DrawerHostPagos.IsBottomDrawerOpen = true;
-            TxtTituloDrawerHostPagos.Text= "¿Desea agregar un método de pago nuevo?";
-            BtnAgregarPago.Visibility = Visibility.Visible;
+            try
+            {
+                string payment = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombrePago.Text,
+                    money = TxtMoneda.Text
+
+                });
+                var Response = await Utilities.Delete("payments/" + this._id + "/");
+                if (Response.IsSuccessStatusCode)
+                    Cerrar();
+                else
+                    MessageBox.Show("hubo un error");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        //Evento cancelar form y drawner
+        private void BtnCancelarDrawnerPagos_Click(object sender, RoutedEventArgs e)
+        {
+            Cerrar();
+        }
+        private void Cerrar()
+        {
+            this._id = null;
+            this.TxtNombrePago.Clear();
+            this.TxtMoneda.Clear();
+            this.TabPagos.UpdateLayout();
+            this.DialogHostMetodosPago.IsOpen = false;
+            this.DrawerHostPagos.IsBottomDrawerOpen = false;
+            this.BtnConfirmarDrawnerPagos.Click -= this.EliminarPago_Click;
+            this.BtnConfirmarDrawnerPagos.Click -= this.ActualizarPago_Click;
+            this.BtnConfirmarDrawnerPagos.Click -= this.EnviarPago_Click;
         }
     }
 }

@@ -496,51 +496,24 @@
                                             FontWeight="Bold"
                                             Foreground="White" />
                                         <Button
-                                            x:Name="BtnAgregarPago"
+                                            x:Name="BtnConfirmarDrawnerPagos"
                                             Margin="4"
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="BtnEnviarPago_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Agregar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
-                                            x:Name="BtnActualizarPago"
-                                            Margin="-90,0,0,0"
                                             VerticalAlignment="Center"
                                             Panel.ZIndex="3"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Click="BtnEnviarActualizarPago_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Actualizar"
                                             Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
+                                            Content="Confirmar"
+                                            Style="{StaticResource MaterialDesignFlatButton}"/>
                                         <Button
-                                            x:Name="BtnEliminarPago"
-                                            Margin="-90,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Panel.ZIndex="3"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="BtnEliminarPago_Click_1"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Eliminar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
+                                            x:Name="BtnCancelarDrawnerPagos"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             BorderBrush="Transparent"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
                                             Foreground="White"
+                                            Click="BtnCancelarDrawnerPagos_Click"
                                             Style="{StaticResource MaterialDesignFlatButton}" />
                                     </StackPanel>
                                 </materialDesign:DrawerHost.BottomDrawerContent>
@@ -617,40 +590,22 @@
                                                     <ColumnDefinition />
                                                 </Grid.ColumnDefinitions>
                                                 <Button
-                                                    x:Name="BtnAbrirDrawerAgregarPago"
-                                                    Margin="0,8,0,0"
-                                                    Background="Transparent"
-                                                    BorderBrush="#00695c"
-                                                    Click="BtnAbrirDrawerAgregarPago_Click"
-                                                    Content="Agregar"
-                                                    Foreground="#00695c"
-                                                    Visibility="Hidden" />
-                                                <Button
-                                                    x:Name="BtnAbrirDrawerActualizarPago"
+                                                    x:Name="BtnAceptarFormFormaPago"
                                                     Grid.Column="0"
                                                     Margin="0,8,0,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
-                                                    Click="BtnEnviarActualizarPago_Click"
-                                                    Content="Actualizar"
-                                                    Foreground="#00695c"
-                                                    Visibility="Hidden" />
+                                                    Content="Aceptar"
+                                                    Click="BtnAceptarFormFormaPago_Click"
+                                                    Foreground="#00695c"/>
                                                 <Button
-                                                    x:Name="BtnAbrirDrawerEliminarPago"
-                                                    Grid.Column="0"
-                                                    Margin="0,8,0,0"
-                                                    Background="Transparent"
-                                                    BorderBrush="#00695c"
-                                                    Content="Eliminar"
-                                                    Foreground="#00695c"
-                                                    Visibility="Hidden" />
-                                                <Button
+                                                    x:Name="BtnCancelarFormFormaPago"
                                                     Grid.Column="1"
                                                     Margin="100,0,0,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
-                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                                                     Content="Cancelar"
+                                                    Click="BtnCancelarDrawnerPagos_Click"
                                                     Foreground="#00695c">
                                                     <Button.CommandParameter>
                                                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
