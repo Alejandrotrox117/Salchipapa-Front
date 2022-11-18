@@ -122,14 +122,17 @@ namespace Front.Views.Caja
 
                 });
                 var Response = await Utilities.Post("clients", js);
+                string content = await Response.Content.ReadAsStringAsync();
                 if (Response.IsSuccessStatusCode)
                 {
-                    string sr = await Response.Content.ReadAsStringAsync();
-                    clientes cliente = JsonConvert.DeserializeObject<clientes>(sr);
+                    clientes cliente = JsonConvert.DeserializeObject<clientes>(content);
                     CerrarCliente();
                 }
                 else
-                    MessageBox.Show("hubo un error"+js);
+                {
+                    Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                    MessageBox.Show(error.errors[0].error);
+                }
             }
             catch(Exception ex)
             {
