@@ -133,10 +133,12 @@
                                                 Width="190"
                                                 Height="52"
                                                 Margin="-13,-17,0,0"
+                                                materialDesign:HintAssist.Foreground="#00695c"
                                                 materialDesign:HintAssist.Hint="Nombre"
+                                                AcceptsReturn="True"
+                                                BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource GeneralErrorStyle}"
-                                                Text="{Binding StudentName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                                             <!--#endregion TITULO Y TEXBOX NOMBRE-->
                                             <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
                                             <TextBox

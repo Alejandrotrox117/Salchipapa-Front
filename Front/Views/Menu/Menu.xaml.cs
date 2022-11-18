@@ -80,78 +80,14 @@ namespace Front.Views.Menu
 
         
 
-        private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
-        {
-            List<Toppings> ListaToppings = new List<Toppings>();
-            foreach (Toppings i in ListToppings.Items)
-            {
-                ListaToppings.Add(i);
-            }
-            categories categoria = CbCategoriaProducto.SelectedItem as categories;
-
-            string producto = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombreProducto.Text,
-                price = Convert.ToDouble(TxtPrecioProducto.Text),
-                stock = Convert.ToInt32(TxtStockProducto.Text),
-                description = TxtDescripcionProducto.Text,
-                categorie = categoria._id,
-                toppings = ListaToppings.Select(x => x._id)
-            });
-
-
-            Utilities.Post("products?extendeData=true", producto);
-           
-        }
-
-        private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
-        {
-            string toppings = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombreTopping.Text,
-                price = Convert.ToDouble(TxtPrecioTopping.Text),
-                stock= Convert.ToInt32(TxtStockTopping.Text),
-            });
-
-            Utilities.Post("toppings", toppings);
-            
-        }
-
-        private void CbCategoriaProducto_Selected(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(CbCategoriaProducto.Text);
-        }
-
         
-        private void CbCategoriaProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            categories x = CbCategoriaProducto.SelectedItem as categories;
-            MessageBox.Show(x._id);
-        }
-
-
-        private void ListToppings_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-            for (int i = 0; i < ListToppings.Items.Count; i++)
-            {
-                List<Toppings> top = ListToppings.Items[i] as List<Toppings>;
-
-                MessageBox.Show(top.ToString());
-
-            }
-        }
-
-
 
 
 
 
         //EVENTOS CATEGORIAS
         
-       
-       
-
+      
         private void BtnActualizarCategorias_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
@@ -270,5 +206,75 @@ namespace Front.Views.Menu
         {
             CerrarCategoria();
         }
+
+
+        // PRODUCTOS
+        private void BtnAgregarProducto_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHostProductos.IsOpen = true;
+        }
+        private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
+        {
+            List<Toppings> ListaToppings = new List<Toppings>();
+            foreach (Toppings i in ListToppings.Items)
+            {
+                ListaToppings.Add(i);
+            }
+            categories categoria = CbCategoriaProducto.SelectedItem as categories;
+
+            string producto = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreProducto.Text,
+                price = Convert.ToDouble(TxtPrecioProducto.Text),
+                stock = Convert.ToInt32(TxtStockProducto.Text),
+                description = TxtDescripcionProducto.Text,
+                categorie = categoria._id,
+                toppings = ListaToppings.Select(x => x._id)
+            });
+
+
+            Utilities.Post("products?extendeData=true", producto);
+
+        }
+
+        private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
+        {
+            string toppings = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreTopping.Text,
+                price = Convert.ToDouble(TxtPrecioTopping.Text),
+                stock = Convert.ToInt32(TxtStockTopping.Text),
+            });
+
+            Utilities.Post("toppings", toppings);
+
+        }
+
+        private void CbCategoriaProducto_Selected(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(CbCategoriaProducto.Text);
+        }
+
+
+        private void CbCategoriaProducto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            categories x = CbCategoriaProducto.SelectedItem as categories;
+            MessageBox.Show(x._id);
+        }
+
+
+        private void ListToppings_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            for (int i = 0; i < ListToppings.Items.Count; i++)
+            {
+                List<Toppings> top = ListToppings.Items[i] as List<Toppings>;
+
+                MessageBox.Show(top.ToString());
+
+            }
+        }
+
+
     }
 }
