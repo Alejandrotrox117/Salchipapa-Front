@@ -349,7 +349,7 @@
                                         HorizontalAlignment="Center"
                                         Orientation="Horizontal">
                                         <TextBlock
-                                            x:Name="TxtTituloDrawnerProductos"
+                                            x:Name="TxtTituloDrawerProductos"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             FontSize="13"
@@ -402,7 +402,7 @@
                                             <!--#endregion-->
                                             <!--#region Titulo y texbox NOMBRE-->
                                             <TextBlock
-                                                x:Name="TituloFormProdu"
+                                                x:Name="TxtTituloDialogProductos"
                                                 Grid.Row="0"
                                                 Margin="0,20,0,0"
                                                 HorizontalAlignment="Center"
@@ -603,12 +603,11 @@
                                                 HorizontalAlignment="Center"
                                                 Orientation="Horizontal">
                                                 <Button
-                                                    x:Name="BtnEnviarProducto"
+                                                    x:Name="BtnAbrirDrawerProducto"
                                                     Margin="0,8,108,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
-                                                    Click="BtnEnviarProducto_Click"
-                                                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                    Click="BtnAbrirDrawerProducto_Click"
                                                     Content="Agregar"
                                                     Foreground="#00695c"
                                                     IsDefault="False">

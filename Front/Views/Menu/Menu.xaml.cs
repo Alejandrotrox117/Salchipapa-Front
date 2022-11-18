@@ -212,6 +212,10 @@ namespace Front.Views.Menu
         private void BtnAgregarProducto_Click(object sender, RoutedEventArgs e)
         {
             DialogHostProductos.IsOpen = true;
+          
+            this.TxtTituloDialogProductos.Text = "Agregar Nuevo Producto";
+            this.TxtTituloDrawerProductos.Text = "¿Desea agregar este Producto?";
+            //this.BtnConfirmarClienteDrawner.Click += this.EnviarCliente_Click;
         }
         private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
         {
@@ -275,6 +279,11 @@ namespace Front.Views.Menu
             }
         }
 
-
+        private void BtnAbrirDrawerProducto_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogHostProductos.IsOpen = false;
+            this.DrawerHostProductos.IsBottomDrawerOpen = true;
+            
+        }
     }
 }
