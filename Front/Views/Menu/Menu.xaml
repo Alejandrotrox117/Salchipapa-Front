@@ -361,6 +361,7 @@
                                             VerticalAlignment="Center"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             Content="Agregar"
                                             Foreground="White"
                                             Style="{StaticResource MaterialDesignFlatButton}"
@@ -370,6 +371,7 @@
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             BorderBrush="Transparent"
+                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
                                             Foreground="White"
@@ -685,7 +687,11 @@
                                         </TabControl.ItemTemplate>
                                         <TabControl.ContentTemplate>
                                             <DataTemplate>
-                                                <ListBox ItemsSource="{Binding products}">
+                                                <ListBox
+                                                    Margin="50,0,0,0"
+                                                    materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
+                                                    ItemsSource="{Binding products}"
+                                                    ScrollViewer.VerticalScrollBarVisibility="Auto">
                                                     <ListBox.ItemsPanel>
                                                         <ItemsPanelTemplate>
                                                             <WrapPanel />
@@ -703,65 +709,118 @@
                                                                         <RowDefinition Height="*" />
                                                                         <RowDefinition Height="Auto" />
                                                                     </Grid.RowDefinitions>
-                                                                    <materialDesign:Badged
-                                                                        Badge="{Binding stock}"
-                                                                        BadgeBackground="#00695c"
-                                                                        BadgeForeground="White">
+                                                                    <materialDesign:Badged BadgeBackground="Transparent" BadgeForeground="White">
                                                                         <Image
                                                                             Height="140"
                                                                             Source="/Views/Menu/Batido-pie.jpg"
                                                                             Stretch="Fill" />
+                                                                        <materialDesign:Badged.Badge>
+                                                                            <Button
+                                                                                x:Name="BtnDraweEliminarProducto"
+                                                                                Width="28"
+                                                                                Height="28"
+                                                                                Margin="-25,30,0,0"
+                                                                                Background="Red"
+                                                                                BorderBrush="Transparent"
+                                                                                Cursor="Hand"
+                                                                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                                                                                Visibility="Visible">
+                                                                                <materialDesign:PackIcon
+                                                                                    Width="20"
+                                                                                    Height="25"
+                                                                                    Foreground="White"
+                                                                                    Kind="CloseCircle" />
+                                                                            </Button>
+                                                                        </materialDesign:Badged.Badge>
                                                                     </materialDesign:Badged>
                                                                     <materialDesign:Badged
                                                                         Grid.Row="0"
                                                                         Margin="0,0,14,-10"
                                                                         HorizontalAlignment="Right"
                                                                         VerticalAlignment="Bottom"
-                                                                        Badge="{Binding stock}"
                                                                         BadgeBackground="White"
                                                                         BadgeForeground="Black"
                                                                         FlowDirection="LeftToRight">
                                                                         <Button
                                                                             Grid.Row="0"
-                                                                            Margin="0,0,0,0"
-                                                                            HorizontalAlignment="Right"
-                                                                            VerticalAlignment="Bottom"
-                                                                            Background="#00695c"
+                                                                            Width="30"
+                                                                            Height="30"
+                                                                            Background="#ffc107"
                                                                             BorderBrush="White"
                                                                             Cursor="Hand"
-                                                                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                                                                             Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                                                             <materialDesign:PackIcon
-                                                                                Width="32"
-                                                                                Height="36"
+                                                                                Width="20"
+                                                                                Height="20"
                                                                                 Foreground="White"
-                                                                                Kind="BookmarkCheckOutline" />
+                                                                                Kind="Pencil" />
                                                                         </Button>
                                                                     </materialDesign:Badged>
-                                                                    <StackPanel Grid.Row="1" Margin="8,15,8,8">
+                                                                    <StackPanel
+                                                                        Grid.Row="1"
+                                                                        Margin="8,15,8,8"
+                                                                        materialDesign:ScrollBarAssist.ButtonsVisibility="Visible">
                                                                         <TextBlock
                                                                             Margin="0,0,0,3"
                                                                             HorizontalAlignment="Center"
-                                                                            FontSize="15"
+                                                                            FontSize="18"
+                                                                            FontStyle="Italic"
                                                                             FontWeight="Bold"
-                                                                            Text="{Binding name}" />
-                                                                        <TextBlock
-                                                                            Margin="0,0,0,4"
-                                                                            FontSize="14"
-                                                                            FontWeight="Bold"
-                                                                            Text="Toppings:" />
+                                                                            Foreground="#00695c"
+                                                                            Text="{Binding name}"
+                                                                            TextAlignment="Center"
+                                                                            TextWrapping="WrapWithOverflow" />
                                                                         <TextBlock
                                                                             Margin="0,0,0,3"
                                                                             VerticalAlignment="Center"
                                                                             FontSize="13"
+                                                                            FontWeight="DemiBold"
+                                                                            Foreground="#00695c"
                                                                             Text="{Binding description}"
-                                                                            TextWrapping="Wrap" />
+                                                                            TextAlignment="Center"
+                                                                            TextWrapping="WrapWithOverflow" />
+                                                                        <TextBlock
+                                                                            Margin="0,0,0,4"
+                                                                            FontSize="14"
+                                                                            FontWeight="Bold"
+                                                                            Foreground="#00695c"
+                                                                            Text="Extras:"
+                                                                            TextAlignment="Center" />
+                                                                        <StackPanel>
+                                                                            <ListBox
+                                                                                x:Name="ToppingsProductos"
+                                                                                Grid.Column="1"
+                                                                                ItemsSource="{Binding toppings}"
+                                                                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                                                <ListBox.ItemsPanel>
+                                                                                    <ItemsPanelTemplate>
+                                                                                        <WrapPanel />
+                                                                                    </ItemsPanelTemplate>
+                                                                                </ListBox.ItemsPanel>
+                                                                                <ListBox.ItemTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <Grid>
+                                                                                            <materialDesign:Chip
+                                                                                                Background="#00695c"
+                                                                                                Content="{Binding name}"
+                                                                                                FontSize="9"
+                                                                                                FontStyle="Italic"
+                                                                                                FontWeight="Bold"
+                                                                                                Foreground="White"
+                                                                                                IsDeletable="True" />
+                                                                                        </Grid>
+                                                                                    </DataTemplate>
+                                                                                </ListBox.ItemTemplate>
+                                                                            </ListBox>
+
+                                                                        </StackPanel>
                                                                     </StackPanel>
                                                                 </Grid>
                                                             </materialDesign:Card>
                                                         </DataTemplate>
                                                     </ListBox.ItemTemplate>
                                                 </ListBox>
+
                                             </DataTemplate>
                                         </TabControl.ContentTemplate>
                                     </TabControl>
