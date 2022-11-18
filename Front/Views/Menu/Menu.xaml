@@ -1,9 +1,9 @@
 ﻿<UserControl
-    x:Class="Front.Views.Carta.Carta"
+    x:Class="Front.Views.Menu.Menu"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Front.Views.Carta"
+    xmlns:local="clr-namespace:Front.Views.Menu"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -66,42 +66,15 @@
                                             FontWeight="Bold"
                                             Foreground="White" />
                                         <Button
-                                            x:Name="BtnAgregarCategoria"
+                                            x:Name="BtnConfirmarCategoriaDrawner"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Click="BtnAgregarCategoria_Click"
                                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Agregar"
+                                            Content="Confirmar"
                                             Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
-                                            x:Name="BtnActualizarCategoria"
-                                            Margin="-90,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Panel.ZIndex="3"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Click="BtnActualizarCategoria_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Actualizar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
-                                        <Button
-                                            x:Name="BtnEliminarCategoria"
-                                            Margin="-90,0,0,0"
-                                            VerticalAlignment="Center"
-                                            Panel.ZIndex="3"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                            Content="Actualizar"
-                                            Foreground="White"
-                                            Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
                                         <Button
                                             Margin="4"
                                             VerticalAlignment="Center"
@@ -166,39 +139,27 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Button
-                                                        x:Name="BtnAbrirDrawerAgregarCategoria"
+                                                        x:Name="BtnAceptarDialogCategorias"
                                                         Grid.Column="0"
                                                         Margin="-20,0,0,0"
                                                         Background="Transparent"
                                                         BorderBrush="#00695c"
-                                                        Click="BtnAbrirDrawerAgregarCategoria_Click"
+                                                        Click="BtnAceptarDialogCategorias_Click"
                                                         Content="Agregar"
                                                         Foreground="#00695c"
-                                                        Visibility="Hidden">
+                                                        Visibility="Visible">
                                                         <Button.CommandParameter>
                                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                                                         </Button.CommandParameter>
                                                     </Button>
+
                                                     <Button
-                                                        x:Name="BtnAbrirDrawerEditarCategoria"
-                                                        Grid.Column="0"
-                                                        Margin="-20,0,0,0"
-                                                        Background="Transparent"
-                                                        BorderBrush="#00695c"
-                                                        Click="BtnAbrirDrawerEditarCategoria_Click"
-                                                        Content="Editar"
-                                                        Foreground="#00695c"
-                                                        Visibility="Hidden">
-                                                        <Button.CommandParameter>
-                                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                                        </Button.CommandParameter>
-                                                    </Button>
-                                                    <Button
+                                                        x:Name="BtnCerrarForm"
                                                         Grid.Column="1"
                                                         Margin="35,0,0,0"
                                                         Background="Transparent"
                                                         BorderBrush="#00695c"
-                                                        Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                                        Click="BtnCerrarForm_Click"
                                                         Content="Cancelar"
                                                         Foreground="#00695c"
                                                         IsCancel="True">
@@ -290,7 +251,7 @@
                                                                         Panel.ZIndex="3"
                                                                         Background="#ffc107"
                                                                         BorderBrush="Transparent"
-                                                                        Click="BtnAbrirFormEditarCategorias_Click"
+                                                                        Click="BtnActualizarCategorias_Click"
                                                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                                         <materialDesign:PackIcon
                                                                             Width="20"
@@ -322,7 +283,7 @@
                                             Text="Todas las categorias" />
                                     </materialDesign:ColorZone>
                                     <Button
-                                        x:Name="BtnAbrirFormAgregarCategoria"
+                                        x:Name="BtnAgregarCategoria"
                                         Grid.Row="0"
                                         Width="70"
                                         Height="70"
@@ -331,7 +292,7 @@
                                         VerticalAlignment="Bottom"
                                         Background="#099faf"
                                         BorderBrush="Transparent"
-                                        Click="BtnAbrirFormAgregarCategoria_Click"
+                                        Click="BtnAgregarCategoria_Click"
                                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                         Cursor="Hand"
                                         Foreground="White"
@@ -394,38 +355,30 @@
                                             FontWeight="Bold"
                                             Foreground="White" />
                                         <Button
-                                           
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Click="BtnAgregarCategoria_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             Content="Agregar"
                                             Foreground="White"
                                             Style="{StaticResource MaterialDesignFlatButton}"
-                                            Visibility="Hidden" />
+                                            Visibility="Visible" />
                                         <Button
-                                           
                                             Margin="-90,0,0,0"
                                             VerticalAlignment="Center"
                                             Panel.ZIndex="3"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Click="BtnActualizarCategoria_Click"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             Content="Actualizar"
                                             Foreground="White"
                                             Style="{StaticResource MaterialDesignFlatButton}"
                                             Visibility="Hidden" />
                                         <Button
-                                            
                                             Margin="-90,0,0,0"
                                             VerticalAlignment="Center"
                                             Panel.ZIndex="3"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             Content="Actualizar"
                                             Foreground="White"
                                             Style="{StaticResource MaterialDesignFlatButton}"
@@ -434,7 +387,6 @@
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             BorderBrush="Transparent"
-                                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                             CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
                                             Foreground="White"
@@ -516,7 +468,6 @@
                                                         BorderBrush="#00695c"
                                                         BorderThickness="2"
                                                         DisplayMemberPath="name"
-                                                        KeyDown="CbCategoriaProducto_KeyDown"
                                                         SelectionChanged="CbCategoriaProducto_SelectionChanged"
                                                         Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                                                     <TextBox

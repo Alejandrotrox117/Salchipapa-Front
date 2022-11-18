@@ -21,20 +21,21 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using Nancy.Json;
-namespace Front.Views.Carta
+namespace Front.Views.Menu
 {
     /// <summary>
     /// Lógica de interacción para Menu.xaml
     /// </summary>
-    public partial class Carta : UserControl
+    public partial class Menu : UserControl
     {
         public ObservableCollection<categories> categories;
         public ObservableCollection<products> productos;
         private string _id = null;
         private static readonly HttpClient client = new HttpClient();
-        public Carta()
+        public Menu()
         {
             InitializeComponent();
+        
         }
 
        
@@ -147,47 +148,11 @@ namespace Front.Views.Carta
 
 
         //EVENTOS CATEGORIAS
-        private void BtnAbrirDrawerAgregarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-            DrawerHostCategorias.IsBottomDrawerOpen = true;
-            
-            TxtTituloDrawerHostCategorias.Text = "¿Desea agregar una nueva Categoría";
-            BtnAgregarCategoria.Visibility = Visibility.Visible;
-        }
+        
+       
+       
 
-        private void BtnAbrirFormAgregarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-            TxtTituloDialgCategorias.Text = "Agregar nueva Categoría";
-            BtnAbrirDrawerAgregarCategoria.Visibility = Visibility.Visible;
-
-        }
-        private async void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string js = new JavaScriptSerializer().Serialize(new
-                {
-                    name = TxtNombreCategoria.Text
-                });
-                var Response = await Utilities.Post("categories", js);
-                if (Response.IsSuccessStatusCode)
-                {
-                    string sr = await Response.Content.ReadAsStringAsync();
-                   // List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(sr);
-                    DialogHostCategorias.IsOpen = false;
-                    TxtNombreCategoria.Clear();
-                    
-                }
-                else
-                    MessageBox.Show("hubo un error" + js);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        private void BtnAbrirFormEditarCategorias_Click(object sender, RoutedEventArgs e)
+        private void BtnActualizarCategorias_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             categories categorie = element.DataContext as categories;
@@ -195,19 +160,15 @@ namespace Front.Views.Carta
             this._id = categorie._id;
             TxtNombreCategoria.Text = categorie.name;
             TxtTituloDialgCategorias.Text = "Editar Categorías";
-            BtnAbrirDrawerEditarCategoria.Visibility = Visibility.Visible;
+            this.BtnConfirmarCategoriaDrawner.Click += this.ActualizarCategoria_Click;
+           
+            this.TxtTituloDialgCategorias.Text = "Actualizar Cliente";
+            this.TxtTituloDrawerHostCategorias.Text = "¿Desea actualizar esta categoría?";
             
 
         }
 
-        private void BtnAbrirDrawerEditarCategoria_Click(object sender, RoutedEventArgs e)
-        {
-            DrawerHostCategorias.IsBottomDrawerOpen = true;
-            BtnActualizarCategoria.Visibility = Visibility.Visible;
-            TxtTituloDrawerHostCategorias.Text="¿Desea Editar esta categoría?";
-
-        }
-
+       
         private async void BtnActualizarCategoria_Click(object sender, RoutedEventArgs e)
         {
             string categorias = new JavaScriptSerializer().Serialize(new
@@ -219,6 +180,95 @@ namespace Front.Views.Carta
                 DialogHostCategorias.IsOpen = false;
             else
                 MessageBox.Show("hubo un error");
+        }
+
+        private void BtnAceptarDialogCategorias_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogHostCategorias.IsOpen = false;
+            this.DrawerHostCategorias.IsBottomDrawerOpen = true;
+        }
+        private void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogHostCategorias.IsOpen = true;
+            this.TxtTituloDialgCategorias.Text = "Agregar Nueva Categoría";
+            this.TxtTituloDrawerHostCategorias.Text = "¿Desea agregar esta nueva categoría?";
+            this.BtnConfirmarCategoriaDrawner.Click += this.EnviarCategoria_Click;
+        }
+        private async void EnviarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string js = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombreCategoria.Text
+                });
+                var Response = await Utilities.Post("categories", js);
+                if (Response.IsSuccessStatusCode)
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+                    // List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(sr);
+                    DialogHostCategorias.IsOpen = false;
+                    TxtNombreCategoria.Clear();
+
+                }
+                else
+                    MessageBox.Show("hubo un error" + js);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        private async void EliminarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string js = new JavaScriptSerializer().Serialize(new
+                {
+                    name = TxtNombreCategoria.Text,
+                });
+                var Response = await Utilities.Delete("categories/" + this._id + '/');
+                if (Response.IsSuccessStatusCode)
+                {
+                    CerrarCategoria();
+                }
+                else
+                {
+                    string sr = await Response.Content.ReadAsStringAsync();
+                    MessageBox.Show(sr);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        private async void ActualizarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            string js = new JavaScriptSerializer().Serialize(new
+            {
+                name = TxtNombreCategoria.Text,
+            });
+            var Response = await Utilities.Put("categories/" + _id + "/", js);
+            if (Response.IsSuccessStatusCode)
+                CerrarCategoria();
+            else
+                MessageBox.Show("hubo un error");
+
+        }
+        private void CerrarCategoria()
+        {
+            this._id = null;
+            DialogHostCategorias.IsOpen = false;
+            DrawerHostCategorias.IsBottomDrawerOpen = false;
+            this.BtnConfirmarCategoriaDrawner.Click -= this.EliminarCategoria_Click;
+            this.BtnConfirmarCategoriaDrawner.Click -= this.ActualizarCategoria_Click;
+            this.BtnConfirmarCategoriaDrawner.Click -= this.EnviarCategoria_Click;
+        }
+
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            CerrarCategoria();
         }
     }
 }

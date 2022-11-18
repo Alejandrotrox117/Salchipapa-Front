@@ -6,9 +6,11 @@
     xmlns:local="clr-namespace:Front.Views.Caja"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:src="clr-namespace:Front"
     Width="795"
     Height="558"
     mc:Ignorable="d">
+
     <Grid Background="White" Loaded="Grid_Loaded">
         <materialDesign:Card>
             <TabControl
@@ -90,7 +92,7 @@
                                     </StackPanel>
                                 </materialDesign:DrawerHost.BottomDrawerContent>
                             </materialDesign:DrawerHost>
-                            <!--#region Formulario Empleados-->
+                            <!--#region Formulario Clientes-->
                             <materialDesign:DialogHost
                                 x:Name="DialogHostClientes"
                                 Background="#00695c"
@@ -131,13 +133,10 @@
                                                 Width="190"
                                                 Height="52"
                                                 Margin="-13,-17,0,0"
-                                                materialDesign:HintAssist.Foreground="#00695c"
                                                 materialDesign:HintAssist.Hint="Nombre"
-                                                AcceptsReturn="True"
-                                                BorderBrush="#00695c"
                                                 BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                                TextWrapping="Wrap" />
+                                                Style="{StaticResource GeneralErrorStyle}"
+                                                Text="{Binding StudentName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                                             <!--#endregion TITULO Y TEXBOX NOMBRE-->
                                             <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
                                             <TextBox
@@ -464,18 +463,18 @@
                                             Panel.ZIndex="3"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
-                                            Foreground="White"
                                             Content="Confirmar"
-                                            Style="{StaticResource MaterialDesignFlatButton}"/>
+                                            Foreground="White"
+                                            Style="{StaticResource MaterialDesignFlatButton}" />
                                         <Button
                                             x:Name="BtnCancelarDrawnerPagos"
                                             Margin="4"
                                             VerticalAlignment="Center"
                                             BorderBrush="Transparent"
+                                            Click="BtnCancelarDrawnerPagos_Click"
                                             CommandParameter="{x:Static Dock.Bottom}"
                                             Content="Cancelar"
                                             Foreground="White"
-                                            Click="BtnCancelarDrawnerPagos_Click"
                                             Style="{StaticResource MaterialDesignFlatButton}" />
                                     </StackPanel>
                                 </materialDesign:DrawerHost.BottomDrawerContent>
@@ -557,17 +556,17 @@
                                                     Margin="0,8,0,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
-                                                    Content="Aceptar"
                                                     Click="BtnAceptarFormFormaPago_Click"
-                                                    Foreground="#00695c"/>
+                                                    Content="Aceptar"
+                                                    Foreground="#00695c" />
                                                 <Button
                                                     x:Name="BtnCancelarFormFormaPago"
                                                     Grid.Column="1"
                                                     Margin="100,0,0,0"
                                                     Background="Transparent"
                                                     BorderBrush="#00695c"
-                                                    Content="Cancelar"
                                                     Click="BtnCancelarDrawnerPagos_Click"
+                                                    Content="Cancelar"
                                                     Foreground="#00695c">
                                                     <Button.CommandParameter>
                                                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>

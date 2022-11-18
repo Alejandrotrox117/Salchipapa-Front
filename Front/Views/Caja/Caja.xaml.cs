@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
 using System.Net.Http;
 using System.Net;
 using Entities;
@@ -15,13 +14,14 @@ using System.IO;
 using Nancy.Json;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace Front.Views.Caja
 {
     /// <summary>
     /// Lógica de interacción para Caja.xaml
     /// </summary>
-    public partial class Caja : UserControl
+    public partial class Caja : UserControl,IDataErrorInfo, INotifyPropertyChanged
     {
         private static readonly HttpClient client = new HttpClient();
         private string _id = null;
@@ -29,7 +29,58 @@ namespace Front.Views.Caja
         public Caja()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
+        
+      
+
+        public string StudentName
+        {
+            get { return _studentName; }
+            set
+            {
+                _studentName = value;
+                OnPropertyChanged("StudentName");
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = String.Empty;
+                if (columnName == "StudentName")
+                {
+                    if (StudentName.Length < 6 || StudentName.Length > 10)
+                    {
+                        result = "Debe ser mayor a 6 letras y menor a 10";
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        private string _studentName;
         //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
         public async void Main()
         {
@@ -124,12 +175,15 @@ namespace Front.Views.Caja
                 var Response = await Utilities.Post("clients", js);
                 if (Response.IsSuccessStatusCode)
                 {
-                    string sr = await Response.Content.ReadAsStringAsync();
-                    clientes cliente = JsonConvert.DeserializeObject<clientes>(sr);
+                  
                     CerrarCliente();
                 }
-                else
-                    MessageBox.Show("hubo un error"+js);
+                else 
+                {
+                    string sr= await Response.Content.ReadAsStringAsync();
+                    MessageBox.Show(sr);
+                   
+                }
             }
             catch(Exception ex)
             {
@@ -287,7 +341,6 @@ namespace Front.Views.Caja
             }
         }
 
-
         //evento boton eliminar forma pago card
         private void BtnAbrirDrawerEliminarPago_Click(object sender, RoutedEventArgs e)
         {
@@ -342,6 +395,15 @@ namespace Front.Views.Caja
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Main();
+
+
+            
         }
+
+
+
+
+
+
     }
 }

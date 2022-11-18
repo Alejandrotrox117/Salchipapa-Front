@@ -33,9 +33,14 @@ namespace Front
             {
                 HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
                 var httpResponse = await client.PostAsync(url + link, content);
+                validations validate = JsonConvert.DeserializeObject<validations>(httpResponse.ToString());
+
                 return httpResponse;
+
             } catch (Exception ex)
             {
+
+
                 Console.WriteLine(ex.Message);
                 return null;
             }
