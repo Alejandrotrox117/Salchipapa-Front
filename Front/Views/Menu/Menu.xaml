@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Front.Views.Menu"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Front.Views.Menu"
     Width="789"
     Height="560"
     mc:Ignorable="d">
@@ -835,9 +836,13 @@
                     </TabItem.Content>
                     <!--#endregion-->
                 </TabItem>
-                <!--#endregion-->
-                <TabItem Width="250" Height="50">
+                <TabItem
+                    x:Name="TabExtras"
+                    Width="263"
+                    Height="50"
+                    GotFocus="BtnTabExtras_GotFocus">
                     <TabItem.Header>
+
                         <StackPanel Width="auto" Height="auto">
                             <materialDesign:PackIcon
                                 Width="24"
@@ -852,256 +857,12 @@
                                 Foreground="#00695c"
                                 Text="Extras" />
                         </StackPanel>
+
                     </TabItem.Header>
-                    <!--#region Contenido de los toppings-->
-                    <TabItem.Content>
-                        <materialDesign:DialogHost
-                            x:Name="DialogHostToppings"
-                            Grid.RowSpan="5"
-                            Grid.ColumnSpan="5"
-                            Background="#00695c"
-                            DialogTheme="Inherit"
-                            IsOpen="False">
-                            <materialDesign:DialogHost.DialogContent>
-                                <Grid>
-                                    <TextBlock
-                                        x:Name="TxtTituloDiagToppings"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Margin="0,0,0,0"
-                                        HorizontalAlignment="Center"
-                                        FontSize="20"
-                                        FontWeight="Bold"
-                                        Foreground="#00695c"
-                                        Text="TITULO" />
-                                    <StackPanel Width="450" Height="250">
-                                        <!--#region TITULO DEL DIALOG-->
-                                        <!--#endregion-->
-                                        <Grid>
-                                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="55" />
-                                                <RowDefinition Height="55" />
-                                                <RowDefinition Height="55" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <!--#endregion-->
-                                            <!--#region Titulo y texbox NOMBRE-->
-
-                                            <TextBox
-                                                Name="TxtNombreTopping"
-                                                Grid.Row="1"
-                                                Grid.Column="0"
-                                                Width="190"
-                                                Height="50"
-                                                Margin="0,-13,10,0"
-                                                materialDesign:HintAssist.Foreground="#00695c"
-                                                materialDesign:HintAssist.Hint="Nombre del Topping"
-                                                AcceptsReturn="True"
-                                                BorderBrush="#00695c"
-                                                BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                            <TextBox
-                                                Name="TxtStockTopping"
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                Width="190"
-                                                Height="50"
-                                                Margin="0,-13,10,0"
-                                                materialDesign:HintAssist.Foreground="#00695c"
-                                                materialDesign:HintAssist.Hint="En Stock"
-                                                AcceptsReturn="True"
-                                                BorderBrush="#00695c"
-                                                BorderThickness="2"
-                                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                        </Grid>
-                                        <TextBox
-                                            Name="TxtPrecioTopping"
-                                            Width="190"
-                                            Height="50"
-                                            Margin="0,-50,0,0"
-                                            materialDesign:HintAssist.Foreground="#00695c"
-                                            materialDesign:HintAssist.Hint="Precio"
-                                            AcceptsReturn="True"
-                                            BorderBrush="#00695c"
-                                            BorderThickness="2"
-                                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                                        <StackPanel
-                                            Margin="0,30,0,0"
-                                            HorizontalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Button
-                                                x:Name="BtnEnviarTopping"
-                                                Margin="0,8,108,0"
-                                                Background="Transparent"
-                                                BorderBrush="#00695c"
-                                                Click="BtnEnviarTopping_Click"
-                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                Content="Agregar"
-                                                Foreground="#00695c"
-                                                IsDefault="False">
-                                                <Button.CommandParameter>
-                                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                                </Button.CommandParameter>
-                                            </Button>
-                                            <Button
-                                                Margin="0,8,8,0"
-                                                Background="Transparent"
-                                                BorderBrush="#00695c"
-                                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                                Content="Cancelar"
-                                                Foreground="#00695c"
-                                                IsCancel="True">
-                                                <Button.CommandParameter>
-                                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                                </Button.CommandParameter>
-                                            </Button>
-                                        </StackPanel>
-                                        <!--#endregion-->
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:DialogHost.DialogContent>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="20" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="45" />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition Height="20" />
-                                </Grid.RowDefinitions>
-                                <!--#endregion Filas y columnas-->
-                                <!--#region Contenido-->
-
-                                <DataGrid
-                                    x:Name="DataGridToppings"
-                                    Grid.Row="1"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="3"
-                                    Width="755"
-                                    Height="346"
-                                    Margin="0,10,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    AutoGenerateColumns="False"
-                                    Background="GhostWhite"
-                                    CanUserAddRows="False"
-                                    CanUserDeleteRows="False"
-                                    CanUserReorderColumns="False"
-                                    CanUserResizeRows="False"
-                                    CanUserSortColumns="False"
-                                    FontSize="15"
-                                    Foreground="#00695c"
-                                    GridLinesVisibility="Horizontal"
-                                    HeadersVisibility="All"
-                                    HorizontalGridLinesBrush="#00695c"
-                                    IsReadOnly="True"
-                                    ItemsSource="{Binding Toppings}"
-                                    RowBackground="Transparent"
-                                    SelectionMode="Single"
-                                    SelectionUnit="FullRow"
-                                    VerticalGridLinesBrush="#FF00695C">
-                                    <DataGrid.Columns>
-                                        <DataGridTemplateColumn Header="Nombre del Topping">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <materialDesign:Chip Content="{Binding name}">
-                                                        <materialDesign:Chip.Icon>
-                                                            <Image Source="/Views/Menu/Batido-pie.jpg" />
-                                                        </materialDesign:Chip.Icon>
-                                                    </materialDesign:Chip>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTextColumn Binding="{Binding price}" Header="Precio" />
-                                        <DataGridTextColumn Binding="{Binding stock}" Header="Disponible" />
-                                        <DataGridTemplateColumn Header="Opciones">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <DockPanel>
-                                                        <Button
-                                                            Name="BtnEliminar"
-                                                            Width="50"
-                                                            Background="#f44c58"
-                                                            BorderBrush="Transparent">
-                                                            <materialDesign:PackIcon Foreground="White" Kind="Delete" />
-                                                        </Button>
-                                                        <Button
-                                                            Name="BtnEditar"
-                                                            Width="50"
-                                                            Background="#00695c"
-                                                            BorderBrush="Transparent">
-                                                            <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
-                                                        </Button>
-                                                    </DockPanel>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                <materialDesign:ColorZone
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="5"
-                                    Height="50"
-                                    Background="#00695c"
-                                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                    Mode="Custom">
-                                    <TextBlock
-                                        Margin="16"
-                                        FontSize="15"
-                                        FontStyle="Italic"
-                                        FontWeight="Bold"
-                                        Foreground="White"
-                                        Text="Todos Toppings" />
-                                </materialDesign:ColorZone>
-                                <materialDesign:PopupBox
-                                    Grid.Row="3"
-                                    Grid.Column="3"
-                                    Margin="0,0,28,20"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Background="#099faf"
-                                    BorderBrush="Transparent"
-                                    Content="{materialDesign:PackIcon Kind=BookmarkAddOutline,
-                                                                      Size=24}"
-                                    Cursor="Hand"
-                                    Foreground="White"
-                                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                                    PlacementMode="TopAndAlignCentres"
-                                    Style="{StaticResource MaterialDesignMultiFloatingActionAccentPopupBox}"
-                                    ToggleCheckedContentCommand="{Binding FloatingActionDemoCommand}"
-                                    ToggleCheckedContentCommandParameter="wowsers">
-                                    <materialDesign:PopupBox.ToggleCheckedContent>
-                                        <materialDesign:PackIcon
-                                            Width="24"
-                                            Height="24"
-                                            Kind="BookmarkAddOutline" />
-                                    </materialDesign:PopupBox.ToggleCheckedContent>
-                                    <StackPanel>
-                                        <Button
-                                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                            Content="1"
-                                            ToolTip="Agregar" />
-                                        <Button Content="2" ToolTip="Eliminar" />
-                                    </StackPanel>
-                                </materialDesign:PopupBox>
-                            </Grid>
-                        </materialDesign:DialogHost>
-                    </TabItem.Content>
+                    <uc:ToppingsMenu />
                 </TabItem>
+                <!--#endregion-->
             </TabControl>
         </materialDesign:Card>
-
     </Border>
 </UserControl>

@@ -29,6 +29,7 @@ namespace Front.Views.Caja
         public Caja()
         {
             InitializeComponent();
+
            
         }
        

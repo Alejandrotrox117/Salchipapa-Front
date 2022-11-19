@@ -1,0 +1,126 @@
+﻿<UserControl
+    x:Class="Front.Views.Menu.Toppings.DialogToppings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Menu.Toppings"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="789"
+    Height="510"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <!--#region Contenido de los toppings-->
+        <materialDesign:DialogHost
+            x:Name="DialogHostToppings"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5"
+            Background="#00695c"
+            DialogTheme="Inherit"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid>
+                    <TextBlock
+                        x:Name="TxtTituloDiagToppings"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="#00695c"
+                        Text="TITULO" />
+                    <StackPanel Width="450" Height="250">
+                        <!--#region TITULO DEL DIALOG-->
+                        <!--#endregion-->
+                        <Grid>
+                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="55" />
+                                <RowDefinition Height="55" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <!--#endregion-->
+                            <!--#region Titulo y texbox NOMBRE-->
+
+                            <TextBox
+                                Name="TxtNombreTopping"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Width="190"
+                                Height="50"
+                                Margin="0,-13,10,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="Nombre del Topping"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                            <TextBox
+                                Name="TxtStockTopping"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Width="190"
+                                Height="50"
+                                Margin="0,-13,10,0"
+                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Hint="En Stock"
+                                AcceptsReturn="True"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        </Grid>
+                        <TextBox
+                            Name="TxtPrecioTopping"
+                            Width="190"
+                            Height="50"
+                            Margin="0,-50,0,0"
+                            materialDesign:HintAssist.Foreground="#00695c"
+                            materialDesign:HintAssist.Hint="Precio"
+                            AcceptsReturn="True"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                        <StackPanel
+                            Margin="0,30,0,0"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="BtnEnviarTopping"
+                                Margin="0,8,108,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Click="BtnEnviarTopping_Click"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="Agregar"
+                                Foreground="#00695c"
+                                IsDefault="False">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <Button
+                                Margin="0,8,8,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                Content="Cancelar"
+                                Foreground="#00695c"
+                                IsCancel="True">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                        </StackPanel>
+                        <!--#endregion-->
+                    </StackPanel>
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+    </Grid>
+</UserControl>

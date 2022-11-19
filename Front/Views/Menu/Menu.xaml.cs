@@ -35,10 +35,17 @@ namespace Front.Views.Menu
         public Menu()
         {
             InitializeComponent();
-        
+           
+        }
+      
+        private async void BtnTabExtras_GotFocus(object sender, RoutedEventArgs e)
+        {
+            
+
+         
+            
         }
 
-       
         private async void Main()
         {
             string responseGrupos = await Utilities.Get("products?extendeData=true");
@@ -46,16 +53,17 @@ namespace Front.Views.Menu
             string RespondTopping = await Utilities.Get("toppings");
             List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(responseGrupos);
             List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
-            List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
+            //ToppingsMenu Paginatoppings = new ToppingsMenu();
+            //List<Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Toppings>>(RespondTopping);
             categories = new ObservableCollection<categories>(categorie);
 
             if (group != null)
             {
                 TabsProductos.ItemsSource = group;
-                DataGridToppings.ItemsSource = toppings;
+              //  Paginatoppings.DataGridToppings.ItemsSource = toppings;
                 itemsCardsCategorias.ItemsSource = categories;
                 CbCategoriaProducto.ItemsSource = categorie;
-                CBToppings.ItemsSource = toppings;
+                //CBToppings.ItemsSource = toppings;
             }
             else
             {
@@ -218,42 +226,42 @@ namespace Front.Views.Menu
             //this.BtnConfirmarClienteDrawner.Click += this.EnviarCliente_Click;
            
         }
-        private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
-        {
-            List<Toppings> ListaToppings = new List<Toppings>();
-            foreach (Toppings i in ListToppings.Items)
-            {
-                ListaToppings.Add(i);
-            }
-            categories categoria = CbCategoriaProducto.SelectedItem as categories;
+        //private void BtnEnviarProducto_Click(object sender, RoutedEventArgs e)
+        //{
+        //    List<Toppings> ListaToppings = new List<Toppings>();
+        //    foreach (Toppings i in ListToppings.Items)
+        //    {
+        //        ListaToppings.Add(i);
+        //    }
+        //    categories categoria = CbCategoriaProducto.SelectedItem as categories;
 
-            string producto = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombreProducto.Text,
-                price = Convert.ToDouble(TxtPrecioProducto.Text),
-                stock = Convert.ToInt32(TxtStockProducto.Text),
-                description = TxtDescripcionProducto.Text,
-                categorie = categoria._id,
-                toppings = ListaToppings.Select(x => x._id)
-            });
+        //    string producto = new JavaScriptSerializer().Serialize(new
+        //    {
+        //        name = TxtNombreProducto.Text,
+        //        price = Convert.ToDouble(TxtPrecioProducto.Text),
+        //        stock = Convert.ToInt32(TxtStockProducto.Text),
+        //        description = TxtDescripcionProducto.Text,
+        //        categorie = categoria._id,
+        //        toppings = ListaToppings.Select(x => x._id)
+        //    });
 
 
-            Utilities.Post("products?extendeData=true", producto);
+        //    Utilities.Post("products?extendeData=true", producto);
 
-        }
+        //}
 
-        private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
-        {
-            string toppings = new JavaScriptSerializer().Serialize(new
-            {
-                name = TxtNombreTopping.Text,
-                price = Convert.ToDouble(TxtPrecioTopping.Text),
-                stock = Convert.ToInt32(TxtStockTopping.Text),
-            });
+        //private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string toppings = new JavaScriptSerializer().Serialize(new
+        //    {
+        //        name = TxtNombreTopping.Text,
+        //        price = Convert.ToDouble(TxtPrecioTopping.Text),
+        //        stock = Convert.ToInt32(TxtStockTopping.Text),
+        //    });
 
-            Utilities.Post("toppings", toppings);
+        //    Utilities.Post("toppings", toppings);
 
-        }
+        //}
 
         private void CbCategoriaProducto_Selected(object sender, RoutedEventArgs e)
         {
@@ -273,7 +281,7 @@ namespace Front.Views.Menu
 
             for (int i = 0; i < ListToppings.Items.Count; i++)
             {
-                List<Toppings> top = ListToppings.Items[i] as List<Toppings>;
+                List<ToppingsMenu> top = ListToppings.Items[i] as List<ToppingsMenu>;
 
                 MessageBox.Show(top.ToString());
 
@@ -286,5 +294,7 @@ namespace Front.Views.Menu
             this.DrawerHostProductos.IsBottomDrawerOpen = true;
             
         }
+
+        
     }
 }

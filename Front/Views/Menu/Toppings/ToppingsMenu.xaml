@@ -1,0 +1,145 @@
+﻿<UserControl
+    x:Class="Front.Views.Menu.ToppingsMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Menu"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Front.Views.Menu.Toppings"
+    x:Name="UserControlToppings"
+    Width="789"
+    Height="510"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <uc:DialogToppings />
+        <Grid>
+            <!--#endregion Filas y columnas-->
+            <!--#region Contenido-->
+            <DataGrid
+                x:Name="DataGridToppings"
+                Width="789"
+                Height="460"
+                Margin="0,50,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                AutoGenerateColumns="False"
+                Background="GhostWhite"
+                CanUserAddRows="False"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeRows="False"
+                CanUserSortColumns="False"
+                FontSize="15"
+                Foreground="#00695c"
+                GridLinesVisibility="Horizontal"
+                HeadersVisibility="All"
+                HorizontalGridLinesBrush="#00695c"
+                Initialized="DataGridToppings_Initialized"
+                IsReadOnly="True"
+                ItemsSource="{Binding toppings}"
+                RowBackground="Transparent"
+                SelectionMode="Single"
+                SelectionUnit="FullRow"
+                VerticalGridLinesBrush="#FF00695C">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="*" Header="Imagen">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ToggleButton
+                                    Margin="0,0,70,0"
+                                    Cursor="No"
+                                    IsChecked="False"
+                                    Style="{StaticResource MaterialDesignActionToggleButton}"
+                                    ToolTip="MaterialDesignActionToggleButton">
+                                    <Image Source="/Views/Caja/Batido-pie.jpg" />
+                                </ToggleButton>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding name}"
+                        Header="Nombre" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding price}"
+                        Header="Precio" />
+                    <DataGridTemplateColumn Width="*" Header="Disponible">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox Margin="20,0,78,0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*" Header="Opciones">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <Button
+                                        Name="BtnEliminar"
+                                        Width="50"
+                                        Background="#f44c58"
+                                        BorderBrush="Transparent">
+                                        <materialDesign:PackIcon Foreground="White" Kind="Delete" />
+                                    </Button>
+                                    <Button
+                                        Name="BtnEditar"
+                                        Width="50"
+                                        Background="#00695c"
+                                        BorderBrush="Transparent">
+                                        <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
+                                    </Button>
+                                </DockPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <materialDesign:ColorZone
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Height="50"
+                Background="#00695c"
+                Mode="Custom">
+                <TextBlock
+                    Margin="16"
+                    FontSize="15"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="Todos Toppings" />
+            </materialDesign:ColorZone>
+
+            <Button
+                x:Name="BtnAgregarTopping"
+                Grid.Row="0"
+                Width="70"
+                Height="70"
+                Margin="0,0,28,20"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Panel.ZIndex="4"
+                Background="#099faf"
+                BorderBrush="Transparent"
+                Click="BtnAgregarTopping_Click"
+                Cursor="Hand"
+                Foreground="White"
+                Style="{StaticResource MaterialDesignFloatingActionButton}">
+                <materialDesign:PackIcon
+                    Width="32"
+                    Height="32"
+                    Kind="TagPlus" />
+            </Button>
+
+
+        </Grid>
+
+
+
+
+
+
+    </Grid>
+</UserControl>
