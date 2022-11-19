@@ -1,5 +1,4 @@
-﻿using Nancy.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,28 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Menu.Toppings
+namespace Front.Views.Menu
 {
     /// <summary>
-    /// Lógica de interacción para DialogToppings.xaml
+    /// Lógica de interacción para MenuMain.xaml
     /// </summary>
-    public partial class DialogToppings : UserControl
+    public partial class MenuMain : UserControl
     {
-        public DialogToppings()
+        public MenuMain()
         {
             InitializeComponent();
         }
-        private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
-        {
-            ToppingsMenu toppings= new ToppingsMenu();
-            toppings.DrawerHostToppings.IsBottomDrawerOpen = true;
-
- 
-        }
-
-
-
-
-
     }
 }

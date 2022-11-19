@@ -56,7 +56,7 @@ namespace Front.Views.Menu
         private void BtnAgregarTopping_Click(object sender, RoutedEventArgs e)
         {
            
-           this.VentanaDialog.DialogHostToppings.IsOpen = true;
+        
             
         }
     }

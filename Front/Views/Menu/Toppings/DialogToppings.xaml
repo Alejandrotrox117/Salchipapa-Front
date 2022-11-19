@@ -6,121 +6,139 @@
     xmlns:local="clr-namespace:Front.Views.Menu.Toppings"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="789"
-    Height="510"
+    Width="450"
+    Height="270"
     mc:Ignorable="d">
-    <Grid Background="White">
-        <!--#region Contenido de los toppings-->
-        <materialDesign:DialogHost
-            x:Name="DialogHostToppings"
-            Grid.RowSpan="5"
-            Grid.ColumnSpan="5"
-            Background="#00695c"
-            DialogTheme="Inherit"
-            IsOpen="False">
-            <materialDesign:DialogHost.DialogContent>
+    <!--#region Contenido de los toppings-->
+    <Border Background="White" CornerRadius="6">
+        <Grid>
+            <StackPanel Width="450" Height="270">
+                <!--#region TITULO DEL DIALOG-->
                 <Grid>
+                    <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <!--#endregion-->
+                    <!--#region Titulo y texbox NOMBRE-->
                     <TextBlock
                         x:Name="TxtTituloDiagToppings"
                         Grid.Row="0"
                         Grid.Column="0"
-                        Margin="0,0,0,0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,0,15"
                         HorizontalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
                         Foreground="#00695c"
                         Text="TITULO" />
-                    <StackPanel Width="450" Height="250">
-                        <!--#region TITULO DEL DIALOG-->
-                        <!--#endregion-->
-                        <Grid>
-                            <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="55" />
-                                <RowDefinition Height="55" />
-                                <RowDefinition Height="55" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <!--#endregion-->
-                            <!--#region Titulo y texbox NOMBRE-->
-
-                            <TextBox
-                                Name="TxtNombreTopping"
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Width="190"
-                                Height="50"
-                                Margin="0,-13,10,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
-                                materialDesign:HintAssist.Hint="Nombre del Topping"
-                                AcceptsReturn="True"
-                                BorderBrush="#00695c"
-                                BorderThickness="2"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                            <TextBox
-                                Name="TxtStockTopping"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Width="190"
-                                Height="50"
-                                Margin="0,-13,10,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
-                                materialDesign:HintAssist.Hint="En Stock"
-                                AcceptsReturn="True"
-                                BorderBrush="#00695c"
-                                BorderThickness="2"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                        </Grid>
-                        <TextBox
-                            Name="TxtPrecioTopping"
-                            Width="190"
-                            Height="50"
-                            Margin="0,-50,0,0"
-                            materialDesign:HintAssist.Foreground="#00695c"
-                            materialDesign:HintAssist.Hint="Precio"
-                            AcceptsReturn="True"
+                    <TextBox
+                        Name="TxtNombreTopping"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="190"
+                        Height="53"
+                        Margin="0,0,0,0"
+                        materialDesign:HintAssist.Foreground="#00695c"
+                        materialDesign:HintAssist.Hint="Nombre del Topping"
+                        AcceptsReturn="True"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Margin="5,0,5,0"
+                        FontSize="10"
+                        TextAlignment="Left"
+                        TextWrapping="Wrap" />
+                    <TextBox
+                        Name="TxtStockTopping"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Width="190"
+                        Height="50"
+                        materialDesign:HintAssist.Foreground="#00695c"
+                        materialDesign:HintAssist.Hint="En Stock"
+                        AcceptsReturn="True"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="5,0,5,0"
+                        FontSize="10"
+                        TextAlignment="Left"
+                        TextWrapping="Wrap"
+                        Visibility="Hidden" />
+                    <TextBox
+                        Name="TxtPrecioTopping"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        Width="190"
+                        Height="50"
+                        Margin="0,10,0,0"
+                        materialDesign:HintAssist.Foreground="#00695c"
+                        materialDesign:HintAssist.Hint="Precio"
+                        AcceptsReturn="True"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        FontSize="10"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"
+                        Visibility="Hidden" />
+                    <StackPanel
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Margin="0,30,0,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="BtnEnviarTopping"
+                            Margin="0,0,108,0"
+                            Background="Transparent"
                             BorderBrush="#00695c"
-                            BorderThickness="2"
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                        <StackPanel
-                            Margin="0,30,0,0"
-                            HorizontalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Button
-                                x:Name="BtnEnviarTopping"
-                                Margin="0,8,108,0"
-                                Background="Transparent"
-                                BorderBrush="#00695c"
-                                Click="BtnEnviarTopping_Click"
-                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                Content="Agregar"
-                                Foreground="#00695c"
-                                IsDefault="False">
-                                <Button.CommandParameter>
-                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                </Button.CommandParameter>
-                            </Button>
-                            <Button
-                                Margin="0,8,8,0"
-                                Background="Transparent"
-                                BorderBrush="#00695c"
-                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                                Content="Cancelar"
-                                Foreground="#00695c"
-                                IsCancel="True">
-                                <Button.CommandParameter>
-                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                </Button.CommandParameter>
-                            </Button>
-                        </StackPanel>
-                        <!--#endregion-->
+                            Click="BtnEnviarTopping_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Agregar"
+                            Foreground="#00695c">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            Margin="0,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Cancelar"
+                            Foreground="#00695c">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
                     </StackPanel>
+                    <!--#endregion-->
                 </Grid>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
 
-    </Grid>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+
+
+
 </UserControl>

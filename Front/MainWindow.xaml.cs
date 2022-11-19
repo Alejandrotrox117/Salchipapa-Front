@@ -102,7 +102,7 @@ namespace Front
         }
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Views.Menu.Menu());
+            MyFrame.NavigationService.Navigate(new Views.Menu.MenuMain());
             
         }
        
