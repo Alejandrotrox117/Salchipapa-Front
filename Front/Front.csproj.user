@@ -32,9 +32,6 @@
     <Compile Update="Views\Menu\Productos\Productos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Menu\Toppings\DrawerHostToppings.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Menu\Toppings\ToppingsMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -74,9 +71,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Productos\Productos.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Menu\Toppings\DrawerHostToppings.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Toppings\ToppingsMenu.xaml">

@@ -1,4 +1,5 @@
 ﻿using Nancy.Json;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,37 +22,29 @@ namespace Front.Views.Menu
     /// </summary>
     public partial class ToppingsMenu : UserControl
     {
-       public Toppings.DialogToppings VentanaDialog ;
+       
         public ToppingsMenu()
         {
             InitializeComponent();
            
         }
-        //public async void Main()
-        //{
-         
-        //    string RespondTopping = await Utilities.Get("toppings");
-        //     List<ToppingsMenu> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ToppingsMenu>>(RespondTopping);
-           
-
-        //    if (toppings != null)
-        //    {
-              
-        //        DataGridToppings.ItemsSource = toppings;
-              
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Error");
-        //    }
- 
-        //}
-       
-
-        private void DataGridToppings_Initialized(object sender, EventArgs e)
+        
+        public async void GetToppings()
         {
-            //Main();
+            string RespondTopping = await Utilities.Get("toppings");
+            List<Entities.Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Entities.Toppings>>(RespondTopping);
+            if (toppings != null)
+            {
+                DataGridToppings.ItemsSource = toppings;
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+
         }
+
+
 
         private void BtnAgregarTopping_Click(object sender, RoutedEventArgs e)
         {

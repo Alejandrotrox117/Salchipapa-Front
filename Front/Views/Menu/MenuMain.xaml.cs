@@ -24,5 +24,30 @@ namespace Front.Views.Menu
         {
             InitializeComponent();
         }
+
+        private void BtnExtras_Click(object sender, RoutedEventArgs e)
+        {
+            TabcontrolMenu.SelectedIndex = 2;
+            PageToppings.GetToppings();
+        }
+
+        private void BtnTabCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            TabcontrolMenu.SelectedIndex = 1;
+            PageCategorias.GetCategorias();
+        }
+
+        private void GridMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            PageProductos.GetProductos();
+        }
+
+        private void BtnProducto_Click(object sender, RoutedEventArgs e)
+        {
+            TabcontrolMenu.SelectedIndex = 0;
+            PageProductos.GetProductos();
+
+        }
     }
 }

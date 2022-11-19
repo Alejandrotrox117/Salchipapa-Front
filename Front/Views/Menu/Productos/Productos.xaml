@@ -115,8 +115,7 @@
             x:Name="TabsProductos"
             Margin="0,50,0,0"
             HorizontalContentAlignment="Left"
-            materialDesign:ColorZoneAssist.Mode="Light"
-            ItemsSource="{Binding Grupos}">
+            materialDesign:ColorZoneAssist.Mode="Light">
             <TabControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding categorie}" />
@@ -139,6 +138,7 @@
                                 <materialDesign:Card
                                     Width="200"
                                     Height="300"
+                                    Margin="20,0,0,20"
                                     Background="GhostWhite">
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -256,6 +256,7 @@
                                 </materialDesign:Card>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
+
                     </ListBox>
 
                 </DataTemplate>

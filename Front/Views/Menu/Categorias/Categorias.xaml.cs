@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,29 @@ namespace Front.Views.Menu.Categorias
     /// </summary>
     public partial class Categorias : UserControl
     {
+        public ObservableCollection<categories> categories;
         public string titulo { get; set; }
         public Categorias()
         {
             InitializeComponent();
+        }
+
+
+
+        public async void GetCategorias()
+        {
+            string RespondCategorie = await Utilities.Get("categories");
+            List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
+            categories = new ObservableCollection<categories>(categorie);
+
+            if (categorie != null)
+            {
+                itemsCardsCategorias.ItemsSource = categories;
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
     }
 }

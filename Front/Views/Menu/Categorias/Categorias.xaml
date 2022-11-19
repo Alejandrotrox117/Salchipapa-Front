@@ -78,7 +78,7 @@
             <Grid>
                 <ListBox
                     x:Name="itemsCardsCategorias"
-                    Margin="0,60,0,0"
+                    Margin="0,50,0,0"
                     Background="Transparent"
                     ItemsSource="{Binding categories}"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
@@ -92,6 +92,7 @@
                         <DataTemplate>
                             <!--#region cuerpo principal del card-->
                             <materialDesign:Badged
+                                Margin="15,0,0,10"
                                 Background="Transparent"
                                 BadgeBackground="Transparent"
                                 BorderBrush="Transparent">
@@ -116,7 +117,7 @@
                                 <materialDesign:Card
                                     Width="220"
                                     Height="140"
-                                    Margin="5,0,0,0"
+                                    Margin="0,0,0,0"
                                     Background="Transparent"
                                     UniformCornerRadius="6">
                                     <Grid>
@@ -163,6 +164,7 @@
                             <!--#endregion-->
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+
                 </ListBox>
                 <materialDesign:ColorZone
                     Grid.Row="0"
