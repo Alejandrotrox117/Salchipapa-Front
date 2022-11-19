@@ -14,7 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 namespace Front
 {
-    public class Utilities
+    public class Request
     {
         public static string url = "http://localhost:3000/api/";
         public static HttpClient client = new HttpClient();

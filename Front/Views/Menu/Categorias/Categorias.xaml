@@ -52,6 +52,7 @@
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
+                        x:Name="BtnCancelarCategoriaDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
@@ -73,7 +74,54 @@
             DialogTheme="Inherit"
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
-                <Form:DialogHostCategorias />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Form:DialogHostCategorias x:Name="Dialog" />
+                    <StackPanel
+                        Grid.Row="4"
+                        Margin="0,-30,0,40"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button
+                                x:Name="BtnAceptarDialogCategorias"
+                                Grid.Column="0"
+                                Margin="0,0,0,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Content="Agregar"
+                                Foreground="#00695c"
+                                Visibility="Visible">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                            <Button
+                                x:Name="BtnCerrarForm"
+                                Grid.Column="1"
+                                Margin="35,0,0,0"
+                                Background="Transparent"
+                                BorderBrush="#00695c"
+                                Content="Cancelar"
+                                Foreground="#00695c"
+                                IsCancel="True">
+                                <Button.CommandParameter>
+                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                                </Button.CommandParameter>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <ListBox

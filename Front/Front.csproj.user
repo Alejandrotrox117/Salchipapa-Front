@@ -11,6 +11,18 @@
     <Compile Update="Views\Caja\Caja.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Caja\Clientes\Clientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Clientes\DialogClientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Metodos de Pago\DialogPagos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +62,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Caja.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Clientes\Clientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Clientes\DialogClientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Metodos de Pago\DialogPagos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\PlantillaDialog.xaml">

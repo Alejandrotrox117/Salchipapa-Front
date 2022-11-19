@@ -13,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Menu.Categorias
+namespace Front.Views.Caja.Metodos_de_Pago
 {
     /// <summary>
-    /// Lógica de interacción para DialogHostCategorias.xaml
+    /// Lógica de interacción para MetodosDePago.xaml
     /// </summary>
-    public partial class DialogHostCategorias : UserControl
+    public partial class MetodosDePago : UserControl
     {
-        public string name { get; set; }
-
-        public DialogHostCategorias()
+        public MetodosDePago()
         {
             InitializeComponent();
-            this.DataContext = this;
-            this.name = "";
-                
         }
-
-
-
     }
 }

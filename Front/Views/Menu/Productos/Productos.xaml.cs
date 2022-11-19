@@ -30,7 +30,7 @@ namespace Front.Views.Menu.Productos
 
         public async void GetProductos()
         {
-            string responseGrupos = await Utilities.Get("products?extendeData=true");
+            string responseGrupos = await Request.Get("products?extendeData=true");
             List<Grupos> group = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Grupos>>(responseGrupos);
             if (group != null)
             {
@@ -46,5 +46,8 @@ namespace Front.Views.Menu.Productos
         {
             DialogHostProductos.IsOpen = true;
         }
+
+
+
     }
 }

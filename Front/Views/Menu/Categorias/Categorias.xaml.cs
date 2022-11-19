@@ -28,12 +28,9 @@ namespace Front.Views.Menu.Categorias
         {
             InitializeComponent();
         }
-
-
-
         public async void GetCategorias()
         {
-            string RespondCategorie = await Utilities.Get("categories");
+            string RespondCategorie = await Request.Get("categories");
             List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
             categories = new ObservableCollection<categories>(categorie);
 

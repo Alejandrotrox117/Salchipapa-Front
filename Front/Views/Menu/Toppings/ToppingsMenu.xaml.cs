@@ -31,7 +31,7 @@ namespace Front.Views.Menu
         
         public async void GetToppings()
         {
-            string RespondTopping = await Utilities.Get("toppings");
+            string RespondTopping = await Request.Get("toppings");
             List<Entities.Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Entities.Toppings>>(RespondTopping);
             if (toppings != null)
             {

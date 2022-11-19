@@ -13,24 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Menu.Categorias
+namespace Front.Views.Caja.Clientes
 {
     /// <summary>
-    /// Lógica de interacción para DialogHostCategorias.xaml
+    /// Lógica de interacción para DialogClientes.xaml
     /// </summary>
-    public partial class DialogHostCategorias : UserControl
+    public partial class DialogClientes : UserControl
     {
-        public string name { get; set; }
-
-        public DialogHostCategorias()
+        public DialogClientes()
         {
             InitializeComponent();
-            this.DataContext = this;
-            this.name = "";
-                
         }
-
-
-
     }
 }
