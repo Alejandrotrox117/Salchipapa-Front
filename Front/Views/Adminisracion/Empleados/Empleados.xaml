@@ -2,7 +2,7 @@
     x:Class="Front.Views.Adminisracion.Empleados.Empleados"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:DialogEmpleados="clr-namespace:Front.Views.Adminisracion.Empleados"
+    xmlns:FormEmpleados="clr-namespace:Front.Views.Adminisracion.Empleados"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Adminisracion.Empleados"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -12,7 +12,7 @@
     mc:Ignorable="d">
     <Grid>
         <materialDesign:Snackbar
-            x:Name="SnackBarNotificacionEmpleados"
+            x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
             IsActive="False">
             <materialDesign:SnackbarMessage>
@@ -22,14 +22,14 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        x:Name="TxtSnackbarEmpleados"
+                        x:Name="TxtSnackbar"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="0,0,124,0"
                         VerticalAlignment="Center"
                         FontWeight="Bold" />
                     <Button
-                        x:Name="BtnSnackbarEmpleados"
+                        x:Name="BtnSnackbar"
                         Grid.Column="1"
                         Width="90"
                         Margin="80,0,0,0"
@@ -39,19 +39,126 @@
                 </Grid>
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>
-        <materialDesign:DialogHost
-            x:Name="DialogHostEmpleados"
+        <materialDesign:DrawerHost
+            x:Name="DrawerHost"
             Grid.RowSpan="5"
             Grid.ColumnSpan="5"
-            Margin="0,0,0,-49"
+            Width="800"
+            Height="510"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Panel.ZIndex="3"
+            BorderThickness="1"
+            BottomDrawerBackground="#00695c"
+            BottomDrawerCornerRadius="20 20 0 0"
+            IsBottomDrawerOpen="False">
+            <materialDesign:DrawerHost.BottomDrawerContent>
+                <StackPanel
+                    Width="490"
+                    Height="50"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    <TextBlock
+                        x:Name="TxtTituloDrawer"
+                        Margin="4"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="Bold"
+                        Foreground="White" />
+                    <Button
+                        Name="BtnConfirmarDrawner"
+                        Margin="4"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="3"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="BtnConfirmarDrawner_Click"
+                        Content="Confirmar"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                    <Button
+                        Name="BtnCancelarDrawner"
+                        Margin="4"
+                        VerticalAlignment="Center"
+                        BorderBrush="Transparent"
+                        Click="BtnCancelarDrawner_Click_1"
+                        CommandParameter="{x:Static Dock.Bottom}"
+                        Content="Cancelar"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignFlatButton}" />
+                </StackPanel>
+            </materialDesign:DrawerHost.BottomDrawerContent>
+        </materialDesign:DrawerHost>
+
+        <materialDesign:DialogHost
+            x:Name="DialogHost"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5"
+            Margin="0,0,0,0"
             Background="#00695c"
             DialogTheme="Inherit"
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
-                <DialogEmpleados:DialogEmpleados />
+                <Grid>
+                    <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <FormEmpleados:FormEmpleados x:Name="Formulario" />
+                    <StackPanel
+                        Grid.Row="7"
+                        Grid.ColumnSpan="2"
+                        Margin="0,-80,0,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="BtnAceptarFormulario"
+                            Margin="0,0,108,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnAceptarFormulario_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Aceptar"
+                            Foreground="#00695c"
+                            IsDefault="False">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    True
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button
+                            x:Name="BtnCancelarFormulario"
+                            Margin="0,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="#f44658"
+                            Click="BtnCancelarFormulario_Click"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Content="Cancelar"
+                            Foreground="#f44658"
+                            IsCancel="True">
+                            <Button.CommandParameter>
+                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                    False
+                                </system:Boolean>
+                            </Button.CommandParameter>
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Grid Background="White">
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition />
@@ -80,11 +187,11 @@
                         FontStyle="Italic"
                         FontWeight="Bold"
                         Foreground="White"
-                        Text="Todas los Empleados" />
+                        Text="Todos los Empleados" />
                 </materialDesign:ColorZone>
                 <!--#region Datagrid EMPLEADOS-->
                 <DataGrid
-                    x:Name="DataGridEmpleados"
+                    x:Name="DataGrid"
                     Grid.Row="1"
                     Grid.RowSpan="3"
                     Grid.Column="0"
@@ -106,41 +213,87 @@
                     HeadersVisibility="All"
                     HorizontalGridLinesBrush="#00695c"
                     IsReadOnly="True"
-                    ItemsSource="{Binding clientes}"
                     RowBackground="Transparent">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
-                        <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
-                        <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
-                        <DataGridTextColumn Binding="{Binding account}" Header="Permisos" />
+                        <DataGridTextColumn
+                            Binding="{Binding ci}"
+                            Header="Cedula"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding name}"
+                            Header="Nombre"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding surname}"
+                            Header="Apellido"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Binding="{Binding account.rol}"
+                            Header="Roles"
+                            IsReadOnly="True" />
+                        <DataGridTemplateColumn
+                            Width="120"
+                            Header="Privilegios"
+                            IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="18" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox
+                                            Grid.Column="0"
+                                            Margin="0,0,0,0"
+                                            Background="#00695c"
+                                            Cursor="No"
+                                            FontSize="9"
+                                            FontWeight="Bold"
+                                            IsChecked="{Binding account.admin}"
+                                            IsEnabled="False" />
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            VerticalAlignment="Center"
+                                            FontSize="10"
+                                            Foreground="#00695c"
+                                            Text="Administrador"
+                                            TextAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding account.password}" Header="Contraseñas" />
                         <DataGridTemplateColumn Header="Opciones">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DockPanel>
                                         <Button
-                                            Name="BtnEliminarEmpleado"
+                                            Name="BtnEliminar"
                                             Width="50"
                                             Background="#f44c58"
                                             BorderBrush="Transparent">
                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                         </Button>
                                         <Button
-                                            Name="BtnEditarEmpleado"
+                                            Name="BtnEditar"
                                             Width="50"
                                             Background="#00695c"
-                                            BorderBrush="Transparent">
+                                            BorderBrush="Transparent"
+                                            Click="BtnEditar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                         </Button>
                                     </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+
                     </DataGrid.Columns>
+                    
                 </DataGrid>
                 <!--#endregion-->
                 <!--#region BTN AGREGAR EMPLEADO-->
                 <Button
-                    x:Name="BtnAbrirFormulario"
+                    x:Name="BtnAgregar"
                     Grid.Row="3"
                     Grid.Column="3"
                     Width="70"
@@ -150,6 +303,7 @@
                     Panel.ZIndex="1"
                     Background="#00695c"
                     BorderBrush="Transparent"
+                    Click="BtnAgregar_Click"
                     Cursor="Hand"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon

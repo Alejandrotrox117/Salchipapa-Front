@@ -11,38 +11,54 @@
     Height="558"
     Background="Transparent"
     mc:Ignorable="d">
-    <Border>
+    <Grid Loaded="Grid_Loaded">
         <Grid>
             <!--#region TAB EMPLEADOS-->
             <materialDesign:Card>
                 <TabControl
+                    x:Name="TabControlEmpleados"
                     materialDesign:ColorZoneAssist.Mode="Light"
                     materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                    SelectedIndex="0"
                     Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                     TabStripPlacement="Bottom">
                     <!--#region TabItem Empleados-->
-                    <TabItem Width="400" Height="50">
+                    <TabItem
+                        x:Name="TabEmpleados"
+                        Width="400"
+                        Height="50">
                         <TabItem.Header>
-                            <StackPanel Width="150" Height="auto">
-                                <materialDesign:PackIcon
-                                    Width="24"
-                                    Height="24"
-                                    HorizontalAlignment="Center"
-                                    Foreground="#00695c"
-                                    Kind="AccountAdd" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontStyle="Italic"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Empleados" />
-                            </StackPanel>
+                            <Button
+                                x:Name="BtnTabEmpleado"
+                                Width="400"
+                                Height="50"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Click="BtnTabEmpleado_Click">
+                                <StackPanel
+                                    Width="400"
+                                    Height="48"
+                                    Margin="-20,0,0,0">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Foreground="#00695c"
+                                        Kind="AccountAdd" />
+                                    <TextBlock
+                                        HorizontalAlignment="Center"
+                                        FontStyle="Italic"
+                                        FontWeight="Bold"
+                                        Foreground="#00695c"
+                                        Text="Empleados" />
+                                </StackPanel>
+                            </Button>
                         </TabItem.Header>
                         <!--#region Contenido Empleados-->
                         <TabItem.Content>
                             <!--#region Formulario Empleados-->
                             <Grid>
-                                <Empleados:Empleados />
+                                <Empleados:Empleados x:Name="PageEmpleados" />
                             </Grid>
                             <!--#endregion-->
                         </TabItem.Content>
@@ -144,5 +160,5 @@
             </materialDesign:Card>
             <!--#endregion-->
         </Grid>
-    </Border>
+    </Grid>
 </UserControl>
