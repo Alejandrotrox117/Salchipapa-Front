@@ -15,7 +15,6 @@ namespace Front.Views.Menu.Categorias
     {
         public List<categories> categories;
         public string id { get; set; }
-
         public Categorias()
         {
             InitializeComponent();
@@ -87,7 +86,7 @@ namespace Front.Views.Menu.Categorias
             if (response.IsSuccessStatusCode)
             {
                 limpiarDrawner();
-                abrirSnack("Se ha agredado correctamente", null);
+                abrirSnack("Se ha eliminado correctamente", null);
             }
             else
             {

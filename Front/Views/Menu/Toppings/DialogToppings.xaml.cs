@@ -1,4 +1,5 @@
-﻿using Nancy.Json;
+﻿using Entities;
+using Nancy.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,52 @@ namespace Front.Views.Menu.Toppings
         {
             InitializeComponent();
         }
-        private void BtnEnviarTopping_Click(object sender, RoutedEventArgs e)
+        public void CargarForm(Entities.Toppings toppings)
         {
-            ToppingsMenu toppings= new ToppingsMenu();
-            toppings.DrawerHostToppings.IsBottomDrawerOpen = true;
-
- 
+            TxtNombreTopping.Text = toppings.name;
+        }
+        public void LimpiarForm()
+        {
+            TxtNombreTopping.Text = "";
+            TxtPrecioTopping.Text = "";
+            CheckboxTp.IsChecked = false;
         }
 
+        public void MostrarErrores(Errors errores)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#f44c58");
+
+            foreach (ErrorsList error in errores.errors)
+            {
+                switch (error.property)
+                {
+                    case "name":
+                        lblNombreError.Text = error.error;
+                        lblNombreError.Visibility = Visibility.Visible;
+                        TxtNombreTopping.BorderBrush = color;
+                        break;
+                    case "price":
+                        lblPrecioError.Text = error.error;
+                        lblPrecioError.Visibility = Visibility.Visible;
+                        TxtPrecioTopping.BorderBrush =color;
+                        break;
+                    case "stock":
+                        lblCheckboxError.Text = error.error;
+                        lblCheckboxError.Visibility = Visibility.Visible;
+                        CheckboxTp.BorderBrush = color;
+                        break;
+                }
+            }
+        }
+
+        private void TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#00695c");
+            TxtNombreTopping.BorderBrush = color;
+            lblNombreError.Visibility = Visibility.Hidden;
+        }
 
 
 
