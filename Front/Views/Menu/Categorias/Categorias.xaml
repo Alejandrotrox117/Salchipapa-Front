@@ -80,7 +80,6 @@
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                         Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -136,9 +135,6 @@
                                 Content="Agregar"
                                 Foreground="#00695c"
                                 Visibility="Visible">
-                                <Button.CommandParameter>
-                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                                </Button.CommandParameter>
                             </Button>
                             <Button
                                 x:Name="BtnCerrarForm"
@@ -150,9 +146,6 @@
                                 Content="Cancelar"
                                 Foreground="#00695c"
                                 IsCancel="True">
-                                <Button.CommandParameter>
-                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                </Button.CommandParameter>
                             </Button>
                         </Grid>
                     </StackPanel>
@@ -189,7 +182,7 @@
                                         BorderBrush="Transparent"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                        Visibility="Visible">
+                                        Visibility="Visible" Click="BtnEliminar_Click">
                                         <materialDesign:PackIcon
                                             Width="20"
                                             Height="25"
@@ -225,14 +218,14 @@
                                                     Foreground="White"
                                                     Text="{Binding name}" />
                                                 <Button
-                                                    Name="BtnAbrirFormEditarCategorias"
+                                                    Name="BtnEditar"
                                                     Width="30"
                                                     Height="30"
                                                     Margin="180,0,0,0"
                                                     Panel.ZIndex="3"
                                                     Background="#ffc107"
                                                     BorderBrush="Transparent"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" Click="BtnEditar_Click">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"

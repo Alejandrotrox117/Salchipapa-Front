@@ -39,6 +39,7 @@ namespace Front.Views.Pedidos
         {
             InitializeComponent();
             this.client = client;
+            
 
         }
         private async void Main()

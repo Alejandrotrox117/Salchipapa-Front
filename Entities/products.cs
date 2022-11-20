@@ -16,7 +16,7 @@ namespace Entities
         public categories categorie { get; set; }
 
         public string description { get; set; }
-        public int  stock { get; set; }
+        public int stock { get; set; }
 
         public List<Toppings> toppings { get; set; }
     }
