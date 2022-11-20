@@ -30,7 +30,7 @@ namespace Front.Views.Empleados
 
         public async void Main()
         {
-            string respuesta = await Utilities.Get("employes/");
+            string respuesta = await Request.Get("employes/");
             //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
             List<employes> returnedData = JsonConvert.DeserializeObject<List<employes>>(respuesta);
             //VALIDACION DE RETORNO DE DATOS 
@@ -62,7 +62,7 @@ namespace Front.Views.Empleados
                 
 
             });
-            Utilities.Post("clients", empleado);
+            Request.Post("clients", empleado);
         }
     }
 }

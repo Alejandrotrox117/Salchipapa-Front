@@ -1,5 +1,48 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Style
+        x:Key="GeneralErrorStyle"
+        BasedOn="{StaticResource MaterialDesignOutlinedTextBox}"
+        TargetType="TextBox">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <TextBox
+                            materialDesign:HintAssist.Foreground="Gray"
+                            materialDesign:HintAssist.HelperText="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"
+                            BorderBrush="Gray"
+                            BorderThickness="2"
+                            FontSize="12pt" />
+                        <AdornedElementPlaceholder x:Name="placeholder" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
 
+                    <Border
+                        x:Name="border"
+                        BorderBrush="#000"
+                        BorderThickness="2"
+                        CornerRadius="2" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#909090" />
+
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="materialDesign:HintAssist.Background" Value="{Binding}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Color x:Key="PrimaryBackColor">#00695c</Color>
 

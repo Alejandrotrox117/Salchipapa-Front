@@ -14,7 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 namespace Front
 {
-    public class Utilities
+    public class Request
     {
         public static string url = "http://localhost:3000/api/";
         public static HttpClient client = new HttpClient();
@@ -34,8 +34,11 @@ namespace Front
                 HttpContent content = new StringContent(clase, Encoding.UTF8, "application/json");
                 var httpResponse = await client.PostAsync(url + link, content);
                 return httpResponse;
+
             } catch (Exception ex)
             {
+
+
                 Console.WriteLine(ex.Message);
                 return null;
             }

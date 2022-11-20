@@ -2,7 +2,7 @@
 using Front.Views;
 
 using Front.Views.Empleados;
-using Front.Views.Carta;
+using Front.Views.Menu;
 using Front.Views.Pedidos;
 using Newtonsoft.Json;
 using SocketIOClient;
@@ -102,7 +102,7 @@ namespace Front
         }
         private void BtnMenu_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Carta());
+            MyFrame.NavigationService.Navigate(new Views.Menu.MenuMain());
             
         }
        

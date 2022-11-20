@@ -11,13 +11,40 @@
     <Compile Update="Views\Caja\Caja.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Caja\Clientes\Clientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Clientes\DialogClientes.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Metodos de Pago\DialogPagos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Empleados\Empleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Menu\Menu.xaml.cs">
+    <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Menu\Categorias\DialogHostCategorias.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Menu\MenuMain.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Menu\Productos\DialogProductos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Menu\Productos\Productos.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Menu\Toppings\ToppingsMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pedidos\CardFlipper.xaml.cs">
@@ -37,13 +64,40 @@
     <Page Update="Views\Caja\Caja.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Caja\Clientes\Clientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Clientes\DialogClientes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Metodos de Pago\DialogPagos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Caja\PlantillaDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Empleados\Empleados.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menu\Menu.xaml">
+    <Page Update="Views\Menu\Categorias\Categorias.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menu\Categorias\DialogHostCategorias.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menu\MenuMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menu\Productos\DialogProductos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menu\Productos\Productos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Menu\Toppings\ToppingsMenu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pedidos\CardFlipper.xaml">

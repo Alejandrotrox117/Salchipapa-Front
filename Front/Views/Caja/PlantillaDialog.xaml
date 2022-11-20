@@ -10,28 +10,86 @@
     Height="560"
     mc:Ignorable="d">
     <Grid Background="White">
-        <materialDesign:DialogHost
-            Height="560"
-            VerticalAlignment="Center"
-            CloseOnClickAway="True"
-            DialogContent="{Binding Sample4Content}"
-            DialogTheme="Light"
-            IsOpen="True"
-            OverlayBackground="Transparent"
-            Placement="Mouse">
-            <Grid Background="Transparent" >
-                <StackPanel Background="White" Width="200" Height="200">
-                    
-                </StackPanel>
-
-
-
-
-
-
-
-            </Grid>
-
-        </materialDesign:DialogHost>
+        <!--  and here's another  -->
+        <DataGrid
+            x:Name="DataGridToppings"
+            Width="789"
+            Height="488"
+            Margin="0,23,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            AutoGenerateColumns="False"
+            Background="GhostWhite"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            FontSize="15"
+            Foreground="#00695c"
+            GridLinesVisibility="Horizontal"
+            HeadersVisibility="All"
+            HorizontalGridLinesBrush="#00695c"
+            IsReadOnly="True"
+            ItemsSource="{Binding Toppings}"
+            RowBackground="Transparent"
+            SelectionMode="Single"
+            SelectionUnit="FullRow"
+            VerticalGridLinesBrush="#FF00695C">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="*" Header="Imagen">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ToggleButton
+                                Margin="0,0,70,0"
+                                Cursor="None"
+                                IsChecked="False"
+                                Style="{StaticResource MaterialDesignActionToggleButton}"
+                                ToolTip="MaterialDesignActionToggleButton">
+                                <Image Source="/Views/Caja/Batido-pie.jpg" />
+                            </ToggleButton>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding name}"
+                    Header="Nombre" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding price}"
+                    Header="Precio" />
+                <DataGridTemplateColumn Width="120" Header="Disponible">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="20,0,78,0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="Opciones">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Button
+                                    Name="BtnEliminar"
+                                    Width="50"
+                                    Background="#f44c58"
+                                    BorderBrush="Transparent">
+                                    <materialDesign:PackIcon Foreground="White" Kind="Delete" />
+                                </Button>
+                                <Button
+                                    Name="BtnEditar"
+                                    Width="50"
+                                    Background="#00695c"
+                                    BorderBrush="Transparent">
+                                    <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
+                                </Button>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            a
+        </DataGrid>
     </Grid>
 </UserControl>
