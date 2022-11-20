@@ -13,9 +13,10 @@
     mc:Ignorable="d">
     <Grid Background="White">
         <materialDesign:Snackbar
-            x:Name="SnackBarNotificacionToppings"
+            x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -23,14 +24,14 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        x:Name="TxtSnackbarToppings"
+                        x:Name="TxtSnackbar"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="0,0,124,0"
                         VerticalAlignment="Center"
                         FontWeight="Bold" />
                     <Button
-                        x:Name="BtnSnackbarToppings"
+                        x:Name="BtnSnackbar"
                         Grid.Column="1"
                         Width="90"
                         Margin="80,0,0,0"
@@ -43,7 +44,7 @@
         <!--#region Cuerpo principal DrawerHostToppigns-->
         <!--#region DrawerHostToppings-->
         <materialDesign:DrawerHost
-            x:Name="DrawerHostToppings"
+            x:Name="DrawerHost"
             Grid.RowSpan="6"
             Grid.ColumnSpan="6"
             Width="800"
@@ -63,28 +64,28 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
-                        x:Name="TxtTituloDrawerHostToppings"
+                        x:Name="TxtDrawer"
                         Margin="4"
                         VerticalAlignment="Center"
                         FontSize="13"
                         FontWeight="Bold"
                         Foreground="White" />
                     <Button
-                        x:Name="BtnConfirmarToppingDrawner"
+                        x:Name="BtnConfirmarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        Click="Agregar_Click"
                         Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
+                        x:Name="BtnCancelarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Bottom}"
+                        Click="BtnCancelarDrawnerAbrirForm_Click"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -94,13 +95,35 @@
         <!--#endregion-->
         <!--#region Cuerpo Principal formulario toppings-->
         <materialDesign:DialogHost
-            x:Name="DialogHostToppings"
+            x:Name="DialogHost"
             Grid.RowSpan="5"
             Grid.ColumnSpan="5"
             DialogTheme="Inherit"
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
-                <uc:DialogToppings x:Name="DialogToppings" />
+                <Grid>
+                    <uc:DialogToppings x:Name="Formulario" />
+                    <StackPanel
+                        Grid.Row="5"
+                        Grid.ColumnSpan="2"
+                        Margin="0,100,0,-50"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            Margin="0,0,108,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnAceptarDialog_Click"
+                            Content="Aceptar"
+                            Foreground="#00695c" />
+                        <Button
+                            Background="Transparent"
+                            BorderBrush="#f44c58"
+                            Click="BtnCerrarForm_Click"
+                            Content="Cancelar"
+                            Foreground="#f44c58" />
+                    </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <!--#endregion Filas y columnas-->
@@ -167,14 +190,16 @@
                                             Name="BtnEliminar"
                                             Width="50"
                                             Background="#f44c58"
-                                            BorderBrush="Transparent">
+                                            BorderBrush="Transparent"
+                                            Click="BtnEliminar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                         </Button>
                                         <Button
                                             Name="BtnEditar"
                                             Width="50"
                                             Background="#00695c"
-                                            BorderBrush="Transparent">
+                                            BorderBrush="Transparent"
+                                            Click="BtnActualizar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                         </Button>
                                     </DockPanel>
@@ -200,7 +225,7 @@
                 </materialDesign:ColorZone>
                 <!--#region BTN ABrir Formulario Toppings-->
                 <Button
-                    x:Name="BtnAgregarTopping"
+                    x:Name="BtnAgregar"
                     Grid.Row="0"
                     Width="70"
                     Height="70"
@@ -210,8 +235,7 @@
                     Panel.ZIndex="4"
                     Background="#099faf"
                     BorderBrush="Transparent"
-                    Click="BtnAgregarTopping_Click"
-                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    Click="BtnAgregar_Click"
                     Cursor="Hand"
                     Foreground="White"
                     Style="{StaticResource MaterialDesignFloatingActionButton}">

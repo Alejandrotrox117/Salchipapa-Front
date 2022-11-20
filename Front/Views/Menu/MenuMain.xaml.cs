@@ -28,7 +28,7 @@ namespace Front.Views.Menu
         private void BtnExtras_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolMenu.SelectedIndex = 2;
-            PageToppings.GetToppings();
+            PageToppings.Get();
         }
 
         private void BtnTabCategoria_Click(object sender, RoutedEventArgs e)
