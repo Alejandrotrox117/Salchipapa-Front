@@ -68,5 +68,14 @@ namespace Front.Views.Caja.Pagos
             lblNombreError.Visibility = Visibility.Hidden;
             TxtNombrePago.BorderBrush = color;
         }
+
+        private void CBMoneda_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#00695c");
+
+            lblMonedaError.Visibility = Visibility.Hidden;
+            CBMoneda.BorderBrush = color;
+        }
     }
 }

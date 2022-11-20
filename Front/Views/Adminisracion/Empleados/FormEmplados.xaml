@@ -32,7 +32,7 @@
                 <!--#endregion-->
                 <!--#region Titulo y texbox NOMBRE-->
                 <TextBlock
-                    x:Name="TxtDialog"
+                    x:Name="TxtTituloDialg"
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,0"
                     HorizontalAlignment="Center"
@@ -41,7 +41,7 @@
                     Foreground="#00695c"
                     Text="Titulo" />
                 <TextBox
-                    x:Name="TxtNombreEmpleado"
+                    x:Name="TxtNombre"
                     Grid.Row="1"
                     Width="190"
                     Height="50"
@@ -50,21 +50,22 @@
                     materialDesign:HintAssist.Hint="Nombre"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    TextChanged="TextChanged"/>
                 <!--#endregion TITULO Y TEXBOX NOMBRE-->
                 <TextBlock
-                    x:Name="ValNombreEmpleado"
+                    x:Name="lblNombreError"
                     Grid.Row="2"
                     Grid.Column="0"
                     Margin="17,5,13,5"
                     FontSize="9"
-                    Text="Error"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
                 <TextBox
-                    x:Name="TxtApellidoEmpleado"
+                    x:Name="TxtApellido"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="190"
@@ -75,15 +76,17 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    TextChanged="TextChanged"/>
                 <!--#endregion-->
                 <TextBlock
-                    x:Name="ValApellidoEmpleado"
+                    x:Name="lblApellidoError"
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="17,5,13,5"
                     FontSize="9"
-                    Text="Contenido largo dependiendo de la validacion mas larga"
+                    Foreground="#f44c58"
+                    Visibility="Hidden"
                     TextAlignment="Justify"
                     TextWrapping="Wrap" />
                 <!--#region TITULO Y COMBOBOX CEDULA-->
@@ -104,7 +107,7 @@
                     <ComboBoxItem Content="E-" />
                 </ComboBox>
                 <TextBox
-                    x:Name="TxtCedulaEmpleado"
+                    x:Name="TxtCedula"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="117"
@@ -115,17 +118,19 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    TextChanged="TextChanged"/>
                 <!--#endregion-->
                 <TextBlock
-                    x:Name="ValCedula"
+                    x:Name="lblCedulaError"
                     Grid.Row="4"
                     Grid.Column="0"
                     Margin="0,0,0,0"
                     FontSize="9"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Visible" />
+                    Visibility="Hidden" />
                 <ComboBox
                     x:Name="CbAccount"
                     Grid.Row="3"
@@ -137,17 +142,20 @@
                     materialDesign:HintAssist.Hint="Rol"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
-                    <ComboBoxItem Content="Admin" />
-                    <ComboBoxItem Content="Mesero" />
-                    <ComboBoxItem Content="Cocinero" />
-                    <ComboBoxItem Content="Cajero" />
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                    SelectionChanged="CbAccount_SelectionChanged">
+                    <ComboBoxItem Content="ADMIN" />
+                    <ComboBoxItem Content="MESERO" />
+                    <ComboBoxItem Content="COCINERO" />
+                    <ComboBoxItem Content="CAJERO" />
                 </ComboBox>
                 <TextBlock
+                    x:Name="lblAccountError"
                     Grid.Row="4"
                     Grid.Column="1"
                     Margin="15,0,10,0"
                     FontSize="9"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
@@ -163,12 +171,15 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    TextChanged="TextChanged"/>
                 <TextBlock
+                    x:Name="lblContraError"
                     Grid.Row="6"
                     Grid.Column="0"
                     Margin="15,0,10,0"
                     FontSize="9"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
@@ -184,10 +195,12 @@
                     Foreground="#00695c"
                     IsChecked="False" />
                 <TextBlock
+                    x:Name="lblPrivilegioError"
                     Grid.Row="6"
                     Grid.Column="1"
                     Margin="15,0,10,0"
                     FontSize="9"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
