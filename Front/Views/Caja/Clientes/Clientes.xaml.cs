@@ -29,7 +29,7 @@ namespace Front.Views.Caja.Clientes
             InitializeComponent();
         }
         //funcion obtener clientes
-        public async void GetClientes()
+        public async void Get()
         {
             string responseClients = await Request.Get("clients");
             List<clientes> returnedDataClients = JsonConvert.DeserializeObject<List<clientes>>(responseClients);
@@ -41,16 +41,17 @@ namespace Front.Views.Caja.Clientes
             {
                 MessageBox.Show("Error");
             }
-        }//funcion obtener clientes
-        public async void PostClientes(object sender, RoutedEventArgs e)
+        }
+        //evento agregar clientes
+        public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
             string cliente = new JavaScriptSerializer().Serialize(new
             {
-                ci = FormClientes.CBCedula.Text + FormClientes.TxtCedula.Text,
-                name = FormClientes.TxtNombre.Text,
-                surname = FormClientes.TxtApellido.Text,
-                phone = FormClientes.CBTelefono.Text + FormClientes.TxtTelefono.Text,
-                address = FormClientes.TxtDireccion.Text
+                ci = Formulario.CBCedula.Text + Formulario.TxtCedula.Text,
+                name = Formulario.TxtNombre.Text,
+                surname = Formulario.TxtApellido.Text,
+                phone = Formulario.CBTelefono.Text + Formulario.TxtTelefono.Text,
+                address = Formulario.TxtDireccion.Text
             }); 
             var response = await Request.Post("clients", cliente);
             string content = await response.Content.ReadAsStringAsync();
@@ -61,21 +62,21 @@ namespace Front.Views.Caja.Clientes
             }
             else
             {
-                DrawerHostClientes.IsBottomDrawerOpen = false;
+                DrawerHost.IsBottomDrawerOpen = false;
                 Errors error = JsonConvert.DeserializeObject<Errors>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
-        //funcion actualizar clientes
-        public async void PutClientes(object sender, RoutedEventArgs e)
+        //evento actualizar clientes
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
             string cliente = new JavaScriptSerializer().Serialize(new
             {
-                ci = FormClientes.CBCedula.Text + FormClientes.TxtCedula.Text,
-                name = FormClientes.TxtNombre.Text,
-                surname = FormClientes.TxtApellido.Text,
-                phone = FormClientes.CBTelefono.Text + FormClientes.TxtTelefono.Text,
-                address = FormClientes.TxtDireccion.Text
+                ci = Formulario.CBCedula.Text + Formulario.TxtCedula.Text,
+                name = Formulario.TxtNombre.Text,
+                surname = Formulario.TxtApellido.Text,
+                phone = Formulario.CBTelefono.Text + Formulario.TxtTelefono.Text,
+                address = Formulario.TxtDireccion.Text
             });
             var response = await Request.Put("clients/"+id, cliente);
             string content = await response.Content.ReadAsStringAsync();
@@ -86,13 +87,13 @@ namespace Front.Views.Caja.Clientes
             }
             else
             {
-                DrawerHostClientes.IsBottomDrawerOpen = false;
+                DrawerHost.IsBottomDrawerOpen = false;
                 Errors error = JsonConvert.DeserializeObject<Errors>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
-        //funcion eliminar clientes
-        public async void DeleteClientes(object sender, RoutedEventArgs e)
+        //evento eliminar clientes
+        public async void Eliminar_Click(object sender, RoutedEventArgs e)
         {
             var response = await Request.Delete("clients/"+id);
             string content = await response.Content.ReadAsStringAsync();
@@ -103,117 +104,119 @@ namespace Front.Views.Caja.Clientes
             }
             else
             {
-                DrawerHostClientes.IsBottomDrawerOpen = false;
+                DrawerHost.IsBottomDrawerOpen = false;
                 Errors error = JsonConvert.DeserializeObject<Errors>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
         //evento click btn agregar cliente
-        private void BtnAgregarCliente_Click(object sender, RoutedEventArgs e)
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            FormClientes.TxtTituloDialg.Text = "Agregar Cliente";
-            TxtTituloDrawerCliente.Text = "¿Desea agregar el cliente?";
-            DialogHostClientes.IsOpen = true;
-            BtnConfirmarClienteDrawner.Click += PostClientes;
-            BtnCancelarClienteDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+            Formulario.TxtTituloDialg.Text = "Agregar Cliente";
+            TxtTituloDrawer.Text = "¿Desea agregar el cliente?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Agregar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
         //evento click btn actualizar cliente
-        private void BtnActualizarCliente_Click(object sender, RoutedEventArgs e)
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             clientes client = element.DataContext as clientes;
             id = client._id;
-            FormClientes.CargarForm(client);
+            Formulario.CargarForm(client);
 
-            FormClientes.TxtTituloDialg.Text = "Actualizar Cliente";
-            TxtTituloDrawerCliente.Text = "¿Desea actualizar el cliente?";
-            DialogHostClientes.IsOpen = true;
-            BtnConfirmarClienteDrawner.Click += PutClientes;
-            BtnCancelarClienteDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+            Formulario.TxtTituloDialg.Text = "Actualizar Cliente";
+            TxtTituloDrawer.Text = "¿Desea actualizar el cliente?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
         //evento click boton eliminar cliente
-        private void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             clientes client = element.DataContext as clientes;
             id = client._id;
 
-            TxtTituloDrawerCliente.Text = "¿Desea eliminar el cliente?";
-            DrawerHostClientes.IsBottomDrawerOpen = true;
-            BtnConfirmarClienteDrawner.Click += DeleteClientes;
-            BtnCancelarClienteDrawner.Click += BtnCancelarDrawner_Click;
+            TxtTituloDrawer.Text = "¿Desea eliminar el cliente?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
         private void abrirSnack(string mensaje, Errors error)
         {
             var bc = new BrushConverter();
-            TxtSnackbarClientes.Text = mensaje;
-            SnackBarNotificacionClientes.IsActive = true;
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
             if (error is null)
             {
-                SnackBarNotificacionClientes.Background = (Brush) bc.ConvertFrom("#00695c");
-                BtnSnackbarClientes.Click += BtnSnackbarClientesCerrar_Click;
+                SnackBarNotificacion.Background = (Brush) bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
             }
             else
             {
-                FormClientes.MostrarErrores(error);
-                SnackBarNotificacionClientes.Background = (Brush) bc.ConvertFrom("#f44c58");
-                BtnSnackbarClientes.Click += BtnSnackbarClientesAbrirForm_Click;
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush) bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
             }
         }
+        //funcion limpiar drawner
         private void limpiarDrawner()
         {
-            DrawerHostClientes.IsBottomDrawerOpen = false;
-            BtnConfirmarClienteDrawner.Click -= PostClientes;
-            BtnConfirmarClienteDrawner.Click -= PutClientes;
-            BtnConfirmarClienteDrawner.Click -= DeleteClientes;
-            BtnCancelarClienteDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
-            BtnCancelarClienteDrawner.Click -= BtnCancelarDrawner_Click;
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Agregar_Click;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
         }
         //evento btn snack cerrar 
-        private void BtnSnackbarClientesCerrar_Click(object sender, RoutedEventArgs e)
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
         {
-            GetClientes();
-            SnackBarNotificacionClientes.IsActive = false;
+            Get();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
         }
         //evento btn snack abrir form 
-        private void BtnSnackbarClientesAbrirForm_Click(object sender, RoutedEventArgs e)
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
         {
-            SnackBarNotificacionClientes.IsActive = false;
-            DialogHostClientes.IsOpen = true;
+            SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
         }
         //evento cierre snack siempre limpiar
-        private void SnackBarNotificacionClientes_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
             if (!e.NewValue)
             {
-                BtnSnackbarClientes.Click -= BtnSnackbarClientesCerrar_Click;
-                BtnSnackbarClientes.Click -= BtnSnackbarClientesAbrirForm_Click;
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
             }
         }
         //evento click boton aceptar form
         private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
         {
-            DialogHostClientes.IsOpen = false;
-            DrawerHostClientes.IsBottomDrawerOpen = true;
+            DialogHost.IsOpen = false;
+            DrawerHost.IsBottomDrawerOpen = true;
         }
         //evento click boton cancelar form
         private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
         {
-            DialogHostClientes.IsOpen = false;
-            FormClientes.LimpiarForm();
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
             limpiarDrawner();
         }
         //evento click boton cancelar drawner para abrir form
         private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
         {
-            DrawerHostClientes.IsBottomDrawerOpen = false;
-            DialogHostClientes.IsOpen = true;
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
         }
         //evento click boton cancelar drawner para abrir form
         private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
         {
-            FormClientes.LimpiarForm();
+            Formulario.LimpiarForm();
             limpiarDrawner();
         }
     }

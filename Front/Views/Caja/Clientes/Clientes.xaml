@@ -13,9 +13,9 @@
     <Grid Background="White">
         <Grid>
             <materialDesign:Snackbar
-                x:Name="SnackBarNotificacionClientes"
+                x:Name="SnackBarNotificacion"
                 Panel.ZIndex="5"
-                IsActive="False" IsActiveChanged="SnackBarNotificacionClientes_IsActiveChanged">
+                IsActive="False" IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
                 <materialDesign:SnackbarMessage>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -23,14 +23,14 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                            x:Name="TxtSnackbarClientes"
+                            x:Name="TxtSnackbar"
                             Grid.Column="0"
                             Grid.ColumnSpan="2"
                             Margin="0,0,124,0"
                             VerticalAlignment="Center"
                             FontWeight="Bold" />
                         <Button
-                            x:Name="BtnSnackbarClientes"
+                            x:Name="BtnSnackbar"
                             Grid.Column="1"
                             Width="90"
                             Margin="80,0,0,0"
@@ -42,7 +42,7 @@
             </materialDesign:Snackbar>
 
             <materialDesign:DrawerHost
-                x:Name="DrawerHostClientes"
+                x:Name="DrawerHost"
                 Grid.RowSpan="5"
                 Grid.ColumnSpan="5"
                 Width="800"
@@ -62,14 +62,14 @@
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
                         <TextBlock
-                            x:Name="TxtTituloDrawerCliente"
+                            x:Name="TxtTituloDrawer"
                             Margin="4"
                             VerticalAlignment="Center"
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="White" />
                         <Button
-                            Name="BtnConfirmarClienteDrawner"
+                            Name="BtnConfirmarDrawner"
                             Margin="4"
                             VerticalAlignment="Center"
                             Panel.ZIndex="3"
@@ -79,7 +79,7 @@
                             Foreground="White"
                             Style="{StaticResource MaterialDesignFlatButton}" />
                         <Button
-                            Name="BtnCancelarClienteDrawner"
+                            Name="BtnCancelarDrawner"
                             Margin="4"
                             VerticalAlignment="Center"
                             BorderBrush="Transparent"
@@ -91,7 +91,7 @@
             </materialDesign:DrawerHost>
             <!--#region Formulario Clientes-->
             <materialDesign:DialogHost
-                x:Name="DialogHostClientes"
+                x:Name="DialogHost"
                 Background="#00695c"
                 DialogTheme="Inherit"
                 IsOpen="False"
@@ -99,7 +99,7 @@
                 <materialDesign:DialogHost.DialogContent>
                     <Grid>
 
-                        <FormClientes:FormCliente x:Name="FormClientes" />
+                        <FormClientes:FormCliente x:Name="Formulario" />
                         <StackPanel
                             Grid.Row="6"
                             Margin="0,0,0,-270"
@@ -172,7 +172,7 @@
                         Panel.ZIndex="1"
                         Background="#00695c"
                         BorderBrush="Transparent"
-                        Click="BtnAgregarCliente_Click"
+                        Click="BtnAgregar_Click"
                         Cursor="Hand"
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                         <materialDesign:PackIcon
@@ -235,7 +235,7 @@
                                                 Width="50"
                                                 Background="#f44c58"
                                                 BorderBrush="Transparent"
-                                                Click="BtnEliminarCliente_Click">
+                                                Click="BtnEliminar_Click">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                             </Button>
                                             <Button
@@ -243,7 +243,7 @@
                                                 Width="50"
                                                 Background="#ffc107"
                                                 BorderBrush="Transparent"
-                                                Click="BtnActualizarCliente_Click">
+                                                Click="BtnActualizar_Click">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                             </Button>
                                         </DockPanel>

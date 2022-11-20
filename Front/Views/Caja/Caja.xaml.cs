@@ -57,12 +57,12 @@ namespace Front.Views.Caja
         private void BtnTabClientes_Click(object sender, RoutedEventArgs e)
         {
             TabControlClientes.SelectedIndex=0;
-            PageClientes.GetClientes();
+            PageClientes.Get();
         }
 
         private void GridCaja_Loaded(object sender, RoutedEventArgs e)
         {
-            PageClientes.GetClientes();
+            PageClientes.Get();
         }
 
         private void BtnTabMetodosPagos_Click(object sender, RoutedEventArgs e)
