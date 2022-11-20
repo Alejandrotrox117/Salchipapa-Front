@@ -7,10 +7,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="430"
-    Height="330"
+    Height="390"
     mc:Ignorable="d">
-    <Grid Background="White">
-        <StackPanel Width="430" Height="330">
+    <Border Background="White" CornerRadius="6">
+        <StackPanel Width="430" Height="390">
             <Grid>
                 <!--#region FILAS Y COLUMNAMS DEL STACKPANEL DEL DIALOG-->
                 <Grid.ColumnDefinitions>
@@ -49,17 +49,17 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <TextBlock
+                    x:Name="lblNombreError"
                     Grid.Row="2"
                     Margin="15,0,15,0"
                     FontSize="10"
                     Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Hidden" 
-                    x:Name="lblNombreError"/>
+                    Visibility="Hidden" />
                 <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
                 <TextBox
                     x:Name="TxtApellido"
@@ -73,9 +73,10 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <TextBlock
+                    x:Name="lblApellidoError"
                     Grid.Row="2"
                     Grid.Column="1"
                     Margin="15,0,15,0"
@@ -83,8 +84,7 @@
                     Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Visible" 
-                    x:Name="lblApellidoError"/>
+                    Visibility="Visible" />
                 <!--#endregion-->
                 <!--#region TITULO Y COMBOBOX CEDULA-->
                 <ComboBox
@@ -114,18 +114,18 @@
                     materialDesign:HintAssist.Hint="Cédula"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <!--#endregion-->
                 <TextBlock
+                    x:Name="lblCedulaError"
                     Grid.Row="4"
                     Margin="12,0,12,0"
                     FontSize="10"
                     Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Hidden" 
-                    x:Name="lblCedulaError"/>
+                    Visibility="Hidden" />
                 <!--#region TITULO TELEFONO Y COMBOBOX-->
                 <ComboBox
                     x:Name="CBTelefono"
@@ -158,18 +158,18 @@
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    TextWrapping="Wrap" 
-                    TextChanged="TextChanged"/>
+                    TextChanged="TextChanged"
+                    TextWrapping="Wrap" />
                 <TextBlock
+                    x:Name="lblTelefonoError"
                     Grid.Row="4"
                     Grid.Column="1"
                     Margin="15,0,15,0"
                     FontSize="10"
-                    TextAlignment="Justify"
                     Foreground="#f44c58"
+                    TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Hidden" 
-                    x:Name="lblTelefonoError"/>
+                    Visibility="Hidden" />
                 <TextBox
                     x:Name="TxtDireccion"
                     Grid.Row="5"
@@ -183,23 +183,23 @@
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged"
                     TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" 
-                    TextChanged="TextChanged" />
+                    VerticalScrollBarVisibility="Auto" />
                 <TextBlock
+                    x:Name="lblDireccionError"
                     Grid.Row="5"
                     Grid.ColumnSpan="2"
                     Margin="12,115,18,-25"
                     FontSize="10"
+                    Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Hidden"
-                    Foreground="#f44c58"
-                    x:Name="lblDireccionError"/>
+                    Visibility="Hidden" />
                 <!--#endregion-->
             </Grid>
             <!--#endregion-->
 
         </StackPanel>
-    </Grid>
+    </Border>
 </UserControl>

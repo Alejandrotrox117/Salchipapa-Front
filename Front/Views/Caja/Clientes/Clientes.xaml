@@ -12,10 +12,12 @@
     mc:Ignorable="d">
     <Grid Background="White">
         <Grid>
+            <!--#region Snackbar-->
             <materialDesign:Snackbar
                 x:Name="SnackBarNotificacion"
                 Panel.ZIndex="5"
-                IsActive="False" IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
+                IsActive="False"
+                IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
                 <materialDesign:SnackbarMessage>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -40,7 +42,7 @@
                     </Grid>
                 </materialDesign:SnackbarMessage>
             </materialDesign:Snackbar>
-
+            <!--#endregion-->
             <materialDesign:DrawerHost
                 x:Name="DrawerHost"
                 Grid.RowSpan="5"
@@ -85,7 +87,7 @@
                             BorderBrush="Transparent"
                             Content="Cancelar"
                             Foreground="White"
-                            Style="{StaticResource MaterialDesignFlatButton}"/>
+                            Style="{StaticResource MaterialDesignFlatButton}" />
                     </StackPanel>
                 </materialDesign:DrawerHost.BottomDrawerContent>
             </materialDesign:DrawerHost>
@@ -98,11 +100,10 @@
                 OverlayBackground="Black">
                 <materialDesign:DialogHost.DialogContent>
                     <Grid>
-
                         <FormClientes:FormCliente x:Name="Formulario" />
                         <StackPanel
                             Grid.Row="6"
-                            Margin="0,0,0,-270"
+                            Margin="0,20,0,-300"
                             HorizontalAlignment="Center"
                             Orientation="Horizontal">
                             <Grid>
@@ -116,32 +117,20 @@
                                     Margin="0,0,90,0"
                                     Background="Transparent"
                                     BorderBrush="#00695c"
+                                    Click="BtnAceptarDialog_Click"
                                     Content="Aceptar"
                                     Foreground="#00695c"
-                                    IsDefault="False"
-                                    Click="BtnAceptarDialog_Click">
-                                    <Button.CommandParameter>
-                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                            True
-                                        </system:Boolean>
-                                    </Button.CommandParameter>
-                                </Button>
+                                    IsDefault="False" />
                                 <Button
                                     x:Name="BtnCerrarForm"
                                     Grid.Column="1"
                                     Margin="0,0,0,0"
                                     Background="Transparent"
-                                    BorderBrush="#00695c"
+                                    BorderBrush="#f44c58"
+                                    Click="BtnCerrarForm_Click"
                                     Content="Cancelar"
-                                    Foreground="#00695c"
-                                    IsCancel="True"
-                                    Click="BtnCerrarForm_Click">
-                                    <Button.CommandParameter>
-                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                            False
-                                        </system:Boolean>
-                                    </Button.CommandParameter>
-                                </Button>
+                                    Foreground="#f44c58"
+                                    IsCancel="True" />
                             </Grid>
                         </StackPanel>
                     </Grid>
