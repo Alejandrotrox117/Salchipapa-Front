@@ -53,7 +53,7 @@
             BorderThickness="1"
             BottomDrawerBackground="#00695c"
             BottomDrawerCornerRadius="20 20 0 0"
-            IsBottomDrawerOpen="True">
+            IsBottomDrawerOpen="False">
             <!--#region contenido Drawer Metodos de pago-->
             <materialDesign:DrawerHost.BottomDrawerContent>
                 <StackPanel

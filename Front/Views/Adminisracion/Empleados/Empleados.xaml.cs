@@ -24,6 +24,7 @@ namespace Front.Views.Adminisracion.Empleados
         {
             InitializeComponent();
         }
+
         //private void BtnEnviarEmpleado_Click(object sender, RoutedEventArgs e)
         //{
         //    string empleado = new JavaScriptSerializer().Serialize(new

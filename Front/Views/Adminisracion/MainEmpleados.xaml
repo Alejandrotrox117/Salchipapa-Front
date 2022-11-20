@@ -85,7 +85,6 @@
                                 </Grid.RowDefinitions>
                                 <!--#endregion Filas y columnas-->
                                 <!--#region Contenido-->
-
                                 <materialDesign:ColorZone
                                     Grid.Row="0"
                                     Grid.Column="0"
