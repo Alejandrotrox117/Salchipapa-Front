@@ -12,6 +12,35 @@
     mc:Ignorable="d">
     <Grid Background="White">
         <Grid>
+            <materialDesign:Snackbar
+                x:Name="SnackBarNotificacionClientes"
+                Panel.ZIndex="5"
+                IsActive="False">
+                <materialDesign:SnackbarMessage>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            x:Name="TxtSnackbarClientes"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,124,0"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold" />
+                        <Button
+                            x:Name="BtnSnackbarClientes"
+                            Grid.Column="1"
+                            Width="90"
+                            Margin="80,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Content="Ok" />
+                    </Grid>
+                </materialDesign:SnackbarMessage>
+            </materialDesign:Snackbar>
+
             <materialDesign:DrawerHost
                 x:Name="DrawerHostClientes"
                 Grid.RowSpan="5"

@@ -46,7 +46,7 @@ namespace Front.Views.Caja
             {
                 //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
                 //DataGridClientes.ItemsSource = returnedDataClients;
-                ListBoxMetodosPagos.ItemsSource= returnedPayment;
+                //ListBoxMetodosPagos.ItemsSource= returnedPayment;
             }
             else
             {
@@ -63,6 +63,12 @@ namespace Front.Views.Caja
         private void GridCaja_Loaded(object sender, RoutedEventArgs e)
         {
             PageClientes.GetClientes();
+        }
+
+        private void BtnTabMetodosPagos_Click(object sender, RoutedEventArgs e)
+        {
+            TabControlClientes.SelectedIndex = 1;
+            PagePagos.GetPagos();
         }
 
 

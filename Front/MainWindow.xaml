@@ -166,7 +166,7 @@
                                                 Grid.Column="0"
                                                 Width="60"
                                                 Height="50"
-                                                Source="/logo.png"
+                                                Source="/IMG/logo.png"
                                                 Stretch="Fill"
                                                 StretchDirection="DownOnly" />
                                             <TextBlock
@@ -304,11 +304,11 @@
                                 <!--#endregion-->
                                 <!--#region Administracion-->
                                 <TreeViewItem
+                                    Width="187"
                                     FontSize="17"
-                                    
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    IsExpanded="True" Width="187">
+                                    IsExpanded="True">
                                     <TreeViewItem.Header>
                                         <StackPanel Orientation="Horizontal">
                                             <Grid>
@@ -325,10 +325,12 @@
                                                     Foreground="#00695c"
                                                     Kind="Tools" />
                                                 <!--#region BTN EMPLEADOS-->
-                                                <Button x:Name="BtnAdministracion"
+                                                <Button
+                                                    x:Name="BtnAdministracion"
                                                     Grid.Column="1"
                                                     Background="Transparent"
-                                                    BorderBrush="Transparent" Click="BtnAdministracion_Click">
+                                                    BorderBrush="Transparent"
+                                                    Click="BtnAdministracion_Click">
                                                     <TextBlock
                                                         FontSize="17"
                                                         Style="{StaticResource PrimaryColor}"

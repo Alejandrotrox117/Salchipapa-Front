@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Clientes="clr-namespace:Front.Views.Caja.Clientes"
+    xmlns:MetodosPagos="clr-namespace:Front.Views.Caja.Metodos_de_Pago"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Caja"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -57,18 +58,20 @@
                     <!--#endregion-->
                 </TabItem>
                 <!--#endregion-->
-                <!--#region TAB METODOS DE PAGO-->
+                <!--#region TAB Metodos de pago-->
                 <TabItem
                     x:Name="TabMetodosPagos"
                     Width="265"
                     Height="50">
+                    <!--#region Header Metodos de pagos-->
                     <TabItem.Header>
                         <Button
                             x:Name="BtnTabMetodosPagos"
                             Width="265"
                             Height="50"
                             Background="Transparent"
-                            BorderBrush="Transparent">
+                            BorderBrush="Transparent"
+                            Click="BtnTabMetodosPagos_Click">
                             <StackPanel Width="240" Height="50">
                                 <materialDesign:PackIcon
                                     Width="24"
@@ -85,124 +88,10 @@
                             </StackPanel>
                         </Button>
                     </TabItem.Header>
+                    <!--#endregion-->
                     <TabItem.Content>
                         <Grid>
-                            <!--#region Colorzone Metodos de pago-->
-                            <Grid>
-
-                                <!--#endregion-->
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <Grid>
-                                        <!--#region Lista de metodos de pago-->
-                                        <ListBox
-                                            x:Name="ListBoxMetodosPagos"
-                                            Height="455"
-                                            Margin="0,50,0,0"
-                                            AllowDrop="True"
-                                            Background="Transparent">
-                                            <ListBox.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <UniformGrid Columns="3" />
-                                                </ItemsPanelTemplate>
-                                            </ListBox.ItemsPanel>
-                                            <ListBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <materialDesign:Badged
-                                                        Margin="10,10,10,0"
-                                                        Background="Transparent"
-                                                        BadgeBackground="Transparent"
-                                                        BorderBrush="Transparent">
-                                                        <materialDesign:Badged.Badge>
-                                                            <Grid>
-                                                                <Button
-                                                                    x:Name="BtnAbrirDrawerEliminarPago"
-                                                                    Width="28"
-                                                                    Height="28"
-                                                                    Margin="0,10,10,0"
-                                                                    Background="Red"
-                                                                    BorderBrush="Transparent"
-                                                                    Cursor="Hand"
-                                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                                    Visibility="Visible">
-                                                                    <materialDesign:PackIcon
-                                                                        Width="20"
-                                                                        Height="25"
-                                                                        Foreground="White"
-                                                                        Kind="CloseCircle" />
-                                                                </Button>
-                                                            </Grid>
-                                                        </materialDesign:Badged.Badge>
-                                                        <materialDesign:Card
-                                                            Width="220"
-                                                            Height="130"
-                                                            Margin="10,10,10,10"
-                                                            Background="GhostWhite"
-                                                            Foreground="#00695c">
-                                                            <Grid>
-                                                                <Grid.RowDefinitions>
-                                                                    <RowDefinition Height="*" />
-                                                                    <RowDefinition Height="*" />
-                                                                </Grid.RowDefinitions>
-                                                                <TextBlock
-                                                                    Grid.Row="0"
-                                                                    Margin="10,16,10,10"
-                                                                    FontSize="17"
-                                                                    FontWeight="Bold"
-                                                                    Foreground="#00695c"
-                                                                    Text="{Binding name}"
-                                                                    TextWrapping="WrapWithOverflow" />
-                                                                <StackPanel Grid.Row="1">
-                                                                    <Grid>
-                                                                        <Grid.ColumnDefinitions>
-                                                                            <ColumnDefinition Width="150" />
-                                                                            <ColumnDefinition Width="auto" />
-                                                                        </Grid.ColumnDefinitions>
-                                                                        <TextBlock
-                                                                            Grid.Column="0"
-                                                                            Margin="10,0,5,0"
-                                                                            HorizontalAlignment="Left"
-                                                                            VerticalAlignment="Center"
-                                                                            FontSize="13"
-                                                                            FontWeight="Bold"
-                                                                            Text="Moneda :" />
-                                                                        <TextBlock
-                                                                            Grid.Column="0"
-                                                                            Margin="0,0,25,0"
-                                                                            HorizontalAlignment="Right"
-                                                                            VerticalAlignment="Center"
-                                                                            FontSize="13"
-                                                                            FontWeight="Bold"
-                                                                            Text="{Binding money}" />
-                                                                        <Button
-                                                                            x:Name="BtnAbrirFormEditarPagos"
-                                                                            Grid.Column="1"
-                                                                            Width="29"
-                                                                            Height="29"
-                                                                            HorizontalAlignment="Right"
-                                                                            Background="#FFC107"
-                                                                            BorderBrush="Transparent"
-                                                                            Cursor="Hand"
-                                                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                                            Visibility="Visible">
-                                                                            <materialDesign:PackIcon
-                                                                                Width="22"
-                                                                                Height="22"
-                                                                                Margin="0,0,0,0"
-                                                                                Foreground="Black"
-                                                                                Kind="Pencil" />
-                                                                        </Button>
-                                                                    </Grid>
-                                                                </StackPanel>
-                                                            </Grid>
-                                                        </materialDesign:Card>
-                                                    </materialDesign:Badged>
-                                                </DataTemplate>
-                                            </ListBox.ItemTemplate>
-                                        </ListBox>
-                                        <!--#endregion-->
-                                    </Grid>
-                                </ScrollViewer>
-                            </Grid>
+                            <MetodosPagos:MetodosDePago x:Name="PagePagos" />
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
@@ -225,8 +114,6 @@
                                 Text="Pedidos Finalizados" />
                         </StackPanel>
                     </TabItem.Header>
-
-
                 </TabItem>
                 <!--#endregion-->
             </TabControl>

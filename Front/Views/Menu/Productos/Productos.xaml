@@ -11,6 +11,34 @@
     Height="510"
     mc:Ignorable="d">
     <Grid Background="White">
+        <materialDesign:Snackbar
+            x:Name="SnackBarNotificacionProductos"
+            Panel.ZIndex="5"
+            IsActive="False">
+            <materialDesign:SnackbarMessage>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Name="TxtSnackbarProductos"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,124,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold" />
+                    <Button
+                        x:Name="BtnSnackbarProductos"
+                        Grid.Column="1"
+                        Width="90"
+                        Margin="80,0,0,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Content="Ok" />
+                </Grid>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
         <materialDesign:DrawerHost
             x:Name="DrawerHostProductos"
             Grid.RowSpan="6"
@@ -71,7 +99,7 @@
             IsOpen="False">
             <!--#region Contenido del formulario-->
             <materialDesign:DialogHost.DialogContent>
-                <FormularioProductos:DialogProductos />
+                <FormularioProductos:DialogProductos x:Name="DialogProductos" />
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
         <!--#region  Colorzone producto-->

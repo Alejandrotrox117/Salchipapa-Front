@@ -122,7 +122,7 @@ namespace Front
 
         private void BtnAdministracion_Click(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Empleados());
+            MyFrame.NavigationService.Navigate(new MainEmpleados());
         }
     }
 }

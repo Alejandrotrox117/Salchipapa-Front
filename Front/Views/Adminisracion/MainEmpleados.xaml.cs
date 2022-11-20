@@ -21,9 +21,9 @@ namespace Front.Views.Empleados
     /// <summary>
     /// Lógica de interacción para Empleados.xaml
     /// </summary>
-    public partial class Empleados : UserControl
+    public partial class MainEmpleados : UserControl
     {
-        public Empleados()
+        public MainEmpleados()
         {
             InitializeComponent();
         }
@@ -37,7 +37,7 @@ namespace Front.Views.Empleados
             if (returnedData != null)
             {
                 //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
-                DataGridEmpleados.ItemsSource = returnedData;
+                //DataGridEmpleados.ItemsSource = returnedData;
             }
             else
             {
@@ -50,19 +50,6 @@ namespace Front.Views.Empleados
             Main();
         }
 
-        private void BtnEnviarEmpleado_Click(object sender, RoutedEventArgs e)
-        {
-            string empleado = new JavaScriptSerializer().Serialize(new
-            {
-                ci = TxtCedulaEmpleado.Text,
-                name = TxtNombreEmpleado.Text,
-                surname = TxtApellidoEmpleado.Text,
-               account=CbAccount.Text,
-                password=TxtContra.Text
-                
-
-            });
-            Request.Post("clients", empleado);
-        }
+       
     }
 }
