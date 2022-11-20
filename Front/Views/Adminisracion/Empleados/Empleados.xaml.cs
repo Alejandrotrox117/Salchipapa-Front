@@ -23,160 +23,209 @@ namespace Front.Views.Adminisracion.Empleados
     /// </summary>
     public partial class Empleados : UserControl
     {
-        public string id { get; set; }  
+        private string id;
         public Empleados()
         {
             InitializeComponent();
         }
-
-        //funcion cargar 
+        //funcion obtener empleados
         public async void Get()
         {
-            string Response = await Request.Get("employes");
-            List<employes> empleados = JsonConvert.DeserializeObject<List<employes>>(Response);
-
-            if (empleados != null)
+            string response = await Request.Get("employes");
+            List<employes> returnedDataClients = JsonConvert.DeserializeObject<List<employes>>(response);
+            if (returnedDataClients != null)
             {
-                MessageBox.Show(empleados[0].account.rol);
-                DataGrid.ItemsSource = empleados;
+                DataGrid.ItemsSource = returnedDataClients;
             }
             else
             {
                 MessageBox.Show("Error");
             }
         }
-
-        //POST
-        //funcion agregar categoria
-        public async void Post(object sender, RoutedEventArgs e)
+        //evento agregar employes
+        public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            string empleados = new JavaScriptSerializer().Serialize(new
+            string empleado = new JavaScriptSerializer().Serialize(new
             {
-                name = Formulario.TxtNombreEmpleado.Text,
-                ci = Formulario.TxtCedulaEmpleado.Text,
-                surname = Formulario.TxtApellidoEmpleado.Text,
-                account = Formulario.CbAccount.Text,
-                password = Formulario.TxtContra.Text
-
+                ci = Formulario.CBCedula.Text + Formulario.TxtCedula.Text,
+                name = Formulario.TxtNombre.Text,
+                surname = Formulario.TxtApellido.Text,
+                account = new
+                {
+                    password = Formulario.TxtContra.Text,
+                    rol = Formulario.CbAccount.Text,
+                    admin = Formulario.CheckBoxPrivilegio.IsChecked
+                }
             });
-            var Response = await Request.Post("employes/", empleados);
-            if (Response.IsSuccessStatusCode)
+            var response = await Request.Post("employes", empleado);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                TxtSnackbar.Text = "¡Se ha agregado correctamente!";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
+                limpiarDrawner();
+                abrirSnack("Se ha agredado correctamente", null);
             }
             else
-                MessageBox.Show("hubo un error");
-
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
         }
-
-        private void LimpiarEventos()
+        //evento actualizar employes
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
-            DrawerHost.IsBottomDrawerOpen = false;
-            BtnConfirmarDrawner.Click -= Post;
-            BtnConfirmarDrawner.Click -= Put;
-            BtnConfirmarDrawner.Click -= Delete;
-            TxtTituloDrawer.Text = "";
-
+            string empleado = new JavaScriptSerializer().Serialize(new
+            {
+                ci = Formulario.CBCedula.Text + Formulario.TxtCedula.Text,
+                name = Formulario.TxtNombre.Text,
+                surname = Formulario.TxtApellido.Text,
+                account = new
+                {
+                    password = Formulario.TxtContra.Text,
+                    rol = Formulario.CbAccount.Text,
+                    admin = Formulario.CheckBoxPrivilegio.IsChecked
+                }
+            });
+            var response = await Request.Put("employes/"+id, empleado);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha actualizado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
         }
-
-        //AbrirFormulario
+        //evento eliminar employes
+        public async void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var response = await Request.Delete("employes/"+id);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha eliminado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+        }
+        //evento click btn agregar cliente
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            Formulario.TxtDialog.Text = "Agregar Empleado";
+            Formulario.TxtTituloDialg.Text = "Agregar Empleado";
+            TxtTituloDrawer.Text = "¿Desea agregar el empleado?";
             DialogHost.IsOpen = true;
-            TxtTituloDrawer.Text = "¿Desea agregar un nuevo Empleado";
-            BtnConfirmarDrawner.Click += Post;
-
+            BtnConfirmarDrawner.Click += Agregar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
-        //PUT EMPLEADOS
-        public async void Put(object sender, RoutedEventArgs e)
-        {
-            string empleados = new JavaScriptSerializer().Serialize(new
-            {
-                name = Formulario.TxtNombreEmpleado.Text,
-                ci = Formulario.TxtCedulaEmpleado.Text,
-                surname = Formulario.TxtApellidoEmpleado.Text,
-                account = Formulario.CbAccount.Text,
-                password = Formulario.TxtContra.Text
-
-            });
-            var Response = await Request.Put("employes/" + id, empleados);
-            if (Response.IsSuccessStatusCode)
-            {
-                TxtSnackbar.Text = "Se ha agregado correctamente";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
-            }
-            else
-            {
-                string error = await Response.Content.ReadAsStringAsync();
-                MessageBox.Show(error);
-            }
-
-        }
-
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        //evento click btn actualizar cliente
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            employes employe = element.DataContext as employes;
-            id = employe._id;
-            Formulario.cargarForm(employe);
-            Formulario.TxtDialog.Text = "Actualizar Empleado";
-            DialogHost.IsOpen = true;
+            employes empleado = element.DataContext as employes;
+            id = empleado._id;
+            Formulario.CargarForm(empleado);
+
+            Formulario.TxtTituloDialg.Text = "Actualizar Empleado";
             TxtTituloDrawer.Text = "¿Desea actualizar el empleado?";
-            BtnConfirmarDrawner.Click += Put;
-
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
-
-        //DELETE EMPLEADOS
-        public async void Delete(object sender, RoutedEventArgs e)
-        {
-            var Response = await Request.Delete("employes/" + id);
-            if (Response.IsSuccessStatusCode)
-            {
-                TxtSnackbar.Text = "Se ha eliminado correctamente";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
-            }
-            else
-                MessageBox.Show("hubo un error");
-        }
-
+        //evento click boton eliminar cliente
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            employes employe = element.DataContext as employes;
-            id = employe._id;
-            TxtTituloDrawer.Text = "¿Desea eliminar el Empleado?";
-            DrawerHost.IsBottomDrawerOpen = true;
-            BtnConfirmarDrawner.Click += Delete;
-        }
+            employes client = element.DataContext as employes;
+            id = client._id;
 
-        private void BtnCancelarFormulario_Click(object sender, RoutedEventArgs e)
-        {
-            LimpiarEventos();
+            TxtTituloDrawer.Text = "¿Desea eliminar el empleado?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
-        private void BtnAceptarFormulario_Click(object sender, RoutedEventArgs e)
+        //funcion abrir notificacion
+        private void abrirSnack(string mensaje, Errors error)
+        {
+            var bc = new BrushConverter();
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
+            if (error is null)
+            {
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+            }
+            else
+            {
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //funcion limpiar drawner
+        private void limpiarDrawner()
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Agregar_Click;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
+        }
+        //evento btn snack cerrar 
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Get();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
+        }
+        //evento btn snack abrir form 
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento cierre snack siempre limpiar
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento click boton aceptar form
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
         {
             DialogHost.IsOpen = false;
             DrawerHost.IsBottomDrawerOpen = true;
         }
-
+        //evento click boton cancelar form
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento click boton cancelar drawner para abrir form
         private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void BtnCancelarDrawner_Click_1(object sender, RoutedEventArgs e)
-        {
-            LimpiarEventos();
-        }
-
-        private void BtnConfirmarDrawner_Click(object sender, RoutedEventArgs e)
-        {
-            
+            Formulario.LimpiarForm();
+            limpiarDrawner();
         }
     }
 }

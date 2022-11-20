@@ -14,7 +14,8 @@
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -73,7 +74,6 @@
                         Panel.ZIndex="3"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Click="BtnConfirmarDrawner_Click"
                         Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -82,8 +82,7 @@
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
-                        Click="BtnCancelarDrawner_Click_1"
-                        CommandParameter="{x:Static Dock.Bottom}"
+                        Click="BtnCancelarDrawner_Click"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -128,33 +127,19 @@
                             Margin="0,0,108,0"
                             Background="Transparent"
                             BorderBrush="#00695c"
-                            Click="BtnAceptarFormulario_Click"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Click="BtnAceptarDialog_Click"
                             Content="Aceptar"
                             Foreground="#00695c"
-                            IsDefault="False">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                    True
-                                </system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
+                            IsDefault="False"/>
                         <Button
                             x:Name="BtnCancelarFormulario"
                             Margin="0,0,0,0"
                             Background="Transparent"
                             BorderBrush="#f44658"
-                            Click="BtnCancelarFormulario_Click"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            Click="BtnCerrarForm_Click"
                             Content="Cancelar"
                             Foreground="#f44658"
-                            IsCancel="True">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                    False
-                                </system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
+                            IsCancel="True"/>
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
@@ -268,18 +253,17 @@
                                 <DataTemplate>
                                     <DockPanel>
                                         <Button
-                                            Name="BtnEliminar"
+                                            Click="BtnEliminar_Click"
                                             Width="50"
                                             Background="#f44c58"
                                             BorderBrush="Transparent">
                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                         </Button>
                                         <Button
-                                            Name="BtnEditar"
+                                            Click="BtnActualizar_Click"
                                             Width="50"
                                             Background="#00695c"
-                                            BorderBrush="Transparent"
-                                            Click="BtnEditar_Click">
+                                            BorderBrush="Transparent">
                                             <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                         </Button>
                                     </DockPanel>
@@ -293,7 +277,7 @@
                 <!--#endregion-->
                 <!--#region BTN AGREGAR EMPLEADO-->
                 <Button
-                    x:Name="BtnAgregar"
+                    Click="BtnAgregar_Click"
                     Grid.Row="3"
                     Grid.Column="3"
                     Width="70"
@@ -303,7 +287,7 @@
                     Panel.ZIndex="1"
                     Background="#00695c"
                     BorderBrush="Transparent"
-                    Click="BtnAgregar_Click"
+                    
                     Cursor="Hand"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon
