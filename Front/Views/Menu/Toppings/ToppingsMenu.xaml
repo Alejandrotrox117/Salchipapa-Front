@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Front.Views.Menu.ToppingsMenu"
+    x:Class="Front.Views.Menu.Topping"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -64,7 +64,7 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
-                        x:Name="TxtDrawer"
+                        x:Name="TxtTituloDrawer"
                         Margin="4"
                         VerticalAlignment="Center"
                         FontSize="13"
@@ -76,7 +76,6 @@
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Click="Agregar_Click"
                         Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -85,7 +84,6 @@
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
-                        Click="BtnCancelarDrawnerAbrirForm_Click"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -102,7 +100,7 @@
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
                 <Grid>
-                    <uc:DialogToppings x:Name="Formulario" />
+                    <uc:FormTopping x:Name="Formulario" />
                     <StackPanel
                         Grid.Row="5"
                         Grid.ColumnSpan="2"

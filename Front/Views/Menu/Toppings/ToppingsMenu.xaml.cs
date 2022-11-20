@@ -2,18 +2,9 @@
 using Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Newtonsoft.Json;
 
 namespace Front.Views.Menu
@@ -21,50 +12,81 @@ namespace Front.Views.Menu
     /// <summary>
     /// Lógica de interacción para Toppings.xaml
     /// </summary>
-    public partial class ToppingsMenu : UserControl
+    public partial class Topping : UserControl
     {
 
-        public string id;  
-        public ToppingsMenu()
+        private string id;
+        public Topping()
         {
             InitializeComponent();
-           
         }
-        //Gets
-        //Obtener Toppings
+        //funcion obtener clientes
         public async void Get()
         {
-            string RespondTopping = await Request.Get("toppings");
-            List<Entities.Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Entities.Toppings>>(RespondTopping);
-            if (toppings != null)
+            string responseClients = await Request.Get("toppings");
+            List<toppings> returnedDataClients = JsonConvert.DeserializeObject<List<toppings>>(responseClients);
+            if (returnedDataClients != null)
             {
-                DataGridToppings.ItemsSource = toppings;
+                DataGridToppings.ItemsSource = returnedDataClients;
             }
             else
             {
                 MessageBox.Show("Error");
             }
         }
-
-
-
-
-        //Delete
-        //evento click boton eliminar categoria
-        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        //evento agregar clientes
+        public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            FrameworkElement element = e.Source as FrameworkElement;
-            Entities.Toppings toppings = element.DataContext as Entities.Toppings;
-            id = toppings._id;
-            TxtDrawer.Text = "¿Desea eliminar el Topping?";
-            DrawerHost.IsBottomDrawerOpen = true;
-            BtnConfirmarDrawner.Click += Eliminar_Click;
-            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
+            decimal precio = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : "0");
+            string topping = new JavaScriptSerializer().Serialize(new
+            {
+                name = Formulario.TxtNombreTopping.Text,
+                price = precio,
+                stock = Formulario.CheckboxTp.IsChecked
+            });
+            var response = await Request.Post("toppings", topping);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha agredado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                MessageBox.Show(content);
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
         }
-        //funcion eliminar categoria
+        //evento actualizar clientes
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            decimal precio = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : "0");
+            string topping = new JavaScriptSerializer().Serialize(new
+            {
+                name = Formulario.TxtNombreTopping.Text,
+                price = precio,
+                stock = Formulario.CheckboxTp.IsChecked
+            });
+            var response = await Request.Put("toppings/"+id, topping);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha actualizado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+        }
+        //evento eliminar clientes
         public async void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            var response = await Request.Delete("categories/" + id);
+            var response = await Request.Delete("toppings/"+id);
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
@@ -78,49 +100,40 @@ namespace Front.Views.Menu
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
-
-        private void limpiarDrawner()
-        {
-            DrawerHost.IsBottomDrawerOpen = false;
-            BtnConfirmarDrawner.Click -= Agregar_Click;
-            BtnConfirmarDrawner.Click -= Actualizar_Click;
-            BtnConfirmarDrawner.Click -= Eliminar_Click;
-            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
-            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
-        }
-
-        //Post
+        //evento click btn agregar cliente
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            Formulario.TxtTituloDialg.Text = "Agregar Topping";
+            TxtTituloDrawer.Text = "¿Desea agregar el topping?";
             DialogHost.IsOpen = true;
-            Formulario.TxtDialog.Text = "Agregar Toppings";
-            TxtDrawer.Text = "¿Desea agregar este topping?";
             BtnConfirmarDrawner.Click += Agregar_Click;
             BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
-        public async void Agregar_Click(object sender, RoutedEventArgs e)
+        //evento click btn actualizar cliente
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
-            string toppings = new JavaScriptSerializer().Serialize(new
-            {
-                name = Formulario.TxtNombreTopping.Text,
-                price = Convert.ToDecimal( string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : 0),
-                stock = Formulario.CheckboxTp.IsChecked
+            FrameworkElement element = e.Source as FrameworkElement;
+            toppings topping = element.DataContext as toppings;
+            id = topping._id;
+            Formulario.CargarForm(topping);
 
-            }); 
-            var response = await Request.Post("toppings", toppings);
-            string content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                limpiarDrawner();
-                abrirSnack("Se ha agredado correctamente", null);
-            }
-            else
-            {
-                DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
-                abrirSnack("Ha ocurrido un error", error);
-            }
+            Formulario.TxtTituloDialg.Text = "Actualizar Topping";
+            TxtTituloDrawer.Text = "¿Desea actualizar el topping?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+        }
+        //evento click boton eliminar cliente
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            toppings toppings = element.DataContext as toppings;
+            id = toppings._id;
 
+            TxtTituloDrawer.Text = "¿Desea eliminar el topping?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
         private void abrirSnack(string mensaje, Errors error)
@@ -140,45 +153,17 @@ namespace Front.Views.Menu
                 BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
             }
         }
-
-        //funcion actualizar categoria
-        public async void Actualizar_Click(object sender, RoutedEventArgs e)
+        //funcion limpiar drawner
+        private void limpiarDrawner()
         {
-            string toppings = new JavaScriptSerializer().Serialize(new
-            {
-                name = Formulario.TxtNombreTopping.Text,
-                price = Convert.ToDecimal(string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : 0),
-                stock = Formulario.CheckboxTp.IsChecked
-            });
-            var response = await Request.Put("toppings/" + id, toppings);
-            string content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                limpiarDrawner();
-                abrirSnack("Se ha actualizado correctamente", null);
-            }
-            else
-            {
-                DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
-                abrirSnack("Ha ocurrido un error", error);
-            }
-
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Agregar_Click;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
         }
-        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
-        {
-            FrameworkElement element = e.Source as FrameworkElement;
-            Entities.Toppings toppings = element.DataContext as Entities.Toppings;
-            id = toppings._id;
-            Formulario.CargarForm(toppings);
-
-            Formulario.TxtDialog.Text = "Actualizar Toppings";
-            TxtDrawer.Text = "¿Desea actualizar el Topping?";
-            DialogHost.IsOpen = true;
-            BtnConfirmarDrawner.Click += Actualizar_Click;
-            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
-        }
-
+        //evento btn snack cerrar 
         private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
         {
             Get();

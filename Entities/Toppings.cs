@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Toppings
+    public class toppings
     {
 
         public string name { get; set; }

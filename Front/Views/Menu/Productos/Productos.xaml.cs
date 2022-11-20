@@ -47,8 +47,8 @@ namespace Front.Views.Menu.Productos
         //evento agregar clientes
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            List<Entities.Toppings> ListaToppings = new List<Entities.Toppings>();
-            foreach (Entities.Toppings i in Formulario.ListToppings.Items)
+            List<toppings> ListaToppings = new List<toppings>();
+            foreach (toppings i in Formulario.ListToppings.Items)
             {
                 ListaToppings.Add(i);
             }
@@ -80,8 +80,8 @@ namespace Front.Views.Menu.Productos
         //evento actualizar clientes
         public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
-            List<Entities.Toppings> ListaToppings = new List<Entities.Toppings>();
-            foreach (Entities.Toppings i in Formulario.ListToppings.Items)
+            List<toppings> ListaToppings = new List<toppings>();
+            foreach (toppings i in Formulario.ListToppings.Items)
             {
                 ListaToppings.Add(i);
             }

@@ -20,15 +20,17 @@ namespace Front.Views.Menu.Toppings
     /// <summary>
     /// Lógica de interacción para DialogToppings.xaml
     /// </summary>
-    public partial class DialogToppings : UserControl
+    public partial class FormTopping : UserControl
     {
-        public DialogToppings()
+        public FormTopping()
         {
             InitializeComponent();
         }
-        public void CargarForm(Entities.Toppings toppings)
+        public void CargarForm(toppings toppings)
         {
             TxtNombreTopping.Text = toppings.name;
+            TxtPrecioTopping.Text = toppings.price.ToString();
+            CheckboxTp.IsChecked = toppings.stock;
         }
         public void LimpiarForm()
         {
@@ -69,12 +71,20 @@ namespace Front.Views.Menu.Toppings
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#00695c");
-            TxtNombreTopping.BorderBrush = color;
-            lblNombreError.Visibility = Visibility.Hidden;
+
+            TextBox txt = sender as TextBox;
+            switch (txt.Name)
+            {
+                case "TxtNombre":
+                    lblNombreError.Visibility = Visibility.Hidden;
+                    TxtNombreTopping.BorderBrush = color;
+                    break;
+                case "TxtPrecio":
+                    lblPrecioError.Visibility = Visibility.Hidden;
+                    TxtPrecioTopping.BorderBrush = color;
+                    break;
+
+            }
         }
-
-
-
-
     }
 }

@@ -43,7 +43,7 @@ namespace Front.Views.Menu.Productos
             string ResponseCategorie = await Request.Get("categories");
             string ResponseToppings = await Request.Get("toppings");
             List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(ResponseCategorie);
-            List<Entities.Toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Entities.Toppings>>(ResponseToppings);
+            List<toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<toppings>>(ResponseToppings);
             if (categorie != null)
             {
                 CbCategoriaProducto.ItemsSource = categorie;
@@ -159,7 +159,7 @@ namespace Front.Views.Menu.Productos
         private void BtnEliminarToppingList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            ListToppings.Items.Remove(element.DataContext as Entities.Toppings);
+            ListToppings.Items.Remove(element.DataContext as toppings);
         }
 
     }

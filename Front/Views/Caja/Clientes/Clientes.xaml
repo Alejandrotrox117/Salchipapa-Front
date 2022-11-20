@@ -120,7 +120,9 @@
                                     Click="BtnAceptarDialog_Click"
                                     Content="Aceptar"
                                     Foreground="#00695c"
-                                    IsDefault="False" />
+                                    IsDefault="False"
+                                    />
+
                                 <Button
                                     x:Name="BtnCerrarForm"
                                     Grid.Column="1"
@@ -129,8 +131,9 @@
                                     BorderBrush="#f44c58"
                                     Click="BtnCerrarForm_Click"
                                     Content="Cancelar"
-                                    Foreground="#f44c58"
-                                    IsCancel="True" />
+                                    Foreground="#00695c"
+                                    IsCancel="True"
+                                    />
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -153,7 +156,6 @@
                             Text="Todos los Clientes" />
                     </materialDesign:ColorZone>
                     <Button
-                        x:Name="BtnAgregarCliente"
                         Width="70"
                         Height="70"
                         Margin="664,0,55,10"
@@ -220,7 +222,6 @@
                                     <DataTemplate>
                                         <DockPanel>
                                             <Button
-                                                x:Name="BtnEliminarCliente"
                                                 Width="50"
                                                 Background="#f44c58"
                                                 BorderBrush="Transparent"
@@ -228,7 +229,6 @@
                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                             </Button>
                                             <Button
-                                                x:Name="BtnActualizarCliente"
                                                 Width="50"
                                                 Background="#ffc107"
                                                 BorderBrush="Transparent"

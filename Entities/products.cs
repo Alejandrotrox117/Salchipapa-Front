@@ -19,6 +19,6 @@ namespace Entities
         public string description { get; set; }
         public int stock { get; set; }
 
-        public List<Toppings> toppings { get; set; }
+        public List<toppings> toppings { get; set; }
     }
 }
