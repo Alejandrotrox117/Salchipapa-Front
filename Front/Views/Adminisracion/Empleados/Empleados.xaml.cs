@@ -24,6 +24,11 @@ namespace Front.Views.Adminisracion.Empleados
         {
             InitializeComponent();
         }
+
+        private void BtnSnackbarEmpleados_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         //private void BtnEnviarEmpleado_Click(object sender, RoutedEventArgs e)
         //{
         //    string empleado = new JavaScriptSerializer().Serialize(new

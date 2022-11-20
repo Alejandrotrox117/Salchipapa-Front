@@ -15,7 +15,7 @@
             <materialDesign:Snackbar
                 x:Name="SnackBarNotificacionClientes"
                 Panel.ZIndex="5"
-                IsActive="False">
+                IsActive="False" IsActiveChanged="SnackBarNotificacionClientes_IsActiveChanged">
                 <materialDesign:SnackbarMessage>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -83,10 +83,9 @@
                             Margin="4"
                             VerticalAlignment="Center"
                             BorderBrush="Transparent"
-                            CommandParameter="{x:Static Dock.Bottom}"
                             Content="Cancelar"
                             Foreground="White"
-                            Style="{StaticResource MaterialDesignFlatButton}" />
+                            Style="{StaticResource MaterialDesignFlatButton}"/>
                     </StackPanel>
                 </materialDesign:DrawerHost.BottomDrawerContent>
             </materialDesign:DrawerHost>
@@ -100,7 +99,7 @@
                 <materialDesign:DialogHost.DialogContent>
                     <Grid>
 
-                        <FormClientes:DialogClientes />
+                        <FormClientes:FormCliente x:Name="FormClientes" />
                         <StackPanel
                             Grid.Row="6"
                             Margin="0,0,0,-270"
@@ -119,7 +118,8 @@
                                     BorderBrush="#00695c"
                                     Content="Aceptar"
                                     Foreground="#00695c"
-                                    IsDefault="False">
+                                    IsDefault="False"
+                                    Click="BtnAceptarDialog_Click">
                                     <Button.CommandParameter>
                                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                             True
@@ -134,7 +134,8 @@
                                     BorderBrush="#00695c"
                                     Content="Cancelar"
                                     Foreground="#00695c"
-                                    IsCancel="True">
+                                    IsCancel="True"
+                                    Click="BtnCerrarForm_Click">
                                     <Button.CommandParameter>
                                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                                             False
@@ -233,14 +234,16 @@
                                                 x:Name="BtnEliminarCliente"
                                                 Width="50"
                                                 Background="#f44c58"
-                                                BorderBrush="Transparent">
+                                                BorderBrush="Transparent"
+                                                Click="BtnEliminarCliente_Click">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                             </Button>
                                             <Button
                                                 x:Name="BtnActualizarCliente"
                                                 Width="50"
-                                                Background="#00695c"
-                                                BorderBrush="Transparent">
+                                                Background="#ffc107"
+                                                BorderBrush="Transparent"
+                                                Click="BtnActualizarCliente_Click">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                             </Button>
                                         </DockPanel>

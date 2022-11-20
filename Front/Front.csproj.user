@@ -2,12 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Views\Adminisracion\Empleados\DialogEmpleados.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Adminisracion\Empleados\Empleados.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Session.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,7 +11,7 @@
     <Compile Update="Views\Caja\Clientes\Clientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Caja\Clientes\DialogClientes.xaml.cs">
+    <Compile Update="Views\Caja\Clientes\FormCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\Metodos de Pago\DialogPagos.xaml.cs">
@@ -27,9 +21,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Adminisracion\MainEmpleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
@@ -58,12 +49,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Adminisracion\Empleados\DialogEmpleados.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Adminisracion\Empleados\Empleados.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Session.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -73,7 +58,7 @@
     <Page Update="Views\Caja\Clientes\Clientes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Caja\Clientes\DialogClientes.xaml">
+    <Page Update="Views\Caja\Clientes\FormCliente.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Metodos de Pago\DialogPagos.xaml">
@@ -83,9 +68,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\PlantillaDialog.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Adminisracion\MainEmpleados.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Categorias\Categorias.xaml">

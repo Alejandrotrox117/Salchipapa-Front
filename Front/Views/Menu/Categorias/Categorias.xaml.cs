@@ -41,7 +41,7 @@ namespace Front.Views.Menu.Categorias
             {
                 name = DialogCategorias.TxtNombreCategoria.Text,
             });
-            var Response = await Request.Post("categories/", categoria);
+            var Response = await Request.Post("categories", categoria);
             if (Response.IsSuccessStatusCode)
             {
                 TxtSnackbar.Text = "Se ha agregado correctamente";
