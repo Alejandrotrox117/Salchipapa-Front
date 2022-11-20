@@ -12,9 +12,10 @@
     mc:Ignorable="d">
     <Grid Background="White">
         <materialDesign:Snackbar
-            x:Name="SnackBarNotificacionPagos"
+            x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -22,27 +23,26 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        x:Name="TxtSnackbarPagos"
+                        x:Name="TxtSnackbar"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="0,0,124,0"
                         VerticalAlignment="Center"
                         FontWeight="Bold" />
                     <Button
-                        x:Name="BtnSnackbarPagos"
+                        x:Name="BtnSnackbar"
                         Grid.Column="1"
                         Width="90"
                         Margin="80,0,0,0"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Click="BtnSnackbarPagos_Click"
                         Content="Ok" />
                 </Grid>
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>
         <!--#region Drawer metodos de pago-->
         <materialDesign:DrawerHost
-            x:Name="DrawerHostPagos"
+            x:Name="DrawerHost"
             Grid.RowSpan="6"
             Grid.ColumnSpan="5"
             Width="800"
@@ -63,30 +63,27 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
-                        x:Name="TxtDrawerHostPagos"
+                        x:Name="TxtTituloDrawer"
                         Margin="4"
                         VerticalAlignment="Center"
                         FontSize="13"
                         FontWeight="Bold"
                         Foreground="White" />
                     <Button
-                        x:Name="BtnConfirmarDrawnerPagos"
+                        x:Name="BtnConfirmarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         Panel.ZIndex="3"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Click="BtnConfirmarDrawnerPagos_Click"
                         Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
-                        x:Name="BtnCancelarDrawnerPagos"
+                        x:Name="BtnCancelarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
-                        Click="BtnCancelarDrawnerPagos_Click"
-                        CommandParameter="{x:Static Dock.Bottom}"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -97,7 +94,7 @@
         <!--#endregion-->
         <!--#region DialogHost Metodos de pago-->
         <materialDesign:DialogHost
-            x:Name="DialogHostMetodosPago"
+            x:Name="DialogHost"
             Grid.ColumnSpan="5"
             Background="#00695c"
             DialogTheme="Inherit"
@@ -114,7 +111,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <MetodosPagos:FormPagos x:Name="FormPagos" />
+                    <MetodosPagos:FormPagos x:Name="Formulario" />
                     <StackPanel
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
@@ -129,27 +126,21 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Button
-                                x:Name="BtnAbrirDrawnerPagos"
                                 Grid.Column="0"
                                 Margin="0,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
-                                Click="BtnAbrirDrawnerPagos_Click"
+                                Click="BtnAceptarDialog_Click"
                                 Content="Aceptar"
                                 Foreground="#00695c" />
                             <Button
-                                x:Name="BtnCerrarFormularioPagos"
                                 Grid.Column="1"
                                 Margin="100,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
-                                Click="BtnCerrarFormularioPagos_Click"
+                                Click="BtnCerrarForm_Click"
                                 Content="Cancelar"
-                                Foreground="#00695c">
-                                <Button.CommandParameter>
-                                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                                </Button.CommandParameter>
-                            </Button>
+                                Foreground="#00695c"/>
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -170,7 +161,6 @@
                         Text="Todos los métodos de pago" />
                 </materialDesign:ColorZone>
                 <Button
-                    x:Name="BtnAbrirFormPagos"
                     Width="70"
                     Height="70"
                     Margin="664,0,55,10"
@@ -178,7 +168,7 @@
                     Panel.ZIndex="1"
                     Background="#00695c"
                     BorderBrush="Transparent"
-                    Click="BtnAbrirFormPagos_Click"
+                    Click="BtnAgregar_Click"
                     Cursor="Hand"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon
@@ -212,7 +202,6 @@
                                         <materialDesign:Badged.Badge>
                                             <Grid>
                                                 <Button
-                                                    x:Name="BtnAbrirDrawerEliminarPago"
                                                     Width="28"
                                                     Height="28"
                                                     Margin="0,25,28,0"
@@ -272,14 +261,13 @@
                                                             FontWeight="Bold"
                                                             Text="{Binding money}" />
                                                         <Button
-                                                            x:Name="BtnAbrirFormEditarPagos"
                                                             Grid.Column="1"
                                                             Width="29"
                                                             Height="29"
                                                             HorizontalAlignment="Right"
                                                             Background="#FFC107"
                                                             BorderBrush="White"
-                                                            Click="BtnEditar_Click"
+                                                            Click="BtnActualizar_Click"
                                                             Cursor="Hand"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                             Visibility="Visible">

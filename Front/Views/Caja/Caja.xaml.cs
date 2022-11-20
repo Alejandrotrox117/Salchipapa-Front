@@ -68,7 +68,7 @@ namespace Front.Views.Caja
         private void BtnTabMetodosPagos_Click(object sender, RoutedEventArgs e)
         {
             TabControlClientes.SelectedIndex = 1;
-            PagePagos.GetPagos();
+            PagePagos.Get();
         }
 
 

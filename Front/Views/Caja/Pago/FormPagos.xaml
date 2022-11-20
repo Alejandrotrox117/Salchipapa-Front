@@ -27,7 +27,7 @@
                 <!--#endregion-->
                 <!--#region Titulo y texbox NOMBRE-->
                 <TextBlock
-                    x:Name="TxtDialogPagos"
+                    x:Name="TxtTituloDialg"
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Margin="0,10,0,16"
@@ -48,9 +48,19 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                    TextChanged="TextChanged"/>
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="10,5,0,47"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Hidden"
+                    x:Name="lblNombreError"/>
                 <ComboBox
-                    x:Name="TxtMoneda"
+                    x:Name="CBMoneda"
                     Grid.Row="1"
                     Grid.Column="1"
                     Width="190"
@@ -64,6 +74,16 @@
                     <ComboBoxItem Content="DOL" />
                     <ComboBoxItem Content="BS" />
                 </ComboBox>
+                <TextBlock
+                    Grid.Row="2"
+                    Margin="5,5,10,47"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Hidden"
+                    x:Name="lblMonedaError" 
+                    Grid.Column="1"/>
             </Grid>
             <!--#endregion-->
         </StackPanel>
