@@ -50,6 +50,16 @@ namespace Front.Views.Empleados
             Main();
         }
 
-       
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            PageEmpleados.Get();
+
+        }
+
+        private void BtnTabEmpleado_Click(object sender, RoutedEventArgs e)
+        {
+            TabControlEmpleados.SelectedIndex = 0;
+            PageEmpleados.Get();
+        }
     }
 }

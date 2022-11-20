@@ -1,10 +1,10 @@
 ﻿<UserControl
-    x:Class="Front.Views.Caja.Metodos_de_Pago.MetodosDePago"
+    x:Class="Front.Views.Caja.Pagos.MetodosDePago"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:MetodosPagos="clr-namespace:Front.Views.Caja.Metodos_de_Pago"
+    xmlns:MetodosPagos="clr-namespace:Front.Views.Caja.Pagos"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Front.Views.Caja.Metodos_de_Pago"
+    xmlns:local="clr-namespace:Front.Views.Caja.Pagos"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -53,7 +53,7 @@
             BorderThickness="1"
             BottomDrawerBackground="#00695c"
             BottomDrawerCornerRadius="20 20 0 0"
-            IsBottomDrawerOpen="True">
+            IsBottomDrawerOpen="False">
             <!--#region contenido Drawer Metodos de pago-->
             <materialDesign:DrawerHost.BottomDrawerContent>
                 <StackPanel
@@ -114,7 +114,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <MetodosPagos:DialogPagos x:Name="DialogPagos" />
+                    <MetodosPagos:FormPagos x:Name="FormPagos" />
                     <StackPanel
                         Grid.Row="1"
                         Grid.ColumnSpan="2"
@@ -138,12 +138,12 @@
                                 Content="Aceptar"
                                 Foreground="#00695c" />
                             <Button
-                                x:Name="BtnCerrarDrawnerPago"
+                                x:Name="BtnCerrarFormularioPagos"
                                 Grid.Column="1"
                                 Margin="100,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
-                                Click="BtnCerrarDrawnerPago_Click"
+                                Click="BtnCerrarFormularioPagos_Click"
                                 Content="Cancelar"
                                 Foreground="#00695c">
                                 <Button.CommandParameter>
@@ -218,6 +218,7 @@
                                                     Margin="0,25,28,0"
                                                     Background="Red"
                                                     BorderBrush="Transparent"
+                                                    Click="BtnEliminar_Click"
                                                     Cursor="Hand"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                     Visibility="Visible">
@@ -278,6 +279,7 @@
                                                             HorizontalAlignment="Right"
                                                             Background="#FFC107"
                                                             BorderBrush="White"
+                                                            Click="BtnEditar_Click"
                                                             Cursor="Hand"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                             Visibility="Visible">

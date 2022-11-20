@@ -2,6 +2,12 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Views\Adminisracion\Empleados\FormEmplados.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Adminisracion\Empleados\Empleados.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Session.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,10 +20,10 @@
     <Compile Update="Views\Caja\Clientes\FormCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Caja\Metodos de Pago\DialogPagos.xaml.cs">
+    <Compile Update="Views\Caja\Pago\FormPagos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml.cs">
+    <Compile Update="Views\Caja\Pago\MetodosDePago.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
@@ -49,6 +55,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Adminisracion\Empleados\FormEmplados.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Adminisracion\Empleados\Empleados.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Session.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -61,10 +73,10 @@
     <Page Update="Views\Caja\Clientes\FormCliente.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Caja\Metodos de Pago\DialogPagos.xaml">
+    <Page Update="Views\Caja\Pago\FormPagos.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Caja\Metodos de Pago\MetodosDePago.xaml">
+    <Page Update="Views\Caja\Pago\MetodosDePago.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\PlantillaDialog.xaml">

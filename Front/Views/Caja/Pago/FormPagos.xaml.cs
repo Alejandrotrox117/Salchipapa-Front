@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Adminisracion.Empleados
+namespace Front.Views.Caja.Pagos
 {
     /// <summary>
-    /// Lógica de interacción para DialogEmpleados.xaml
+    /// Lógica de interacción para DialogPagos.xaml
     /// </summary>
-    public partial class DialogEmpleados : UserControl
+    public partial class FormPagos : UserControl
     {
-        public DialogEmpleados()
+        public FormPagos()
         {
             InitializeComponent();
         }
