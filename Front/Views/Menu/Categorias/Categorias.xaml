@@ -14,6 +14,21 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--#region DRAWERHOST CATEGORIAS-->
+
+        <materialDesign:Snackbar x:Name="SnackBarNotificacion" IsActive="False">
+            <materialDesign:SnackbarMessage>
+                <Grid>
+                    <TextBlock x:Name="TxtSnackbar" />
+                    <Button
+                        x:Name="BtnSnackbar"
+                        Click="BtnSnackbar_Click"
+                        Content="Ok" />
+                </Grid>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
+
+
+
         <materialDesign:DrawerHost
             x:Name="DrawerHostCategorias"
             Grid.RowSpan="6"
@@ -56,6 +71,7 @@
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
+                        Click="BtnCerrarForm_Click"
                         Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                         CommandParameter="{x:Static Dock.Bottom}"
                         Content="Cancelar"
@@ -81,7 +97,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Form:DialogHostCategorias x:Name="Dialog" />
+                    <Form:DialogHostCategorias x:Name="DialogCategorias" />
                     <StackPanel
                         Grid.Row="4"
                         Margin="0,-30,0,40"
@@ -92,13 +108,13 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
                             <Button
                                 x:Name="BtnAceptarDialogCategorias"
                                 Grid.Column="0"
                                 Margin="0,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
+                                Click="BtnAceptarDialogCategorias_Click"
                                 Content="Agregar"
                                 Foreground="#00695c"
                                 Visibility="Visible">
@@ -112,6 +128,7 @@
                                 Margin="35,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
+                                Click="BtnCerrarForm_Click"
                                 Content="Cancelar"
                                 Foreground="#00695c"
                                 IsCancel="True">
@@ -237,6 +254,7 @@
                     VerticalAlignment="Bottom"
                     Background="#099faf"
                     BorderBrush="Transparent"
+                    Click="BtnAgregarCategoria_Click"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     Cursor="Hand"
                     Foreground="White"

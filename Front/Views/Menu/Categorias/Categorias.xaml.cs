@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Nancy.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -42,6 +43,61 @@ namespace Front.Views.Menu.Categorias
             {
                 MessageBox.Show("Error");
             }
+        }
+
+        public async void PostCategorias(object sender, RoutedEventArgs e)
+        {
+            string categorias = new JavaScriptSerializer().Serialize(new
+            {
+                name = DialogCategorias.TxtNombreCategoria.Text,
+            });
+            var Response = await Request.Post("categories/", categorias);
+            if (Response.IsSuccessStatusCode)
+            {
+                TxtSnackbar.Text = "Se ha agregado correctamente";
+                SnackBarNotificacion.IsActive = true;
+
+            }
+            else
+                MessageBox.Show("hubo un error");
+
+        }
+
+        private void BtnSnackbar_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+        }
+
+        private void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHostCategorias.IsOpen = true;
+            DialogCategorias.TxtTituloDialgCategorias.Text = "Agregar Categoria";
+            TxtTituloDrawerHostCategorias.Text = "¿Desea agregar una nueva categoria?";
+            BtnConfirmarCategoriaDrawner.Click+=PostCategorias;
+        }
+
+        private void BtnAceptarDialogCategorias_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHostCategorias.IsOpen = false;
+            DrawerHostCategorias.IsBottomDrawerOpen = true;
+        }
+
+        private void LimpiarEventos()
+        {
+            DrawerHostCategorias.IsBottomDrawerOpen = false;
+            BtnConfirmarCategoriaDrawner.Click-=PostCategorias;
+            TxtTituloDrawerHostCategorias.Text = "";
+        
+        }
+
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarEventos();
+        }
+
+        private void BtnCancelarCategoriaDrawner_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
