@@ -12,7 +12,7 @@ namespace Entities
         public string name { get; set; }
 
         public double price { get; set; }
-        public int stock { get; set; }
+        public bool stock { get; set; }
         public string _id { get; set; }
 
 
