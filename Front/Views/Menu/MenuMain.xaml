@@ -131,7 +131,7 @@
                     <!--#region Tab contenido-->
                     <TabItem.Content>
                         <Grid>
-                            <Toppings:ToppingsMenu x:Name="PageToppings" />
+                            <Toppings:Topping x:Name="PageToppings" />
                         </Grid>
                         <!--#endregion-->
                     </TabItem.Content>
