@@ -12,6 +12,34 @@
     Height="510"
     mc:Ignorable="d">
     <Grid Background="White">
+        <materialDesign:Snackbar
+            x:Name="SnackBarNotificacionToppings"
+            Panel.ZIndex="5"
+            IsActive="False">
+            <materialDesign:SnackbarMessage>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Name="TxtSnackbarToppings"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,124,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold" />
+                    <Button
+                        x:Name="BtnSnackbarToppings"
+                        Grid.Column="1"
+                        Width="90"
+                        Margin="80,0,0,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Content="Ok" />
+                </Grid>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
         <!--#region Cuerpo principal DrawerHostToppigns-->
         <!--#region DrawerHostToppings-->
         <materialDesign:DrawerHost
@@ -72,7 +100,7 @@
             DialogTheme="Inherit"
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
-                <uc:DialogToppings />
+                <uc:DialogToppings x:Name="DialogToppings" />
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <!--#endregion Filas y columnas-->

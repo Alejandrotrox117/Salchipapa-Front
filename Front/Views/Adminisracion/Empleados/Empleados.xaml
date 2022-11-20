@@ -1,0 +1,166 @@
+﻿<UserControl
+    x:Class="Front.Views.Adminisracion.Empleados.Empleados"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:DialogEmpleados="clr-namespace:Front.Views.Adminisracion.Empleados"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Adminisracion.Empleados"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="789"
+    Height="510"
+    mc:Ignorable="d">
+    <Grid>
+        <materialDesign:Snackbar
+            x:Name="SnackBarNotificacionEmpleados"
+            Panel.ZIndex="5"
+            IsActive="False">
+            <materialDesign:SnackbarMessage>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Name="TxtSnackbarEmpleados"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,124,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold" />
+                    <Button
+                        x:Name="BtnSnackbarEmpleados"
+                        Grid.Column="1"
+                        Width="90"
+                        Margin="80,0,0,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="BtnSnackbar_Click"
+                        Content="Ok" />
+                </Grid>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
+        <materialDesign:DialogHost
+            x:Name="DialogHostEmpleados"
+            Grid.RowSpan="5"
+            Grid.ColumnSpan="5"
+            Margin="0,0,0,-49"
+            Background="#00695c"
+            DialogTheme="Inherit"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <DialogEmpleados:DialogEmpleados />
+            </materialDesign:DialogHost.DialogContent>
+            <Grid Background="White">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <materialDesign:ColorZone
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    Height="50"
+                    Background="#00695c"
+                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
+                    Mode="Custom">
+                    <TextBlock
+                        Margin="16"
+                        FontSize="15"
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Todas los Empleados" />
+                </materialDesign:ColorZone>
+                <!--#region Datagrid EMPLEADOS-->
+                <DataGrid
+                    x:Name="DataGridEmpleados"
+                    Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Width="755"
+                    Height="346"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    AutoGenerateColumns="False"
+                    Background="GhostWhite"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    CanUserReorderColumns="False"
+                    CanUserResizeRows="False"
+                    CanUserSortColumns="False"
+                    FontSize="15"
+                    Foreground="#00695c"
+                    HeadersVisibility="All"
+                    HorizontalGridLinesBrush="#00695c"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding clientes}"
+                    RowBackground="Transparent">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
+                        <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
+                        <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
+                        <DataGridTextColumn Binding="{Binding account}" Header="Permisos" />
+                        <DataGridTemplateColumn Header="Opciones">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button
+                                            Name="BtnEliminarEmpleado"
+                                            Width="50"
+                                            Background="#f44c58"
+                                            BorderBrush="Transparent">
+                                            <materialDesign:PackIcon Foreground="White" Kind="Delete" />
+                                        </Button>
+                                        <Button
+                                            Name="BtnEditarEmpleado"
+                                            Width="50"
+                                            Background="#00695c"
+                                            BorderBrush="Transparent">
+                                            <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
+                                        </Button>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!--#endregion-->
+                <!--#region BTN AGREGAR EMPLEADO-->
+                <Button
+                    x:Name="BtnAbrirFormulario"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Width="70"
+                    Height="70"
+                    Margin="0,0,0,50"
+                    VerticalAlignment="Bottom"
+                    Panel.ZIndex="1"
+                    Background="#00695c"
+                    BorderBrush="Transparent"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    Cursor="Hand"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                    <materialDesign:PackIcon
+                        Width="50"
+                        Height="50"
+                        Foreground="White"
+                        Kind="ClipboardPlusOutline" />
+                </Button>
+            </Grid>
+        </materialDesign:DialogHost>
+    </Grid>
+</UserControl>

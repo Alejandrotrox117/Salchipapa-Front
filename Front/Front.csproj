@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Insignia Brillante Logo Tienda de Etsy Ícono.png" />
-    <None Remove="logo.png" />
     <None Remove="Views\Caja\Batido-pie.jpg" />
     <None Remove="Views\logo.png" />
     <None Remove="Views\logoFondoBlanco.png" />
@@ -40,8 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Insignia Brillante Logo Tienda de Etsy Ícono.png" />
-    <Resource Include="logo.png" />
     <Resource Include="Views\Caja\Batido-pie.jpg" />
     <Resource Include="Views\logo.png" />
     <Resource Include="Views\logoFondoBlanco.png" />

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Administracion
+namespace Front.Views.Adminisracion.Empleados
 {
     /// <summary>
-    /// Lógica de interacción para Administracion.xaml
+    /// Lógica de interacción para DialogEmpleados.xaml
     /// </summary>
-    public partial class Administracion : UserControl
+    public partial class DialogEmpleados : UserControl
     {
-        public Administracion()
+        public DialogEmpleados()
         {
             InitializeComponent();
         }

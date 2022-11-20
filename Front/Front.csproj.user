@@ -2,10 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Session.xaml.cs">
+    <Compile Update="Views\Adminisracion\Empleados\DialogEmpleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Administracion\Administracion.xaml.cs">
+    <Compile Update="Views\Adminisracion\Empleados\Empleados.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Session.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\Caja.xaml.cs">
@@ -26,7 +29,7 @@
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Empleados\Empleados.xaml.cs">
+    <Compile Update="Views\Adminisracion\MainEmpleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
@@ -55,10 +58,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Session.xaml">
+    <Page Update="Views\Adminisracion\Empleados\DialogEmpleados.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Administracion\Administracion.xaml">
+    <Page Update="Views\Adminisracion\Empleados\Empleados.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Session.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Caja.xaml">
@@ -79,7 +85,7 @@
     <Page Update="Views\Caja\PlantillaDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Empleados\Empleados.xaml">
+    <Page Update="Views\Adminisracion\MainEmpleados.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Categorias\Categorias.xaml">
