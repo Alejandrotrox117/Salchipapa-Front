@@ -81,19 +81,38 @@
                     <MetodosPagos:DialogPagos />
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
-            <materialDesign:ColorZone
-                Grid.Row="0"
-                Height="50"
-                Background="#00695c"
-                Mode="Custom">
-                <TextBlock
-                    Margin="16"
-                    FontSize="15"
-                    FontStyle="Italic"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="Todos los métodos de pago" />
-            </materialDesign:ColorZone>
+            <Grid>
+                <materialDesign:ColorZone
+                    Grid.Row="0"
+                    Height="50"
+                    Background="#00695c"
+                    Mode="Custom">
+                    <TextBlock
+                        Margin="16"
+                        FontSize="15"
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Todos los métodos de pago" />
+                </materialDesign:ColorZone>
+                <Button
+                    x:Name="BtnAbrirFormPagos"
+                    Width="70"
+                    Height="70"
+                    Margin="664,0,55,10"
+                    VerticalAlignment="Bottom"
+                    Panel.ZIndex="1"
+                    Background="#00695c"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                    <materialDesign:PackIcon
+                        Width="50"
+                        Height="50"
+                        Foreground="White"
+                        Kind="AccountGroupOutline" />
+                </Button>
+            </Grid>
         </materialDesign:DialogHost>
     </Grid>
 </UserControl>
