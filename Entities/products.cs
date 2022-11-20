@@ -9,6 +9,7 @@ namespace Entities
     public class products
     {
 
+        public string _id { get; set; }
       public string name { get; set; }
         
         public double price { get; set; }

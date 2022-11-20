@@ -40,13 +40,13 @@ namespace Front.Views.Menu
         private void GridMenu_Loaded(object sender, RoutedEventArgs e)
         {
 
-            PageProductos.GetProductos();
+            PageProductos.Get();
         }
 
         private void BtnProducto_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolMenu.SelectedIndex = 0;
-            PageProductos.GetProductos();
+            PageProductos.Get();
 
         }
     }

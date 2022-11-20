@@ -41,6 +41,7 @@ namespace Front.Views.Menu.Categorias
             }
         }
 
+
         private void TextChanged(object sender, TextChangedEventArgs e)
         {
             var bc = new BrushConverter();

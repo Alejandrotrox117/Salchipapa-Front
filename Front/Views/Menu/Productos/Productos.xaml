@@ -12,9 +12,10 @@
     mc:Ignorable="d">
     <Grid Background="White">
         <materialDesign:Snackbar
-            x:Name="SnackBarNotificacionProductos"
+            x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -22,14 +23,14 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock
-                        x:Name="TxtSnackbarProductos"
+                        x:Name="TxtSnackbar"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Margin="0,0,124,0"
                         VerticalAlignment="Center"
                         FontWeight="Bold" />
                     <Button
-                        x:Name="BtnSnackbarProductos"
+                        x:Name="BtnSnackbar"
                         Grid.Column="1"
                         Width="90"
                         Margin="80,0,0,0"
@@ -40,7 +41,7 @@
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>
         <materialDesign:DrawerHost
-            x:Name="DrawerHostProductos"
+            x:Name="DrawerHost"
             Grid.RowSpan="6"
             Grid.ColumnSpan="6"
             Width="800"
@@ -60,30 +61,26 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
-                        x:Name="TxtTituloDrawerProductos"
+                        x:Name="TxtTituloDrawer"
                         Margin="4"
                         VerticalAlignment="Center"
                         FontSize="13"
                         FontWeight="Bold"
                         Foreground="White" />
                     <Button
-                        x:Name="BtnConfirmarProductoDrawner"
+                        x:Name="BtnConfirmarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                         Content="Agregar"
                         Foreground="White"
-                        Style="{StaticResource MaterialDesignFlatButton}"
-                        Visibility="Visible" />
+                        Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
-                        x:Name="BtnCancelarProductoDrawner"
+                        x:Name="BtnCancelarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Bottom}"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -91,15 +88,41 @@
             </materialDesign:DrawerHost.BottomDrawerContent>
         </materialDesign:DrawerHost>
         <materialDesign:DialogHost
-            x:Name="DialogHostProductos"
+            x:Name="DialogHost"
             Grid.RowSpan="5"
             Grid.ColumnSpan="5"
+            Panel.ZIndex="6"
             Background="#00695c"
             DialogTheme="Inherit"
             IsOpen="False">
             <!--#region Contenido del formulario-->
             <materialDesign:DialogHost.DialogContent>
-                <FormularioProductos:DialogProductos x:Name="DialogProductos" />
+                <Grid>
+                    <FormularioProductos:DialogProductos x:Name="Formulario" />
+                    <StackPanel
+                        Grid.Row="5"
+                        Margin="0,350,0,-90"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="BtnAceptarDialog"
+                            Margin="0,8,108,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnAceptarDialog_Click"
+                            Content="Aceptar"
+                            Foreground="#00695c"
+                            IsDefault="False" />
+                        <Button
+                            Name="BtnCerrarForm"
+                            Margin="0,8,8,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            Click="BtnCerrarForm_Click"
+                            Content="Cancelar"
+                            Foreground="#00695c" />
+                    </StackPanel>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
         <!--#region  Colorzone producto-->
@@ -118,7 +141,6 @@
         </materialDesign:ColorZone>
         <!--#region BTN ABRIR FORM PRODUCTOS-->
         <Button
-            x:Name="BtnAbrirDialogProductos"
             Grid.Row="0"
             Width="70"
             Height="70"
@@ -128,7 +150,7 @@
             Panel.ZIndex="4"
             Background="#099faf"
             BorderBrush="Transparent"
-            Click="BtnAbrirDialogProductos_Click"
+            Click="BtnAgregar_Click"
             Cursor="Hand"
             Foreground="White"
             Style="{StaticResource MaterialDesignFloatingActionButton}">
@@ -181,12 +203,12 @@
                                                 Stretch="Fill" />
                                             <materialDesign:Badged.Badge>
                                                 <Button
-                                                    x:Name="BtnDraweEliminarProducto"
                                                     Width="28"
                                                     Height="28"
                                                     Margin="-25,30,0,0"
                                                     Background="Red"
                                                     BorderBrush="Transparent"
+                                                    Click="BtnEliminar_Click"
                                                     Cursor="Hand"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                     Visibility="Visible">
@@ -212,6 +234,7 @@
                                                 Height="30"
                                                 Background="#ffc107"
                                                 BorderBrush="White"
+                                                Click="BtnActualizar_Click"
                                                 Cursor="Hand"
                                                 Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                                 <materialDesign:PackIcon
@@ -284,9 +307,7 @@
                                 </materialDesign:Card>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-
                     </ListBox>
-
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>

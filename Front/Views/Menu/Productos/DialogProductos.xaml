@@ -7,11 +7,11 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="500"
-    Height="500"
+    Height="550"
     mc:Ignorable="d">
     <Border Background="White" CornerRadius="6">
         <Grid>
-            <StackPanel Width="500" Height="500">
+            <StackPanel Width="500" Height="550">
                 <!--#region TITULO DEL DIALOG-->
                 <Grid>
                     <!--#region FILAS DEL STACKPANEL DEL DIALOG-->
@@ -26,7 +26,7 @@
                     <!--#endregion-->
                     <!--#region Titulo y texbox NOMBRE-->
                     <TextBlock
-                        x:Name="TxtTituloDialogProductos"
+                        x:Name="TxtTituloDialg"
                         Grid.Row="0"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
@@ -48,6 +48,8 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <TextBox
                                 x:Name="TxtNombreProducto"
@@ -56,36 +58,46 @@
                                 Width="190"
                                 Height="50"
                                 Margin="0,0,0,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Foreground="Gray"
                                 materialDesign:HintAssist.Hint="Nombre Producto"
                                 AcceptsReturn="True"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                MaxLength="15"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="TextChanged" />
                             <TextBlock
-                                x:Name="ValNombreProducto"
+                                x:Name="lblNombreError"
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                Margin="30,0,0,0"
+                                Margin="30,0,30,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
                                 Visibility="Hidden" />
                             <ComboBox
                                 x:Name="CbCategoriaProducto"
                                 Grid.Row="0"
                                 Grid.Column="1"
                                 Width="190"
-                                Height="50"
+                                Height="52"
                                 Margin="0,0,0,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Foreground="Gray"
                                 materialDesign:HintAssist.Hint="Nombre categoria"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
                                 DisplayMemberPath="name"
+                                SelectedValuePath="_id"
+                                SelectionChanged="CbCategoriaProducto_SelectionChanged"
                                 Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                             <TextBlock
-                                x:Name="ValNombreCategoria"
+                                x:Name="lblCategoriaError"
                                 Grid.Row="1"
                                 Grid.Column="1"
-                                Margin="30,0,0,0"
+                                Margin="30,0,30,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
                                 Visibility="Hidden" />
                             <TextBox
                                 x:Name="TxtStockProducto"
@@ -94,17 +106,23 @@
                                 Width="190"
                                 Height="50"
                                 Margin="0,10,0,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Foreground="Gray"
                                 materialDesign:HintAssist.Hint="En stock"
                                 AcceptsReturn="True"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                Cursor="Arrow"
+                                InputScope="Number"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="TextChanged" />
                             <TextBlock
-                                x:Name="ValStockProducto"
+                                x:Name="lblStockError"
                                 Grid.Row="3"
                                 Grid.Column="0"
-                                Margin="30,0,0,0"
+                                Margin="30,0,30,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
                                 Visibility="Hidden" />
                             <TextBox
                                 x:Name="TxtPrecioProducto"
@@ -113,76 +131,118 @@
                                 Width="190"
                                 Height="50"
                                 Margin="0,10,0,0"
-                                materialDesign:HintAssist.Foreground="#00695c"
+                                materialDesign:HintAssist.Foreground="Gray"
                                 materialDesign:HintAssist.Hint="Precio"
                                 AcceptsReturn="True"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
-                                Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="TextChanged" />
                             <TextBlock
-                                x:Name="ValPrecioProducto"
+                                x:Name="lblPrecioError"
                                 Grid.Row="3"
                                 Grid.Column="1"
-                                Margin="30,0,0,0"
+                                Margin="30,0,30,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
+                                Visibility="Hidden" />
+                            <TextBox
+                                x:Name="TxtDescripcionProducto"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Width="400"
+                                Height="110"
+                                Margin="0,10,0,0"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Foreground="Gray"
+                                materialDesign:HintAssist.Hint="Descripción"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                TextChanged="TextChanged"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                            <TextBlock
+                                x:Name="lblDescripError"
+                                Grid.Row="5"
+                                Grid.ColumnSpan="2"
+                                Margin="50,0,50,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
+                                Visibility="Visible" />
+                            <ComboBox
+                                x:Name="CBToppings"
+                                Grid.Row="6"
+                                Width="190"
+                                Height="50"
+                                Margin="25,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                materialDesign:HintAssist.Foreground="Gray"
+                                materialDesign:HintAssist.Hint="Añadir Extras"
+                                BorderBrush="#00695c"
+                                BorderThickness="2"
+                                DisplayMemberPath="name"
+                                Foreground="#FF00695C"
+                                Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                            <Button
+                                x:Name="BtnAgregarToppingList"
+                                Grid.Row="6"
+                                Grid.ColumnSpan="2"
+                                Margin="230,5,0,0"
+                                HorizontalAlignment="Left"
+                                Background="#00695c"
+                                BorderBrush="Transparent"
+                                Click="BtnAgregarToppingList_Click"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Foreground="White"
+                                    Kind="Plus" />
+                            </Button>
+                            <TextBlock
+                                x:Name="lblToppingError"
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Margin="30,0,40,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
+                                Visibility="Hidden" />
+                            <Button
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Width="100"
+                                Margin="0,0,0,0"
+                                Background="#00695c"
+                                BorderBrush="Transparent"
+                                Content="{materialDesign:PackIcon Kind=ContentSave}" />
+                            <TextBlock
+                                x:Name="lblFotoError"
+                                Grid.Row="7"
+                                Grid.Column="1"
+                                Margin="30,0,40,0"
+                                FontSize="10"
+                                Foreground="#f44c58"
+                                TextWrapping="Wrap"
                                 Visibility="Hidden" />
                         </Grid>
-                    </StackPanel>
-                    <TextBox
-                        x:Name="TxtDescripcionProducto"
-                        Grid.Row="3"
-                        Width="300"
-                        Height="90"
-                        Margin="0,10,0,0"
-                        VerticalAlignment="Top"
-                        materialDesign:HintAssist.Foreground="#00695c"
-                        materialDesign:HintAssist.Hint="Descripción"
-                        BorderBrush="#00695c"
-                        BorderThickness="2"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                        TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto" />
-                    <TextBlock
-                        x:Name="ValDescripProducto"
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Margin="100,0,0,0"
-                        Visibility="Hidden" />
-                    <ComboBox
-                        x:Name="CBToppings"
-                        Grid.Row="4"
-                        Width="190"
-                        Height="50"
-                        Margin="25,35,0,0"
-                        HorizontalAlignment="Left"
-                        materialDesign:HintAssist.Foreground="#00695c"
-                        materialDesign:HintAssist.Hint="Añadir Extras"
-                        BorderBrush="#00695c"
-                        BorderThickness="2"
-                        DisplayMemberPath="name"
-                        Foreground="#FF00695C"
-                        Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-                    <TextBlock
-                        x:Name="ValToppingProducto"
-                        Grid.Row="5"
-                        Grid.Column="0"
-                        Margin="30,0,0,0"
-                        Visibility="Hidden" />
-                    <StackPanel
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Width="350"
-                        Margin="250,40,0,0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <ScrollViewer>
+                        <StackPanel
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Width="350"
+                            Margin="0,0,0,0">
+                            <Grid>
                                 <ListBox
                                     x:Name="ListToppings"
-                                    Grid.Column="1"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                    Grid.Column="0"
+                                    Width="350"
+                                    Height="50"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                    ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Style="{StaticResource MaterialDesignFilterChipListBox}">
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -198,12 +258,13 @@
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Grid.Column="0" Text="{Binding name}" />
                                                 <Button
-                                                    Name="BtnEliminarTopping"
+                                                    Name="BtnEliminarToppingList"
                                                     Grid.Column="1"
                                                     Width="17"
                                                     Height="17"
                                                     Background="Transparent"
                                                     BorderBrush="Transparent"
+                                                    Click="BtnEliminarToppingList_Click"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                     <materialDesign:PackIcon
                                                         Width="16"
@@ -215,37 +276,8 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
-                            </ScrollViewer>
-                        </Grid>
-                    </StackPanel>
-                    <StackPanel
-                        Grid.Row="5"
-                        Margin="0,35,0,0"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                        <Button
-                            x:Name="BtnAbrirDrawerProducto"
-                            Margin="0,8,108,0"
-                            Background="Transparent"
-                            BorderBrush="#00695c"
-                            Content="Agregar"
-                            Foreground="#00695c"
-                            IsDefault="False">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
-                        <Button
-                            Margin="0,8,8,0"
-                            Background="Transparent"
-                            BorderBrush="#00695c"
-                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-                            Content="Cancelar"
-                            Foreground="#00695c">
-                            <Button.CommandParameter>
-                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
-                            </Button.CommandParameter>
-                        </Button>
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
                 <!--#endregion-->
