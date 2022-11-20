@@ -26,7 +26,7 @@
     <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Menu\Categorias\DialogHostCategorias.xaml.cs">
+    <Compile Update="Views\Menu\Categorias\FormularioCategoria.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Menu\MenuMain.xaml.cs">
@@ -73,7 +73,7 @@
     <Page Update="Views\Menu\Categorias\Categorias.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menu\Categorias\DialogHostCategorias.xaml">
+    <Page Update="Views\Menu\Categorias\FormularioCategoria.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\MenuMain.xaml">
