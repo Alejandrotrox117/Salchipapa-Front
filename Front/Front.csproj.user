@@ -17,7 +17,7 @@
     <Compile Update="Views\Caja\Clientes\Clientes.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Caja\Clientes\DialogClientes.xaml.cs">
+    <Compile Update="Views\Caja\Clientes\FormCliente.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Caja\Pago\FormPagos.xaml.cs">
@@ -29,13 +29,10 @@
     <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Adminisracion\MainEmpleados.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Menu\Categorias\DialogHostCategorias.xaml.cs">
+    <Compile Update="Views\Menu\Categorias\FormularioCategoria.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Menu\MenuMain.xaml.cs">
@@ -73,7 +70,7 @@
     <Page Update="Views\Caja\Clientes\Clientes.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Caja\Clientes\DialogClientes.xaml">
+    <Page Update="Views\Caja\Clientes\FormCliente.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Pago\FormPagos.xaml">
@@ -85,13 +82,10 @@
     <Page Update="Views\Caja\PlantillaDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Adminisracion\MainEmpleados.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\Menu\Categorias\Categorias.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Menu\Categorias\DialogHostCategorias.xaml">
+    <Page Update="Views\Menu\Categorias\FormularioCategoria.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\MenuMain.xaml">

@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Nancy.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,151 +23,197 @@ namespace Front.Views.Caja.Pagos
     /// </summary>
     public partial class MetodosDePago : UserControl
     {
-        public string id { get; set; }
+        private string id;
         public MetodosDePago()
         {
             InitializeComponent();
         }
-
-        //funcion obtener Metodos de Pago
-        public async void GetPagos()
+        //funcion obtener payments
+        public async void Get()
         {
-            string Response = await Request.Get("payments");
-            List<payments> metodosDePagos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<payments>>(Response);
-            if (metodosDePagos != null)
+            string response = await Request.Get("payments");
+            List<payments> returnedData = JsonConvert.DeserializeObject<List<payments>>(response);
+            if (returnedData != null)
             {
-                ListBoxMetodosPagos.ItemsSource = metodosDePagos;
+                ListBoxMetodosPagos.ItemsSource = returnedData;
             }
             else
             {
                 MessageBox.Show("Error");
             }
         }
-
-        //funcion subir metodos de pago
-        public async void PostPagos(object sender, RoutedEventArgs e)
+        //evento agregar payments
+        public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            string Pagos = new JavaScriptSerializer().Serialize(new
+            string pago = new JavaScriptSerializer().Serialize(new
             {
-                name = FormPagos.TxtNombrePago.Text,
-                money = FormPagos.TxtMoneda.Text,
+                
+                name = Formulario.TxtNombrePago.Text,
+                money = Formulario.CBMoneda.Text
             });
-            var Response = await Request.Post("payments", Pagos);
-            if (Response.IsSuccessStatusCode)
+            var response = await Request.Post("payments", pago);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                TxtSnackbarPagos.Text = "Se ha agregado correctamente";
-                SnackBarNotificacionPagos.IsActive = true;
-                LimpiarEventos();
-            }
-            else
-                MessageBox.Show("hubo un error");
-
-        }
-        //funcion abrir forumluario de pagos
-        private void BtnAbrirFormPagos_Click(object sender, RoutedEventArgs e)
-        {
-            DialogHostMetodosPago.IsOpen = true;
-            FormPagos.TxtDialogPagos.Text = "Agregar Pago";
-            TxtDrawerHostPagos.Text = "¿Desea agregar un nuevo Pago?";
-            BtnConfirmarDrawnerPagos.Click += PostPagos;
-        }
-        private void BtnConfirmarDrawnerPagos_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        //funcion limpiar eventos
-        private void LimpiarEventos()
-        {
-            DialogHostMetodosPago.IsOpen = false;
-            DrawerHostPagos.IsBottomDrawerOpen = false;
-            BtnConfirmarDrawnerPagos.Click -= PostPagos;
-            TxtDrawerHostPagos.Text = "";
-
-        }
-        private void BtnSnackbarPagos_Click(object sender, RoutedEventArgs e)
-        {
-            SnackBarNotificacionPagos.IsActive = false;
-
-        }
-
-        private void BtnAbrirDrawnerPagos_Click(object sender, RoutedEventArgs e)
-        {
-            DialogHostMetodosPago.IsOpen = false;
-            DrawerHostPagos.IsBottomDrawerOpen = true;
-        }
-
-        
-        private void BtnCancelarDrawnerPagos_Click(object sender, RoutedEventArgs e)
-        {
-            LimpiarEventos();
-        }
-
-        //PUT pagos
-        public async void PutPagos(object sender, RoutedEventArgs e)
-        {
-            string pagos = new JavaScriptSerializer().Serialize(new
-            {
-                name = FormPagos.TxtNombrePago.Text,
-                money = FormPagos.TxtMoneda.Text,
-            });
-            var Response = await Request.Put("payments/" + id, pagos);
-            if (Response.IsSuccessStatusCode)
-            {
-                TxtSnackbarPagos.Text = "¡Se ha actualizado correctamente!";
-                SnackBarNotificacionPagos.IsActive = true;
-                LimpiarEventos();
+                limpiarDrawner();
+                abrirSnack("Se ha agredado correctamente", null);
             }
             else
             {
-                string error = await Response.Content.ReadAsStringAsync();
-                MessageBox.Show(error);
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
             }
-
         }
+        //evento actualizar payments
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            string pago = new JavaScriptSerializer().Serialize(new
+            {
 
-        //evento click boton actualizar metodos de pago
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+                name = Formulario.TxtNombrePago.Text,
+                money = Formulario.CBMoneda.Text
+            });
+            var response = await Request.Put("payments/"+id, pago);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha actualizado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+        }
+        //evento eliminar pago
+        public async void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var response = await Request.Delete("payments/"+id);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha eliminado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+        }
+        //evento click btn agregar pago
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        {
+            Formulario.TxtTituloDialg.Text = "Agregar Método de Pago";
+            TxtTituloDrawer.Text = "¿Desea agregar el método de pago?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Agregar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+        }
+        //evento click btn actualizar pago
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            payments payment = element.DataContext as payments;
-            id = payment._id;
-            FormPagos.TxtNombrePago.Text = payment.name;
-            FormPagos.TxtMoneda.Text = payment.money;
-            FormPagos.TxtDialogPagos.Text = "Actualizar Metodo de pago";
-            DialogHostMetodosPago.IsOpen = true;
-            TxtDrawerHostPagos.Text = "¿Desea actualizar el metodo de pago?";
-            BtnConfirmarDrawnerPagos.Click += PutPagos;
-        }
+            payments pago = element.DataContext as payments;
+            id = pago._id;
+            Formulario.CargarForm(pago);
 
-        //evento cerrar formulario
-        private void BtnCerrarFormularioPagos_Click(object sender, RoutedEventArgs e)
-        {
-            LimpiarEventos();
+            Formulario.TxtTituloDialg.Text = "Actualizar Método de Pago";
+            TxtTituloDrawer.Text = "¿Desea actualizar el método de pago?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
-
-        //DELETE PAGOS
-        public async void DeletePagos(object sender, RoutedEventArgs e)
-        {
-            var Response = await Request.Delete("payments/" + id);
-            if (Response.IsSuccessStatusCode)
-            {
-                TxtSnackbarPagos.Text = "Se ha eliminado correctamente";
-                SnackBarNotificacionPagos.IsActive = true;
-                LimpiarEventos();
-                //ListBoxMetodosPagos.UpdateLayout();
-                
-            }
-            else
-                MessageBox.Show("hubo un error");
-        }
+        //evento click boton eliminar pago
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            payments payment = element.DataContext as payments;
-            id = payment._id;
-            TxtDrawerHostPagos.Text = "¿Desea eliminar el Método de pago?";
-            DrawerHostPagos.IsBottomDrawerOpen = true;
-            BtnConfirmarDrawnerPagos.Click += DeletePagos;
-         }
+            payments pago = element.DataContext as payments;
+            id = pago._id;
+
+            TxtTituloDrawer.Text = "¿Desea eliminar el método de pago?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
+        }
+        //funcion abrir notificacion
+        private void abrirSnack(string mensaje, Errors error)
+        {
+            var bc = new BrushConverter();
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
+            if (error is null)
+            {
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+            }
+            else
+            {
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //funcion limpiar drawner
+        private void limpiarDrawner()
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Agregar_Click;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
+        }
+        //evento btn snack cerrar 
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Get();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
+        }
+        //evento btn snack abrir form 
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento cierre snack siempre limpiar
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento click boton aceptar form
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            DrawerHost.IsBottomDrawerOpen = true;
+        }
+        //evento click boton cancelar form
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
+        {
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
     }
 }

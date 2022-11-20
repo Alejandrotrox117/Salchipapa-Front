@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using Newtonsoft.Json;
 using Nancy.Json;
 using Entities;
+using System.Windows.Media;
 
 namespace Front.Views.Menu.Categorias
 {
@@ -20,7 +21,7 @@ namespace Front.Views.Menu.Categorias
             InitializeComponent();
         }
         //funcion cargar categorias
-        public async void GetCategorias()
+        public async void Get()
         {
             string RespondCategorie = await Request.Get("categories");
             List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
@@ -35,121 +36,175 @@ namespace Front.Views.Menu.Categorias
             }
         }
         //funcion agregar categoria
-        public async void PostCategoria(object sender, RoutedEventArgs e)
+        public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
             string categoria = new JavaScriptSerializer().Serialize(new
             {
-                name = DialogCategorias.TxtNombreCategoria.Text,
+                name = Formulario.TxtNombreCategoria.Text,
             });
-            var Response = await Request.Post("categories/", categoria);
-            if (Response.IsSuccessStatusCode)
+            var response = await Request.Post("categories", categoria);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                TxtSnackbar.Text = "Se ha agregado correctamente";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
+                limpiarDrawner();
+                abrirSnack("Se ha agredado correctamente", null);
             }
             else
-                MessageBox.Show("hubo un error");
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
 
         }
         //funcion actualizar categoria
-        public async void PutCategoria(object sender, RoutedEventArgs e)
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
             string categorias = new JavaScriptSerializer().Serialize(new
             {
-                name = DialogCategorias.TxtNombreCategoria.Text,
+                name = Formulario.TxtNombreCategoria.Text,
             });
-            var Response = await Request.Put("categories/"+id, categorias);
-            if (Response.IsSuccessStatusCode)
+            var response = await Request.Put("categories/"+id, categorias);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                TxtSnackbar.Text = "Se ha agregado correctamente";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
+                limpiarDrawner();
+                abrirSnack("Se ha actualizado correctamente", null);
             }
             else
             {
-                string error = await Response.Content.ReadAsStringAsync();
-                MessageBox.Show(error);
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
             }
 
         }
         //funcion eliminar categoria
-        public async void DeleteCategoria(object sender, RoutedEventArgs e)
+        public async void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            var Response = await Request.Delete("categories/"+id);
-            if (Response.IsSuccessStatusCode)
+            var response = await Request.Delete("categories/"+id);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
             {
-                TxtSnackbar.Text = "Se ha eliminado correctamente";
-                SnackBarNotificacion.IsActive = true;
-                LimpiarEventos();
+                limpiarDrawner();
+                abrirSnack("Se ha agredado correctamente", null);
             }
             else
-                MessageBox.Show("hubo un error");
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
 
         }
-        //evento click boton agregar categoria
-        private void BtnAgregarCategoria_Click(object sender, RoutedEventArgs e)
+        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
-            DialogCategorias.TxtTituloDialgCategorias.Text = "Agregar Categoria";
-            DialogHostCategorias.IsOpen = true;
-            TxtTituloDrawerHostCategorias.Text = "¿Desea agregar una nueva categoria?";
-            BtnConfirmarCategoriaDrawner.Click+=PostCategoria;
+            Formulario.TxtTituloDialg.Text = "Agregar Categoria";
+            TxtTituloDrawer.Text = "¿Desea agregar el categoria?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Agregar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
-        //evento click boton actualizar categoria
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        //evento click btn actualizar categoria
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            categories categorie = element.DataContext as categories;
-            id = categorie._id;
-         
-            DialogCategorias.TxtNombreCategoria.Text = categorie.name;
-            DialogCategorias.TxtTituloDialgCategorias.Text = "Actualizar Categoria";
+            categories categoria = element.DataContext as categories;
+            id = categoria._id;
+            Formulario.CargarForm(categoria);
 
-            DialogHostCategorias.IsOpen = true;
-            TxtTituloDrawerHostCategorias.Text = "¿Desea actualizar la categoria?";
-            BtnConfirmarCategoriaDrawner.Click+=PutCategoria;
+            Formulario.TxtTituloDialg.Text = "Actualizar Categoria";
+            TxtTituloDrawer.Text = "¿Desea actualizar el categoria?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }
         //evento click boton eliminar categoria
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            categories categorie = element.DataContext as categories;
-            id = categorie._id;
+            categories categoria= element.DataContext as categories;
+            id = categoria._id;
 
-            TxtTituloDrawerHostCategorias.Text = "¿Desea eliminar la categoria?";
-            DrawerHostCategorias.IsBottomDrawerOpen = true;
-            BtnConfirmarCategoriaDrawner.Click+=DeleteCategoria;
+            TxtTituloDrawer.Text = "¿Desea eliminar el categoria?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
-        //evento click boton aceptar form categoria
-        private void BtnAceptarDialogCategorias_Click(object sender, RoutedEventArgs e)
+        //funcion abrir notificacion
+        private void abrirSnack(string mensaje, Errors error)
         {
-            DialogHostCategorias.IsOpen = false;
-            DrawerHostCategorias.IsBottomDrawerOpen = true;
+            var bc = new BrushConverter();
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
+            if (error is null)
+            {
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+            }
+            else
+            {
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+            }
         }
-        //funcion limpiar form y drawner categoria
-        private void LimpiarEventos()
+        //funcion limpiar drawner
+        private void limpiarDrawner()
         {
-            DrawerHostCategorias.IsBottomDrawerOpen = false;
-            BtnConfirmarCategoriaDrawner.Click-=PostCategoria;
-            BtnConfirmarCategoriaDrawner.Click-=PutCategoria;
-            BtnConfirmarCategoriaDrawner.Click-=DeleteCategoria;
-            TxtTituloDrawerHostCategorias.Text = "";
-        
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Agregar_Click;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
         }
-        //evento click boton cerrar form categoria
-        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        //evento btn snack cerrar 
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
         {
-            LimpiarEventos();
+            Get();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
         }
-        //evento click boton cancelar drawner categoria
-        private void BtnCancelarCategoriaDrawner_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        //evento click boton snackbar
-        private void BtnSnackbar_Click(object sender, RoutedEventArgs e)
+        //evento btn snack abrir form 
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
         {
             SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento cierre snack siempre limpiar
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento click boton aceptar form
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            DrawerHost.IsBottomDrawerOpen = true;
+        }
+        //evento click boton cancelar form
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
+        {
+            Formulario.LimpiarForm();
+            limpiarDrawner();
         }
     }
 }

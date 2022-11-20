@@ -1,42 +1,28 @@
 ﻿using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace Front.Views.Caja.Pagos
+namespace Front.Views.Menu.Categorias
 {
     /// <summary>
-    /// Lógica de interacción para DialogPagos.xaml
+    /// Lógica de interacción para DialogHostCategorias.xaml
     /// </summary>
-    public partial class FormPagos : UserControl
+    public partial class FormularioCategoria : UserControl
     {
-        public FormPagos()
+
+        public FormularioCategoria()
         {
             InitializeComponent();
         }
-        
-        public void CargarForm(payments pago)
+        public void CargarForm(categories categorie)
         {
-            TxtNombrePago.Text = pago.name;
-            CBMoneda.Text = pago.money;
+            TxtNombreCategoria.Text = categorie.name;
         }
         public void LimpiarForm()
         {
-            CBMoneda.Text = "";
-            TxtNombrePago.Text = "";;
+            TxtNombreCategoria.Text = "";
         }
-
         public void MostrarErrores(Errors errores)
         {
             var bc = new BrushConverter();
@@ -49,12 +35,7 @@ namespace Front.Views.Caja.Pagos
                     case "name":
                         lblNombreError.Text = error.error;
                         lblNombreError.Visibility = Visibility.Visible;
-                        TxtNombrePago.BorderBrush = color;
-                        break;
-                    case "money":
-                        lblMonedaError.Text = error.error;
-                        lblMonedaError.Visibility = Visibility.Visible;
-                        CBMoneda.BorderBrush = color;
+                        TxtNombreCategoria.BorderBrush = color;
                         break;
                 }
             }
@@ -64,9 +45,10 @@ namespace Front.Views.Caja.Pagos
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#00695c");
-
+            TxtNombreCategoria.BorderBrush = color;
             lblNombreError.Visibility = Visibility.Hidden;
-            TxtNombrePago.BorderBrush = color;
         }
+
+
     }
 }

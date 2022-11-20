@@ -34,7 +34,7 @@ namespace Front.Views.Menu
         private void BtnTabCategoria_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolMenu.SelectedIndex = 1;
-            PageCategorias.GetCategorias();
+            PageCategorias.Get();
         }
 
         private void GridMenu_Loaded(object sender, RoutedEventArgs e)

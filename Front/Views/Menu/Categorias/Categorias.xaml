@@ -18,7 +18,8 @@
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -39,7 +40,6 @@
                         Margin="80,0,0,0"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Click="BtnSnackbar_Click"
                         Content="Ok" />
                 </Grid>
             </materialDesign:SnackbarMessage>
@@ -48,7 +48,7 @@
 
 
         <materialDesign:DrawerHost
-            x:Name="DrawerHostCategorias"
+            x:Name="DrawerHost"
             Grid.RowSpan="6"
             Grid.ColumnSpan="6"
             Width="800"
@@ -68,14 +68,14 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
-                        x:Name="TxtTituloDrawerHostCategorias"
+                        x:Name="TxtTituloDrawer"
                         Margin="4"
                         VerticalAlignment="Center"
                         FontSize="13"
                         FontWeight="Bold"
                         Foreground="White" />
                     <Button
-                        x:Name="BtnConfirmarCategoriaDrawner"
+                        x:Name="BtnConfirmarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         Background="Transparent"
@@ -84,13 +84,11 @@
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
-                        x:Name="BtnCancelarCategoriaDrawner"
+                        x:Name="BtnCancelarDrawner"
                         Margin="4"
                         VerticalAlignment="Center"
                         BorderBrush="Transparent"
                         Click="BtnCerrarForm_Click"
-                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Bottom}"
                         Content="Cancelar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -100,7 +98,7 @@
         <!--#endregion-->
         <!--#region Fromulario categorias-->
         <materialDesign:DialogHost
-            x:Name="DialogHostCategorias"
+            x:Name="DialogHost"
             Grid.RowSpan="5"
             Grid.ColumnSpan="5"
             Background="#00695c"
@@ -114,7 +112,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Form:DialogHostCategorias x:Name="DialogCategorias" />
+                    <Form:FormularioCategoria x:Name="Formulario" />
                     <StackPanel
                         Grid.Row="4"
                         Margin="0,-30,0,40"
@@ -126,15 +124,14 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Button
-                                x:Name="BtnAceptarDialogCategorias"
                                 Grid.Column="0"
                                 Margin="0,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
-                                Click="BtnAceptarDialogCategorias_Click"
-                                Content="Agregar"
+                                Content="Aceptar"
                                 Foreground="#00695c"
-                                Visibility="Visible">
+                                Visibility="Visible"
+                                Click="BtnAceptarDialog_Click">
                             </Button>
                             <Button
                                 x:Name="BtnCerrarForm"
@@ -144,8 +141,7 @@
                                 BorderBrush="#00695c"
                                 Click="BtnCerrarForm_Click"
                                 Content="Cancelar"
-                                Foreground="#00695c"
-                                IsCancel="True">
+                                Foreground="#00695c">
                             </Button>
                         </Grid>
                     </StackPanel>
@@ -156,7 +152,6 @@
                     x:Name="itemsCardsCategorias"
                     Margin="0,50,0,0"
                     Background="Transparent"
-                    ItemsSource="{Binding categories}"
                     ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -182,7 +177,8 @@
                                         BorderBrush="Transparent"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                        Visibility="Visible" Click="BtnEliminar_Click">
+                                        Visibility="Visible" 
+                                        Click="BtnEliminar_Click">
                                         <materialDesign:PackIcon
                                             Width="20"
                                             Height="25"
@@ -210,7 +206,7 @@
                                             Opacity="0.8">
                                             <Grid>
                                                 <TextBlock
-                                                    Margin="0,0,50,0"
+                                                    Margin="10,0,50,0"
                                                     VerticalAlignment="Center"
                                                     Panel.ZIndex="3"
                                                     FontSize="15"
@@ -225,7 +221,8 @@
                                                     Panel.ZIndex="3"
                                                     Background="#ffc107"
                                                     BorderBrush="Transparent"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" Click="BtnEditar_Click">
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" 
+                                                    Click="BtnActualizar_Click">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"
@@ -256,7 +253,6 @@
                         Text="Todas las categorias" />
                 </materialDesign:ColorZone>
                 <Button
-                    x:Name="BtnAgregarCategoria"
                     Grid.Row="0"
                     Width="70"
                     Height="70"
@@ -265,7 +261,7 @@
                     VerticalAlignment="Bottom"
                     Background="#099faf"
                     BorderBrush="Transparent"
-                    Click="BtnAgregarCategoria_Click"
+                    Click="BtnAgregar_Click"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     Cursor="Hand"
                     Foreground="White"
