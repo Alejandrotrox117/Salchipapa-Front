@@ -158,7 +158,6 @@ namespace Front.Views.Adminisracion.Empleados
         {
             LimpiarEventos();
         }
-
         private void BtnAceptarFormulario_Click(object sender, RoutedEventArgs e)
         {
             DialogHost.IsOpen = false;
