@@ -62,7 +62,7 @@ namespace Front.Views.Menu.Categorias
             var Response = await Request.Put("categories/"+id, categorias);
             if (Response.IsSuccessStatusCode)
             {
-                TxtSnackbar.Text = "Se ha agregado correctamente";
+                TxtSnackbar.Text = "Se ha actualizado correctamente";
                 SnackBarNotificacion.IsActive = true;
                 LimpiarEventos();
             }
