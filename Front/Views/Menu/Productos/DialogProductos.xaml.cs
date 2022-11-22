@@ -34,8 +34,10 @@ namespace Front.Views.Menu.Productos
             TxtStockProducto.Text = products.stock.ToString();
             TxtDescripcionProducto.Text = products.description;
             CbCategoriaProducto.SelectedValue = products.categorie._id;
-            ListToppings.ItemsSource = products.toppings;
-        
+            foreach(toppings topping in products.toppings)
+            {
+                ListToppings.Items.Add(topping);
+            }
         }
 
         public async void CargarCombobox()
