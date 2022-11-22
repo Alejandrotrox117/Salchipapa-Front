@@ -13,7 +13,7 @@
     <Grid Background="White">
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
-            Panel.ZIndex="5"
+            Panel.ZIndex="9"
             IsActive="False"
             IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
@@ -43,12 +43,11 @@
         <materialDesign:DrawerHost
             x:Name="DrawerHost"
             Grid.RowSpan="6"
-            Grid.ColumnSpan="6"
             Width="800"
-            Height="560"
+            Height="510"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Panel.ZIndex="8"
+            Panel.ZIndex="7"
             BorderThickness="1"
             BottomDrawerBackground="#00695c"
             BottomDrawerCornerRadius="20 20 0 0"
@@ -57,7 +56,6 @@
                 <StackPanel
                     Width="490"
                     Height="50"
-                    Margin="0,0,0,30"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
@@ -73,7 +71,7 @@
                         VerticalAlignment="Center"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Content="Agregar"
+                        Content="Confirmar"
                         Foreground="White"
                         Style="{StaticResource MaterialDesignFlatButton}" />
                     <Button
@@ -175,13 +173,12 @@
                     <TabControl.ContentTemplate>
                         <DataTemplate>
                             <ListBox
-                                Margin="0,0,0,0"
                                 materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
                                 ItemsSource="{Binding products}"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel />
+                                        <WrapPanel Margin="40,10,10,30" />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate>
@@ -189,7 +186,6 @@
                                         <materialDesign:Card
                                             Width="200"
                                             Height="350"
-                                            Margin="20,0,0,20"
                                             Background="GhostWhite">
                                             <Grid>
                                                 <Grid.RowDefinitions>
@@ -322,6 +318,9 @@
                                                             <ListBox
                                                                 x:Name="ToppingsProductos"
                                                                 Grid.Column="1"
+                                                                Focusable="False"
+                                                                IsHitTestVisible="False"
+                                                                IsTextSearchEnabled="False"
                                                                 ItemsSource="{Binding toppings}"
                                                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                                 <ListBox.ItemsPanel>
@@ -339,13 +338,12 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                IsDeletable="True" />
+                                                                                IsDeletable="False"
+                                                                                IsHitTestVisible="False" />
                                                                         </Grid>
                                                                     </DataTemplate>
                                                                 </ListBox.ItemTemplate>
-
                                                             </ListBox>
-
                                                         </StackPanel>
                                                     </Grid>
                                                 </StackPanel>

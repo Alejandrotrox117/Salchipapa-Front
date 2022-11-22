@@ -52,7 +52,6 @@ namespace Front.Views.Menu.Productos
             {
                 ListaToppings.Add(i);
             }
-
             categories categoria = Formulario.CbCategoriaProducto.SelectedItem as categories;
             string products = new JavaScriptSerializer().Serialize(new
             {
