@@ -27,7 +27,7 @@ namespace Front.Views.Menu
             List<toppings> returnedDataClients = JsonConvert.DeserializeObject<List<toppings>>(responseClients);
             if (returnedDataClients != null)
             {
-                DataGridToppings.ItemsSource = returnedDataClients;
+               ListBoxToppings.ItemsSource = returnedDataClients;
             }
             else
             {

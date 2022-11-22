@@ -130,7 +130,7 @@
                             Click="BtnAceptarDialog_Click"
                             Content="Aceptar"
                             Foreground="#00695c"
-                            IsDefault="False"/>
+                            IsDefault="False" />
                         <Button
                             x:Name="BtnCancelarFormulario"
                             Margin="0,0,0,0"
@@ -139,7 +139,7 @@
                             Click="BtnCerrarForm_Click"
                             Content="Cancelar"
                             Foreground="#f44658"
-                            IsCancel="True"/>
+                            IsCancel="True" />
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
@@ -179,15 +179,13 @@
                     x:Name="DataGrid"
                     Grid.Row="1"
                     Grid.RowSpan="3"
-                    Grid.Column="0"
                     Grid.ColumnSpan="5"
                     Width="788"
-                    Height="356"
-                    Margin="0,0,0,0"
+                    Height="425"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     AutoGenerateColumns="False"
-                    Background="GhostWhite"
+                    Background="White"
                     CanUserAddRows="False"
                     CanUserDeleteRows="False"
                     CanUserReorderColumns="False"
@@ -198,7 +196,9 @@
                     HeadersVisibility="All"
                     HorizontalGridLinesBrush="#00695c"
                     IsReadOnly="True"
-                    RowBackground="Transparent">
+                    RowBackground="Transparent"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Binding="{Binding ci}"
@@ -253,17 +253,17 @@
                                 <DataTemplate>
                                     <DockPanel>
                                         <Button
-                                            Click="BtnEliminar_Click"
                                             Width="50"
                                             Background="#f44c58"
-                                            BorderBrush="Transparent">
+                                            BorderBrush="Transparent"
+                                            Click="BtnEliminar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                         </Button>
                                         <Button
-                                            Click="BtnActualizar_Click"
                                             Width="50"
                                             Background="#00695c"
-                                            BorderBrush="Transparent">
+                                            BorderBrush="Transparent"
+                                            Click="BtnActualizar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                         </Button>
                                     </DockPanel>
@@ -272,12 +272,11 @@
                         </DataGridTemplateColumn>
 
                     </DataGrid.Columns>
-                    
+
                 </DataGrid>
                 <!--#endregion-->
                 <!--#region BTN AGREGAR EMPLEADO-->
                 <Button
-                    Click="BtnAgregar_Click"
                     Grid.Row="3"
                     Grid.Column="3"
                     Width="70"
@@ -287,7 +286,7 @@
                     Panel.ZIndex="1"
                     Background="#00695c"
                     BorderBrush="Transparent"
-                    
+                    Click="BtnAgregar_Click"
                     Cursor="Hand"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon

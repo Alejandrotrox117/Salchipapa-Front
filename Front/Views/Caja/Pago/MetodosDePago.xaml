@@ -140,13 +140,14 @@
                                 BorderBrush="#00695c"
                                 Click="BtnCerrarForm_Click"
                                 Content="Cancelar"
-                                Foreground="#00695c"/>
+                                Foreground="#00695c" />
                         </Grid>
                     </StackPanel>
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
             <!--#endregion-->
             <Grid>
+                <!--#region ColorZone-->
                 <materialDesign:ColorZone
                     Grid.Row="0"
                     Height="50"
@@ -160,13 +161,15 @@
                         Foreground="White"
                         Text="Todos los métodos de pago" />
                 </materialDesign:ColorZone>
+                <!--#endregion-->
                 <Button
                     Width="70"
                     Height="70"
-                    Margin="664,0,55,10"
+                    Margin="0,0,28,20"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Panel.ZIndex="1"
-                    Background="#00695c"
+                    Background="#099faf"
                     BorderBrush="Transparent"
                     Click="BtnAgregar_Click"
                     Cursor="Hand"
@@ -183,8 +186,7 @@
                         <ListBox
                             x:Name="ListBoxMetodosPagos"
                             Height="455"
-                            Margin="0,50,0,0"
-                            Background="Transparent">
+                            Margin="0,50,0,0">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel />
@@ -194,18 +196,18 @@
                                 <DataTemplate>
                                     <materialDesign:Badged
                                         Width="220"
-                                        Height="130"
+                                        Height="120"
                                         Margin="0,0,0,0"
                                         Background="Transparent"
                                         BadgeBackground="Transparent"
-                                        BorderBrush="Transparent">
+                                        BorderBrush="#099faf">
                                         <materialDesign:Badged.Badge>
                                             <Grid>
                                                 <Button
                                                     Width="28"
                                                     Height="28"
                                                     Margin="0,25,28,0"
-                                                    Background="Red"
+                                                    Background="red"
                                                     BorderBrush="Transparent"
                                                     Click="BtnEliminar_Click"
                                                     Cursor="Hand"
@@ -222,9 +224,8 @@
                                         <materialDesign:Card
                                             Width="220"
                                             Height="130"
-                                            Margin="10,10,10,10"
                                             Background="GhostWhite"
-                                            Foreground="#00695c">
+                                            BorderBrush="#099faf">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="*" />
@@ -285,6 +286,7 @@
                                     </materialDesign:Badged>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
+
                         </ListBox>
                         <!--#endregion-->
                     </Grid>

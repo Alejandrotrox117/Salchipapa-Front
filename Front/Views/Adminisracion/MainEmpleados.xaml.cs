@@ -28,28 +28,9 @@ namespace Front.Views.Empleados
             InitializeComponent();
         }
 
-        public async void Main()
-        {
-            string respuesta = await Request.Get("employes/");
-            //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
-            List<employes> returnedData = JsonConvert.DeserializeObject<List<employes>>(respuesta);
-            //VALIDACION DE RETORNO DE DATOS 
-            if (returnedData != null)
-            {
-                //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
-                //DataGridEmpleados.ItemsSource = returnedData;
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-        }
+      
 
-        private void DataGridEmpleados_Initialized(object sender, EventArgs e)
-        {
-            Main();
-        }
-
+      
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             PageEmpleados.Get();
@@ -60,6 +41,12 @@ namespace Front.Views.Empleados
         {
             TabControlEmpleados.SelectedIndex = 0;
             PageEmpleados.Get();
+        }
+
+        private void BtnBitacora_Click(object sender, RoutedEventArgs e)
+        {
+            TabControlEmpleados.SelectedIndex = 1;
+          
         }
     }
 }

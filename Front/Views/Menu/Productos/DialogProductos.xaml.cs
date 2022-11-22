@@ -159,8 +159,10 @@ namespace Front.Views.Menu.Productos
         private void BtnEliminarToppingList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
+           
             ListToppings.Items.Remove(element.DataContext as toppings);
-        }
 
+        }
+        
     }
 }

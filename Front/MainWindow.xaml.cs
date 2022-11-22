@@ -32,13 +32,13 @@ namespace Front
         public MainWindow()
         {
             InitializeComponent();
-            if (session is null)
-            {
-                Session login = new Session();
-                 login.ShowDialog();
-                this.session = login.session;
-                TxtNombreUser.Text = Session.ci;
-            }
+            //if (session is null)
+            //{
+            //    Session login = new Session();
+            //     login.ShowDialog();
+            //    this.session = login.session;
+            //    TxtNombreUser.Text = Session.ci;
+            //}
         }
 
         public async Task<string> GetHttp()

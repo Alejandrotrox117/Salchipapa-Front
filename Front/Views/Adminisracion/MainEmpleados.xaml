@@ -2,6 +2,7 @@
     x:Class="Front.Views.Empleados.MainEmpleados"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Bitacora="clr-namespace:Front.Views.Adminisracion.Bitacora"
     xmlns:Empleados="clr-namespace:Front.Views.Adminisracion.Empleados"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Empleados"
@@ -11,7 +12,7 @@
     Height="558"
     Background="Transparent"
     mc:Ignorable="d">
-    <Grid Loaded="Grid_Loaded">
+    <Grid>
         <Grid>
             <!--#region TAB EMPLEADOS-->
             <materialDesign:Card>
@@ -66,93 +67,36 @@
                     </TabItem>
                     <!--#endregion-->
                     <!--#region TAB Registros(BITACORA)-->
-                    <TabItem Width="400" Height="50">
+                    <TabItem
+                        x:Name="TabBitacora"
+                        Width="400"
+                        Height="50">
                         <TabItem.Header>
-                            <StackPanel Width="150" Height="auto">
-                                <materialDesign:PackIcon
-                                    Width="24"
-                                    Height="24"
-                                    HorizontalAlignment="Center"
-                                    Foreground="#00695c"
-                                    Kind="TabSearch" />
-                                <TextBlock
-                                    HorizontalAlignment="Center"
-                                    FontStyle="Italic"
-                                    FontWeight="Bold"
-                                    Foreground="#00695c"
-                                    Text="Registros" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <TabItem.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="20" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="45" />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition Height="20" />
-                                </Grid.RowDefinitions>
-                                <!--#endregion Filas y columnas-->
-                                <!--#region Contenido-->
-                                <materialDesign:ColorZone
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="5"
-                                    Height="50"
-                                    Background="#00695c"
-                                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
-                                    Mode="Custom">
+                            <Button
+                                x:Name="BtnBitacora"
+                                Width="391"
+                                Height="50"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Click="BtnBitacora_Click">
+                                <StackPanel Width="150" Height="auto">
+                                    <materialDesign:PackIcon
+                                        Width="24"
+                                        Height="24"
+                                        HorizontalAlignment="Center"
+                                        Foreground="#00695c"
+                                        Kind="TabSearch" />
                                     <TextBlock
-                                        Margin="16"
-                                        FontSize="15"
+                                        HorizontalAlignment="Center"
                                         FontStyle="Italic"
                                         FontWeight="Bold"
-                                        Foreground="White"
-                                        Text="Todos los Registros" />
-                                </materialDesign:ColorZone>
-                                <!--#region Datagrid  BITACORA EMPLEADOS-->
-                                <DataGrid
-                                    x:Name="DataGridBitacora"
-                                    Grid.Row="1"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="1"
-                                    Grid.ColumnSpan="3"
-                                    Width="755"
-                                    Height="346"
-                                    Margin="0,10,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    AutoGenerateColumns="False"
-                                    Background="GhostWhite"
-                                    CanUserAddRows="False"
-                                    CanUserDeleteRows="False"
-                                    CanUserReorderColumns="False"
-                                    CanUserResizeRows="False"
-                                    CanUserSortColumns="False"
-                                    FontSize="15"
-                                    Foreground="#00695c"
-                                    HeadersVisibility="All"
-                                    HorizontalGridLinesBrush="#00695c"
-                                    IsReadOnly="True"
-                                    ItemsSource="{Binding clientes}"
-                                    RowBackground="Transparent">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding ci}" Header="Cedula" />
-                                        <DataGridTextColumn Binding="{Binding name}" Header="Nombre" />
-                                        <DataGridTextColumn Binding="{Binding surname}" Header="Apellido" />
-                                        <DataGridTextColumn Binding="{Binding account}" Header="Teléfono" />
-
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                <!--#endregion-->
-                            </Grid>
+                                        Foreground="#00695c"
+                                        Text="Bítacora" />
+                                </StackPanel>
+                            </Button>
+                        </TabItem.Header>
+                        <TabItem.Content>
+                            <Bitacora:bitacora />
                         </TabItem.Content>
                     </TabItem>
                     <!--#endregion-->

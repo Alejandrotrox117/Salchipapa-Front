@@ -120,8 +120,7 @@
                                     Click="BtnAceptarDialog_Click"
                                     Content="Aceptar"
                                     Foreground="#00695c"
-                                    IsDefault="False"
-                                    />
+                                    IsDefault="False" />
 
                                 <Button
                                     x:Name="BtnCerrarForm"
@@ -132,8 +131,7 @@
                                     Click="BtnCerrarForm_Click"
                                     Content="Cancelar"
                                     Foreground="#00695c"
-                                    IsCancel="True"
-                                    />
+                                    IsCancel="True" />
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -158,10 +156,11 @@
                     <Button
                         Width="70"
                         Height="70"
-                        Margin="664,0,55,10"
+                        Margin="0,0,28,20"
+                        HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Panel.ZIndex="1"
-                        Background="#00695c"
+                        Panel.ZIndex="3"
+                        Background="#099faf"
                         BorderBrush="Transparent"
                         Click="BtnAgregar_Click"
                         Cursor="Hand"
@@ -193,12 +192,15 @@
                         HorizontalScrollBarVisibility="Auto"
                         IsReadOnly="True"
                         ItemsSource="{Binding listClientes}"
-                        RowBackground="White">
+                        RowBackground="White"
+                        SelectionMode="Single"
+                        SelectionUnit="FullRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Width="*"
                                 Binding="{Binding ci}"
-                                Header="Cedula" />
+                                Header="Cedula"
+                                IsReadOnly="True" />
                             <DataGridTextColumn
                                 Width="*"
                                 Binding="{Binding name}"

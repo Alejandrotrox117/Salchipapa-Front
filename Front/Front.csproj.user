@@ -2,7 +2,10 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Views\Adminisracion\Empleados\FormEmplados.xaml.cs">
+    <Compile Update="Views\Adminisracion\Bitacora\bitacora.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Adminisracion\Empleados\FormEmpleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Adminisracion\Empleados\Empleados.xaml.cs">
@@ -55,7 +58,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\Adminisracion\Empleados\FormEmplados.xaml">
+    <Page Update="Views\Adminisracion\Bitacora\bitacora.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Adminisracion\Empleados\FormEmpleados.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Adminisracion\Empleados\Empleados.xaml">
