@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using System.Windows.Threading;
 using Front.Views.Caja;
+using Nancy.Json;
 
 namespace Front
 {
@@ -25,7 +26,7 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
-        private employes session = null ;
+        private employes session = null;
         public employes Session { get { return this.session; } set { this.session = value; } }
         private SocketIO client;
         Pedidos pedidos;
@@ -35,22 +36,28 @@ namespace Front
             //if (session is null)
             //{
             //    Session login = new Session();
-            //     login.ShowDialog();
+            //    login.ShowDialog();
             //    this.session = login.session;
             //    TxtNombreUser.Text = Session.ci;
             //}
         }
-
-        public async Task<string> GetHttp()
+        public async void Iniciar()
         {
-            //Funcion get para el socket
-            string url = ("http://localhost:3000/api/socket");
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
+            string session = new JavaScriptSerializer().Serialize(new
+            {
+
+                ci = "28453511",
+                password = "Hola.1"
+            });
+            var response = await Request.Post("session", session);
+            if (response.IsSuccessStatusCode)
+            {
+                string data = await response.Content.ReadAsStringAsync();
+                employes content = JsonConvert.DeserializeObject<employes>(data);
+                this.BtnCaja.IsEnabled = content.account.rol != "ADMIN" || content.account.rol != "CAJERO";
+                MessageBox.Show("Inicio session");
+            }
         }
-        
         public async void SocketClient()
         {
             this.client = new SocketIO("http://localhost:3000");
@@ -123,6 +130,11 @@ namespace Front
         private void BtnAdministracion_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(new MainEmpleados());
+        }
+
+        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        {
+            Iniciar();
         }
     }
 }

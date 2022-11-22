@@ -22,6 +22,14 @@ namespace Front
         public static async Task<string> Get(string link)
         {
             //Peticion get al API mediante URL
+            //var response = await client.GetAsync(url + link);
+            //if (response.IsSuccessStatusCode)
+            //    return await response.Content.ReadAsStringAsync();
+            //else
+            //{
+            //    MessageBox.Show("error");
+            //    return null;
+            //}
             WebRequest oRequest = WebRequest.Create(url+link);
             WebResponse oResponse = oRequest.GetResponse();
             StreamReader sr = new StreamReader(oResponse.GetResponseStream());
