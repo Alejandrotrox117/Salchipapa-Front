@@ -33,27 +33,6 @@ namespace Front.Views.Caja
            
         }
        
-        //METODO MAIN PARA DESEREALIZAR DATOS DEL JSON Y CONVERTIRLO A OBJETO C#
-        public async void Main()
-        {
-            string responseClients = await Request.Get("clients/");
-            string responsePay = await Request.Get("payments/");
-            //LISTA DE CLIENTES DESEREALIZADA PARA RETORNAR DATOS
-            List<clientes> returnedDataClients = JsonConvert.DeserializeObject<List<clientes>>(responseClients);
-            List<payments> returnedPayment = JsonConvert.DeserializeObject<List<payments>>(responsePay);
-            //VALIDACION DE RETORNO DE DATOS 
-            if (returnedDataClients != null)
-            {
-                //ASIGNACION DE DATOS CONVERTIDOS AL ITEMS SOURCE DEL DATAGRID
-                //DataGridClientes.ItemsSource = returnedDataClients;
-                //ListBoxMetodosPagos.ItemsSource= returnedPayment;
-            }
-            else
-            {
-                MessageBox.Show("Error");
-            }
-        }
-
         private void BtnTabClientes_Click(object sender, RoutedEventArgs e)
         {
             TabControlClientes.SelectedIndex=0;

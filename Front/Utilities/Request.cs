@@ -16,24 +16,24 @@ namespace Front
 {
     public class Request
     {
-        public static string url = "http://localhost:3000/api/";
+        public static string url = "http://192.168.0.110:3000/api/";
         public static HttpClient client = new HttpClient();
 
         public static async Task<string> Get(string link)
         {
             //Peticion get al API mediante URL
-            //var response = await client.GetAsync(url + link);
-            //if (response.IsSuccessStatusCode)
-            //    return await response.Content.ReadAsStringAsync();
-            //else
-            //{
-            //    MessageBox.Show("error");
-            //    return null;
-            //}
-            WebRequest oRequest = WebRequest.Create(url+link);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
+            var response = await client.GetAsync(url + link);
+            if (response.IsSuccessStatusCode)
+                return await response.Content.ReadAsStringAsync();
+            else
+            {
+                MessageBox.Show("error");
+                return null;
+            }
+            //WebRequest oRequest = WebRequest.Create(url+link);
+            //WebResponse oResponse = oRequest.GetResponse();
+            //StreamReader sr = new StreamReader(oResponse.GetResponseStream());
+            //return await sr.ReadToEndAsync();
         }
         public static async Task<HttpResponseMessage> Post(string link, string clase)
         {

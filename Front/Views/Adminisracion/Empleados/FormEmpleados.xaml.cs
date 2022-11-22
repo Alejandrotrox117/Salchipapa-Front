@@ -29,7 +29,7 @@ namespace Front.Views.Adminisracion.Empleados
         public void CargarForm(employes employe)
         {
             string[] ci = employe.ci.Split('-');
-            CBCedula.Text = ci[0] + '-';
+            CBCedula.SelectedItem  = ci[0] + '-';
             TxtCedula.Text = ci[1];
             TxtNombre.Text = employe.name;
             TxtApellido.Text = employe.surname;

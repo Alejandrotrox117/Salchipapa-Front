@@ -67,9 +67,7 @@
                 <Frame
                     x:Name="MyFrame"
                     Grid.Row="1"
-                    Loaded="MyFrame_Loaded"
                     NavigationUIVisibility="Hidden" />
-
                 <materialDesign:Badged
                     Name="SnackbarBadge"
                     Grid.Row="1"
@@ -106,14 +104,12 @@
                                     Margin="40,-9,-56,1"
                                     Background="#20786b"
                                     BorderBrush="Transparent"
-                                    Click="BtnPedidos_Click"
                                     Content="Aceptar" />
                             </Grid>
                         </materialDesign:SnackbarMessage>
                     </materialDesign:Snackbar>
                 </materialDesign:Badged>
             </Grid>
-
             <!--#endregion Contenido-->
             <!--#region SIDEBAR-->
             <Grid
@@ -191,157 +187,142 @@
                                 Height="495"
                                 Margin="0,50,0,0">
                                 <!--#region Pedidos-->
-                                <TreeViewItem Width="190">
+                                <TreeViewItem
+                                    Width="190"
+                                    Height="45"
+                                    Cursor="Hand"
+                                    Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
-                                        <StackPanel Width="170" Orientation="Horizontal">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="32" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <materialDesign:PackIcon
-                                                    Grid.Column="0"
-                                                    Width="24"
-                                                    Height="24"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#00695c"
-                                                    Kind="Shopping" />
-                                                <!--#region Boton pedidos-->
-                                                <Button
-                                                    x:Name="BtnPedidos"
-                                                    Grid.Column="1"
-                                                    Background="Transparent"
-                                                    BorderBrush="Transparent"
-                                                    Click="BtnPedidos_Click"
-                                                    Cursor="Hand">
-                                                    <TextBlock
-                                                        FontSize="18"
-                                                        Style="{StaticResource PrimaryColor}"
-                                                        Text="Pedidos" />
-                                                </Button>
-                                                <!--#endregion-->
-                                            </Grid>
-                                        </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <materialDesign:PackIcon
+                                                Grid.Column="0"
+                                                Width="24"
+                                                Height="24"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Foreground="#00695c"
+                                                Kind="Shopping" />
+                                            <!--#region Boton pedidos-->
+                                            <TextBlock
+                                                x:Name="BtnPedidos"
+                                                Grid.Column="1"
+                                                Margin="15,0,0,0"
+                                                Background="Transparent"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="Pedidos" />
+                                            <!--#endregion-->
+                                        </Grid>
                                     </TreeViewItem.Header>
                                 </TreeViewItem>
-
                                 <!--#endregion-->
                                 <!--#region Btn Menu-->
-                                <TreeViewItem Width="190">
+                                <TreeViewItem
+                                    Width="190"
+                                    Height="45"
+                                    Selected="TreeViewItem_Selected_1">
                                     <TreeViewItem.Header>
-                                        <StackPanel Width="170" Orientation="Horizontal">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="32" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <materialDesign:PackIcon
-                                                    Grid.Column="0"
-                                                    Width="24"
-                                                    Height="24"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#00695c"
-                                                    Kind="BookAdd" />
-                                                <!--#region Boton Menu-->
-                                                <Button
-                                                    x:Name="BtnMenu"
-                                                    Grid.Column="1"
-                                                    Background="Transparent"
-                                                    BorderBrush="Transparent"
-                                                    Click="BtnMenu_Click"
-                                                    Cursor="Hand">
-                                                    <TextBlock
-                                                        FontSize="18"
-                                                        Style="{StaticResource PrimaryColor}"
-                                                        Text="Menu" />
-                                                </Button>
-                                                <!--#endregion-->
-                                            </Grid>
-                                        </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <materialDesign:PackIcon
+                                                Grid.Column="0"
+                                                Width="24"
+                                                Height="24"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Foreground="#00695c"
+                                                Kind="BookAdd" />
+                                            <!--#region Boton pedidos-->
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Margin="15,0,0,0"
+                                                Background="Transparent"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="Menu" />
+                                            <!--#endregion-->
+                                        </Grid>
                                         <!--#endregion-->
                                     </TreeViewItem.Header>
                                     <!--#endregion-->
-
                                 </TreeViewItem>
-
                                 <!--#region BTN CAJA-->
-                                <TreeViewItem Width="190">
+                                <TreeViewItem
+                                    Name="ItemCaja"
+                                    Width="190"
+                                    Height="45"
+                                    Selected="ItemCaja_Selected">
                                     <TreeViewItem.Header>
-                                        <StackPanel Width="170" Orientation="Horizontal">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="32" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <materialDesign:PackIcon
-                                                    Grid.Column="0"
-                                                    Width="24"
-                                                    Height="24"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#00695c"
-                                                    Kind="CashRegister" />
-                                                <!--#region Boton CAJA-->
-                                                <Button
-                                                    x:Name="BtnCaja"
-                                                    Grid.Column="1"
-                                                    Background="Transparent"
-                                                    BorderBrush="Transparent"
-                                                    Click="BtnCaja_Click"
-                                                    Cursor="Hand">
-                                                    <TextBlock
-                                                        FontSize="18"
-                                                        Style="{StaticResource PrimaryColor}"
-                                                        Text="Caja" />
-                                                </Button>
-                                                <!--#endregion-->
-                                            </Grid>
-                                        </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <materialDesign:PackIcon
+                                                Grid.Column="0"
+                                                Width="24"
+                                                Height="24"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Foreground="#00695c"
+                                                Kind="CashRegister" />
+                                            <!--#region Boton pedidos-->
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Margin="15,0,0,0"
+                                                Background="Transparent"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="Caja" />
+                                            <!--#endregion-->
+                                        </Grid>
                                     </TreeViewItem.Header>
                                 </TreeViewItem>
                                 <!--#endregion-->
                                 <!--#region Administracion-->
                                 <TreeViewItem
                                     Width="187"
+                                    Height="45"
                                     FontSize="17"
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    IsExpanded="True">
+                                    Selected="TreeViewItem_Selected_2">
                                     <TreeViewItem.Header>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="32" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <materialDesign:PackIcon
-                                                    Grid.Column="0"
-                                                    Width="24"
-                                                    Height="24"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Center"
-                                                    Foreground="#00695c"
-                                                    Kind="Tools" />
-                                                <!--#region BTN EMPLEADOS-->
-                                                <Button
-                                                    x:Name="BtnAdministracion"
-                                                    Grid.Column="1"
-                                                    Background="Transparent"
-                                                    BorderBrush="Transparent"
-                                                    Click="BtnAdministracion_Click">
-                                                    <TextBlock
-                                                        FontSize="17"
-                                                        Style="{StaticResource PrimaryColor}"
-                                                        Text="Administración" />
-                                                </Button>
-                                                <!--#endregion-->
-                                            </Grid>
-                                        </StackPanel>
-
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="32" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <materialDesign:PackIcon
+                                                Grid.Column="0"
+                                                Width="24"
+                                                Height="24"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Foreground="#00695c"
+                                                Kind="Tools" />
+                                            <!--#region Boton pedidos-->
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Margin="15,0,0,0"
+                                                Background="Transparent"
+                                                FontSize="18"
+                                                FontWeight="Bold"
+                                                Foreground="#00695c"
+                                                Text="Administración" />
+                                            <!--#endregion-->
+                                        </Grid>
                                     </TreeViewItem.Header>
-
                                 </TreeViewItem>
                                 <!--#endregion-->
                             </TreeView>

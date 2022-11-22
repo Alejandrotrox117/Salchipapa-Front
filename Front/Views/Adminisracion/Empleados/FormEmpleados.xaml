@@ -50,17 +50,17 @@
                     materialDesign:HintAssist.Hint="Nombre"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <!--#endregion TITULO Y TEXBOX NOMBRE-->
                 <TextBlock
                     x:Name="lblNombreError"
                     Grid.Row="2"
                     Grid.Column="0"
-                    Margin="17,5,13,5"
+                    Margin="17,0,15,5"
                     FontSize="9"
                     Foreground="#f44c58"
-                    TextAlignment="Justify"
+                    TextAlignment="Left"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <!--#region TITULO APELLIDO Y TEXBLOCK APELLIDO-->
@@ -76,8 +76,8 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <!--#endregion-->
                 <TextBlock
                     x:Name="lblApellidoError"
@@ -86,9 +86,9 @@
                     Margin="17,5,13,5"
                     FontSize="9"
                     Foreground="#f44c58"
-                    Visibility="Hidden"
                     TextAlignment="Justify"
-                    TextWrapping="Wrap" />
+                    TextWrapping="Wrap"
+                    Visibility="Hidden" />
                 <!--#region TITULO Y COMBOBOX CEDULA-->
                 <ComboBox
                     x:Name="CBCedula"
@@ -118,8 +118,8 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <!--#endregion-->
                 <TextBlock
                     x:Name="lblCedulaError"
@@ -142,8 +142,8 @@
                     materialDesign:HintAssist.Hint="Rol"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedComboBox}" 
-                    SelectionChanged="CbAccount_SelectionChanged">
+                    SelectionChanged="CbAccount_SelectionChanged"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}">
                     <ComboBoxItem Content="ADMIN" />
                     <ComboBoxItem Content="MESERO" />
                     <ComboBoxItem Content="COCINERO" />
@@ -171,8 +171,8 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                    TextChanged="TextChanged"/>
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    TextChanged="TextChanged" />
                 <TextBlock
                     x:Name="lblContraError"
                     Grid.Row="6"

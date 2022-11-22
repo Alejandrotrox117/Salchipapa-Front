@@ -41,6 +41,7 @@ namespace Front.Views.Empleados
         {
             TabControlEmpleados.SelectedIndex = 0;
             PageEmpleados.Get();
+        
         }
 
         private void BtnBitacora_Click(object sender, RoutedEventArgs e)
@@ -48,5 +49,7 @@ namespace Front.Views.Empleados
             TabControlEmpleados.SelectedIndex = 1;
           
         }
+
+        
     }
 }

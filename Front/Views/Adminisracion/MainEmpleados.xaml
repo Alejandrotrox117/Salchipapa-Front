@@ -12,7 +12,7 @@
     Height="558"
     Background="Transparent"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <Grid>
             <!--#region TAB EMPLEADOS-->
             <materialDesign:Card>

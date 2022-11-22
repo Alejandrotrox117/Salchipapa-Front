@@ -8,67 +8,125 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Session"
     Width="350"
-    Height="430"
+    Height="490"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <TextBox
-            x:Name="TxtUsuario"
-            Grid.Row="1"
-            Width="250"
-            Height="50"
-            materialDesign:HintAssist.Foreground="#00695c"
-            materialDesign:HintAssist.Hint="Nombre de Usuario"
-            AcceptsReturn="True"
-            BorderBrush="#00695c"
-            BorderThickness="2"
-            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-        <TextBox
-            x:Name="TxtContrasena"
-            Grid.Row="2"
-            Width="250"
-            Height="50"
-            materialDesign:HintAssist.Foreground="#00695c"
-            materialDesign:HintAssist.Hint="Contraseña"
-            AcceptsReturn="True"
-            BorderBrush="#00695c"
-            BorderThickness="2"
-            Cursor="Arrow"
-            InputScope="Password"
-            Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-        <StackPanel Grid.Row="3" Margin="0,30,0,30">
+    <Grid
+        Width="350"
+        Height="480"
+        Background="White">
+        <materialDesign:DialogHost
+            x:Name="Dialog"
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            DialogClosing="Dialog_DialogClosing"
+            IsOpen="False">
+            <materialDesign:DialogHost.DialogContent>
+                <Border
+                    Width="240"
+                    Height="90"
+                    Background="White"
+                    CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            x:Name="TxtSesion"
+                            Height="20"
+                            VerticalAlignment="Top"
+                            FontSize="12"
+                            FontWeight="Bold"
+                            Foreground="#00695c"
+                            TextAlignment="Center" />
+                        <Button
+                            x:Name="BtnIniciarSesion"
+                            Grid.Row="1"
+                            Width="80"
+                            Height="24"
+                            Margin="0,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Content="Aceptar"
+                            Cursor="Hand"
+                            FontSize="13"
+                            Foreground="#00695c"
+                            Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                    </Grid>
+                </Border>
+            </materialDesign:DialogHost.DialogContent>
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button
-                    x:Name="BtnAceptar"
-                    Grid.Column="0"
-                    Width="100"
-                    Background="#00695c"
-                    BorderBrush="Transparent"
-                    Click="BtnAceptar_Click"
-                    Content="Aceptar"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
-                <Button
-                    x:Name="BtnCerrarForm"
-                    Grid.Column="1"
-                    Width="100"
-                    Background="#00695c"
-                    BorderBrush="Transparent"
-                    Click="BtnCerrarForm_Click"
-                    Content="Cerrar"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Width="290"
+                    Height="200"
+                    Source="/Views/LogoFormSession.png"
+                    Stretch="Fill" />
+                <TextBox
+                    x:Name="TxtUsuario"
+                    Grid.Row="1"
+                    Width="250"
+                    Height="50"
+                    Margin="0,0,0,0"
+                    materialDesign:HintAssist.Foreground="#00695c"
+                    materialDesign:HintAssist.Hint="Cédula"
+                    AcceptsReturn="True"
+                    BorderBrush="#00695c"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <PasswordBox
+                    x:Name="TxtContrasena"
+                    Grid.Row="2"
+                    Width="250"
+                    Height="50"
+                    Margin="0,0,0,0"
+                    materialDesign:HintAssist.Foreground="#00695c"
+                    materialDesign:HintAssist.Hint="Contraseña"
+                    BorderBrush="#00695c"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+                <StackPanel Grid.Row="3" Margin="0,30,0,30">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Button
+                            x:Name="BtnAceptar"
+                            Grid.Row="0"
+                            Width="100"
+                            Margin="0,0,0,0"
+                            Background="Transparent"
+                            BorderBrush="#00695c"
+                            BorderThickness="2"
+                            Click="BtnAceptar_Click"
+                            Content="Aceptar"
+                            Foreground="#00695c"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                        <Button
+                            x:Name="BtnCerrarForm"
+                            Grid.Row="1"
+                            Width="80"
+                            Height="30"
+                            Background="Transparent"
+                            BorderBrush="#f44c58"
+                            BorderThickness="2"
+                            Click="BtnCerrarForm_Click"
+                            Content="Cerrar"
+                            Foreground="#f44c58"
+                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                    </Grid>
+                </StackPanel>
             </Grid>
-        </StackPanel>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>

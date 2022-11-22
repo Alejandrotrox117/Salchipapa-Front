@@ -31,23 +31,20 @@ namespace Front.Views.Pedidos
     /// </summary>
     public partial class Pedidos : UserControl
     {
-        private ObservableCollection<Orders> Order;
-        string url = ("http://localhost:3000/api/orders");
-
+        private List<Orders> Order;
+        
         private SocketIO client;
         public Pedidos(SocketIO client)
         {
             InitializeComponent();
             this.client = client;
-            
-
         }
         private async void Main()
         {
-            string response = await GetHttp();
-            List<Orders> returnedData = JsonConvert.DeserializeObject<List<Orders>>(response);
-            Order = new ObservableCollection<Orders>(returnedData);
-            if (returnedData != null)
+            string response = await Request.Get("orders");
+             Order= JsonConvert.DeserializeObject<List<Orders>>(response);
+          
+            if (Order != null)
             {
                 itemCardFlipper.ItemsSource = Order;
             }
@@ -58,14 +55,7 @@ namespace Front.Views.Pedidos
         }
 
 
-        public async Task<string> GetHttp()
-        {
-            WebRequest oRequest = WebRequest.Create(url);
-            WebResponse oResponse = oRequest.GetResponse();
-            StreamReader sr = new StreamReader(oResponse.GetResponseStream());
-            return await sr.ReadToEndAsync();
-        }
-
+        
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Main();

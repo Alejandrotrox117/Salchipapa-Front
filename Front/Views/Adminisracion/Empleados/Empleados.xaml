@@ -181,7 +181,7 @@
                     Grid.RowSpan="3"
                     Grid.ColumnSpan="5"
                     Width="788"
-                    Height="425"
+                    Height="465"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     AutoGenerateColumns="False"

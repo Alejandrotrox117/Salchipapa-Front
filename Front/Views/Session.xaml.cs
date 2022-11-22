@@ -21,9 +21,10 @@ namespace Front
     /// <summary>
     /// Lógica de interacción para Session.xaml
     /// </summary>
+    
     public partial class Session : Window
     {
-        public employes session = new employes();
+        public employes session { get; set; }
         public Session()
         {
             InitializeComponent();
@@ -36,38 +37,72 @@ namespace Front
 
         private async void Post()
         {
-            string link = "http://localhost:3000/api/session/";
-            HttpClient client = new HttpClient();
 
             string js = new JavaScriptSerializer().Serialize(new
             {
-                ci=TxtUsuario.Text,
-                password=TxtContrasena.Text
+                ci = TxtUsuario.Text,
+                password = TxtContrasena.Password
             });
-            HttpContent content = new StringContent(js,Encoding.UTF8, "application/json");
-            var httpResponse = await client.PostAsync(link, content);
-            //evaluar si la solicitud ha sido exitosa
+            var httpResponse = await Request.Post("session",js);
             string result = await httpResponse.Content.ReadAsStringAsync();
-            
-
             if (httpResponse.IsSuccessStatusCode)
             {
-                MessageBox.Show("Se ha iniciado sesion");
-
                 this.session = Newtonsoft.Json.JsonConvert.DeserializeObject<employes>(result);
-
-                this.Close();
-                
+                AbrirDialog(null);
             }
             else
             {
-                MessageBox.Show("Error" + result);
+
+                Errors error = Newtonsoft.Json.JsonConvert.DeserializeObject<Errors>(result);
+                AbrirDialog(error);
+
             }
         }
+        private void AbrirDialog(Errors error)
+        {
+            var bc = new BrushConverter();
 
+            if (error is null)
+            {
+                Brush color = (Brush)bc.ConvertFrom("#00695c");
+                TxtSesion.Text = "Has iniciado sesión";
+                TxtSesion.Foreground=color;
+                BtnIniciarSesion.Foreground = color;
+                BtnIniciarSesion.Click+= IniciarSesion_Click;
+                Dialog.IsOpen = true;
+
+            }
+            else
+            {
+                Brush color = (Brush)bc.ConvertFrom("#f44c58");
+                TxtSesion.Text=error.message;
+                TxtSesion.Foreground = color;
+                BtnIniciarSesion.Foreground = color;
+                BtnIniciarSesion.Click += Cerrar_Click;
+                Dialog.IsOpen = true;
+
+            }
+
+        }
+
+        private void Cerrar_Click(object sender,RoutedEventArgs e) 
+        {
+            Dialog.IsOpen = false;
+
+        }
+        private void IniciarSesion_Click(object sender,RoutedEventArgs e) 
+        {
+            Dialog.IsOpen = false;
+            this.Close();
+        }
         private void BtnAceptar_Click(object sender, RoutedEventArgs e)
         {
             Post();
+        }
+
+        private void Dialog_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
+        {
+            BtnIniciarSesion.Click -= IniciarSesion_Click;
         }
     }
 }

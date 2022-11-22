@@ -30,37 +30,24 @@ namespace Front
         public employes Session { get { return this.session; } set { this.session = value; } }
         private SocketIO client;
         Pedidos pedidos;
+        MenuMain menu;
+        Caja caja;
+        MainEmpleados empleados;
         public MainWindow()
         {
             InitializeComponent();
-            //if (session is null)
-            //{
-            //    Session login = new Session();
-            //    login.ShowDialog();
-            //    this.session = login.session;
-            //    TxtNombreUser.Text = Session.ci;
-            //}
-        }
-        public async void Iniciar()
-        {
-            string session = new JavaScriptSerializer().Serialize(new
+            if (session is null)
             {
+                Session login = new Session();
+                login.ShowDialog();
+                this.session = login.session; 
+                TxtNombreUser.Text = Session.ci;
 
-                ci = "28453511",
-                password = "Hola.1"
-            });
-            var response = await Request.Post("session", session);
-            if (response.IsSuccessStatusCode)
-            {
-                string data = await response.Content.ReadAsStringAsync();
-                employes content = JsonConvert.DeserializeObject<employes>(data);
-                this.BtnCaja.IsEnabled = content.account.rol != "ADMIN" || content.account.rol != "CAJERO";
-                MessageBox.Show("Inicio session");
             }
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://localhost:3000");
+            this.client = new SocketIO("http://192.168.0.110:3000");
             
             this.client.On("newOrder", async response =>
              {
@@ -78,6 +65,10 @@ namespace Front
             RelojDigital();
             SocketClient();
             pedidos = new Pedidos(this.client);
+            caja = new Caja();
+            empleados = new MainEmpleados();
+            menu = new MenuMain();
+           
             MyFrame.NavigationService.Navigate(pedidos);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -90,7 +81,7 @@ namespace Front
         }
      
        
-        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+       private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             //Para cerrar la aplicación
             Application.Current.Shutdown();
@@ -107,34 +98,28 @@ namespace Front
         {
             LblHora.Content = DateTime.Now.ToLongTimeString();
         }
-        private void BtnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(new Views.Menu.MenuMain());
-            
-        }
        
-        private void MyFrame_Loaded(object sender, RoutedEventArgs e)
-        {
-            SocketClient();
-        }
-        private void BtnPedidos_Click(object sender, RoutedEventArgs e)
+        
+        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);
+        
         }
 
-        private void BtnCaja_Click(object sender, RoutedEventArgs e)
+        private void TreeViewItem_Selected_1(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new Caja());
+            MyFrame.NavigationService.Navigate(menu);
+
         }
 
-        private void BtnAdministracion_Click(object sender, RoutedEventArgs e)
+        private void ItemCaja_Selected(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(new MainEmpleados());
+            MyFrame.NavigationService.Navigate(caja);
         }
 
-        private void Principal_Loaded(object sender, RoutedEventArgs e)
+        private void TreeViewItem_Selected_2(object sender, RoutedEventArgs e)
         {
-            Iniciar();
+            MyFrame.NavigationService.Navigate(empleados);
         }
     }
 }
