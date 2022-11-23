@@ -32,7 +32,7 @@ namespace Front.Views.Caja.Pagos
         public async void Get()
         {
             string response = await Request.Get("payments");
-            List<payments> returnedData = JsonConvert.DeserializeObject<List<payments>>(response);
+            List<Payment> returnedData = JsonConvert.DeserializeObject<List<Payment>>(response);
             if (returnedData != null)
             {
                 ListBoxMetodosPagos.ItemsSource = returnedData;
@@ -61,7 +61,7 @@ namespace Front.Views.Caja.Pagos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -84,7 +84,7 @@ namespace Front.Views.Caja.Pagos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -101,7 +101,7 @@ namespace Front.Views.Caja.Pagos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -118,7 +118,7 @@ namespace Front.Views.Caja.Pagos
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            payments pago = element.DataContext as payments;
+            Payment pago = element.DataContext as Payment;
             id = pago._id;
             Formulario.CargarForm(pago);
 
@@ -132,7 +132,7 @@ namespace Front.Views.Caja.Pagos
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            payments pago = element.DataContext as payments;
+            Payment pago = element.DataContext as Payment;
             id = pago._id;
 
             TxtTituloDrawer.Text = "¿Desea eliminar el método de pago?";
@@ -141,7 +141,7 @@ namespace Front.Views.Caja.Pagos
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

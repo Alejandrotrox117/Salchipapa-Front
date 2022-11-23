@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Form="clr-namespace:Front.Views.Menu.Categorias"
+    xmlns:front="clr-namespace:Front"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -175,6 +176,7 @@
                                         BorderBrush="Transparent"
                                         Click="BtnEliminar_Click"
                                         Cursor="Hand"
+                                        IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                         Visibility="Visible">
                                         <materialDesign:PackIcon
@@ -193,7 +195,7 @@
                                     <Grid>
                                         <Border CornerRadius="8,8,8,8">
                                             <Border.Background>
-                                                <ImageBrush ImageSource="/Views/Menu/Batido-pie.jpg" Stretch="Fill" />
+                                                <ImageBrush ImageSource="{Binding img}" Stretch="Fill" />
                                             </Border.Background>
                                         </Border>
                                         <Border
@@ -219,8 +221,9 @@
                                                     Panel.ZIndex="3"
                                                     Background="#ffc107"
                                                     BorderBrush="Transparent"
-                                                    Click="BtnActualizar_Click"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                                    IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" 
+                                                    Click="BtnActualizar_Click">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"
@@ -260,7 +263,6 @@
                     Background="#099faf"
                     BorderBrush="Transparent"
                     Click="BtnAgregar_Click"
-                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                     Cursor="Hand"
                     Foreground="White"
                     Style="{StaticResource MaterialDesignFloatingActionButton}">

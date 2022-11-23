@@ -25,7 +25,7 @@ namespace Front.Views.Caja
     {
         private static readonly HttpClient client = new HttpClient();
         private string _id = null;
-        private List<clientes> listaClientes = new List<clientes>();
+        private List<Client> listaClientes = new List<Client>();
         public Caja()
         {
             InitializeComponent();

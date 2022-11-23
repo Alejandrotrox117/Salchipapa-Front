@@ -27,14 +27,14 @@ namespace Front.Views.Menu.Productos
             CargarCombobox();
         }
 
-        public void CargarForm(products products)
+        public void CargarForm(product products)
         {
             TxtNombreProducto.Text = products.name;
             TxtPrecioProducto.Text = products.price.ToString();
             TxtStockProducto.Text = products.stock.ToString();
             TxtDescripcionProducto.Text = products.description;
             CbCategoriaProducto.SelectedValue = products.categorie._id;
-            foreach(toppings topping in products.toppings)
+            foreach(Entities.Topping topping in products.toppings)
             {
                 ListToppings.Items.Add(topping);
             }
@@ -44,8 +44,8 @@ namespace Front.Views.Menu.Productos
         {
             string ResponseCategorie = await Request.Get("categories");
             string ResponseToppings = await Request.Get("toppings");
-            List<categories> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<categories>>(ResponseCategorie);
-            List<toppings> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<toppings>>(ResponseToppings);
+            List<Categorie> categorie = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Categorie>>(ResponseCategorie);
+            List<Entities.Topping> toppings = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Entities.Topping>>(ResponseToppings);
             if (categorie != null)
             {
                 CbCategoriaProducto.ItemsSource = categorie;
@@ -68,7 +68,7 @@ namespace Front.Views.Menu.Productos
             ListToppings.ItemsSource=null;
         }
 
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");
@@ -161,8 +161,8 @@ namespace Front.Views.Menu.Productos
         private void BtnEliminarToppingList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-           
-            ListToppings.Items.Remove(element.DataContext as toppings);
+
+            ListToppings.Items.Remove(element.DataContext as Entities.Topping);
 
         }
         

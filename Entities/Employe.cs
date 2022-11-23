@@ -14,7 +14,7 @@ namespace Entities
     }
 
 
-    public class employes
+    public class Employe
     {
         
         public string _id { get; set; }

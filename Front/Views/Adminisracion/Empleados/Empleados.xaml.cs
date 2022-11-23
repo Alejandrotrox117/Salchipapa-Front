@@ -23,9 +23,8 @@ namespace Front.Views.Adminisracion.Empleados
     /// </summary>
     public partial class Empleados : UserControl
     {
-        public bool Admin= MainWindow.Session.account.admin;
         private string id;
-        public List<employes> ListEmployes;
+        public List<Employe> ListEmployes;
         public Empleados()
         {
             InitializeComponent();
@@ -35,7 +34,7 @@ namespace Front.Views.Adminisracion.Empleados
         public async void Get()
         {
             string response = await Request.Get("employes");
-            List<employes> returnedDataClients = JsonConvert.DeserializeObject<List<employes>>(response);
+            List<Employe> returnedDataClients = JsonConvert.DeserializeObject<List<Employe>>(response);
             if (returnedDataClients != null)
             {
                 DataGrid.ItemsSource = returnedDataClients;
@@ -70,7 +69,7 @@ namespace Front.Views.Adminisracion.Empleados
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -99,7 +98,7 @@ namespace Front.Views.Adminisracion.Empleados
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -116,7 +115,7 @@ namespace Front.Views.Adminisracion.Empleados
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -133,7 +132,7 @@ namespace Front.Views.Adminisracion.Empleados
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            employes empleado = element.DataContext as employes;
+            Employe empleado = element.DataContext as Employe;
             id = empleado._id;
             Formulario.CargarForm(empleado);
 
@@ -147,7 +146,7 @@ namespace Front.Views.Adminisracion.Empleados
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            employes client = element.DataContext as employes;
+            Employe client = element.DataContext as Employe;
             id = client._id;
 
             TxtTituloDrawer.Text = "¿Desea eliminar el empleado?";
@@ -156,7 +155,7 @@ namespace Front.Views.Adminisracion.Empleados
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

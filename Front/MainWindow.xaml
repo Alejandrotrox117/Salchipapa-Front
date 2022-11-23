@@ -16,7 +16,8 @@
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Window_Loaded">
     <Border
         Background="White"
         CornerRadius="10"
@@ -140,29 +141,40 @@
                                 Focusable="False"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <!--#region LOGO HIERBA SANTA-->
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="55" />
-                                        <ColumnDefinition Width="120" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image
-                                        Grid.Column="0"
-                                        Width="50"
-                                        Height="50"
-                                        Source="/IMG/logo.png"
-                                        Stretch="Fill"
-                                        StretchDirection="DownOnly" />
-                                    <TextBlock
-                                        Grid.Column="1"
-                                        Width="124"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        FontSize="20"
-                                        FontStyle="Italic"
-                                        FontWeight="Bold"
-                                        Style="{StaticResource PrimaryColor}"
-                                        Text="Hierba Santa" />
-                                </Grid>
+                                <ListViewItem
+                                    Width="195"
+                                    Height="60"
+                                    Cursor="No"
+                                    Focusable="False"
+                                    IsHitTestVisible="False"
+                                    IsTabStop="False"
+                                    SnapsToDevicePixels="True"
+                                    Visibility="Visible">
+                                    <StackPanel Grid.Row="0" Height="54">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="120" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image
+                                                Grid.Column="0"
+                                                Width="60"
+                                                Height="50"
+                                                Source="\\localhost\img\logo.png"
+                                                Stretch="Fill"
+                                                StretchDirection="DownOnly" />
+                                            <TextBlock
+                                                Grid.Column="1"
+                                                Margin="0,0,-32,0"
+                                                VerticalAlignment="Center"
+                                                FontSize="20"
+                                                FontStyle="Italic"
+                                                FontWeight="Bold"
+                                                Style="{StaticResource PrimaryColor}"
+                                                Text="Hierba Santa" />
+                                        </Grid>
+                                    </StackPanel>
+                                </ListViewItem>
                                 <!--#endregion-->
                                 <!--#region-->
                             </StackPanel>
@@ -174,10 +186,12 @@
                                 Margin="0,30,0,0">
                                 <!--#region Pedidos-->
                                 <TreeViewItem
+                                    x:Name="BtnPedidos"
                                     Width="190"
                                     Height="45"
                                     Cursor="Hand"
-                                    Selected="TreeViewItem_Selected">
+                                    Selected="TreeViewItem_Selected"
+                                    >
                                     <TreeViewItem.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -194,7 +208,6 @@
                                                 Kind="Shopping" />
                                             <!--#region Boton pedidos-->
                                             <TextBlock
-                                                x:Name="BtnPedidos"
                                                 Grid.Column="1"
                                                 Margin="15,0,0,0"
                                                 Background="Transparent"
@@ -209,9 +222,10 @@
                                 <!--#endregion-->
                                 <!--#region Btn Menu-->
                                 <TreeViewItem
+                                    x:Name="BtnMenu"
                                     Width="190"
                                     Height="45"
-                                    Selected="TreeViewItem_Selected_1">
+                                    Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -243,10 +257,10 @@
                                 </TreeViewItem>
                                 <!--#region BTN CAJA-->
                                 <TreeViewItem
-                                    Name="ItemCaja"
+                                    x:Name="BtnCaja"
                                     Width="190"
                                     Height="45"
-                                    Selected="ItemCaja_Selected">
+                                    Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -277,12 +291,13 @@
                                 <!--#endregion-->
                                 <!--#region Administracion-->
                                 <TreeViewItem
+                                    x:Name="BtnAdministracion"
                                     Width="187"
                                     Height="45"
                                     FontSize="17"
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    Selected="TreeViewItem_Selected_2">
+                                    Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -331,7 +346,7 @@
                                         Margin="4,4,0,4"
                                         IconBackground="Transparent">
                                         <materialDesign:Chip.Icon>
-                                            <Image Source="/logo.png" />
+                                            <Image Source="\\localhost\img\logo.png" />
                                         </materialDesign:Chip.Icon>
                                         <Grid Width="111">
                                             <Grid.ColumnDefinitions>

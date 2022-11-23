@@ -11,6 +11,6 @@ namespace Entities
         public string action { get; set; }
         public string module { get; set; }
 
-        public employes employe { get; set; }
+        public Employe employe { get; set; }
     }
 }

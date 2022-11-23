@@ -7,19 +7,16 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class categories
-    {
-
-       
+    public class Categorie
+    { 
         public string name { get; set; }
-
-        
         public string _id { get; set; }
-
-        public string ToString()
+        public string img
         {
-            return this.name;
+            get {
+                string direction = $"\\\\192.168.0.110\\public\\categories\\{this.name}.jpg";
+                return direction;
+            }
         }
-
     }
 }

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:FormClientes="clr-namespace:Front.Views.Caja.Clientes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Front.Views.Caja.Clientes"
+    xmlns:front="clr-namespace:Front"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -227,14 +227,16 @@
                                                 Width="50"
                                                 Background="#f44c58"
                                                 BorderBrush="Transparent"
-                                                Click="BtnEliminar_Click">
+                                                Click="BtnEliminar_Click"
+                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                             </Button>
                                             <Button
                                                 Width="50"
                                                 Background="#ffc107"
                                                 BorderBrush="Transparent"
-                                                Click="BtnActualizar_Click">
+                                                Click="BtnActualizar_Click"
+                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                 <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
                                             </Button>
                                         </DockPanel>

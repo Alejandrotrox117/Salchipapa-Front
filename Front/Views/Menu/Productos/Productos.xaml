@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:FormularioProductos="clr-namespace:Front.Views.Menu.Productos"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Front.Views.Menu.Productos"
+    xmlns:front="clr-namespace:Front"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -196,7 +196,7 @@
                                                 <materialDesign:Badged BadgeBackground="Transparent" BadgeForeground="White">
                                                     <Image
                                                         Height="140"
-                                                        Source="/Views/Menu/Batido-pie.jpg"
+                                                        Source="{Binding img}"
                                                         Stretch="Fill" />
                                                     <materialDesign:Badged.Badge>
                                                         <Button
@@ -206,6 +206,7 @@
                                                             Background="Red"
                                                             BorderBrush="Transparent"
                                                             Click="BtnEliminar_Click"
+                                                            IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                             Cursor="Hand"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                             Visibility="Visible">
@@ -233,6 +234,7 @@
                                                         BorderBrush="White"
                                                         Click="BtnActualizar_Click"
                                                         Cursor="Hand"
+                                                        IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                                                         <materialDesign:PackIcon
                                                             Width="20"

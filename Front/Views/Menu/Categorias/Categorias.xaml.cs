@@ -13,7 +13,7 @@ namespace Front.Views.Menu.Categorias
     /// </summary>
     public partial class Categorias : UserControl
     {
-        public List<categories> categories;
+        public List<Categorie> categories;
         public string id { get; set; }
         public Categorias()
         {
@@ -23,7 +23,7 @@ namespace Front.Views.Menu.Categorias
         public async void Get()
         {
             string RespondCategorie = await Request.Get("categories");
-            List<categories> categories = JsonConvert.DeserializeObject<List<categories>>(RespondCategorie);
+            List<Categorie> categories = JsonConvert.DeserializeObject<List<Categorie>>(RespondCategorie);
 
             if (categories != null)
             {
@@ -51,7 +51,7 @@ namespace Front.Views.Menu.Categorias
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
 
@@ -73,7 +73,7 @@ namespace Front.Views.Menu.Categorias
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
 
@@ -91,7 +91,7 @@ namespace Front.Views.Menu.Categorias
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
 
@@ -108,7 +108,7 @@ namespace Front.Views.Menu.Categorias
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            categories categoria = element.DataContext as categories;
+            Categorie categoria = element.DataContext as Categorie;
             id = categoria._id;
             Formulario.CargarForm(categoria);
 
@@ -122,7 +122,7 @@ namespace Front.Views.Menu.Categorias
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            categories categoria= element.DataContext as categories;
+            Categorie categoria= element.DataContext as Categorie;
             id = categoria._id;
 
             TxtTituloDrawer.Text = "¿Desea eliminar el categoria?";
@@ -131,7 +131,7 @@ namespace Front.Views.Menu.Categorias
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

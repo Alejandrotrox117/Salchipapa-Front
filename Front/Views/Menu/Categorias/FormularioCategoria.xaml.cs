@@ -15,7 +15,7 @@ namespace Front.Views.Menu.Categorias
         {
             InitializeComponent();
         }
-        public void CargarForm(categories categorie)
+        public void CargarForm(Categorie categorie)
         {
             TxtNombreCategoria.Text = categorie.name;
         }
@@ -23,7 +23,7 @@ namespace Front.Views.Menu.Categorias
         {
             TxtNombreCategoria.Text = "";
         }
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");

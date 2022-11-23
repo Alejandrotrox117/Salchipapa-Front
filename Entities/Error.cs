@@ -11,7 +11,7 @@ namespace Entities
         public string property { get; set; }
         public string error { get; set; }
     }
-    public class Errors
+    public class Error
     {
         public string message { get; set; }
         public List<ErrorsList> errors { get; set; }
