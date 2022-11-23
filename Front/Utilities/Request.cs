@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -45,8 +46,24 @@ namespace Front
 
             } catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+        public static async Task<HttpResponseMessage> Post(string link, string clase, string image, string filename)
+        {
+            try
+            {
+                var content = new MultipartFormDataContent
+                {
+                    { new StreamContent(File.OpenRead(image)), "img", filename },
+                    { new StringContent(clase, Encoding.UTF8, "application/json"), "data"}
+                };
+                var httpResponse = await client.PostAsync(url + link, content);
+                return httpResponse;
 
-
+            } catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
                 return null;
             }
@@ -63,6 +80,24 @@ namespace Front
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+        public static async Task<HttpResponseMessage> Put(string link, string clase, string image, string filename)
+        {
+            try
+            {
+                var content = new MultipartFormDataContent
+                {
+                    { new StreamContent(File.OpenRead(image)), "img", filename },
+                    { new StringContent(clase, Encoding.UTF8, "application/json"), "data"}
+                };
+                var httpResponse = await client.PutAsync(url + link, content);
+                return httpResponse;
+
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }

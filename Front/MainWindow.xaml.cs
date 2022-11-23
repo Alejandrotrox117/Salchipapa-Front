@@ -69,12 +69,11 @@ namespace Front
         }
         public void IniciarSession()
         {
-            //this.Hide();
-            //Session login = new Session();
-            //login.ShowDialog();
-            //session = login.session; 
-            //this.Show();
-            
+            this.Hide();
+            Session login = new Session();
+            login.ShowDialog();
+            session = login.session;
+            this.Show();
         }
         public async void SocketClient()
         {
