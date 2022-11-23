@@ -26,7 +26,7 @@ namespace Front.Views.Caja.Pagos
             InitializeComponent();
         }
         
-        public void CargarForm(payments pago)
+        public void CargarForm(Payment pago)
         {
             TxtNombrePago.Text = pago.name;
             CBMoneda.Text = pago.money;
@@ -37,7 +37,7 @@ namespace Front.Views.Caja.Pagos
             TxtNombrePago.Text = "";;
         }
 
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");

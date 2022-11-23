@@ -26,24 +26,46 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
-        private employes session = null;
-        public employes Session { get { return this.session; } set { this.session = value; } }
+        public static Employe session = null;
+        public static bool admin { get { return session.account.admin; } }
+
         private SocketIO client;
+
         Pedidos pedidos;
+
         MenuMain menu;
+
         Caja caja;
+
         MainEmpleados empleados;
         public MainWindow()
         {
             InitializeComponent();
-            if (session is null)
-            {
-                Session login = new Session();
-                login.ShowDialog();
-                this.session = login.session; 
-                TxtNombreUser.Text = Session.ci;
 
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            IniciarSession();
+            if (session is not null)
+            {
+                TxtNombreUser.Text = session.ci;
+                BtnPedidos.IsEnabled = session.account.rol == "ADMIN" || session.account.rol == "MESERO" || session.account.rol == "COCINERO";
+                BtnMenu.IsEnabled = session.account.rol == "ADMIN" || session.account.rol == "COCINERO";
+                BtnCaja.IsEnabled = session.account.rol == "ADMIN" || session.account.rol == "CAJERO";
+                BtnAdministracion.IsEnabled = session.account.rol == "ADMIN";
             }
+            else
+            {
+                Application.Current.Shutdown();
+            }
+        }
+        public void IniciarSession()
+        {
+            this.Hide();
+            Session login = new Session();
+            login.ShowDialog();
+            session = login.session; 
+            this.Show();
         }
         public async void SocketClient()
         {
@@ -64,10 +86,10 @@ namespace Front
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             RelojDigital();
             SocketClient();
-            pedidos = new Pedidos(this.client);
+            pedidos = new Pedidos(client);
+            menu = new MenuMain();
             caja = new Caja();
             empleados = new MainEmpleados();
-            menu = new MenuMain();
            
             MyFrame.NavigationService.Navigate(pedidos);
         }
@@ -102,24 +124,25 @@ namespace Front
         
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            MyFrame.NavigationService.Navigate(pedidos);
+            TreeViewItem item = sender as TreeViewItem;
+            switch (item.Name)
+            {
+                case "BtnPedidos":
+                    MyFrame.NavigationService.Navigate(pedidos);
+                    break;
+                case "BtnCaja":
+                    MyFrame.NavigationService.Navigate(caja);
+                    break;
+                case "BtnMenu":
+                    MyFrame.NavigationService.Navigate(menu);
+                    break;
+                case "BtnAdministracion":
+                    MyFrame.NavigationService.Navigate(empleados);
+                    break;
+
+            }
         
         }
 
-        private void TreeViewItem_Selected_1(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(menu);
-
-        }
-
-        private void ItemCaja_Selected(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(caja);
-        }
-
-        private void TreeViewItem_Selected_2(object sender, RoutedEventArgs e)
-        {
-            MyFrame.NavigationService.Navigate(empleados);
-        }
     }
 }

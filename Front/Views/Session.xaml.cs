@@ -24,7 +24,7 @@ namespace Front
     
     public partial class Session : Window
     {
-        public employes session { get; set; }
+        public Employe session { get; set; }
         public Session()
         {
             InitializeComponent();
@@ -47,18 +47,18 @@ namespace Front
             string result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
-                this.session = Newtonsoft.Json.JsonConvert.DeserializeObject<employes>(result);
+                this.session = Newtonsoft.Json.JsonConvert.DeserializeObject<Employe>(result);
                 AbrirDialog(null);
             }
             else
             {
 
-                Errors error = Newtonsoft.Json.JsonConvert.DeserializeObject<Errors>(result);
+                Error error = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(result);
                 AbrirDialog(error);
 
             }
         }
-        private void AbrirDialog(Errors error)
+        private void AbrirDialog(Error error)
         {
             var bc = new BrushConverter();
 

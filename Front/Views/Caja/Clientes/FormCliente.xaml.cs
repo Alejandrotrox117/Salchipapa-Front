@@ -26,7 +26,7 @@ namespace Front.Views.Caja.Clientes
             InitializeComponent();
         }
 
-        public void CargarForm(clientes client)
+        public void CargarForm(Client client)
         {
             string[] ci = client.ci.Split('-');
             CBCedula.Text = ci[0] + '-';
@@ -50,7 +50,7 @@ namespace Front.Views.Caja.Clientes
             TxtTelefono.Text = "";
         }
 
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");

@@ -26,7 +26,7 @@ namespace Front.Views.Adminisracion.Empleados
             InitializeComponent();
         }
 
-        public void CargarForm(employes employe)
+        public void CargarForm(Employe employe)
         {
             string[] ci = employe.ci.Split('-');
             CBCedula.SelectedItem  = ci[0] + '-';
@@ -49,7 +49,7 @@ namespace Front.Views.Adminisracion.Empleados
             CheckBoxPrivilegio.IsChecked = false;
         }
 
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");

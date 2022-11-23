@@ -12,7 +12,7 @@ namespace Entities
 
         public string origin { get; set; }
         
-        public List<products> products { get; set; }
+        public List<product> products { get; set; }
 
 
     }

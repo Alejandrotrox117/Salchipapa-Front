@@ -24,7 +24,7 @@ namespace Front.Views.Menu.Productos
     /// </summary>
     public partial class Productos : UserControl
     {
-        public ObservableCollection<products> productos;
+        public ObservableCollection<product> productos;
         private string id;
         public Productos()
         {
@@ -34,7 +34,7 @@ namespace Front.Views.Menu.Productos
         public async void Get()
         {
             string Response = await Request.Get("products");
-            List<Grupos> returnedData = JsonConvert.DeserializeObject<List<Grupos>>(Response);
+            List<Products> returnedData = JsonConvert.DeserializeObject<List<Products>>(Response);
             if (returnedData != null)
             {
                 TabsProductos.ItemsSource = returnedData;
@@ -47,12 +47,12 @@ namespace Front.Views.Menu.Productos
         //evento agregar clientes
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            List<toppings> ListaToppings = new List<toppings>();
-            foreach (toppings i in Formulario.ListToppings.Items)
+            List<Entities.Topping> ListaToppings = new List<Entities.Topping>();
+            foreach (Entities.Topping i in Formulario.ListToppings.Items)
             {
                 ListaToppings.Add(i);
             }
-            categories categoria = Formulario.CbCategoriaProducto.SelectedItem as categories;
+            Categorie categoria = Formulario.CbCategoriaProducto.SelectedItem as Categorie;
             string products = new JavaScriptSerializer().Serialize(new
             {
                 name = Formulario.TxtNombreProducto.Text,
@@ -72,19 +72,19 @@ namespace Front.Views.Menu.Productos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
         //evento actualizar clientes
         public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
-            List<toppings> ListaToppings = new List<toppings>();
-            foreach (toppings i in Formulario.ListToppings.Items)
+            List<Entities.Topping> ListaToppings = new List<Entities.Topping>();
+            foreach (Entities.Topping i in Formulario.ListToppings.Items)
             {
                 ListaToppings.Add(i);
             }
-            categories categoria = Formulario.CbCategoriaProducto.SelectedItem as categories;
+            Categorie categoria = Formulario.CbCategoriaProducto.SelectedItem as Categorie;
             string products = new JavaScriptSerializer().Serialize(new
             {
                 name = Formulario.TxtNombreProducto.Text,
@@ -105,7 +105,7 @@ namespace Front.Views.Menu.Productos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -122,7 +122,7 @@ namespace Front.Views.Menu.Productos
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -140,7 +140,7 @@ namespace Front.Views.Menu.Productos
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            products product = element.DataContext as products;
+            product product = element.DataContext as product;
             id = product._id;
             //Formulario.CargarCombobox();
             Formulario.CargarForm(product);
@@ -155,7 +155,7 @@ namespace Front.Views.Menu.Productos
         {
 
             FrameworkElement element = e.Source as FrameworkElement;
-            products product = element.DataContext as products;
+            product product = element.DataContext as product;
             id = product._id;
             TxtTituloDrawer.Text = "¿Desea eliminar el producto?";
             DrawerHost.IsBottomDrawerOpen = true;
@@ -163,7 +163,7 @@ namespace Front.Views.Menu.Productos
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

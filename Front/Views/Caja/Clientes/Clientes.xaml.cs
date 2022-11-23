@@ -13,6 +13,7 @@ namespace Front.Views.Caja.Clientes
     /// </summary>
     public partial class Clientes : UserControl
     {
+
         private string id;
         public Clientes()
         {
@@ -22,7 +23,7 @@ namespace Front.Views.Caja.Clientes
         public async void Get()
         {
             string responseClients = await Request.Get("clients");
-            List<clientes> returnedDataClients = JsonConvert.DeserializeObject<List<clientes>>(responseClients);
+            List<Client> returnedDataClients = JsonConvert.DeserializeObject<List<Client>>(responseClients);
             if (returnedDataClients != null)
             {    
                 DataGridClientes.ItemsSource = returnedDataClients;
@@ -53,7 +54,7 @@ namespace Front.Views.Caja.Clientes
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -78,7 +79,7 @@ namespace Front.Views.Caja.Clientes
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -95,7 +96,7 @@ namespace Front.Views.Caja.Clientes
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -112,7 +113,7 @@ namespace Front.Views.Caja.Clientes
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            clientes client = element.DataContext as clientes;
+            Client client = element.DataContext as Client;
             id = client._id;
             Formulario.CargarForm(client);
 
@@ -126,7 +127,7 @@ namespace Front.Views.Caja.Clientes
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            clientes client = element.DataContext as clientes;
+            Client client = element.DataContext as Client;
             id = client._id;
 
             TxtTituloDrawer.Text = "¿Desea eliminar el cliente?";
@@ -135,7 +136,7 @@ namespace Front.Views.Caja.Clientes
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

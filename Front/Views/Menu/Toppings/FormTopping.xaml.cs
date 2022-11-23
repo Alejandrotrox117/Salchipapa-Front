@@ -26,7 +26,7 @@ namespace Front.Views.Menu.Toppings
         {
             InitializeComponent();
         }
-        public void CargarForm(toppings toppings)
+        public void CargarForm(Entities.Topping toppings)
         {
             TxtNombreTopping.Text = toppings.name;
             TxtPrecioTopping.Text = toppings.price.ToString();
@@ -39,7 +39,7 @@ namespace Front.Views.Menu.Toppings
             CheckboxTp.IsChecked = false;
         }
 
-        public void MostrarErrores(Errors errores)
+        public void MostrarErrores(Error errores)
         {
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");

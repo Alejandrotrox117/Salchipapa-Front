@@ -24,7 +24,7 @@ namespace Front.Views.Menu
         public async void Get()
         {
             string responseClients = await Request.Get("toppings");
-            List<toppings> returnedDataClients = JsonConvert.DeserializeObject<List<toppings>>(responseClients);
+            List<Entities.Topping> returnedDataClients = JsonConvert.DeserializeObject<List<Entities.Topping>>(responseClients);
             if (returnedDataClients != null)
             {
                ListBoxToppings.ItemsSource = returnedDataClients;
@@ -55,7 +55,7 @@ namespace Front.Views.Menu
             {
                 DrawerHost.IsBottomDrawerOpen = false;
                 MessageBox.Show(content);
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -79,7 +79,7 @@ namespace Front.Views.Menu
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -96,7 +96,7 @@ namespace Front.Views.Menu
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Errors error = JsonConvert.DeserializeObject<Errors>(content);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -113,7 +113,7 @@ namespace Front.Views.Menu
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            toppings topping = element.DataContext as toppings;
+            Entities.Topping topping = element.DataContext as Entities.Topping;
             id = topping._id;
             Formulario.CargarForm(topping);
 
@@ -127,7 +127,7 @@ namespace Front.Views.Menu
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            toppings toppings = element.DataContext as toppings;
+            Entities.Topping toppings = element.DataContext as Entities.Topping;
             id = toppings._id;
 
             TxtTituloDrawer.Text = "¿Desea eliminar el topping?";
@@ -136,7 +136,7 @@ namespace Front.Views.Menu
             BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //funcion abrir notificacion
-        private void abrirSnack(string mensaje, Errors error)
+        private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;

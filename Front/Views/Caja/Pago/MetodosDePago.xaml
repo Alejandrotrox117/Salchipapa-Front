@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:MetodosPagos="clr-namespace:Front.Views.Caja.Pagos"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Front.Views.Caja.Pagos"
+    xmlns:front="clr-namespace:Front"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -212,7 +212,8 @@
                                                     Click="BtnEliminar_Click"
                                                     Cursor="Hand"
                                                     Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                    Visibility="Visible">
+                                                    Visibility="Visible"
+                                                    IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="25"
@@ -271,7 +272,8 @@
                                                             Click="BtnActualizar_Click"
                                                             Cursor="Hand"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                                            Visibility="Visible">
+                                                            Visibility="Visible"
+                                                            IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                             <materialDesign:PackIcon
                                                                 Width="22"
                                                                 Height="22"
