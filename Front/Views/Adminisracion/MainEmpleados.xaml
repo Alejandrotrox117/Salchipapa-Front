@@ -96,7 +96,7 @@
                             </Button>
                         </TabItem.Header>
                         <TabItem.Content>
-                            <Bitacora:bitacora />
+                            <Bitacora:bitacora x:Name="PageBitacora" />
                         </TabItem.Content>
                     </TabItem>
                     <!--#endregion-->

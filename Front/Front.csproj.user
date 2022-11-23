@@ -11,6 +11,9 @@
     <Compile Update="Views\Adminisracion\Empleados\Empleados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\inicio\Inicio.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Session.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -67,6 +70,9 @@
     <Page Update="Views\Adminisracion\Empleados\Empleados.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\inicio\Inicio.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Session.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -113,9 +119,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Style\Colors.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Style\Dictionary1.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

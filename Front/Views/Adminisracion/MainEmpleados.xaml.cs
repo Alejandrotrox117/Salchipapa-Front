@@ -47,7 +47,7 @@ namespace Front.Views.Empleados
         private void BtnBitacora_Click(object sender, RoutedEventArgs e)
         {
             TabControlEmpleados.SelectedIndex = 1;
-          
+            PageBitacora.Get();
         }
 
         

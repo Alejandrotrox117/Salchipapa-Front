@@ -23,10 +23,13 @@ namespace Front.Views.Adminisracion.Empleados
     /// </summary>
     public partial class Empleados : UserControl
     {
+        public bool Admin= MainWindow.Session.account.admin;
         private string id;
+        public List<employes> ListEmployes;
         public Empleados()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
         //funcion obtener empleados
         public async void Get()

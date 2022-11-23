@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Front.Views.Caja;
 using Nancy.Json;
+using Front.Views.inicio;
 
 namespace Front
 {
@@ -26,13 +27,14 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
-        private employes session = null;
-        public employes Session { get { return this.session; } set { this.session = value; } }
+        private static employes session = null;
+        public static employes Session { get { return session; } set { session = value; } }
         private SocketIO client;
         Pedidos pedidos;
         MenuMain menu;
         Caja caja;
         MainEmpleados empleados;
+        Inicio inicio;
         public MainWindow()
         {
             InitializeComponent();
@@ -40,9 +42,8 @@ namespace Front
             {
                 Session login = new Session();
                 login.ShowDialog();
-                this.session = login.session; 
+               session = login.session; 
                 TxtNombreUser.Text = Session.ci;
-
             }
         }
         public async void SocketClient()
@@ -68,8 +69,8 @@ namespace Front
             caja = new Caja();
             empleados = new MainEmpleados();
             menu = new MenuMain();
-           
-            MyFrame.NavigationService.Navigate(pedidos);
+            inicio = new Inicio();
+            MyFrame.NavigationService.Navigate(inicio);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -79,9 +80,8 @@ namespace Front
                 DragMove();
             }
         }
-     
-       
-       private void BtnCerrar_Click(object sender, RoutedEventArgs e)
+
+        private void BtnCerrar_Click(object sender, RoutedEventArgs e)
         {
             //Para cerrar la aplicación
             Application.Current.Shutdown();
@@ -98,12 +98,11 @@ namespace Front
         {
             LblHora.Content = DateTime.Now.ToLongTimeString();
         }
-       
-        
+
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);
-        
+
         }
 
         private void TreeViewItem_Selected_1(object sender, RoutedEventArgs e)
@@ -121,5 +120,7 @@ namespace Front
         {
             MyFrame.NavigationService.Navigate(empleados);
         }
+
+        
     }
 }

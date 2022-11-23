@@ -43,12 +43,9 @@
             </Setter.Value>
         </Setter>
     </Style>
-
     <Color x:Key="PrimaryBackColor">#00695c</Color>
-
     <Style x:Key="PrimaryColor" TargetType="TextBlock">
         <Setter Property="Foreground" Value="#00695c" />
-
     </Style>
     <Style x:Key="PrimaryColorButton" TargetType="Button">
         <Setter Property="Background" Value="#00695c" />
@@ -58,11 +55,11 @@
 
     </Style>
 
-    <Style x:Key="TabItemColor" TargetType="TabItem">
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="Background" Value="#00695c" />
-        <Setter Property="IsSelected" Value="True" />
+    <Style x:Key="TexblockColor" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#00695c" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontStyle" Value="Italic" />
+
 
     </Style>
 

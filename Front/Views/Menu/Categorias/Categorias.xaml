@@ -128,11 +128,10 @@
                                 Margin="0,0,0,0"
                                 Background="Transparent"
                                 BorderBrush="#00695c"
+                                Click="BtnAceptarDialog_Click"
                                 Content="Aceptar"
                                 Foreground="#00695c"
-                                Visibility="Visible"
-                                Click="BtnAceptarDialog_Click">
-                            </Button>
+                                Visibility="Visible" />
                             <Button
                                 x:Name="BtnCerrarForm"
                                 Grid.Column="1"
@@ -141,8 +140,7 @@
                                 BorderBrush="#00695c"
                                 Click="BtnCerrarForm_Click"
                                 Content="Cancelar"
-                                Foreground="#00695c">
-                            </Button>
+                                Foreground="#00695c" />
                         </Grid>
                     </StackPanel>
                 </Grid>
@@ -175,10 +173,10 @@
                                         Margin="-33,30,0,0"
                                         Background="Red"
                                         BorderBrush="Transparent"
+                                        Click="BtnEliminar_Click"
                                         Cursor="Hand"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
-                                        Visibility="Visible" 
-                                        Click="BtnEliminar_Click">
+                                        Visibility="Visible">
                                         <materialDesign:PackIcon
                                             Width="20"
                                             Height="25"
@@ -221,8 +219,8 @@
                                                     Panel.ZIndex="3"
                                                     Background="#ffc107"
                                                     BorderBrush="Transparent"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" 
-                                                    Click="BtnActualizar_Click">
+                                                    Click="BtnActualizar_Click"
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"

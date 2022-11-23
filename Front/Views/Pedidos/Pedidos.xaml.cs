@@ -53,9 +53,6 @@ namespace Front.Views.Pedidos
                 MessageBox.Show("Error");
             }
         }
-
-
-        
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             Main();

@@ -66,19 +66,23 @@
                 HeadersVisibility="All"
                 HorizontalGridLinesBrush="#00695c"
                 IsReadOnly="True"
-                ItemsSource="{Binding clientes}"
                 RowBackground="Transparent"
                 SelectionMode="Single"
                 SelectionUnit="FullRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="*"
-                        Binding="{Binding ci}"
+                        Binding="{Binding employe.name}"
                         Header="Empleado" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding module}"
+                        Header="Acción" />
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding action}"
+                        Header="Modulo" />
 
-                    <DataGridTextColumn Binding="{Binding name}" Header="Acción" Width="*" />
-                    <DataGridTextColumn Binding="{Binding surname}" Header="Modulo" Width="*"/>
-                    <DataGridTextColumn Binding="{Binding account}" Header="Fecha" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <!--#endregion-->

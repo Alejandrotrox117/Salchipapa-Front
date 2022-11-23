@@ -132,60 +132,46 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <!--#endregion-->
-
                             <!--#region Lista-->
-                            <ListView
+                            <StackPanel
                                 Grid.Row="0"
                                 Height="60"
-                                Margin="0,0,0,0"
-                                Background="Transparent"
-                                BorderBrush="Transparent"
+                                Background="White"
                                 Focusable="False"
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                 <!--#region LOGO HIERBA SANTA-->
-                                <ListViewItem
-                                    Width="195"
-                                    Height="60"
-                                    Cursor="No"
-                                    Focusable="False"
-                                    IsHitTestVisible="False"
-                                    IsTabStop="False"
-                                    SnapsToDevicePixels="True"
-                                    Visibility="Visible">
-                                    <StackPanel Grid.Row="0" Height="54">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                                <ColumnDefinition Width="120" />
-                                            </Grid.ColumnDefinitions>
-                                            <Image
-                                                Grid.Column="0"
-                                                Width="60"
-                                                Height="50"
-                                                Source="/IMG/logo.png"
-                                                Stretch="Fill"
-                                                StretchDirection="DownOnly" />
-                                            <TextBlock
-                                                Grid.Column="1"
-                                                Margin="0,0,-32,0"
-                                                VerticalAlignment="Center"
-                                                FontSize="20"
-                                                FontStyle="Italic"
-                                                FontWeight="Bold"
-                                                Style="{StaticResource PrimaryColor}"
-                                                Text="Hierba Santa" />
-                                        </Grid>
-                                    </StackPanel>
-                                </ListViewItem>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="55" />
+                                        <ColumnDefinition Width="120" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image
+                                        Grid.Column="0"
+                                        Width="50"
+                                        Height="50"
+                                        Source="/IMG/logo.png"
+                                        Stretch="Fill"
+                                        StretchDirection="DownOnly" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Width="124"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        FontSize="20"
+                                        FontStyle="Italic"
+                                        FontWeight="Bold"
+                                        Style="{StaticResource PrimaryColor}"
+                                        Text="Hierba Santa" />
+                                </Grid>
                                 <!--#endregion-->
                                 <!--#region-->
-                            </ListView>
+                            </StackPanel>
                             <!--#endregion LISTA-->
                             <!--#region INICIO TREEVIEW-->
                             <TreeView
                                 Grid.Row="1"
                                 Height="495"
-                                Margin="0,50,0,0">
+                                Margin="0,30,0,0">
                                 <!--#region Pedidos-->
                                 <TreeViewItem
                                     Width="190"
@@ -375,11 +361,6 @@
                                                         Content="Cerrar Sesion"
                                                         FontWeight="Bold"
                                                         Foreground="#00695c" />
-                                                    <Button
-                                                        Content="Opciones"
-                                                        FontWeight="Bold"
-                                                        Foreground="#00695c" />
-
                                                 </StackPanel>
                                             </materialDesign:PopupBox>
                                             <!--#endregion-->

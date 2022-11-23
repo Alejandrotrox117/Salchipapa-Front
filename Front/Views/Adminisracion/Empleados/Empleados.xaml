@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:FormEmpleados="clr-namespace:Front.Views.Adminisracion.Empleados"
+    xmlns:Session="clr-namespace:Front"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Adminisracion.Empleados"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -256,7 +257,8 @@
                                             Width="50"
                                             Background="#f44c58"
                                             BorderBrush="Transparent"
-                                            Click="BtnEliminar_Click">
+                                            Click="BtnEliminar_Click"
+                                            IsEnabled="{Binding Admin}">
                                             <materialDesign:PackIcon Foreground="White" Kind="Delete" />
                                         </Button>
                                         <Button
@@ -270,9 +272,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
                     </DataGrid.Columns>
-
                 </DataGrid>
                 <!--#endregion-->
                 <!--#region BTN AGREGAR EMPLEADO-->

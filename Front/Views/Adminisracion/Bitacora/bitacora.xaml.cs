@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,26 @@ namespace Front.Views.Adminisracion.Bitacora
         {
             InitializeComponent();
         }
+
+        public async void Get()
+        {
+            string Response = await Request.Get("reports");
+            List<Reports> report = JsonConvert.DeserializeObject<List<Reports>>(Response);
+
+            if (report != null)
+            {
+                DataGridBitacora.ItemsSource = report;
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+
+
+
+
+
     }
 }

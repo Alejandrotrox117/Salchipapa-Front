@@ -11,33 +11,166 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Background="White">
-        <materialDesign:DialogHost
-            x:Name="DHPedidos"
-            Grid.RowSpan="5"
-            Grid.ColumnSpan="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            CloseOnClickAway="True"
-            DialogTheme="Inherit"
-            IsOpen="False"
-            OverlayBackground="{DynamicResource PrimaryHueDarkBrush}">
-            <materialDesign:DialogHost.DialogContent>
-                <StackPanel Margin="16" Orientation="Vertical">
-                    <Label Content="The row will be deleted." FontSize="16" />
-                    <StackPanel Orientation="Horizontal">
+    <Grid Background="WhiteSmoke">
+        <StackPanel
+            Width="230"
+            Height="330"
+            Background="Transparent">
+            <Grid Height="330">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <materialDesign:Flipper
+                    Grid.Row="0"
+                    Background="GhostWhite"
+                    IsFlipped="False"
+                    Style="{StaticResource MaterialDesignCardFlipper}">
+                    <materialDesign:Flipper.FrontContent>
                         <Button
-                            Margin="0,8,8,0"
-                            Content="OK"
-                            IsDefault="True"
-                            Style="{DynamicResource MaterialDesignFlatButton}" />
-                        <Button
-                            Margin="0,8,8,0"
-                            Content="Cancel"
-                            Style="{DynamicResource MaterialDesignFlatButton}" />
-                    </StackPanel>
-                </StackPanel>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
+                            Width="184"
+                            Margin="8"
+                            Background="#00695c"
+                            BorderBrush="Transparent"
+                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                            Content="Aceptar Pedido"
+                            Foreground="White" />
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Grid Width="154">
+                            <Button
+                                x:Name="BtnFinalizado"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                Background="#00695c"
+                                BorderBrush="Transparent"
+                                Content="Finalizar Pedido"
+                                Foreground="White"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedButton}" />
+                        </Grid>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
+                <materialDesign:Flipper
+                    Grid.Row="1"
+                    Width="230"
+                    Height="330"
+                    Background="GhostWhite"
+                    IsFlipped="True">
+                    <materialDesign:Flipper.FrontContent>
+                        <Grid Width="200" Height="256">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="90" />
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <materialDesign:PackIcon
+                                Grid.Row="0"
+                                Width="22"
+                                Height="22"
+                                Margin="0,4,70,0"
+                                HorizontalAlignment="Center"
+                                Foreground="#00695c"
+                                Kind="Silverware" />
+                            <TextBlock
+                                Grid.Row="0"
+                                FontSize="20"
+                                Style="{StaticResource TexblockColor}"
+                                Text="Mesa"
+                                TextAlignment="Center" />
+                            <TextBlock
+                                Grid.Row="1"
+                                FontSize="50"
+                                Style="{StaticResource TexblockColor}"
+                                Text="1"
+                                TextAlignment="Center" />
+                            <TextBlock
+                                Grid.Row="2"
+                                FontSize="14"
+                                FontWeight="DemiBold"
+                                Foreground="#00695c"
+                                Text="Estatus"
+                                TextAlignment="Center" />
+                            <TextBlock
+                                Grid.Row="3"
+                                FontSize="10"
+                                FontWeight="DemiBold"
+                                Foreground="#00695c"
+                                Text="20min"
+                                TextAlignment="Center" />
+                            <StackPanel
+                                Grid.Row="4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                                <Button
+                                    Margin="0,4,0,0"
+                                    Background="#00695c"
+                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                    Content="Ver detalles"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFlatButton}" />
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="110" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <materialDesign:ColorZone
+                                Grid.Row="0"
+                                Padding="2"
+                                VerticalAlignment="Top"
+                                Background="#00695c"
+                                FontWeight="Bold"
+                                Foreground="White">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        HorizontalAlignment="Left"
+                                        Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                        Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                        <materialDesign:PackIcon HorizontalAlignment="Right" Kind="ArrowLeft" />
+                                    </Button>
+                                    <TextBlock
+                                        Margin="8,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="Volver" />
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                            <Expander
+                                Grid.Row="1"
+                                Width="250"
+                                Margin="0,-70,0,0"
+                                Foreground="#00695c">
+                                <Expander.Header>
+                                    <TextBlock FontWeight="DemiBold" Text="Nombre" />
+                                </Expander.Header>
+                                <Expander.Content>
+                                    <ListBox
+                                        materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
+                                        ItemsSource="{Binding toppings}"
+                                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding name}" />
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </Expander.Content>
+                            </Expander>
+                        </Grid>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

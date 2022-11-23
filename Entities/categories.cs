@@ -21,7 +21,5 @@ namespace Entities
             return this.name;
         }
 
-        
-
     }
 }
