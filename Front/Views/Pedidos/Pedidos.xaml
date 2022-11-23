@@ -219,7 +219,7 @@
                                                         Height="300">
                                                         <ListBox
                                                             Grid.Row="1"
-                                                            Margin="0,0,0,0"
+                                                            Focusable="False"
                                                             ItemsSource="{Binding products}">
                                                             <ListBox.ItemsPanel>
                                                                 <ItemsPanelTemplate>
@@ -231,10 +231,14 @@
                                                                     <TreeViewItem
                                                                         Width="250"
                                                                         materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
+                                                                        Focusable="False"
                                                                         Header="{Binding name}"
                                                                         IsSelected="False"
                                                                         ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                                                        <ListBox ItemsSource="{Binding toppings}">
+                                                                        <ListBox
+                                                                            IsHitTestVisible="False"
+                                                                            IsSynchronizedWithCurrentItem="False"
+                                                                            ItemsSource="{Binding toppings}">
                                                                             <ListBox.ItemsPanel>
                                                                                 <ItemsPanelTemplate>
                                                                                     <WrapPanel Orientation="Vertical" />
@@ -242,7 +246,7 @@
                                                                             </ListBox.ItemsPanel>
                                                                             <ListBox.ItemTemplate>
                                                                                 <DataTemplate>
-                                                                                    <TextBlock Text="{Binding name}" />
+                                                                                    <TextBlock FontWeight="DemiBold" Text="{Binding name}" />
                                                                                 </DataTemplate>
                                                                             </ListBox.ItemTemplate>
                                                                         </ListBox>
@@ -258,7 +262,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                        a
+
                     </ItemsControl>
                 </ScrollViewer>
             </TabItem>

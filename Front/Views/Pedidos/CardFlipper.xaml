@@ -171,7 +171,12 @@
                                     </StackPanel>
                                 </materialDesign:ColorZone>
                                 <TreeView Grid.Row="1" ItemsSource="{Binding products}">
-                                    <TreeViewItem Header="{Binding name}">
+                                    <TreeViewItem
+                                        BorderBrush="Transparent"
+                                        BorderThickness="1"
+                                        Focusable="False"
+                                        Header="{Binding name}"
+                                        IsSelected="False">
                                         <TreeViewItem.HeaderTemplate>
                                             <HierarchicalDataTemplate>
                                                 <WrapPanel Orientation="Vertical" />
