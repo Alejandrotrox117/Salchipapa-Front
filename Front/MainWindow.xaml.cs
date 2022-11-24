@@ -45,15 +45,15 @@ namespace Front
         }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //IniciarSession();
-            string js = new JavaScriptSerializer().Serialize(new
-            {
-                ci = "28498482",
-                password = "$dra17"
-            });
-            var httpResponse = await Request.Post("session", js);
-            string result = await httpResponse.Content.ReadAsStringAsync();
-            session = JsonConvert.DeserializeObject<Employe>(result);
+            IniciarSession();
+            //string js = new JavaScriptSerializer().Serialize(new
+            //{
+            //    ci = "28498482",
+            //    password = "$dra17"
+            //});
+            //var httpResponse = await Request.Post("session", js);
+            //string result = await httpResponse.Content.ReadAsStringAsync();
+            //session = JsonConvert.DeserializeObject<Employe>(result);
             if (session is not null)
             {
                 TxtNombreUser.Text = session.ci;
@@ -77,7 +77,7 @@ namespace Front
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://192.168.0.110:3000");
+            this.client = new SocketIO("http://localhost:3000");
             
             this.client.On("newOrder", async response =>
              {

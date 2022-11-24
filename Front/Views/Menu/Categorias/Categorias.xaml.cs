@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Newtonsoft.Json;
 using Nancy.Json;
+using System.Linq;
 using Entities;
 using System.Windows.Media;
 using System.IO;
@@ -16,6 +17,7 @@ namespace Front.Views.Menu.Categorias
     {
         public List<Categorie> categories;
         public string id { get; set; }
+        private Categorie select { get; set; }
         public Categorias()
         {
             InitializeComponent();
@@ -64,6 +66,7 @@ namespace Front.Views.Menu.Categorias
             {
                 name = Formulario.TxtNombreCategoria.Text,
             });
+
             var response = await Request.Put("categories/" + id, categoria, Formulario.FileImg, Formulario.TxtNombreCategoria.Text+".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
@@ -110,6 +113,7 @@ namespace Front.Views.Menu.Categorias
         {
             FrameworkElement element = e.Source as FrameworkElement;
             Categorie categoria = element.DataContext as Categorie;
+            select = categoria;
             id = categoria._id;
             Formulario.CargarForm(categoria);
 

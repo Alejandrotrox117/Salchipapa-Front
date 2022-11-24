@@ -11,10 +11,11 @@ namespace Entities
     { 
         public string name { get; set; }
         public string _id { get; set; }
+        public DateTime updatedAt { get; set; }
         public string img
         {
             get {
-                string direction = $"\\\\192.168.0.110\\public\\categories\\{this.name}.jpg";
+                string direction = $"\\\\localhost\\public\\categories\\{this.updatedAt.ToString("dd-MM-yyyy-HH-mm")}-{this.name}.jpg";
                 return direction;
             }
         }
