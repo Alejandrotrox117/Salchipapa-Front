@@ -11,17 +11,14 @@
     AllowsTransparency="True"
     Background="Transparent"
     FontFamily="{DynamicResource MaterialDesignFont}"
+    Loaded="Window_Loaded"
     MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d"
-    Loaded="Window_Loaded">
-    <Border
-        Background="White"
-        CornerRadius="10"
-        Loaded="Grid_Loaded">
+    mc:Ignorable="d">
+    <Border Background="White" Loaded="Grid_Loaded">
         <Grid x:Name="Principal" Background="Transparent">
             <!--#region CONTENIDO-->
             <Grid
@@ -36,7 +33,7 @@
                     <RowDefinition Height="30" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Grid Margin="0,0,10,0" Background="GhostWhite">
+                <Grid Background="GhostWhite">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="110" />
@@ -65,10 +62,22 @@
                         Text="Fecha Actual" />
 
                 </Grid>
-                <Frame
-                    x:Name="MyFrame"
+                <Image
                     Grid.Row="1"
-                    NavigationUIVisibility="Hidden" />
+                    Grid.Column="0"
+                    Margin="179,168,460,198"
+                    Source="/Views/inicio/logoFondoBlanco.png"
+                    Stretch="Uniform" />
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="340,249,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontSize="35"
+                    FontStyle="Italic"
+                    FontWeight="Bold"
+                    Style="{StaticResource PrimaryColor}"
+                    Text="Hierba Santa" />
                 <materialDesign:Badged
                     Name="SnackbarBadge"
                     Grid.Row="1"
@@ -110,6 +119,10 @@
                         </materialDesign:SnackbarMessage>
                     </materialDesign:Snackbar>
                 </materialDesign:Badged>
+                <Frame
+                    x:Name="MyFrame"
+                    Grid.Row="1"
+                    NavigationUIVisibility="Hidden" />
             </Grid>
             <!--#endregion Contenido-->
             <!--#region SIDEBAR-->
@@ -144,6 +157,7 @@
                                 <ListViewItem
                                     Width="195"
                                     Height="60"
+                                    Background="GhostWhite"
                                     Cursor="No"
                                     Focusable="False"
                                     IsHitTestVisible="False"
@@ -187,11 +201,10 @@
                                 <!--#region Pedidos-->
                                 <TreeViewItem
                                     x:Name="BtnPedidos"
-                                    Width="190"
+                                    Width="197"
                                     Height="45"
                                     Cursor="Hand"
-                                    Selected="TreeViewItem_Selected"
-                                    >
+                                    Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -223,8 +236,9 @@
                                 <!--#region Btn Menu-->
                                 <TreeViewItem
                                     x:Name="BtnMenu"
-                                    Width="190"
+                                    Width="196"
                                     Height="45"
+                                    Cursor="Hand"
                                     Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
@@ -258,8 +272,9 @@
                                 <!--#region BTN CAJA-->
                                 <TreeViewItem
                                     x:Name="BtnCaja"
-                                    Width="190"
+                                    Width="195"
                                     Height="45"
+                                    Cursor="Hand"
                                     Selected="TreeViewItem_Selected">
                                     <TreeViewItem.Header>
                                         <Grid>
@@ -292,8 +307,9 @@
                                 <!--#region Administracion-->
                                 <TreeViewItem
                                     x:Name="BtnAdministracion"
-                                    Width="187"
+                                    Width="196"
                                     Height="45"
+                                    Cursor="Hand"
                                     FontSize="17"
                                     FontWeight="Bold"
                                     Foreground="#00695c"

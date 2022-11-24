@@ -112,7 +112,6 @@ namespace Front.Views.Menu.Categorias
             Categorie categoria = element.DataContext as Categorie;
             id = categoria._id;
             Formulario.CargarForm(categoria);
-
             Formulario.TxtTituloDialg.Text = "Actualizar Categoria";
             TxtTituloDrawer.Text = "¿Desea actualizar el categoria?";
             DialogHost.IsOpen = true;

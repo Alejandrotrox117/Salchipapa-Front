@@ -44,7 +44,7 @@ namespace Front.Views.Menu
                 price = precio,
                 stock = Formulario.CheckboxTp.IsChecked
             });
-            var response = await Request.Post("toppings", topping);
+            var response = await Request.Post("toppings", topping, Formulario.FileImg, Formulario.TxtNombreTopping.Text + ".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
@@ -69,7 +69,7 @@ namespace Front.Views.Menu
                 price = precio,
                 stock = Formulario.CheckboxTp.IsChecked
             });
-            var response = await Request.Put("toppings/"+id, topping);
+            var response = await Request.Put("toppings/"+id, topping, Formulario.FileImg, Formulario.TxtNombreTopping.Text + ".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {

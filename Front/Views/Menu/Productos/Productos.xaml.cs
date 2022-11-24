@@ -62,7 +62,7 @@ namespace Front.Views.Menu.Productos
                 categorie = categoria is not null ? categoria._id : "",
                 toppings = ListaToppings.Select(x => x._id)
             });
-            var response = await Request.Post("products", products);
+            var response = await Request.Post("products", products, Formulario.FileImg, Formulario.TxtNombreProducto.Text + ".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
@@ -95,7 +95,7 @@ namespace Front.Views.Menu.Productos
                 toppings = ListaToppings.Select(x => x._id)
             });
 
-            var response = await Request.Put("products/" + id, products);
+            var response = await Request.Put("products/" + id, products, Formulario.FileImg, Formulario.TxtNombreProducto.Text + ".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {

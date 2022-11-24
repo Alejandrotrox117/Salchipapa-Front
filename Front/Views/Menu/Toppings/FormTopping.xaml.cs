@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.Win32;
 using Nancy.Json;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace Front.Views.Menu.Toppings
     /// </summary>
     public partial class FormTopping : UserControl
     {
+        public string FileImg { get; set; }
         public FormTopping()
         {
             InitializeComponent();
@@ -31,12 +33,17 @@ namespace Front.Views.Menu.Toppings
             TxtNombreTopping.Text = toppings.name;
             TxtPrecioTopping.Text = toppings.price.ToString();
             CheckboxTp.IsChecked = toppings.stock;
+            FileImg = toppings.img;
+            img.ImageSource = new BitmapImage(new Uri(toppings.img));
+            BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
         }
         public void LimpiarForm()
         {
             TxtNombreTopping.Text = "";
             TxtPrecioTopping.Text = "";
             CheckboxTp.IsChecked = false;
+            img.ImageSource = null;
+            BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#f44c58");
         }
 
         public void MostrarErrores(Error errores)
@@ -86,5 +93,20 @@ namespace Front.Views.Menu.Toppings
 
             }
         }
+
+        private void BtnImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Image files|*.jpg";
+            file.FilterIndex = 1;
+            if (file.ShowDialog() == true)
+            {
+                FileImg = file.FileName;
+                img.ImageSource = new BitmapImage(new Uri(file.FileName));
+                BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
+
+            }
+        }
+
     }
 }

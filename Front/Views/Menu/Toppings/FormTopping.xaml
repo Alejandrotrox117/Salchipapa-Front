@@ -109,12 +109,14 @@
                         TextWrapping="Wrap"
                         Visibility="Visible" />
                     <Button
+                        x:Name="BtnImage"
                         Grid.Row="3"
                         Grid.Column="0"
                         Width="100"
                         Margin="0,20,0,0"
                         Background="#00695c"
                         BorderBrush="Transparent"
+                        Click="BtnImage_Click"
                         Content="{materialDesign:PackIcon Kind=ContentSave}" />
                     <Border
                         Grid.Row="3"
@@ -125,7 +127,7 @@
                         Margin="0,5,90,0"
                         CornerRadius="100,100,100,100">
                         <Border.Background>
-                            <ImageBrush />
+                            <ImageBrush x:Name="img" />
                         </Border.Background>
                     </Border>
                     <!--#endregion-->

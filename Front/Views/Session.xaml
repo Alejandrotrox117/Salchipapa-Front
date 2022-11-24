@@ -9,12 +9,15 @@
     Title="Session"
     Width="350"
     Height="490"
+    Background="Transparent"
     WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
     mc:Ignorable="d">
-    <Grid
+    <Border
         Width="350"
         Height="480"
-        Background="White">
+        Background="White"
+        CornerRadius="6">
         <materialDesign:DialogHost
             x:Name="Dialog"
             Grid.Row="0"
@@ -24,19 +27,20 @@
             <materialDesign:DialogHost.DialogContent>
                 <Border
                     Width="240"
-                    Height="90"
+                    Height="95"
                     Background="White"
                     CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20" />
+                            <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <TextBlock
                             x:Name="TxtSesion"
                             Height="20"
-                            VerticalAlignment="Top"
-                            FontSize="12"
+                            Margin="0,0,0,0"
+                            VerticalAlignment="Bottom"
+                            FontSize="15"
                             FontWeight="Bold"
                             Foreground="#00695c"
                             TextAlignment="Center" />
@@ -51,49 +55,70 @@
                             Content="Aceptar"
                             Cursor="Hand"
                             FontSize="13"
-                            Foreground="#00695c"
-                            Style="{StaticResource MaterialDesignFlatSecondaryDarkButton}" />
+                            Foreground="#00695c" />
                     </Grid>
                 </Border>
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="70" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="170" />
+                    <RowDefinition Height="67*" />
+                    <RowDefinition Height="27*" />
+                    <RowDefinition Height="67*" />
+                    <RowDefinition Height="24*" />
+                    <RowDefinition Height="130*" />
+
                 </Grid.RowDefinitions>
                 <Image
                     Grid.Row="0"
-                    Width="290"
-                    Height="200"
+                    Margin="40,0,40,10"
                     Source="/Views/LogoFormSession.png"
                     Stretch="Fill" />
                 <TextBox
                     x:Name="TxtUsuario"
                     Grid.Row="1"
-                    Width="250"
-                    Height="50"
-                    Margin="0,0,0,0"
+                    Height="55"
+                    Margin="50,4,50,4"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Cédula"
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <TextBlock
+                    x:Name="lblCiError"
+                    Grid.Row="2"
+                    Height="20"
+                    Margin="50,2,50,0"
+                    VerticalAlignment="Top"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Visible" />
                 <PasswordBox
                     x:Name="TxtContrasena"
-                    Grid.Row="2"
-                    Width="250"
-                    Height="50"
-                    Margin="0,0,0,0"
+                    Grid.Row="3"
+                    Height="55"
+                    Margin="50,0,50,10"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Contraseña"
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-                <StackPanel Grid.Row="3" Margin="0,30,0,30">
-                    <Grid>
+                <TextBlock
+                    x:Name="lblContraError"
+                    Grid.Row="4"
+                    Height="20"
+                    Margin="50,0,50,0"
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Visible" />
+                <StackPanel Grid.Row="5" Margin="0,27,0,0">
+                    <Grid Height="103">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                             <RowDefinition />
@@ -128,5 +153,5 @@
                 </StackPanel>
             </Grid>
         </materialDesign:DialogHost>
-    </Grid>
+    </Border>
 </Window>

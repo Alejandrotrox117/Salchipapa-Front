@@ -59,7 +59,6 @@
                 <StackPanel
                     Width="490"
                     Height="50"
-                    Margin="0,0,0,30"
                     HorizontalAlignment="Center"
                     Orientation="Horizontal">
                     <TextBlock
@@ -157,7 +156,7 @@
                                             Height="50"
                                             CornerRadius="100,100,100,100">
                                             <Border.Background>
-                                                <ImageBrush ImageSource="{Binding img}" Stretch="Fill" />
+                                                <ImageBrush x:Name="img" Stretch="Fill" />
                                             </Border.Background>
                                         </Border>
 
@@ -261,11 +260,8 @@
                                     </Grid>
                                 </Border>
                             </materialDesign:Card>
-
-
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
                 </ListBox>
                 <!--#region Cuerpo principal colorZone-->
                 <materialDesign:ColorZone
@@ -288,8 +284,8 @@
                 <Button
                     x:Name="BtnAgregar"
                     Grid.Row="0"
-                    Width="60"
-                    Height="60"
+                    Width="70"
+                    Height="70"
                     Margin="0,0,28,20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
@@ -301,8 +297,8 @@
                     Foreground="White"
                     Style="{StaticResource MaterialDesignFloatingActionButton}">
                     <materialDesign:PackIcon
-                        Width="35"
-                        Height="35"
+                        Width="32"
+                        Height="32"
                         Kind="TagPlus" />
                 </Button>
                 <!--#endregion-->

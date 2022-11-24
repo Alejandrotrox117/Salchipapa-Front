@@ -214,12 +214,14 @@
                                 TextWrapping="Wrap"
                                 Visibility="Hidden" />
                             <Button
+                                x:Name="BtnImage"
                                 Grid.Row="6"
                                 Grid.Column="1"
                                 Width="100"
                                 Margin="0,0,0,0"
                                 Background="#00695c"
                                 BorderBrush="Transparent"
+                                Click="BtnImage_Click"
                                 Content="{materialDesign:PackIcon Kind=ContentSave}" />
                             <TextBlock
                                 x:Name="lblFotoError"
@@ -238,7 +240,7 @@
                                 Margin="0,0,0,0"
                                 CornerRadius="0,0,0,0">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Views/Menu/Productos/Batido-pie.jpg" />
+                                    <ImageBrush x:Name="img" />
 
                                 </Border.Background>
                             </Border>
@@ -287,7 +289,7 @@
                                                 </Grid>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
-                                        a
+
                                     </ListBox>
 
                                 </Grid>

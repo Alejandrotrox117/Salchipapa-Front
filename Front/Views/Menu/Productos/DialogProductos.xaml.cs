@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Front.Views.Menu.Productos
     /// </summary>
     public partial class DialogProductos : UserControl
     {
+        public string FileImg { get; set; }
         public DialogProductos()
         {
             InitializeComponent();
@@ -34,7 +36,10 @@ namespace Front.Views.Menu.Productos
             TxtStockProducto.Text = products.stock.ToString();
             TxtDescripcionProducto.Text = products.description;
             CbCategoriaProducto.SelectedValue = products.categorie._id;
-            foreach(Entities.Topping topping in products.toppings)
+            FileImg = products.img;
+            img.ImageSource = new BitmapImage(new Uri(products.img));
+            BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
+            foreach (Entities.Topping topping in products.toppings)
             {
                 ListToppings.Items.Add(topping);
             }
@@ -66,6 +71,8 @@ namespace Front.Views.Menu.Productos
             TxtStockProducto.Text = "";
             TxtDescripcionProducto.Text = "";
             ListToppings.ItemsSource=null;
+            img.ImageSource = null;
+            BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#f44c58");
         }
 
         public void MostrarErrores(Error errores)
@@ -165,6 +172,17 @@ namespace Front.Views.Menu.Productos
             ListToppings.Items.Remove(element.DataContext as Entities.Topping);
 
         }
-        
+        private void BtnImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.Filter = "Image files|*.jpg";
+            file.FilterIndex = 1;
+            if (file.ShowDialog() == true)
+            {
+                FileImg = file.FileName;
+                img.ImageSource = new BitmapImage(new Uri(file.FileName));
+                BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
+            }
+        }
     }
 }
