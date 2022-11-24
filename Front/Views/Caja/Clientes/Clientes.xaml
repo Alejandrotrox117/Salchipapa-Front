@@ -154,8 +154,8 @@
                             Text="Todos los Clientes" />
                     </materialDesign:ColorZone>
                     <Button
-                        Width="70"
-                        Height="70"
+                        Width="60"
+                        Height="60"
                         Margin="0,0,28,20"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
@@ -166,10 +166,10 @@
                         Cursor="Hand"
                         Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                         <materialDesign:PackIcon
-                            Width="50"
-                            Height="50"
+                            Width="40"
+                            Height="40"
                             Foreground="White"
-                            Kind="AccountGroupOutline" />
+                            Kind="AccountAddOutline" />
                     </Button>
                     <DataGrid
                         x:Name="DataGridClientes"

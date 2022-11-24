@@ -263,7 +263,7 @@
                                         </Button>
                                         <Button
                                             Width="50"
-                                            Background="#00695c"
+                                            Background="#ffc107"
                                             BorderBrush="Transparent"
                                             Click="BtnActualizar_Click">
                                             <materialDesign:PackIcon Foreground="White" Kind="Pencil" />
@@ -273,25 +273,27 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
+
                 </DataGrid>
                 <!--#endregion-->
                 <!--#region BTN AGREGAR EMPLEADO-->
                 <Button
                     Grid.Row="3"
                     Grid.Column="3"
-                    Width="70"
-                    Height="70"
-                    Margin="50,0,0,20"
+                    Width="60"
+                    Height="60"
+                    Margin="0,0,28,20"
+                    HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Panel.ZIndex="1"
-                    Background="#00695c"
+                    Background="#099faf"
                     BorderBrush="Transparent"
                     Click="BtnAgregar_Click"
                     Cursor="Hand"
                     Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <materialDesign:PackIcon
-                        Width="50"
-                        Height="50"
+                        Width="40"
+                        Height="40"
                         Foreground="White"
                         Kind="AccountKey" />
                 </Button>

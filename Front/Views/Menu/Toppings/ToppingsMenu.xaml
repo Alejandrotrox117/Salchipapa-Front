@@ -46,9 +46,8 @@
         <materialDesign:DrawerHost
             x:Name="DrawerHost"
             Grid.RowSpan="6"
-            Grid.ColumnSpan="6"
             Width="800"
-            Height="560"
+            Height="510"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Panel.ZIndex="8"
@@ -232,9 +231,9 @@
                                                 Margin="0,10,0,0"
                                                 Background="#f44c58"
                                                 BorderBrush="Transparent"
-                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                 Click="BtnEliminar_Click"
-                                                Cursor="Hand">
+                                                Cursor="Hand"
+                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                 <materialDesign:PackIcon
                                                     Width="12"
                                                     Height="12"
@@ -248,9 +247,9 @@
                                                 Margin="0,10,0,10"
                                                 VerticalAlignment="Center"
                                                 Background="#ffc107"
-                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                 BorderBrush="White"
-                                                Click="BtnActualizar_Click">
+                                                Click="BtnActualizar_Click"
+                                                IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}">
                                                 <materialDesign:PackIcon
                                                     Width="12"
                                                     Height="12"
@@ -289,8 +288,8 @@
                 <Button
                     x:Name="BtnAgregar"
                     Grid.Row="0"
-                    Width="70"
-                    Height="70"
+                    Width="60"
+                    Height="60"
                     Margin="0,0,28,20"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
@@ -302,8 +301,8 @@
                     Foreground="White"
                     Style="{StaticResource MaterialDesignFloatingActionButton}">
                     <materialDesign:PackIcon
-                        Width="32"
-                        Height="32"
+                        Width="35"
+                        Height="35"
                         Kind="TagPlus" />
                 </Button>
                 <!--#endregion-->

@@ -52,8 +52,9 @@
                         AcceptsReturn="True"
                         BorderBrush="#00695c"
                         BorderThickness="2"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                        TextChanged="TextChanged"/>
+                        MaxLength="15"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextChanged="TextChanged" />
                     <TextBlock
                         x:Name="lblNombreError"
                         Grid.Row="2"
@@ -67,21 +68,22 @@
                         Name="TxtPrecioTopping"
                         Grid.Row="1"
                         Grid.Column="1"
-                        Width="190"
+                        Width="90"
                         Height="50"
-                        Margin="0,0,0,0"
+                        Margin="0,0,130,0"
                         materialDesign:HintAssist.Foreground="#00695c"
                         materialDesign:HintAssist.Hint="Precio"
                         AcceptsReturn="True"
                         BorderBrush="#00695c"
                         BorderThickness="2"
-                        Style="{StaticResource MaterialDesignOutlinedTextBox}" 
-                        TextChanged="TextChanged"/>
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextChanged="TextChanged" />
                     <TextBlock
                         x:Name="lblPrecioError"
                         Grid.Row="2"
                         Grid.Column="1"
-                        Margin="17,0,17,0"
+                        Width="90"
+                        Margin="0,0,130,0"
                         FontSize="10"
                         Foreground="#f44c58"
                         TextAlignment="Left"
@@ -89,9 +91,10 @@
                         Visibility="Visible" />
                     <CheckBox
                         x:Name="CheckboxTp"
-                        Grid.Row="3"
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Width="100"
-                        Margin="0,0,0,0"
+                        Margin="100,0,0,0"
                         Background="#00695c"
                         Content="Disponible"
                         FontSize="14"
@@ -107,12 +110,24 @@
                         Visibility="Visible" />
                     <Button
                         Grid.Row="3"
-                        Grid.Column="1"
+                        Grid.Column="0"
                         Width="100"
-                        Margin="0"
+                        Margin="0,20,0,0"
                         Background="#00695c"
                         BorderBrush="Transparent"
                         Content="{materialDesign:PackIcon Kind=ContentSave}" />
+                    <Border
+                        Grid.Row="3"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Width="100"
+                        Height="70"
+                        Margin="0,5,90,0"
+                        CornerRadius="100,100,100,100">
+                        <Border.Background>
+                            <ImageBrush />
+                        </Border.Background>
+                    </Border>
                     <!--#endregion-->
                 </Grid>
             </StackPanel>

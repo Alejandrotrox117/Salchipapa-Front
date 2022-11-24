@@ -44,7 +44,7 @@ namespace Front
         {
             InitializeComponent();
         }
-        private  void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             IniciarSession();
             //string js = new JavaScriptSerializer().Serialize(new
@@ -79,7 +79,7 @@ namespace Front
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://192.168.0.110:3000");
+            this.client = new SocketIO("http://localhost:3000");
             
             this.client.On("newOrder", async response =>
              {
@@ -101,7 +101,7 @@ namespace Front
             caja = new Caja();
             empleados = new MainEmpleados();
            
-            MyFrame.NavigationService.Navigate(pedidos);
+            MyFrame.NavigationService.Navigate(inicio);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

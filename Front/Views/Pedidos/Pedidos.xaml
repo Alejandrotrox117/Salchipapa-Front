@@ -217,10 +217,7 @@
                                                         Grid.Row="1"
                                                         Width="230"
                                                         Height="300">
-                                                        <ListBox
-                                                            Grid.Row="1"
-                                                            Focusable="False"
-                                                            ItemsSource="{Binding products}">
+                                                        <ListBox Grid.Row="1" ItemsSource="{Binding products}">
                                                             <ListBox.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Vertical" />

@@ -16,6 +16,8 @@
     <None Remove="Views\logoFondoBlanco.png" />
     <None Remove="Views\LogoFormSession.png" />
     <None Remove="Views\Menu\Batido-pie.jpg" />
+    <None Remove="Views\Menu\Productos\Batido-pie.jpg" />
+    <None Remove="Views\Menu\Toppings\Batido-pie.jpg" />
     <None Remove="Views\Pedidos\Batido-pie.jpg" />
   </ItemGroup>
 
@@ -50,6 +52,8 @@
     <Resource Include="Views\logoFondoBlanco.png" />
     <Resource Include="Views\LogoFormSession.png" />
     <Resource Include="Views\Menu\Batido-pie.jpg" />
+    <Resource Include="Views\Menu\Productos\Batido-pie.jpg" />
+    <Resource Include="Views\Menu\Toppings\Batido-pie.jpg" />
     <Resource Include="Views\Pedidos\Batido-pie.jpg" />
   </ItemGroup>
 
