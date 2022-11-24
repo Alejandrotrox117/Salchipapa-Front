@@ -75,7 +75,6 @@ namespace Front
             login.ShowDialog();
             session = login.session;
             this.Show();
-
         }
         public async void SocketClient()
         {

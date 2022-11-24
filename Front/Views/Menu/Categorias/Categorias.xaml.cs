@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Nancy.Json;
 using Entities;
 using System.Windows.Media;
+using System.IO;
 
 namespace Front.Views.Menu.Categorias
 {
@@ -41,7 +42,7 @@ namespace Front.Views.Menu.Categorias
             {
                 name = Formulario.TxtNombreCategoria.Text,
             });
-            var response = await Request.Post("categories", categoria);
+            var response = await Request.Post("categories", categoria, Formulario.FileImg, Formulario.TxtNombreCategoria.Text+".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
@@ -59,11 +60,11 @@ namespace Front.Views.Menu.Categorias
         //funcion actualizar categoria
         public async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
-            string categorias = new JavaScriptSerializer().Serialize(new
+            string categoria = new JavaScriptSerializer().Serialize(new
             {
                 name = Formulario.TxtNombreCategoria.Text,
             });
-            var response = await Request.Put("categories/"+id, categorias);
+            var response = await Request.Put("categories/" + id, categoria, Formulario.FileImg, Formulario.TxtNombreCategoria.Text+".jpg");
             string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
