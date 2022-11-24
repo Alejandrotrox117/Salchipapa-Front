@@ -28,7 +28,7 @@ namespace Entities
         {
             get
             {
-                string direction = $"\\\\192.168.0.110\\public\\products\\{this.name}.jpg";
+                string direction = $"\\\\localhost\\public\\products\\{this.name}.jpg";
                 return direction;
             }
         }
