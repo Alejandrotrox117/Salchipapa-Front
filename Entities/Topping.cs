@@ -14,11 +14,12 @@ namespace Entities
         public double price { get; set; }
         public bool stock { get; set; }
         public string _id { get; set; }
+        public DateTime updatedAt { get; set; }
         public string img
         {
             get
             {
-                string direction = $"\\\\localhost\\public\\toppings\\{this.name}.jpg";
+                string direction = $"\\\\localhost\\public\\toppings\\{this.updatedAt.ToString("dd-MM-yyyy-HH-mm")}-{this.name}.jpg";
                 return direction;
             }
         }
