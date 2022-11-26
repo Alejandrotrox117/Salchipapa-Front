@@ -1,0 +1,154 @@
+﻿<UserControl
+    x:Class="Front.Views.Pedidos.FormPedidos"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Front.Views.Pedidos"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="850"
+    Height="400"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <StackPanel Width="850" Height="400">
+            <Grid Height="172">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition />
+                    <RowDefinition Height="120" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--#region Titulo formulario-->
+                <TextBlock
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#00695c"
+                    Text="Editar Pedidos"
+                    TextAlignment="Center" />
+                <!--#endregion-->
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="40,0,0,0"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Foreground="#00695c"
+                    Text="Productos del pedido actual" />
+                <ListBox
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Width="250"
+                    Margin="12,24,0,2"
+                    HorizontalAlignment="Left"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card Width="200" Height="40">
+                                <Grid>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontStyle="Italic"
+                                        FontWeight="Bold"
+                                        Foreground="#00695c"
+                                        Text="Batido de oreo"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+                                </Grid>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    a
+                </ListBox>
+
+                <ComboBox
+                    Name="CbCategoria"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Width="170"
+                    Height="53"
+                    Margin="0,0,50,0"
+                    materialDesign:HintAssist.Foreground="#00695c"
+                    materialDesign:HintAssist.Hint="Categoria"
+                    BorderBrush="#00695c"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="70,5,0,0"
+                    HorizontalAlignment="Left"
+                    Background="#00695c"
+                    BorderBrush="Transparent"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Foreground="White"
+                        Kind="Plus" />
+                </Button>
+                <TextBlock
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Foreground="#00695c"
+                    Text="Agregar más productos" />
+                <ListBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Width="250"
+                    Margin="150,0,0,-47"
+                    HorizontalAlignment="Left"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Expander
+                                Width="200"
+                                Height="40"
+                                materialDesign:ExpanderAssist.HeaderFontSize="12"
+                                Header="Batido de oreo"
+                                IsExpanded="True">
+
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0" />
+                                        <TextBlock Grid.Column="1" Text="Chispas" />
+                                    </Grid>
+                                </StackPanel>
+                            </Expander>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    a
+                </ListBox>
+
+
+
+
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

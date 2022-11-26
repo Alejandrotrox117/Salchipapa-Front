@@ -78,7 +78,7 @@ namespace Front
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://localhost:3000");
+            this.client = new SocketIO("http://192.168.0.101:3000");
             
             this.client.On("newOrder", async response =>
              {
