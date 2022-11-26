@@ -17,7 +17,7 @@
     <Compile Update="Views\Caja\Pedidos Finalizados\PedidosFinalizados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\inicio\Inicio.xaml.cs">
+    <Compile Update="Views\Caja\Pedidos Finalizados\Ventas\Ventas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Pedidos\FormPedidos.xaml.cs">
@@ -85,7 +85,7 @@
     <Page Update="Views\Caja\Pedidos Finalizados\PedidosFinalizados.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\inicio\Inicio.xaml">
+    <Page Update="Views\Caja\Pedidos Finalizados\Ventas\Ventas.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pedidos\FormPedidos.xaml">

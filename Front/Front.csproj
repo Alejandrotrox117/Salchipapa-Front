@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <None Remove="Views\Caja\Batido-pie.jpg" />
-    <None Remove="Views\inicio\logo.png" />
-    <None Remove="Views\inicio\logoFondoBlanco.png" />
     <None Remove="Views\Insignia Brillante Logo Tienda de Etsy Ícono.png" />
     <None Remove="Views\logo.png" />
     <None Remove="Views\logoFondoBlanco.png" />
@@ -45,8 +43,6 @@
 
   <ItemGroup>
     <Resource Include="Views\Caja\Batido-pie.jpg" />
-    <Resource Include="Views\inicio\logo.png" />
-    <Resource Include="Views\inicio\logoFondoBlanco.png" />
     <Resource Include="Views\Insignia Brillante Logo Tienda de Etsy Ícono.png" />
     <Resource Include="Views\logo.png" />
     <Resource Include="Views\logoFondoBlanco.png" />

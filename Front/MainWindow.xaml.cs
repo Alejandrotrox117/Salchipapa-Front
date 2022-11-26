@@ -1,6 +1,5 @@
 ﻿using Entities;
 using Front.Views;
-
 using Front.Views.Empleados;
 using Front.Views.Menu;
 using Front.Views.Pedidos;
@@ -18,7 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Front.Views.Caja;
 using Nancy.Json;
-using Front.Views.inicio;
+
 
 namespace Front
 {
@@ -39,7 +38,6 @@ namespace Front
         Caja caja;
 
         MainEmpleados empleados;
-        Inicio inicio;
         public MainWindow()
         {
             InitializeComponent();
@@ -100,7 +98,6 @@ namespace Front
             caja = new Caja();
             empleados = new MainEmpleados();
            
-            MyFrame.NavigationService.Navigate(inicio);
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
