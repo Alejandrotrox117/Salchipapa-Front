@@ -80,13 +80,13 @@ namespace Front
         {
             this.client = new SocketIO("http://192.168.0.101:3000");
             
-            this.client.On("newOrder", async response =>
-             {
-                 this.Dispatcher.Invoke(() =>
-                 {
-                    SnackbarNotify.IsActive = true;                     
-                 });
-             });
+            //this.client.On("newOrder", async response =>
+            // {
+            //     this.Dispatcher.Invoke(() =>
+            //     {
+            //        SnackbarNotify.IsActive = true;                     
+            //     });
+            // });
             await this.client.ConnectAsync();
         }
 
@@ -95,7 +95,7 @@ namespace Front
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             RelojDigital();
             SocketClient();
-            pedidos = new Pedidos(client);
+            pedidos = new Pedidos(ref client);
             menu = new MenuMain();
             caja = new Caja();
             empleados = new MainEmpleados();

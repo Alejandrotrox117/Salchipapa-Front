@@ -1,5 +1,6 @@
 ﻿using Entities;
 using Microsoft.Graph;
+using Nancy.Json;
 using Newtonsoft.Json;
 using SocketIOClient;
 using System;
@@ -31,22 +32,23 @@ namespace Front.Views.Pedidos
     /// </summary>
     public partial class Pedidos : UserControl
     {
-        private List<Orders> Order;
+        public ObservableCollection<Orders> Orders { get; set; }
         
         private SocketIO client;
-        public Pedidos(SocketIO client)
+        public Pedidos(ref SocketIO client)
         {
             InitializeComponent();
             this.client = client;
+            this.DataContext = this;
         }
         private async void Main()
         {
             string response = await Request.Get("orders");
-             Order= JsonConvert.DeserializeObject<List<Orders>>(response);
+            Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
           
-            if (Order != null)
+            if (Orders != null)
             {
-                itemCardFlipper.ItemsSource = Order;
+                itemCardFlipper.ItemsSource = Orders;
             }
             else
             {
@@ -61,9 +63,25 @@ namespace Front.Views.Pedidos
                 this.Dispatcher.Invoke(() =>
                 {
                     var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString());
-                    this.Order.Add(returned[0]);
+                    this.Orders.Add(returned[0]);
                     itemCardFlipper.Focus();
                         
+                });
+            });
+            client.On("changeOrder", async response =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString());
+                    var lista = new List<Orders>(Orders);
+
+                    int index = lista.FindIndex(i => i.number == returned[0].number);
+
+                    if (index != -1)
+                        Orders[index] =  returned[0];
+
+                    itemCardFlipper.Focus();
+
                 });
             });
         }
@@ -72,6 +90,20 @@ namespace Front.Views.Pedidos
         {
         }
 
-        
+        private async void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            Orders order = element.DataContext as Orders;
+            string body = new JavaScriptSerializer().Serialize(new
+            {
+                status = "PROCESO"
+            });
+
+            var response = await Request.Put("orders/"+order.number.ToString(), body);
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("error");
+            }
+        }
     }
 }

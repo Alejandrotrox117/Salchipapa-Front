@@ -167,7 +167,7 @@
                     materialDesign:ColorZoneAssist.Mode="Light">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding categorie}" />
+                            <TextBlock Text="{Binding categorie.name}" />
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
