@@ -62,8 +62,8 @@ namespace Front.Views.Pedidos
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString());
-                    this.Orders.Add(returned[0]);
+                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString())[0];
+                    this.Orders.Add(returned);
                     itemCardFlipper.Focus();
                         
                 });
@@ -72,13 +72,24 @@ namespace Front.Views.Pedidos
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString());
+                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString())[0];
                     var lista = new List<Orders>(Orders);
 
-                    int index = lista.FindIndex(i => i.number == returned[0].number);
+                    int index = lista.FindIndex(i => i.number == returned.number);
 
                     if (index != -1)
-                        Orders[index] =  returned[0];
+                    {
+                        if (returned.IsProgress)
+                        {
+                            Orders[index] = returned;
+                        }
+                        else
+                        {
+                            Orders.RemoveAt(index);
+                            Orders.Add(returned);
+
+                        }
+                    }
 
                     itemCardFlipper.Focus();
 
@@ -86,8 +97,20 @@ namespace Front.Views.Pedidos
             });
         }
 
-        private void BtnFinalizado_click(object sender, RoutedEventArgs e)
+        private async void BtnFinalizado_click(object sender, RoutedEventArgs e)
         {
+            FrameworkElement element = e.Source as FrameworkElement;
+            Orders order = element.DataContext as Orders;
+            string body = new JavaScriptSerializer().Serialize(new
+            {
+                status = "LISTO"
+            });
+
+            var response = await Request.Put("orders/"+order.number.ToString(), body);
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("error");
+            }
         }
 
         private async void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)

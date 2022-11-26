@@ -76,7 +76,7 @@
                                                     Width="144"
                                                     Background="#00695c"
                                                     BorderBrush="Transparent"
-                                                    Content="Aceptar Pedido"
+                                                    Content="{Binding IsFinish}"
                                                     FontSize="13"
                                                     Foreground="White" 
                                                     Click="BtnAceptarPedido_Click"/>
@@ -90,10 +90,9 @@
                                                         Click="BtnFinalizado_click"
                                                         materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                                         materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
-                                                        materialDesign:ButtonProgressAssist.Value="-1"
                                                         Background="#00695c"
                                                         BorderBrush="Transparent"
-                                                        Content="Finalizar Pedido"
+                                                        Content="Finalizar pedido"
                                                         Foreground="White"
                                                         Style="{StaticResource MaterialDesignRaisedButton}" />
                                                 </Grid>

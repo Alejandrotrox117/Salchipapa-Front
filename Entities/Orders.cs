@@ -21,5 +21,15 @@ namespace Entities
         {
             get { return status == "PROCESO"; }
         }
+        public string IsFinish
+        {
+            get 
+            {
+                if (status == "LISTO")
+                    return "Entregar pedido";
+                else
+                    return "Aceptar pedido";
+            }
+        }
     }
 }
