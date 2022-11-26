@@ -30,12 +30,14 @@
         <materialDesign:Card>
             <TabControl
                 Margin="0,50,0,0"
-                HorizontalContentAlignment="Left"
-                materialDesign:ColorZoneAssist.Mode="Custom">
+                materialDesign:ColorZoneAssist.Mode="Light"
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                TabStripPlacement="Top">
                 <TabItem
                     x:Name="TabItemPedidosFinalizados"
                     Width="400"
-                    Height="75">
+                    Height="60">
                     <TabItem.Header>
                         <Button
                             x:Name="BtnPFinalizados"
@@ -61,8 +63,7 @@
                     </TabItem.Header>
                     <ItemsControl
                         x:Name="itemCardTerminados"
-                        Width="795"
-                        Margin="2,55,2,0"
+                        Width="796"
                         materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
                         Background="White"
                         Focusable="True"
@@ -79,7 +80,7 @@
                                     Width="230"
                                     Height="340"
                                     Margin="10">
-                                    <Grid>
+                                    <Grid ScrollViewer.VerticalScrollBarVisibility="Visible">
                                         <materialDesign:Flipper
                                             Grid.Row="1"
                                             Width="230"
@@ -215,10 +216,7 @@
                                                         Grid.Row="1"
                                                         Width="230"
                                                         Height="300">
-                                                        <ListBox
-                                                            Grid.Row="1"
-                                                            Focusable="False"
-                                                            ItemsSource="{Binding products}">
+                                                        <ListBox Grid.Row="1" ItemsSource="{Binding products}">
                                                             <ListBox.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Vertical" />
@@ -230,7 +228,6 @@
                                                                         Width="250"
                                                                         materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
                                                                         Header="{Binding name}"
-                                                                        IsSelected="False"
                                                                         ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                                         <ListBox IsHitTestVisible="False" ItemsSource="{Binding toppings}">
                                                                             <ListBox.ItemsPanel>
@@ -256,10 +253,10 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
+
                     </ItemsControl>
                 </TabItem>
-
-                <TabItem Width="430" Height="75">
+                <TabItem Width="400" Height="60">
                     <TabItem.Header>
                         <Button
                             Width="400"

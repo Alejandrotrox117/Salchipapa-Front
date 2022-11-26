@@ -306,7 +306,7 @@
                                                             FontSize="14"
                                                             FontWeight="Bold"
                                                             Foreground="#00766c"
-                                                            Text="15" />
+                                                            Text="{Binding stock}" />
                                                         <TextBlock
                                                             Grid.Row="3"
                                                             Grid.ColumnSpan="2"
