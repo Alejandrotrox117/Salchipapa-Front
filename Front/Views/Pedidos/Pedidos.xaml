@@ -76,7 +76,7 @@
                                                         Background="#00695c"
                                                         BorderBrush="Transparent"
                                                         Click="BtnAceptarPedido_Click"
-                                                        Content="Aceptar Pedido"
+                                                        Content="{Binding IsFinish}"
                                                         FontSize="13"
                                                         Foreground="White" />
                                                 </materialDesign:Card>

@@ -79,15 +79,18 @@ namespace Front.Views.Pedidos
 
                     if (index != -1)
                     {
-                        if (returned.IsProgress)
+                        switch (returned.status)
                         {
-                            Orders[index] = returned;
-                        }
-                        else
-                        {
-                            Orders.RemoveAt(index);
-                            Orders.Add(returned);
-
+                            case "PROCESO":
+                                Orders[index] = returned;
+                                break;
+                            case "LISTO":
+                                Orders.RemoveAt(index);
+                                Orders.Insert(index, returned);
+                                break;
+                            case "ENTREGADO":
+                                Orders.RemoveAt(index);
+                                break;
                         }
                     }
 
@@ -119,7 +122,7 @@ namespace Front.Views.Pedidos
             Orders order = element.DataContext as Orders;
             string body = new JavaScriptSerializer().Serialize(new
             {
-                status = "PROCESO"
+                status = order.status == "NUEVO" ? "PROCESO" : "ENTREGADO"
             });
 
             var response = await Request.Put("orders/"+order.number.ToString(), body);
