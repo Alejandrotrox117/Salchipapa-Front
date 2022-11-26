@@ -61,200 +61,214 @@
                             </StackPanel>
                         </Button>
                     </TabItem.Header>
-                    <ItemsControl
-                        x:Name="itemCardTerminados"
-                        Width="796"
-                        materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
-                        Background="White"
-                        Focusable="True"
-                        ItemsSource="{Binding Orders}"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel
-                                    Width="230"
-                                    Height="340"
-                                    Margin="10">
-                                    <Grid ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                        <materialDesign:Flipper
-                                            Grid.Row="1"
-                                            Width="230"
-                                            Height="340"
-                                            Margin="0,0,0,0"
-                                            Panel.ZIndex="6"
-                                            Background="Transparent"
-                                            IsFlipped="False">
-                                            <materialDesign:Flipper.FrontContent>
-                                                <materialDesign:Card>
-                                                    <Grid>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="45" />
-                                                            <RowDefinition Height="40" />
-                                                            <RowDefinition Height="70" />
-                                                            <RowDefinition Height="38" />
-                                                            <RowDefinition Height="*" />
-                                                        </Grid.RowDefinitions>
-                                                        <CheckBox Margin="10,0,0,0" materialDesign:CheckBoxAssist.CheckBoxSize="24" />
-                                                        <StackPanel
-                                                            Grid.Row="0"
-                                                            Width="150"
-                                                            Margin="35,4,0,0">
-                                                            <materialDesign:Chip Background="#00695c">
+                    <ScrollViewer>
+                        <ItemsControl
+                            x:Name="itemCardTerminados"
+                            Width="796"
+                            materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
+                            Background="White"
+                            Focusable="True"
+                            ItemsSource="{Binding Orders}"
+                            ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Width="230"
+                                        Height="340"
+                                        Margin="10">
+                                        <Grid>
+                                            <materialDesign:Flipper
+                                                Grid.Row="1"
+                                                Width="230"
+                                                Height="340"
+                                                Margin="0,0,0,0"
+                                                Panel.ZIndex="6"
+                                                Background="Transparent"
+                                                IsFlipped="False">
+                                                <materialDesign:Flipper.FrontContent>
+                                                    <materialDesign:Card>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="45" />
+                                                                <RowDefinition Height="40" />
+                                                                <RowDefinition Height="70" />
+                                                                <RowDefinition Height="38" />
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
+                                                            <CheckBox Margin="10,0,0,0" materialDesign:CheckBoxAssist.CheckBoxSize="24" />
+                                                            <StackPanel
+                                                                Grid.Row="0"
+                                                                Width="150"
+                                                                Margin="60,4,0,0">
+                                                                <materialDesign:Chip Background="#00695c">
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <TextBlock
+                                                                            FontStyle="Italic"
+                                                                            FontWeight="DemiBold"
+                                                                            Foreground="White"
+                                                                            Text="Mesa:  " />
+                                                                        <TextBlock
+                                                                            Grid.Column="1"
+                                                                            Margin="0,0,0,0"
+                                                                            Foreground="White"
+                                                                            Text="{Binding origin}" />
+                                                                    </Grid>
+                                                                </materialDesign:Chip>
+                                                            </StackPanel>
+                                                            <Button
+                                                                Width="50"
+                                                                Margin="155,0,0,0"
+                                                                Background="#FFC107"
+                                                                BorderBrush="Transparent">
+                                                                <materialDesign:PackIcon
+                                                                    Width="20"
+                                                                    Height="20"
+                                                                    Foreground="White"
+                                                                    Kind="Pencil" />
+                                                            </Button>
+
+                                                            <StackPanel
+                                                                Grid.Row="1"
+                                                                Height="50"
+                                                                Margin="0,10,0,0"
+                                                                HorizontalAlignment="Center">
                                                                 <Grid>
                                                                     <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition Width="60" />
-                                                                        <ColumnDefinition Width="10" />
+                                                                        <ColumnDefinition Width="250" />
+                                                                        <ColumnDefinition Width="*" />
                                                                     </Grid.ColumnDefinitions>
+                                                                    <materialDesign:PackIcon
+                                                                        Grid.Row="1"
+                                                                        Width="22"
+                                                                        Height="22"
+                                                                        Margin="0,4,200,0"
+                                                                        HorizontalAlignment="Center"
+                                                                        Foreground="#00695c"
+                                                                        Kind="Silverware" />
                                                                     <TextBlock
-                                                                        FontStyle="Italic"
-                                                                        FontWeight="DemiBold"
-                                                                        Foreground="White"
-                                                                        Text="Número:" />
-                                                                    <TextBlock
-                                                                        Grid.Column="1"
-                                                                        Margin="0,0,0,0"
-                                                                        Foreground="White"
-                                                                        Text="2" />
+                                                                        Grid.Row="1"
+                                                                        HorizontalAlignment="Center"
+                                                                        FontSize="20"
+                                                                        Style="{StaticResource TexblockColor}"
+                                                                        Text="Número de pedido"
+                                                                        TextAlignment="Center" />
                                                                 </Grid>
-                                                            </materialDesign:Chip>
-                                                        </StackPanel>
-                                                        <StackPanel
-                                                            Grid.Row="1"
-                                                            Height="50"
-                                                            Margin="0,10,0,0"
-                                                            HorizontalAlignment="Center">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="*" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <materialDesign:PackIcon
-                                                                    Grid.Row="1"
-                                                                    Width="22"
-                                                                    Height="22"
-                                                                    Margin="0,4,73,0"
-                                                                    HorizontalAlignment="Center"
-                                                                    Foreground="#00695c"
-                                                                    Kind="Silverware" />
-                                                                <TextBlock
-                                                                    Grid.Row="1"
-                                                                    HorizontalAlignment="Center"
-                                                                    FontSize="20"
-                                                                    Style="{StaticResource TexblockColor}"
-                                                                    Text="Mesa"
-                                                                    TextAlignment="Center" />
-                                                            </Grid>
-                                                        </StackPanel>
-                                                        <TextBlock
-                                                            Grid.Row="2"
-                                                            FontSize="50"
-                                                            Style="{StaticResource TexblockColor}"
-                                                            Text="{Binding origin}"
-                                                            TextAlignment="Center" />
-                                                        <TextBlock
-                                                            Grid.Row="3"
-                                                            Margin="0,23,0,0"
-                                                            FontSize="14"
-                                                            FontWeight="DemiBold"
-                                                            Foreground="#00695c"
-                                                            Text="Estatus"
-                                                            TextAlignment="Center" />
-                                                        <TextBlock
-                                                            Grid.Row="4"
-                                                            Margin="0,10,0,0"
-                                                            FontSize="13"
-                                                            FontWeight="DemiBold"
-                                                            Foreground="#00695c"
-                                                            Text="20min"
-                                                            TextAlignment="Center" />
-                                                        <StackPanel
-                                                            Grid.Row="5"
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center">
-                                                            <Button
-                                                                Margin="0,70,0,0"
-                                                                Background="#00695c"
-                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                                                Content="Ver detalles"
-                                                                Foreground="White" />
-                                                        </StackPanel>
-                                                    </Grid>
-                                                </materialDesign:Card>
-                                            </materialDesign:Flipper.FrontContent>
-                                            <materialDesign:Flipper.BackContent>
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="35" />
-                                                        <RowDefinition Height="*" />
-                                                    </Grid.RowDefinitions>
-                                                    <materialDesign:ColorZone Padding="5" Background="#00695c">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <Button
-                                                                HorizontalAlignment="Left"
-                                                                BorderBrush="Transparent"
-                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                                                Style="{StaticResource MaterialDesignToolForegroundButton}">
-                                                                <materialDesign:PackIcon
-                                                                    HorizontalAlignment="Right"
-                                                                    Foreground="White"
-                                                                    Kind="ArrowLeft" />
-                                                            </Button>
+                                                            </StackPanel>
                                                             <TextBlock
-                                                                Margin="8,0,0,0"
-                                                                VerticalAlignment="Center"
+                                                                Grid.Row="2"
+                                                                FontSize="50"
+                                                                Style="{StaticResource TexblockColor}"
+                                                                Text="{Binding origin}"
+                                                                TextAlignment="Center" />
+                                                            <TextBlock
+                                                                Grid.Row="3"
+                                                                Margin="0,23,0,0"
+                                                                FontSize="14"
                                                                 FontWeight="DemiBold"
-                                                                Foreground="White"
-                                                                Text="Volver" />
-                                                        </StackPanel>
-                                                    </materialDesign:ColorZone>
-                                                    <materialDesign:Card
-                                                        Grid.Row="1"
-                                                        Width="230"
-                                                        Height="300">
-                                                        <ListBox Grid.Row="1" ItemsSource="{Binding products}">
-                                                            <ListBox.ItemsPanel>
-                                                                <ItemsPanelTemplate>
-                                                                    <WrapPanel Orientation="Vertical" />
-                                                                </ItemsPanelTemplate>
-                                                            </ListBox.ItemsPanel>
-                                                            <ListBox.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <TreeViewItem
-                                                                        Width="250"
-                                                                        materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
-                                                                        Header="{Binding name}"
-                                                                        ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                                                        <ListBox IsHitTestVisible="False" ItemsSource="{Binding toppings}">
-                                                                            <ListBox.ItemsPanel>
-                                                                                <ItemsPanelTemplate>
-                                                                                    <WrapPanel Orientation="Vertical" />
-                                                                                </ItemsPanelTemplate>
-                                                                            </ListBox.ItemsPanel>
-                                                                            <ListBox.ItemTemplate>
-                                                                                <DataTemplate>
-                                                                                    <TextBlock FontWeight="DemiBold" Text="{Binding name}" />
-                                                                                </DataTemplate>
-                                                                            </ListBox.ItemTemplate>
-                                                                        </ListBox>
-                                                                    </TreeViewItem>
-                                                                </DataTemplate>
-                                                            </ListBox.ItemTemplate>
-                                                        </ListBox>
+                                                                Foreground="#00695c"
+                                                                Text="Estatus"
+                                                                TextAlignment="Center" />
+                                                            <TextBlock
+                                                                Grid.Row="4"
+                                                                Margin="0,10,0,0"
+                                                                FontSize="13"
+                                                                FontWeight="DemiBold"
+                                                                Foreground="#00695c"
+                                                                Text="20min"
+                                                                TextAlignment="Center" />
+                                                            <StackPanel
+                                                                Grid.Row="5"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center">
+                                                                <Button
+                                                                    Margin="0,70,0,0"
+                                                                    Background="#00695c"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    Content="Ver detalles"
+                                                                    Foreground="White" />
+                                                            </StackPanel>
+                                                        </Grid>
                                                     </materialDesign:Card>
-                                                </Grid>
-                                            </materialDesign:Flipper.BackContent>
-                                        </materialDesign:Flipper>
-                                    </Grid>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-
-                    </ItemsControl>
+                                                </materialDesign:Flipper.FrontContent>
+                                                <materialDesign:Flipper.BackContent>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="35" />
+                                                            <RowDefinition Height="*" />
+                                                        </Grid.RowDefinitions>
+                                                        <materialDesign:ColorZone Padding="5" Background="#00695c">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Button
+                                                                    HorizontalAlignment="Left"
+                                                                    BorderBrush="Transparent"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    Style="{StaticResource MaterialDesignToolForegroundButton}">
+                                                                    <materialDesign:PackIcon
+                                                                        HorizontalAlignment="Right"
+                                                                        Foreground="White"
+                                                                        Kind="ArrowLeft" />
+                                                                </Button>
+                                                                <TextBlock
+                                                                    Margin="8,0,0,0"
+                                                                    VerticalAlignment="Center"
+                                                                    FontWeight="DemiBold"
+                                                                    Foreground="White"
+                                                                    Text="Volver" />
+                                                            </StackPanel>
+                                                        </materialDesign:ColorZone>
+                                                        <materialDesign:Card
+                                                            Grid.Row="1"
+                                                            Width="230"
+                                                            Height="300">
+                                                            <ListBox Grid.Row="1" ItemsSource="{Binding products}">
+                                                                <ListBox.ItemsPanel>
+                                                                    <ItemsPanelTemplate>
+                                                                        <WrapPanel Orientation="Vertical" />
+                                                                    </ItemsPanelTemplate>
+                                                                </ListBox.ItemsPanel>
+                                                                <ListBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <TreeViewItem
+                                                                            Width="250"
+                                                                            materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
+                                                                            Header="{Binding name}"
+                                                                            ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                                            <ListBox IsHitTestVisible="False" ItemsSource="{Binding toppings}">
+                                                                                <ListBox.ItemsPanel>
+                                                                                    <ItemsPanelTemplate>
+                                                                                        <WrapPanel Orientation="Vertical" />
+                                                                                    </ItemsPanelTemplate>
+                                                                                </ListBox.ItemsPanel>
+                                                                                <ListBox.ItemTemplate>
+                                                                                    <DataTemplate>
+                                                                                        <TextBlock FontWeight="DemiBold" Text="{Binding name}" />
+                                                                                    </DataTemplate>
+                                                                                </ListBox.ItemTemplate>
+                                                                            </ListBox>
+                                                                        </TreeViewItem>
+                                                                    </DataTemplate>
+                                                                </ListBox.ItemTemplate>
+                                                            </ListBox>
+                                                        </materialDesign:Card>
+                                                    </Grid>
+                                                </materialDesign:Flipper.BackContent>
+                                            </materialDesign:Flipper>
+                                        </Grid>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            a
+                        </ItemsControl>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Width="400" Height="60">
                     <TabItem.Header>
@@ -280,10 +294,7 @@
                         </Button>
                     </TabItem.Header>
                 </TabItem>
-
-
             </TabControl>
         </materialDesign:Card>
-
     </Grid>
 </UserControl>
