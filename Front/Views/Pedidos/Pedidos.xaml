@@ -22,7 +22,7 @@
             <materialDesign:DialogHost.DialogContent>
                 <Formulario:FormPedidos />
             </materialDesign:DialogHost.DialogContent>
-            <Grid >
+            <Grid>
                 <!--#region TABITEM-->
                 <materialDesign:ColorZone
                     Grid.Row="0"
@@ -41,20 +41,20 @@
                         Text="Todos los Pedidos" />
                 </materialDesign:ColorZone>
                 <ScrollViewer>
-                <ItemsControl
-                    x:Name="itemCardFlipper"
-                    Width="795"
-                    Margin="2,55,2,0"
-                    Background="White"
-                    ItemsSource="{Binding Orders}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel
+                    <ItemsControl
+                        x:Name="itemCardFlipper"
+                        Width="795"
+                        Margin="2,55,2,0"
+                        Background="White"
+                        ItemsSource="{Binding Orders}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel
                                     Width="230"
                                     Height="400"
                                     Margin="10">
@@ -279,10 +279,10 @@
                                         </materialDesign:Flipper>
                                     </Grid>
                                 </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                    </ScrollViewer>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </Grid>
         </materialDesign:DialogHost>
     </Grid>
