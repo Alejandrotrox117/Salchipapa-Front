@@ -156,7 +156,7 @@
                                             Height="50"
                                             CornerRadius="100,100,100,100">
                                             <Border.Background>
-                                                <ImageBrush x:Name="img" Stretch="Fill" />
+                                                <ImageBrush x:Name="img" ImageSource="{Binding img}" Stretch="Fill" />
                                             </Border.Background>
                                         </Border>
 

@@ -22,13 +22,13 @@ namespace Entities
 
         public string description { get; set; }
         public int stock { get; set; }
-
+        public DateTime updatedAt { get; set; }
         public List<Topping> toppings { get; set; }
         public string img
         {
             get
             {
-                string direction = $"\\\\localhost\\public\\products\\{this.name}.jpg";
+                string direction = $"\\\\localhost\\public\\products\\{this.updatedAt.ToString("dd-MM-yyyy-HH-mm")}-{this.name}.jpg";
                 return direction;
             }
         }
