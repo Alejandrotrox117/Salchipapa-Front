@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Clientes="clr-namespace:Front.Views.Caja.Clientes"
     xmlns:MetodosPagos="clr-namespace:Front.Views.Caja.Pagos"
+    xmlns:PagePedidosFinalizados="clr-namespace:Front.Views.Caja.Pedidos_Finalizados"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Caja"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -22,6 +23,40 @@
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                 TabStripPlacement="Bottom">
+                <!--#region Pedidos Finalizados-->
+                <TabItem
+                    x:Name="TabItemPedidosFinalizados"
+                    Width="255"
+                    Height="50">
+                    <TabItem.Header>
+                        <Button
+                            x:Name="BtnPFinalizados"
+                            Width="255"
+                            Height="50"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Click="BtnPFinalizados_Click">
+                            <StackPanel Width="255" HorizontalAlignment="Center">
+                                <materialDesign:PackIcon
+                                    Width="24"
+                                    Height="24"
+                                    HorizontalAlignment="Center"
+                                    Foreground="#00695c"
+                                    Kind="TabSearch" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    FontStyle="Italic"
+                                    FontWeight="Bold"
+                                    Foreground="#00695c"
+                                    Text="Pedidos Finalizados" />
+                            </StackPanel>
+                        </Button>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <PagePedidosFinalizados:PedidosFinalizados />
+                    </TabItem.Content>
+                </TabItem>
+                <!--#endregion-->
                 <!--#region TabItem Clientes-->
                 <TabItem
                     x:Name="TabClientes"
@@ -96,26 +131,7 @@
                     </TabItem.Content>
                 </TabItem>
                 <!--#endregion-->
-                <!--#region Pedidos Finalizados-->
-                <TabItem Width="265" Height="50">
-                    <TabItem.Header>
-                        <StackPanel Width="150" Height="auto">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                HorizontalAlignment="Center"
-                                Foreground="#00695c"
-                                Kind="TabSearch" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontStyle="Italic"
-                                FontWeight="Bold"
-                                Foreground="#00695c"
-                                Text="Pedidos Finalizados" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
-                <!--#endregion-->
+
             </TabControl>
         </materialDesign:Card>
         <!--#endregion-->

@@ -206,8 +206,8 @@
                                                             Background="Red"
                                                             BorderBrush="Transparent"
                                                             Click="BtnEliminar_Click"
-                                                            IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                             Cursor="Hand"
+                                                            IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
                                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
                                                             Visibility="Visible">
                                                             <materialDesign:PackIcon
