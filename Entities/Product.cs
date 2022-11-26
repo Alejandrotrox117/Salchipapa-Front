@@ -8,7 +8,7 @@ namespace Entities
 {
     public struct Products
     {
-        public string categorie { get; set; }
+        public Categorie categorie { get; set; }
         public List<product> products { get; set; }
     }
     public class product
