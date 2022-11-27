@@ -51,6 +51,20 @@ namespace Front.Views.Pedidos
 
                 });
             });
+            client.On("takeOrder", async response =>
+            {
+                this.Dispatcher.Invoke(() =>
+                {
+
+                    var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString())[0];
+                    var lista = new List<Orders>(Orders);
+                    int index = lista.FindIndex(i => i.number == returned.number);
+
+                    this.Orders.RemoveAt(index);
+                    itemCardFlipper.Focus();
+
+                });
+            });
             client.On("changeOrder", async response =>
             {
                 this.Dispatcher.Invoke(() =>
