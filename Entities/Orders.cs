@@ -11,7 +11,7 @@ namespace Entities
     {
 
         public string origin { get; set; }
-        
+        public float total { get; set; }
         public List<product> products { get; set; }
         public int number { get; set; }
         public string status { get; set; }

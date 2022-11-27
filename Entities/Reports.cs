@@ -10,6 +10,8 @@ namespace Entities
     {
         public string action { get; set; }
         public string module { get; set; }
+        public DateTime createdAt { get; set; }
+        public string CreatedAt { get { return createdAt.ToString("d"); } }
 
         public Employe employe { get; set; }
     }

@@ -6,15 +6,16 @@
     xmlns:local="clr-namespace:Front.Views.Pedidos"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="850"
+    Width="800"
     Height="400"
     mc:Ignorable="d">
     <Grid Background="White">
-        <StackPanel Width="850" Height="400">
-            <Grid Height="172">
+        <StackPanel Width="800" Height="400">
+            <Grid Height="400">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
+                    <RowDefinition Height="120" />
                     <RowDefinition Height="120" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -35,17 +36,16 @@
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="40,0,0,0"
-                    FontSize="14"
+                    Margin="91,49,58,63"
+                    FontSize="18"
                     FontWeight="Bold"
                     Foreground="#00695c"
                     Text="Productos del pedido actual" />
                 <ListBox
                     Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="0"
-                    Width="250"
-                    Margin="12,24,0,2"
+                    Grid.Column="1"
+                    Width="244"
+                    Margin="24,9,0,10"
                     HorizontalAlignment="Left"
                     ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListBox.ItemsPanel>
@@ -55,31 +55,37 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <materialDesign:Card Width="200" Height="40">
-                                <Grid>
-                                    <TextBlock
-                                        VerticalAlignment="Center"
-                                        FontStyle="Italic"
-                                        FontWeight="Bold"
-                                        Foreground="#00695c"
-                                        Text="Batido de oreo"
-                                        TextAlignment="Center"
-                                        TextWrapping="Wrap" />
-                                </Grid>
+                            <materialDesign:Card Width="200">
+                                <Expander
+                                    Width="200"
+                                    Height="50"
+                                    materialDesign:ExpanderAssist.HeaderFontSize="12"
+                                    Header="Batido de oreo"
+                                    IsExpanded="True">
+                                    <Expander.Content>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox Grid.Column="0" />
+                                                <TextBlock Grid.Column="1" Text="Chispa" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Expander.Content>
+                                </Expander>
                             </materialDesign:Card>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    a
                 </ListBox>
-
                 <ComboBox
                     Name="CbCategoria"
                     Grid.Row="2"
                     Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Width="170"
-                    Height="53"
-                    Margin="0,0,50,0"
+                    Height="52"
+                    Margin="40,14,200,0"
+                    VerticalAlignment="Top"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Categoria"
                     BorderBrush="#00695c"
@@ -87,8 +93,7 @@
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 <Button
                     Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="70,5,0,0"
+                    Margin="273,70,0,10"
                     HorizontalAlignment="Left"
                     Background="#00695c"
                     BorderBrush="Transparent"
@@ -101,17 +106,20 @@
                 </Button>
                 <TextBlock
                     Grid.Row="1"
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    FontSize="14"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    Margin="323,126,0,101"
+                    HorizontalAlignment="Left"
+                    FontSize="17"
                     FontWeight="Bold"
                     Foreground="#00695c"
                     Text="Agregar más productos" />
                 <ListBox
                     Grid.Row="2"
-                    Grid.Column="1"
-                    Width="250"
-                    Margin="150,0,0,-47"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    Width="228"
+                    Margin="379,24,0,98"
                     HorizontalAlignment="Left"
                     ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListBox.ItemsPanel>
@@ -123,7 +131,7 @@
                         <DataTemplate>
                             <Expander
                                 Width="200"
-                                Height="40"
+                                Height="50"
                                 materialDesign:ExpanderAssist.HeaderFontSize="12"
                                 Header="Batido de oreo"
                                 IsExpanded="True">
@@ -143,6 +151,19 @@
                     </ListBox.ItemTemplate>
                     a
                 </ListBox>
+                <ComboBox
+                    x:Name="CbCategoria_Copy"
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Height="52"
+                    Margin="40,99,200,0"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Foreground="#00695c"
+                    materialDesign:HintAssist.Hint="Productos"
+                    BorderBrush="#00695c"
+                    BorderThickness="2"
+                    Style="{StaticResource MaterialDesignOutlinedComboBox}" />
 
 
 

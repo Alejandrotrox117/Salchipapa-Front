@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Front.Views.Caja
+namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
 {
     /// <summary>
-    /// Lógica de interacción para PlantillaDialog.xaml
+    /// Lógica de interacción para Ventas.xaml
     /// </summary>
-    public partial class PlantillaDialog : UserControl
+    public partial class Ventas : UserControl
     {
-        public PlantillaDialog()
+        public Ventas()
         {
             InitializeComponent();
+        }
+
+        private void BtnVerProductos_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

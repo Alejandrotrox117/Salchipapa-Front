@@ -6,21 +6,28 @@
     xmlns:local="clr-namespace:Front.Views.Caja.Pedidos_Finalizados"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="400"
-    d:DesignWidth="480"
+    Width="480"
+    Height="490"
     mc:Ignorable="d">
     <Grid Background="White">
-        <StackPanel Width="480" Height="400">
-            <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Width="480">
+            <Grid Height="396">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -54,20 +61,32 @@
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                 <TextBlock
-                    x:Name="TxtCliente"
+                    x:Name="TxtNombreCliente"
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="15,0,15,0"
-                    VerticalAlignment="Center"
+                    Margin="68,21,15,0"
+                    VerticalAlignment="Top"
                     FontSize="16"
                     FontStyle="Italic"
                     FontWeight="DemiBold"
                     Foreground="#00695c"
-                    Text="Richard Gil"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Visible" />
-
+                    Visibility="Hidden" />
+                <TextBlock
+                    x:Name="LblErrorNombreCliente"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="68,21,15,0"
+                    VerticalAlignment="Top"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="DemiBold"
+                    Foreground="#f44c58"
+                    Text="No existe"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Hidden" />
                 <TextBlock
                     x:Name="lblNombreError"
                     Grid.Row="2"
@@ -98,19 +117,20 @@
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <ComboBox
-                    x:Name="TxtPago"
+                    x:Name="CbMetodoPago"
                     Grid.Row="3"
                     Grid.Column="0"
                     Width="190"
                     Height="52"
-                    Margin="0,0,0,0"
+                    Margin="25,0,25,0"
                     materialDesign:HintAssist.Foreground="Gray"
                     materialDesign:HintAssist.Hint="Metodo de pago"
                     BorderBrush="#00695c"
                     BorderThickness="2"
+                    DisplayMemberPath="name"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 <TextBox
-                    x:Name="TxtPrecio"
+                    x:Name="TxtMonto"
                     Grid.Row="3"
                     Grid.Column="1"
                     Width="120"
@@ -118,11 +138,10 @@
                     Margin="0,0,100,0"
                     VerticalAlignment="Center"
                     materialDesign:HintAssist.Foreground="Gray"
-                    materialDesign:HintAssist.Hint="Precio"
+                    materialDesign:HintAssist.Hint="Monto"
                     BorderBrush="#00695c"
                     BorderThickness="2"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     />
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                 <TextBlock
                     x:Name="lblPrecioError"
                     Grid.Row="4"
@@ -134,13 +153,14 @@
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <Button
-                    x:Name="BtnAgregarPago"
+                    x:Name="BtnAgregarListaPago"
                     Grid.Row="3"
                     Grid.Column="1"
                     Margin="0,0,50,0"
                     HorizontalAlignment="Right"
                     Background="#00695c"
                     BorderBrush="Transparent"
+                    Click="BtnAgregarListaPago_Click"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
                     <materialDesign:PackIcon
                         Width="30"
@@ -150,7 +170,7 @@
                 </Button>
                 <TextBlock
                     Grid.Row="5"
-                    Margin="15,10,15,0"
+                    Margin="15,10,15,46"
                     FontSize="10"
                     FontWeight="Bold"
                     Foreground="#00695c"
@@ -165,10 +185,11 @@
                     Margin="0,0,0,0">
                     <Grid>
                         <ListBox
-                            x:Name="ListPedidos"
+                            x:Name="ListPedidosFinalizados"
                             Grid.Column="0"
                             Width="220"
-                            Height="73"
+                            Height="115"
+                            Margin="0,-42,0,0"
                             VerticalAlignment="Top"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
@@ -191,17 +212,15 @@
                                                 FontStyle="Italic"
                                                 FontWeight="DemiBold"
                                                 Foreground="#00695c"
-                                                Text="{Binding name}"
+                                                Text="{Binding number}"
                                                 TextAlignment="Center"
                                                 TextWrapping="Wrap" />
                                             <Button
-                                                Name="BtnEliminarToppingList"
                                                 Grid.Column="1"
                                                 Width="17"
                                                 Height="17"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
-                                           
                                                 Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                 <materialDesign:PackIcon
                                                     Width="16"
@@ -220,7 +239,7 @@
                 <TextBlock
                     Grid.Row="5"
                     Grid.Column="1"
-                    Margin="15,10,15,0"
+                    Margin="15,10,15,46"
                     FontSize="10"
                     FontWeight="Bold"
                     Foreground="#00695c"
@@ -229,62 +248,94 @@
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <StackPanel
-                    Grid.Row="6"
+                    Grid.Row="5"
+                    Grid.RowSpan="2"
                     Grid.Column="1"
                     Width="220"
-                    Margin="0,0,0,0">
-                    <Grid>
-                        <ListBox
-                            x:Name="ListPagos"
-                            Grid.Column="0"
-                            Width="220"
-                            Height="73"
-                            VerticalAlignment="Top"
-                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <materialDesign:Chip Width="90" Height="27">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50" />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock
-                                                Grid.Column="0"
-                                                FontSize="8"
-                                                FontStyle="Italic"
-                                                FontWeight="DemiBold"
-                                                Foreground="#00695c"
-                                                Text="{Binding name}"
-                                                TextAlignment="Center"
-                                                TextWrapping="Wrap" />
-                                            <Button
-                                                Name="BtnEliminarToppingList"
-                                                Grid.Column="1"
-                                                Width="17"
-                                                Height="17"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                               
-                                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                <materialDesign:PackIcon
-                                                    Width="16"
-                                                    Height="16"
-                                                    Foreground="Black"
-                                                    Kind="CloseCircle" />
-                                            </Button>
-                                        </Grid>
-                                    </materialDesign:Chip>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
+                    Margin="10,34,10,0">
+                    <ListBox
+                        x:Name="ListPagos"
+                        Grid.Column="0"
+                        Width="220"
+                        Height="107"
+                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card
+                                    Width="190"
+                                    Height="40"
+                                    Margin="0,0,0,0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="170" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Margin="0,0,0,0"
+                                            FontSize="11"
+                                            FontStyle="Italic"
+                                            FontWeight="DemiBold"
+                                            Foreground="#00695c"
+                                            Text="Pago movil provincial"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Margin="0,16,0,-11"
+                                            FontSize="11"
+                                            FontStyle="Italic"
+                                            FontWeight="DemiBold"
+                                            Foreground="#00695c"
+                                            Text="Monto :"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+                                        <TextBlock
+                                            x:Name="TxtMontoLista"
+                                            Grid.Row="0"
+                                            Margin="50,16,0,0"
+                                            FontSize="11"
+                                            FontStyle="Italic"
+                                            FontWeight="DemiBold"
+                                            Foreground="#00695c"
+                                            Text="{Binding monto}"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+                                        <Button
+                                            Name="BtnEliminarToppingList"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="1"
+                                            Grid.Column="1"
+                                            Width="20"
+                                            Height="20"
+                                            Margin="0,10,0,0"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                            <materialDesign:PackIcon
+                                                Width="16"
+                                                Height="16"
+                                                Margin="0,0,0,0"
+                                                HorizontalAlignment="Center"
+                                                Foreground="Black"
+                                                Kind="CloseCircle" />
+                                        </Button>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
                 <StackPanel
                     Grid.Row="7"
@@ -292,31 +343,30 @@
                     Width="134">
                     <Grid Width="134">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                            Width="80"
                             Height="14"
-                            Margin="0,0,0,0"
-                            VerticalAlignment="Bottom"
-                            FontSize="10"
+                            Margin="0,0,3,0"
+                            VerticalAlignment="Center"
+                            FontSize="13"
                             FontWeight="Bold"
                             Foreground="#00695c"
                             Text="Monto Actual:$ "
-                            TextWrapping="Wrap"
                             Visibility="Visible" />
                         <TextBlock
-                            Grid.Column="1"
+                            Name="TxtMontoActual"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
                             Width="20"
                             Height="14"
-                            Margin="0,0,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Bottom"
-                            FontSize="10"
+                            Margin="0,0,15,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="13"
                             FontWeight="Bold"
                             Foreground="#00695c"
-                            Text="2"
                             TextAlignment="Left"
                             TextWrapping="Wrap"
                             Visibility="Visible" />
@@ -328,15 +378,15 @@
                     Width="134">
                     <Grid Width="134">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
                             Width="80"
                             Height="14"
                             Margin="0,0,0,0"
                             VerticalAlignment="Bottom"
-                            FontSize="10"
+                            FontSize="12"
                             FontWeight="Bold"
                             Foreground="#00695c"
                             Text="Monto Total:$ "
@@ -346,10 +396,10 @@
                             Grid.Column="1"
                             Width="20"
                             Height="14"
-                            Margin="0,0,0,0"
+                            Margin="0,0,20,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Bottom"
-                            FontSize="10"
+                            FontSize="13"
                             FontWeight="Bold"
                             Foreground="#00695c"
                             Text="2"
@@ -358,6 +408,37 @@
                             Visibility="Visible" />
                     </Grid>
                 </StackPanel>
+                <Button
+                    x:Name="BtnBuscarCliente"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="235,21,0,22"
+                    HorizontalAlignment="Left"
+                    Background="#00695c"
+                    BorderBrush="Transparent"
+                    Click="BtnBuscarCliente_Click"
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}">
+                    <materialDesign:PackIcon
+                        Width="30"
+                        Height="30"
+                        Foreground="White"
+                        Kind="AccountSearch" />
+                </Button>
+                <TextBlock
+                    x:Name="LblError"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="68,21,15,0"
+                    VerticalAlignment="Top"
+                    FontSize="16"
+                    FontStyle="Italic"
+                    FontWeight="DemiBold"
+                    Foreground="#f44c58"
+                    Text="No existe"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Hidden" />
+
             </Grid>
         </StackPanel>
     </Grid>

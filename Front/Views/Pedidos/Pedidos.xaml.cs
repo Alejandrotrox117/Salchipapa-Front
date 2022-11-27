@@ -28,7 +28,6 @@ namespace Front.Views.Pedidos
         {
             string response = await Request.Get("orders");
             Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
-
             if (Orders != null)
             {
                 itemCardFlipper.ItemsSource = Orders;

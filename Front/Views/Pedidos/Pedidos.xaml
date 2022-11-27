@@ -23,7 +23,6 @@
                 <Formulario:FormPedidos />
             </materialDesign:DialogHost.DialogContent>
             <Grid>
-                <!--#region TABITEM-->
                 <materialDesign:ColorZone
                     Grid.Row="0"
                     Grid.Column="0"
@@ -46,6 +45,7 @@
                         Width="795"
                         Margin="2,55,2,0"
                         Background="White"
+                        Focusable="True"
                         ItemsSource="{Binding Orders}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -117,7 +117,6 @@
                                                             <RowDefinition Height="38" />
                                                             <RowDefinition Height="*" />
                                                         </Grid.RowDefinitions>
-
                                                         <StackPanel
                                                             Grid.Row="0"
                                                             Width="150"
@@ -140,7 +139,6 @@
                                                                         Text="2" />
                                                                 </Grid>
                                                             </materialDesign:Chip>
-
                                                         </StackPanel>
                                                         <StackPanel
                                                             Grid.Row="1"
@@ -195,7 +193,6 @@
                                                             Grid.Row="5"
                                                             HorizontalAlignment="Center"
                                                             VerticalAlignment="Center">
-
                                                             <Button
                                                                 Margin="0,70,0,0"
                                                                 Background="#00695c"

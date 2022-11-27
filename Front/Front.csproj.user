@@ -41,9 +41,6 @@
     <Compile Update="Views\Caja\Pago\MetodosDePago.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Caja\PlantillaDialog.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Menu\Categorias\Categorias.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,9 +104,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Pago\MetodosDePago.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Caja\PlantillaDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Categorias\Categorias.xaml">

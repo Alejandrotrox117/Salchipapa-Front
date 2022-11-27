@@ -8,16 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Session"
     Width="350"
-    Height="490"
-    Background="Transparent"
+    Height="495"
+    Background="White"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border
-        Width="350"
-        Height="480"
-        Background="White"
-        CornerRadius="6">
+    <Border >
         <materialDesign:DialogHost
             x:Name="Dialog"
             Grid.Row="0"
@@ -67,12 +63,11 @@
                     <RowDefinition Height="67*" />
                     <RowDefinition Height="24*" />
                     <RowDefinition Height="130*" />
-
                 </Grid.RowDefinitions>
                 <Image
                     Grid.Row="0"
-                    Margin="40,0,40,10"
-                    Source="/Views/LogoFormSession.png"
+                    Margin="34,0,50,0"
+                    Source="/Views/logoFondoBlanco.png"
                     Stretch="Fill" />
                 <TextBox
                     x:Name="TxtUsuario"

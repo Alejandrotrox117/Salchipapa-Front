@@ -82,6 +82,11 @@
                         Width="*"
                         Binding="{Binding action}"
                         Header="Modulo" />
+                    <DataGridTextColumn
+                        x:Name="ColumnDate"
+                        Width="*"
+                        Binding="{Binding CreatedAt}"
+                        Header="Fecha" />
 
                 </DataGrid.Columns>
             </DataGrid>

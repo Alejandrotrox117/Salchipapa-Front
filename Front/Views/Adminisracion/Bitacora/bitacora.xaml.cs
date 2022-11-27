@@ -34,6 +34,8 @@ namespace Front.Views.Adminisracion.Bitacora
 
             if (report != null)
             {
+              
+
                 DataGridBitacora.ItemsSource = report;
             }
             else

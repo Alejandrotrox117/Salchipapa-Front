@@ -3,8 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Form="clr-namespace:Front.Views.Menu.Categorias"
-    xmlns:front="clr-namespace:Front"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:front="clr-namespace:Front"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -151,8 +151,8 @@
                     x:Name="itemsCardsCategorias"
                     Margin="0,50,0,0"
                     Background="Transparent"
-                    ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    ItemsSource="{Binding categories}">
+                    ItemsSource="{Binding categories}"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel />
@@ -222,9 +222,9 @@
                                                     Panel.ZIndex="3"
                                                     Background="#ffc107"
                                                     BorderBrush="Transparent"
+                                                    Click="BtnActualizar_Click"
                                                     IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
-                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" 
-                                                    Click="BtnActualizar_Click">
+                                                    Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"
