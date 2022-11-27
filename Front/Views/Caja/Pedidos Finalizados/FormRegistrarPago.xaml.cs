@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,30 +24,32 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class FormRegistrarPago : UserControl
     {
 
-
-        public  List<Orders> selecteds = new List<Orders>(); 
-        public  List<Orders> Selecteds { get { return selecteds; } set { selecteds = value;} }
-        public static float Total{ get; set; }
+        public ObservableCollection <Payments> payments { get; set; }
+        public List<Orders> selecteds = new List<Orders>();
+        public List<Orders> Selecteds { get { return selecteds; } set { selecteds = value; } }
+        public static float Total { get; set; }
         public FormRegistrarPago()
         {
             InitializeComponent();
+            payments = new ObservableCollection<Payments>();
+            ListPagos.ItemsSource = payments;
         }
 
 
-        public  async void CargarLista()
+        public async void CargarLista()
         {
             ListPedidosFinalizados.ItemsSource = Selecteds;
-            foreach(Orders i in Selecteds)
+            foreach (Orders i in Selecteds)
             {
                 Total += i.total;
             }
-            TxtMontoActual.Text=Total.ToString();
+            TxtMontoActual.Text = Total.ToString();
             string response = await Request.Get("payments");
             List<Payment> returnedData = JsonConvert.DeserializeObject<List<Payment>>(response);
             if (returnedData != null)
             {
                 CbMetodoPago.ItemsSource = returnedData;
-             }
+            }
             else
             {
                 MessageBox.Show("Error");
@@ -55,7 +58,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         private async void BtnBuscarCliente_Click(object sender, RoutedEventArgs e)
         {
-            string response = await Request.Get("clients?ci=" + (! string.IsNullOrEmpty(TxtCiCliente.Text) ?  TxtCiCliente.Text : "\'\'" ));
+            string response = await Request.Get("clients?ci=" + (!string.IsNullOrEmpty(TxtCiCliente.Text) ? TxtCiCliente.Text : "\'\'"));
             if (response != "null")
             {
                 Client returnedData = JsonConvert.DeserializeObject<Client>(response);
@@ -73,8 +76,47 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         private void BtnAgregarListaPago_Click(object sender, RoutedEventArgs e)
         {
-            ListPagos.Items.Add(CbMetodoPago.Text+TxtMonto.Text);
+            Payment pay = CbMetodoPago.SelectedValue as Payment;
+            float monto = float.Parse(!string.IsNullOrEmpty(TxtMonto.Text) ? TxtMonto.Text : " ");
+            Payments payment = new Payments
+            {
+                payment = pay,
+                count = monto
+            };
+            this.payments.Add(payment);
+
+            cargarPrecio();
+
+        }
+        public void cargarPrecio (){
+
+            
+
+            float total = 0;
+
+            foreach (Payments i in this.payments)
+            {
+               total+=i.payment.money == "BS" ? i.count / MainWindow.dolar : i.count;
+            }
+            txtMontoTotal.Text = Convert.ToString(total);
+
+
+
+        }
+
+        private void BtnEliminarPagoList_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+             
            
+            payments.Remove(element.DataContext as Payments);
+            cargarPrecio();
+
+        }
+
+        private void CbMetodoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

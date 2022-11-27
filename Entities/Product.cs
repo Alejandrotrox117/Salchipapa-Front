@@ -28,7 +28,7 @@ namespace Entities
         {
             get
             {
-                string direction = $"\\\\localhost\\public\\products\\{this.updatedAt.ToString("dd-MM-yyyy-HH-mm")}-{this.name}.jpg";
+                string direction = $"\\\\192.168.0.101\\public\\products\\{this.updatedAt.ToString("dd-MM-yyyy-HH-mm")}-{this.name}.jpg";
                 return direction;
             }
         }

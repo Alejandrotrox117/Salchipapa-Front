@@ -26,6 +26,7 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static float dolar { get; set; }
         public static Employe session = null;
         public static bool admin { get { return session.account.admin; } }
 
@@ -148,5 +149,14 @@ namespace Front
         
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+
+            dolar = float.Parse(textbox.Text);
+
+
+
+        }
     }
 }

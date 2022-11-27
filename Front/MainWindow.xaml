@@ -39,6 +39,31 @@
                         <ColumnDefinition Width="110" />
                         <ColumnDefinition Width="260" />
                     </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontWeight="ExtraBlack"
+                        Foreground="#00695c"
+                        Text="Precio del dolar: "
+                        TextAlignment="Center" />
+
+                    <TextBox
+                        Grid.Column="0"
+                        Width="70"
+                        Margin="180,0,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="White"
+                        Cursor="Arrow"
+                        Foreground="#00695c"
+                        TextChanged="TextBox_TextChanged"
+                        Visibility="Visible" />
+
+
+
+
 
                     <Label
                         x:Name="LblHora"

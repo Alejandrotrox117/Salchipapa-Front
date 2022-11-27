@@ -128,6 +128,7 @@
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     DisplayMemberPath="name"
+                    SelectionChanged="CbMetodoPago_SelectionChanged"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 <TextBox
                     x:Name="TxtMonto"
@@ -287,7 +288,7 @@
                                             FontStyle="Italic"
                                             FontWeight="DemiBold"
                                             Foreground="#00695c"
-                                            Text="Pago movil provincial"
+                                            Text="{Binding payment}"
                                             TextAlignment="Center"
                                             TextWrapping="Wrap" />
                                         <TextBlock
@@ -309,11 +310,11 @@
                                             FontStyle="Italic"
                                             FontWeight="DemiBold"
                                             Foreground="#00695c"
-                                            Text="{Binding monto}"
+                                            Text="{Binding count}"
                                             TextAlignment="Center"
                                             TextWrapping="Wrap" />
                                         <Button
-                                            Name="BtnEliminarToppingList"
+                                            Name="BtnEliminarPagoList"
                                             Grid.Row="0"
                                             Grid.RowSpan="1"
                                             Grid.Column="1"
@@ -322,6 +323,7 @@
                                             Margin="0,10,0,0"
                                             Background="Transparent"
                                             BorderBrush="Transparent"
+                                            Click="BtnEliminarPagoList_Click"
                                             Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                             <materialDesign:PackIcon
                                                 Width="16"
@@ -393,6 +395,7 @@
                             TextWrapping="Wrap"
                             Visibility="Visible" />
                         <TextBlock
+                            x:Name="txtMontoTotal"
                             Grid.Column="1"
                             Width="20"
                             Height="14"
@@ -402,7 +405,7 @@
                             FontSize="13"
                             FontWeight="Bold"
                             Foreground="#00695c"
-                            Text="2"
+                            Text="0"
                             TextAlignment="Left"
                             TextWrapping="Wrap"
                             Visibility="Visible" />
