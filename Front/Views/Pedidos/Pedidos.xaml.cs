@@ -26,7 +26,7 @@ namespace Front.Views.Pedidos
         }
         private async void Main()
         {
-            string response = await Request.Get("orders");
+            string response = await Request.Get("orders?filter=true");
             Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
 
             if (Orders != null)
@@ -87,63 +87,41 @@ namespace Front.Views.Pedidos
         {
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
-            string rol = MainWindow.session.account.rol;
-            if (rol == "ADMIN" || rol == "COCINERO")
-            {
-                if (MainWindow.session._id == order.madeBy)
-                {
-                    string body = new JavaScriptSerializer().Serialize(new
-                    {
-                        status = "LISTO"
-                    });
 
-                    var response = await Request.Put("orders/"+order.number.ToString(), body);
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        MessageBox.Show("error");
-                    }
+            if (MainWindow.session._id == order.madeBy)
+            {
+                string body = new JavaScriptSerializer().Serialize(new
+                {
+                    status = "LISTO"
+                });
+
+                var response = await Request.Put("orders/"+order.number.ToString(), body);
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("error");
                 }
             }
-            MessageBox.Show("No puedes realizar esta accion");
+            else
+            {
+                MessageBox.Show("No puedes realizar esta accion");
+            }
         }
 
         private async void BtnAceptarPedido_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
-            string rol = MainWindow.session.account.rol;
-            string body = "";
-            switch (order.status)
+            string body = new JavaScriptSerializer().Serialize(new
             {
-                case "NUEVO":
-                    if (rol == "COCINERO" || rol == "ADMIN")
-                    {
-                        body = new JavaScriptSerializer().Serialize(new
-                        {
-                            status = "PROCESO"
-                        });
-                    }
-                    break;
-                case "LISTO":
-                    if (rol == "MESERO" || rol == "ADMIN")
-                    {
-                        body = new JavaScriptSerializer().Serialize(new
-                        {
-                            status = "ENTREGADO"
-                        });
-                    }
-                    break;
+                status = order.status == "NUEVO" ? "PROCESO" : "ENTREGADO"
+            });
+
+            var response = await Request.Put("orders/"+order.number.ToString(), body);
+            if (!response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("error");
             }
 
-            if (body != "")
-            {
-                var response = await Request.Put("orders/"+order.number.ToString(), body);
-                if (!response.IsSuccessStatusCode)
-                {
-                    MessageBox.Show("error");
-                }
-
-            }
         }
     }
 }
