@@ -131,12 +131,12 @@
                                                                         FontStyle="Italic"
                                                                         FontWeight="DemiBold"
                                                                         Foreground="White"
-                                                                        Text="Número:" />
+                                                                        Text="Mesa:" />
                                                                     <TextBlock
                                                                         Grid.Column="1"
                                                                         Margin="0,0,0,0"
                                                                         Foreground="White"
-                                                                        Text="2" />
+                                                                        Text="{Binding origin}" />
                                                                 </Grid>
                                                             </materialDesign:Chip>
                                                         </StackPanel>
@@ -163,7 +163,7 @@
                                                                     HorizontalAlignment="Center"
                                                                     FontSize="20"
                                                                     Style="{StaticResource TexblockColor}"
-                                                                    Text="Mesa"
+                                                                    Text="Número"
                                                                     TextAlignment="Center" />
                                                             </Grid>
                                                         </StackPanel>
@@ -171,7 +171,7 @@
                                                             Grid.Row="2"
                                                             FontSize="50"
                                                             Style="{StaticResource TexblockColor}"
-                                                            Text="1"
+                                                            Text="{Binding number}"
                                                             TextAlignment="Center" />
                                                         <TextBlock
                                                             Grid.Row="3"
