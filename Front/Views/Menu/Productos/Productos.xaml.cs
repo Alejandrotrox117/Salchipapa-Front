@@ -24,7 +24,7 @@ namespace Front.Views.Menu.Productos
     /// </summary>
     public partial class Productos : UserControl
     {
-        public ObservableCollection<product> productos;
+        public ObservableCollection<Product> productos;
         private string id;
         public Productos()
         {
@@ -140,7 +140,7 @@ namespace Front.Views.Menu.Productos
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            product product = element.DataContext as product;
+            Product product = element.DataContext as Product;
             id = product._id;
             //Formulario.CargarCombobox();
             Formulario.CargarForm(product);
@@ -155,7 +155,7 @@ namespace Front.Views.Menu.Productos
         {
 
             FrameworkElement element = e.Source as FrameworkElement;
-            product product = element.DataContext as product;
+            Product product = element.DataContext as Product;
             id = product._id;
             TxtTituloDrawer.Text = "¿Desea eliminar el producto?";
             DrawerHost.IsBottomDrawerOpen = true;

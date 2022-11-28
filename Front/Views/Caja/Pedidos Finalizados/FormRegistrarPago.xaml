@@ -193,9 +193,7 @@
                         Width="220"
                         Height="67"
                         Margin="0,0,0,0"
-                        VerticalAlignment="Center"
-                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        VerticalAlignment="Center">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Vertical" />
@@ -232,31 +230,33 @@
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
-                <ScrollViewer
+                <StackPanel
                     Grid.Row="5"
                     Grid.Column="1"
                     Width="220"
-                    Margin="0,25,0,8"
-                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                    ScrollViewer.VerticalScrollBarVisibility="Visible">
-                    <ItemsControl
+                    Margin="0,25,0,8">
+                    <ListBox
                         x:Name="ListPagos"
                         Grid.Row="5"
-                        Grid.Column="1">
-                        <ItemsControl.ItemsPanel>
+                        Grid.Column="1"
+                        Width="220"
+                        Height="100"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel Orientation="Vertical" />
                             </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card
                                     Width="190"
                                     Height="40"
-                                    Margin="0,0,0,0">
+                                    Margin="0,0,10,0">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="170" />
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
@@ -265,7 +265,6 @@
                                         </Grid.RowDefinitions>
                                         <TextBlock
                                             Grid.Column="0"
-                                            Margin="0,0,0,0"
                                             FontSize="11"
                                             FontStyle="Italic"
                                             FontWeight="DemiBold"
@@ -318,9 +317,9 @@
                                     </Grid>
                                 </materialDesign:Card>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
                 <StackPanel
                     Grid.Row="7"
                     Grid.Column="0"

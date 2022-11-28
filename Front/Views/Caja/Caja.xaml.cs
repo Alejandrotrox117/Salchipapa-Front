@@ -23,7 +23,7 @@ namespace Front.Views.Caja
     /// </summary>
     public partial class Caja : UserControl
     {
-        private static readonly HttpClient client = new HttpClient();
+        
         private string _id = null;
         private List<Client> listaClientes = new List<Client>();
         public Caja()
@@ -49,11 +49,9 @@ namespace Front.Views.Caja
             TabControlClientes.SelectedIndex = 2;
             PagePagos.Get();
         }
-
         private void BtnPFinalizados_Click(object sender, RoutedEventArgs e)
         {
             TabControlClientes.SelectedIndex = 0;
-
         }
     }
 }

@@ -26,11 +26,9 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class PedidosFinalizados : UserControl
     {
         public ObservableCollection<Orders> Orders { get; set; }
-        private SocketIO client;
-        public PedidosFinalizados(ref SocketIO client)
+        public PedidosFinalizados()
         {
             InitializeComponent();
-            this.client = client;
         }
         //funcion obtener Pedidos
         public async void Get()
@@ -82,7 +80,6 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             if (response.IsSuccessStatusCode)
             {
                 MessageBox.Show("ok");
-                await client.EmitAsync("finishOrder", orders.Select(order => order.number));
             }
             else
             {
