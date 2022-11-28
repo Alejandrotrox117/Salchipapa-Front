@@ -29,9 +29,6 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         {
             InitializeComponent();
         }
-
-
-
         //funcion obtener Pedidos
         public async void Get()
         {
@@ -52,7 +49,6 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void BtnVentas_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolFinalizados.SelectedIndex = 1;
-
         }
 
         private void BtnPFinalizados_Click(object sender, RoutedEventArgs e)
@@ -70,8 +66,6 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             CheckBox check = sender as CheckBox;
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
-
-
             if (check.IsChecked.Value) {
                 
                 Formulario.Selecteds.Add(order);
@@ -80,15 +74,12 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             {
                 Formulario.Selecteds.Remove(order);
             }
-
-
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
             Formulario.CargarLista();
             DialogHost.IsOpen = true;
-
         }
     }
 }

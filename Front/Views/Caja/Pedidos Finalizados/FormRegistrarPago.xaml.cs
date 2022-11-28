@@ -89,26 +89,17 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         }
         public void cargarPrecio (){
-
-            
-
             float total = 0;
-
             foreach (Payments i in this.payments)
             {
                total+=i.payment.money == "BS" ? i.count / MainWindow.dolar : i.count;
             }
             txtMontoTotal.Text = Convert.ToString(total);
-
-
-
         }
 
         private void BtnEliminarPagoList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-             
-           
             payments.Remove(element.DataContext as Payments);
             cargarPrecio();
 
@@ -117,6 +108,13 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void CbMetodoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void BtnEliminarPedidoActual_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            //payments.Remove(element.DataContext as );
+
         }
     }
 }

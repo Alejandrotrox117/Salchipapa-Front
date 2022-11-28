@@ -21,14 +21,13 @@
             <Grid Height="396">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -209,19 +208,20 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock
                                                 Grid.Column="0"
-                                                FontSize="8"
-                                                FontStyle="Italic"
+                                                FontSize="15"
                                                 FontWeight="DemiBold"
                                                 Foreground="#00695c"
                                                 Text="{Binding number}"
                                                 TextAlignment="Center"
                                                 TextWrapping="Wrap" />
                                             <Button
+                                                x:Name="BtnEliminarPedidoActual"
                                                 Grid.Column="1"
                                                 Width="17"
                                                 Height="17"
                                                 Background="Transparent"
                                                 BorderBrush="Transparent"
+                                                Click="BtnEliminarPedidoActual_Click"
                                                 Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                                 <materialDesign:PackIcon
                                                     Width="16"
@@ -233,7 +233,6 @@
                                     </materialDesign:Chip>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
-
                         </ListBox>
                     </Grid>
                 </StackPanel>

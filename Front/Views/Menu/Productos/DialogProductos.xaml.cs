@@ -70,7 +70,8 @@ namespace Front.Views.Menu.Productos
             TxtPrecioProducto.Text = "";
             TxtStockProducto.Text = "";
             TxtDescripcionProducto.Text = "";
-            ListToppings.ItemsSource=null;
+            ListToppings.Items.Clear();
+        
             img.ImageSource = null;
             BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#f44c58");
         }

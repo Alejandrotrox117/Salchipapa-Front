@@ -18,6 +18,38 @@
         Name="GridContenido"
         Background="White"
         Loaded="Grid_Loaded">
+        <!--#region Snackbar-->
+        <materialDesign:Snackbar
+            x:Name="SnackBarNotificacion"
+            Panel.ZIndex="5"
+            Background="#f44c58"
+            IsActive="False"
+            >
+            <materialDesign:SnackbarMessage>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Name="TxtSnackbar"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,124,0"
+                        VerticalAlignment="Center"
+                        FontWeight="Bold" />
+                    <Button
+                        x:Name="BtnSnackbar"
+                        Grid.Column="1"
+                        Width="90"
+                        Margin="80,0,0,0"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Content="Ok" />
+                </Grid>
+            </materialDesign:SnackbarMessage>
+        </materialDesign:Snackbar>
+        <!--#endregion-->
         <materialDesign:DialogHost>
             <materialDesign:DialogHost.DialogContent>
                 <Formulario:FormPedidos />
@@ -44,9 +76,7 @@
                         x:Name="itemCardFlipper"
                         Width="795"
                         Margin="2,55,2,0"
-                        Background="White"
-                        Focusable="True"
-                        ItemsSource="{Binding Orders}">
+                        Background="White">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible" />
@@ -86,6 +116,7 @@
                                                     <Grid Width="154">
                                                         <Button
                                                             x:Name="BtnFinalizado"
+                                                            materialDesign:ButtonProgressAssist.IndicatorBackground="White"
                                                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             materialDesign:ButtonProgressAssist.Value="-1"
@@ -111,11 +142,11 @@
                                                 <materialDesign:Card>
                                                     <Grid>
                                                         <Grid.RowDefinitions>
-                                                            <RowDefinition Height="45" />
-                                                            <RowDefinition Height="40" />
-                                                            <RowDefinition Height="70" />
-                                                            <RowDefinition Height="38" />
-                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
+                                                            <RowDefinition Height="Auto" />
                                                         </Grid.RowDefinitions>
                                                         <StackPanel
                                                             Grid.Row="0"
@@ -131,15 +162,25 @@
                                                                         FontStyle="Italic"
                                                                         FontWeight="DemiBold"
                                                                         Foreground="White"
-                                                                        Text="Mesa:" />
+                                                                        Text="Mesa: " />
                                                                     <TextBlock
                                                                         Grid.Column="1"
-                                                                        Margin="0,0,0,0"
+                                                                        Margin="-13,0,0,0"
                                                                         Foreground="White"
                                                                         Text="{Binding origin}" />
                                                                 </Grid>
                                                             </materialDesign:Chip>
                                                         </StackPanel>
+                                                        <Button
+                                                            Width="50"
+                                                            Margin="160,0,0,0"
+                                                            Background="#f44c58"
+                                                            BorderBrush="Transparent">
+                                                            <materialDesign:PackIcon
+                                                                Width="20"
+                                                                Height="20"
+                                                                Kind="Delete" />
+                                                        </Button>
                                                         <StackPanel
                                                             Grid.Row="1"
                                                             Height="50"
@@ -147,14 +188,14 @@
                                                             HorizontalAlignment="Center">
                                                             <Grid>
                                                                 <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                    <ColumnDefinition Width="Auto" />
                                                                 </Grid.ColumnDefinitions>
                                                                 <materialDesign:PackIcon
                                                                     Grid.Row="1"
                                                                     Width="22"
                                                                     Height="22"
-                                                                    Margin="0,4,73,0"
+                                                                    Margin="0,4,100,0"
                                                                     HorizontalAlignment="Center"
                                                                     Foreground="#00695c"
                                                                     Kind="Silverware" />
@@ -169,45 +210,19 @@
                                                         </StackPanel>
                                                         <TextBlock
                                                             Grid.Row="2"
-                                                            FontSize="50"
+                                                            FontSize="75"
                                                             Style="{StaticResource TexblockColor}"
                                                             Text="{Binding number}"
                                                             TextAlignment="Center" />
-                                                        <TextBlock
-                                                            Grid.Row="3"
-                                                            Margin="0,23,0,0"
-                                                            FontSize="14"
-                                                            FontWeight="DemiBold"
-                                                            Foreground="#00695c"
-                                                            Text="Estatus"
-                                                            TextAlignment="Center" />
-                                                        <TextBlock
-                                                            Grid.Row="4"
-                                                            Margin="0,10,0,0"
-                                                            FontSize="13"
-                                                            FontWeight="DemiBold"
-                                                            Foreground="#00695c"
-                                                            Text="20min"
-                                                            TextAlignment="Center" />
-                                                        <StackPanel
-                                                            Grid.Row="5"
-                                                            HorizontalAlignment="Center"
-                                                            VerticalAlignment="Center">
-                                                            <Button
-                                                                Margin="0,70,0,0"
-                                                                Background="#00695c"
-                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                                                Content="Ver detalles"
-                                                                Foreground="White" />
-                                                        </StackPanel>
                                                         <Button
-                                                            Grid.Row="6"
-                                                            Width="50"
-                                                            Margin="0,0,0,40"
-                                                            Background="#ffc107"
-                                                            BorderBrush="Transparent">
-                                                            <materialDesign:PackIcon Kind="Pencil" />
-                                                        </Button>
+                                                            Grid.Row="5"
+                                                            Width="120"
+                                                            Margin="0,90,0,0"
+                                                            Background="#00695c"
+                                                            BorderBrush="Transparent"
+                                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                            Content="Ver detalles"
+                                                            Foreground="White" />
                                                     </Grid>
                                                 </materialDesign:Card>
                                             </materialDesign:Flipper.FrontContent>
@@ -241,35 +256,35 @@
                                                         Grid.Row="1"
                                                         Width="230"
                                                         Height="300">
-                                                        <ListBox Grid.Row="1" ItemsSource="{Binding products}">
-                                                            <ListBox.ItemsPanel>
+                                                        <ItemsControl Grid.Row="1" ItemsSource="{Binding products}">
+                                                            <ItemsControl.ItemsPanel>
                                                                 <ItemsPanelTemplate>
                                                                     <WrapPanel Orientation="Vertical" />
                                                                 </ItemsPanelTemplate>
-                                                            </ListBox.ItemsPanel>
-                                                            <ListBox.ItemTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
                                                                 <DataTemplate>
                                                                     <TreeViewItem
                                                                         Width="250"
                                                                         materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
                                                                         Header="{Binding name}"
                                                                         ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                                                        <ListBox IsHitTestVisible="False" ItemsSource="{Binding toppings}">
-                                                                            <ListBox.ItemsPanel>
+                                                                        <ItemsControl ItemsSource="{Binding toppings}">
+                                                                            <ItemsControl.ItemsPanel>
                                                                                 <ItemsPanelTemplate>
                                                                                     <WrapPanel Orientation="Vertical" />
                                                                                 </ItemsPanelTemplate>
-                                                                            </ListBox.ItemsPanel>
-                                                                            <ListBox.ItemTemplate>
+                                                                            </ItemsControl.ItemsPanel>
+                                                                            <ItemsControl.ItemTemplate>
                                                                                 <DataTemplate>
                                                                                     <TextBlock FontWeight="DemiBold" Text="{Binding name}" />
                                                                                 </DataTemplate>
-                                                                            </ListBox.ItemTemplate>
-                                                                        </ListBox>
+                                                                            </ItemsControl.ItemTemplate>
+                                                                        </ItemsControl>
                                                                     </TreeViewItem>
                                                                 </DataTemplate>
-                                                            </ListBox.ItemTemplate>
-                                                        </ListBox>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
                                                     </materialDesign:Card>
                                                 </Grid>
                                             </materialDesign:Flipper.BackContent>
@@ -278,6 +293,7 @@
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
+
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>

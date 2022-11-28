@@ -60,11 +60,6 @@
                         Foreground="#00695c"
                         TextChanged="TextBox_TextChanged"
                         Visibility="Visible" />
-
-
-
-
-
                     <Label
                         x:Name="LblHora"
                         Grid.Column="1"
@@ -115,10 +110,10 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         VerticalContentAlignment="Center"
-                        Panel.ZIndex="1"
+                        Panel.ZIndex="6"
                         Background="#00695c"
                         FlowDirection="LeftToRight"
-                        IsActive="False">
+                        IsActive="True">
                         <materialDesign:SnackbarMessage Height="24">
                             <Grid Width="256">
                                 <Grid.ColumnDefinitions>

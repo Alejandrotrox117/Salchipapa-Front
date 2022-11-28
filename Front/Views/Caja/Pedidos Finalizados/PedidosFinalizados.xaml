@@ -8,8 +8,8 @@
     xmlns:local="clr-namespace:Front.Views.Caja.Pedidos_Finalizados"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="800"
-    Height="600"
+    Width="789"
+    Height="510"
     mc:Ignorable="d">
     <Grid Background="White" Loaded="Grid_Loaded">
 
@@ -95,7 +95,7 @@
                                 <Grid>
                                     <ItemsControl
                                         x:Name="itemCardTerminados"
-                                        Width="796"
+                                        Margin="0,0,-13,0"
                                         materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
                                         Background="White"
                                         Focusable="True"
@@ -125,21 +125,23 @@
                                                                 <materialDesign:Card>
                                                                     <Grid>
                                                                         <Grid.RowDefinitions>
-                                                                            <RowDefinition Height="45" />
-                                                                            <RowDefinition Height="40" />
-                                                                            <RowDefinition Height="70" />
-                                                                            <RowDefinition Height="38" />
-                                                                            <RowDefinition Height="*" />
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <RowDefinition Height="Auto" />
                                                                         </Grid.RowDefinitions>
                                                                         <CheckBox
                                                                             x:Name="CheckboxFinalizado"
                                                                             Margin="10,0,0,0"
                                                                             materialDesign:CheckBoxAssist.CheckBoxSize="24"
-                                                                            Click="CheckboxFinalizado_Click" />
+                                                                            Background="#00695c"
+                                                                            Click="CheckboxFinalizado_Click"
+                                                                            IsChecked="False" />
                                                                         <StackPanel
                                                                             Grid.Row="0"
                                                                             Width="150"
-                                                                            Margin="60,4,0,0">
+                                                                            Margin="60,9,0,0">
                                                                             <materialDesign:Chip Background="#00695c">
                                                                                 <Grid>
                                                                                     <Grid.ColumnDefinitions>
@@ -159,18 +161,6 @@
                                                                                 </Grid>
                                                                             </materialDesign:Chip>
                                                                         </StackPanel>
-                                                                        <Button
-                                                                            Width="50"
-                                                                            Margin="155,0,0,0"
-                                                                            Background="#FFC107"
-                                                                            BorderBrush="Transparent">
-                                                                            <materialDesign:PackIcon
-                                                                                Width="20"
-                                                                                Height="20"
-                                                                                Foreground="White"
-                                                                                Kind="Pencil" />
-                                                                        </Button>
-
                                                                         <StackPanel
                                                                             Grid.Row="1"
                                                                             Height="50"
@@ -185,7 +175,7 @@
                                                                                     Grid.Row="1"
                                                                                     Width="22"
                                                                                     Height="22"
-                                                                                    Margin="0,4,200,0"
+                                                                                    Margin="0,4,100,0"
                                                                                     HorizontalAlignment="Center"
                                                                                     Foreground="#00695c"
                                                                                     Kind="Silverware" />
@@ -194,27 +184,26 @@
                                                                                     HorizontalAlignment="Center"
                                                                                     FontSize="20"
                                                                                     Style="{StaticResource TexblockColor}"
-                                                                                    Text="Número de pedido"
+                                                                                    Text="Número"
                                                                                     TextAlignment="Center" />
                                                                             </Grid>
                                                                         </StackPanel>
                                                                         <TextBlock
                                                                             Grid.Row="2"
-                                                                            FontSize="50"
+                                                                            Margin="0,0,0,-20"
+                                                                            FontSize="70"
                                                                             Style="{StaticResource TexblockColor}"
                                                                             Text="{Binding number}"
                                                                             TextAlignment="Center" />
-                                                                        <StackPanel
+                                                                        <Button
                                                                             Grid.Row="5"
-                                                                            HorizontalAlignment="Center"
-                                                                            VerticalAlignment="Center">
-                                                                            <Button
-                                                                                Margin="0,70,0,0"
-                                                                                Background="#00695c"
-                                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                                                                Content="Ver detalles"
-                                                                                Foreground="White" />
-                                                                        </StackPanel>
+                                                                            Width="120"
+                                                                            Margin="0,90,0,0"
+                                                                            Background="#00695c"
+                                                                            BorderBrush="Transparent"
+                                                                            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                            Content="Ver detalles"
+                                                                            Foreground="White" />
                                                                     </Grid>
                                                                 </materialDesign:Card>
                                                             </materialDesign:Flipper.FrontContent>
@@ -285,7 +274,6 @@
                                                 </StackPanel>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
-
                                     </ItemsControl>
 
                                 </Grid>
@@ -294,7 +282,7 @@
                         <Button
                             Width="60"
                             Height="60"
-                            Margin="0,0,28,122"
+                            Margin="0,0,24,40"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Bottom"
                             Panel.ZIndex="6"

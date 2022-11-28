@@ -59,9 +59,6 @@
     <Compile Update="Views\Menu\Toppings\ToppingsMenu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Pedidos\CardFlipper.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -122,9 +119,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Menu\Toppings\ToppingsMenu.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Pedidos\CardFlipper.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pedidos\Pedidos.xaml">
