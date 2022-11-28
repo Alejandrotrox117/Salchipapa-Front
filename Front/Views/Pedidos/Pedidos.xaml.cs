@@ -195,5 +195,21 @@ namespace Front.Views.Pedidos
             SnackBarNotificacion.IsActive = false;
             SnackBarNotificacion.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
         }
+
+        private async void BtnCancelarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            Orders order = element.DataContext as Orders;
+            string response = await Request.Get("orders/" + order.number.ToString());
+            Orders cancelOrder = JsonConvert.DeserializeObject<Orders>(response);
+            if (cancelOrder != null)
+            {
+                MostrarError("El pedido "+order.number.ToString()+" se ha eliminado", false);
+            }
+            else
+            {
+                MostrarError("Error inesperado", true);
+            }
+        }
     }
 }
