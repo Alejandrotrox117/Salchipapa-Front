@@ -50,6 +50,83 @@
                         </Button>
                     </TabItem.Header>
                     <Grid>
+                        <materialDesign:DrawerHost
+                            x:Name="DrawerHost"
+                            Grid.RowSpan="5"
+                            Width="800"
+                            Height="450"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Panel.ZIndex="3"
+                            BorderThickness="1"
+                            BottomDrawerBackground="#00695c"
+                            BottomDrawerCornerRadius="20 20 0 0"
+                            IsBottomDrawerOpen="False">
+                            <materialDesign:DrawerHost.BottomDrawerContent>
+                                <StackPanel
+                                    Width="490"
+                                    Height="50"
+                                    Margin="0,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <TextBlock
+                                        x:Name="TxtTituloDrawer"
+                                        Margin="4"
+                                        VerticalAlignment="Center"
+                                        FontSize="13"
+                                        FontWeight="Bold"
+                                        Foreground="White" />
+                                    <Button
+                                        Name="BtnConfirmarDrawner"
+                                        Margin="4"
+                                        VerticalAlignment="Center"
+                                        Panel.ZIndex="3"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Content="Confirmar"
+                                        Foreground="White"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                    <Button
+                                        Name="BtnCancelarDrawner"
+                                        Margin="4"
+                                        VerticalAlignment="Center"
+                                        BorderBrush="Transparent"
+                                        Content="Cancelar"
+                                        Foreground="White"
+                                        Style="{StaticResource MaterialDesignFlatButton}" />
+                                </StackPanel>
+                            </materialDesign:DrawerHost.BottomDrawerContent>
+                        </materialDesign:DrawerHost>
+                        <!--#region Snackbar-->
+                        <materialDesign:Snackbar
+                            x:Name="SnackBarNotificacion"
+                            Panel.ZIndex="5"
+                            IsActive="False">
+                            <materialDesign:SnackbarMessage>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock
+                                        x:Name="TxtSnackbar"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Margin="0,0,124,0"
+                                        VerticalAlignment="Center"
+                                        FontWeight="Bold" />
+                                    <Button
+                                        x:Name="BtnSnackbar"
+                                        Grid.Column="1"
+                                        Width="90"
+                                        Margin="80,0,0,0"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Content="Ok" />
+                                </Grid>
+                            </materialDesign:SnackbarMessage>
+                        </materialDesign:Snackbar>
+                        <!--#endregion-->
                         <materialDesign:DialogHost Name="DialogHost">
                             <materialDesign:DialogHost.DialogContent>
                                 <Grid>
@@ -90,10 +167,29 @@
                                         </Grid>
                                     </StackPanel>
                                 </Grid>
-
                             </materialDesign:DialogHost.DialogContent>
-                            <ScrollViewer>
-                                <Grid>
+                            <Grid>
+
+                                <Button
+                                    Width="60"
+                                    Height="60"
+                                    Margin="0,0,24,40"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Panel.ZIndex="6"
+                                    Background="#099faf"
+                                    BorderBrush="Transparent"
+                                    Click="BtnAgregar_Click"
+                                    Cursor="Hand"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                                    <materialDesign:PackIcon
+                                        Width="40"
+                                        Height="40"
+                                        Foreground="White"
+                                        Kind="Plus" />
+                                </Button>
+
+                                <ScrollViewer>
                                     <ItemsControl
                                         x:Name="itemCardTerminados"
                                         Margin="0,0,-13,0"
@@ -276,28 +372,9 @@
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
-
-                                </Grid>
-                            </ScrollViewer>
+                                </ScrollViewer>
+                            </Grid>
                         </materialDesign:DialogHost>
-                        <Button
-                            Width="60"
-                            Height="60"
-                            Margin="0,0,24,40"
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
-                            Panel.ZIndex="6"
-                            Background="#099faf"
-                            BorderBrush="Transparent"
-                            Click="BtnAgregar_Click"
-                            Cursor="Hand"
-                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-                            <materialDesign:PackIcon
-                                Width="40"
-                                Height="40"
-                                Foreground="White"
-                                Kind="Plus" />
-                        </Button>
                     </Grid>
                 </TabItem>
                 <TabItem
@@ -328,7 +405,7 @@
                             </StackPanel>
                         </Button>
                     </TabItem.Header>
-                    <PageVentas:Ventas />
+                    <PageVentas:Ventas x:Name="PageVentas" />
                 </TabItem>
             </TabControl>
         </materialDesign:Card>

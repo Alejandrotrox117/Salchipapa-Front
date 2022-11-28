@@ -15,13 +15,12 @@
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Visible">
             <ItemsControl
-                x:Name="itemCardTerminados"
+                x:Name="CardsVentasTerminadas"
                 Width="796"
                 Height="600"
                 materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
                 Background="White"
                 Focusable="True"
-                ItemsSource="{Binding Orders}"
                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -78,6 +77,7 @@
                                             VerticalScrollBarVisibility="Hidden">
                                             <ItemsControl
                                                 Grid.Row="1"
+
                                                 Grid.Column="0"
                                                 Height="270">
                                                 <ItemsControl.ItemsPanel>
@@ -117,7 +117,7 @@
                                                                             FontSize="50"
                                                                             FontStyle="Italic"
                                                                             Foreground="#00695c"
-                                                                            Text="4"
+                                                                            Text="{Binding number}"
                                                                             TextAlignment="Center" />
                                                                         <TextBlock
                                                                             Grid.Row="2"
@@ -138,7 +138,7 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="Samuel " />
+                                                                                Text="{Binding madeBy}" />
                                                                         </materialDesign:Chip>
                                                                         <TextBlock
                                                                             Grid.Row="4"
@@ -162,7 +162,7 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="Samuel " />
+                                                                                Text="{Binding attendedBy}" />
                                                                         </materialDesign:Chip>
                                                                         <Button
                                                                             x:Name="BtnVerProductos"
@@ -170,7 +170,7 @@
                                                                             Width="100"
                                                                             Margin="0,-20,0,0"
                                                                             Background="#00695c"
-                                                                            Click="BtnVerProductos_Click"
+                                                                            BorderBrush="Transparent"
                                                                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                                                             Content="Ver productos"
                                                                             FontSize="10"
@@ -245,7 +245,7 @@
                                                         </materialDesign:Flipper>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
-                                                a
+
                                             </ItemsControl>
                                         </ScrollViewer>
                                     </Grid>
@@ -323,7 +323,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="Jesús "
+                                                    Text="{Binding client.name}"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="1"
@@ -345,7 +345,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="Richi"
+                                                    Text="{Binding sellerBy.name}"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="3"
@@ -355,7 +355,7 @@
                                                     Text="Metodos de pago"
                                                     TextAlignment="Center" />
                                                 <StackPanel Grid.Row="4" Grid.Column="0">
-                                                    <ItemsControl>
+                                                    <ItemsControl ItemsSource="{Binding payments}">
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
                                                                 <WrapPanel />
@@ -368,11 +368,10 @@
                                                                     Background="#00695c"
                                                                     FontStyle="Italic"
                                                                     Foreground="White">
-                                                                    <TextBlock Text="Pago mercantil" />
+                                                                    <TextBlock Text="{Binding payment.name}" />
                                                                 </materialDesign:Chip>
                                                             </DataTemplate>
                                                         </ItemsControl.ItemTemplate>
-                                                        a
                                                     </ItemsControl>
                                                 </StackPanel>
                                                 <TextBlock
@@ -429,7 +428,7 @@
                         </materialDesign:Flipper>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                a
+
             </ItemsControl>
         </ScrollViewer>
     </Grid>

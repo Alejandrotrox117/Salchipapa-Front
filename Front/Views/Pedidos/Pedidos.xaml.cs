@@ -30,7 +30,7 @@ namespace Front.Views.Pedidos
         }
         private async void Main()
         {
-            string response = await Request.Get("orders?filter=true");
+            string response = await Request.Get("orders");
             Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
             if (Orders != null)
             {
@@ -146,6 +146,7 @@ namespace Front.Views.Pedidos
                         {
                             MostrarError("El pedido "+order.number.ToString()+" ha cambiado de estatus", false);
                         }
+                        else
                         {
                             MostrarError("Error inesperado", true);
                         }

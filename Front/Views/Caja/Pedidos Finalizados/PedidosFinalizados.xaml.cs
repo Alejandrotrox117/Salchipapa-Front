@@ -32,7 +32,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         //funcion obtener Pedidos
         public async void Get()
         {
-            string response = await Request.Get("orders?filter=false");
+            string response = await Request.Get("orders?filter=true");
             Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
             if (Orders != null)
             {
@@ -49,10 +49,12 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void BtnVentas_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolFinalizados.SelectedIndex = 1;
+            PageVentas.Get();
         }
 
         private void BtnPFinalizados_Click(object sender, RoutedEventArgs e)
         {
+            Get();
             TabcontrolFinalizados.SelectedIndex = 0;
         }
 
@@ -87,5 +89,35 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             DialogHost.IsOpen = false;
             Formulario.LimpiarForm();
         }
+
+        //funcion abrir notificacion
+        //private void abrirSnack(string mensaje, Error error)
+        //{
+        //    var bc = new BrushConverter();
+        //    TxtSnackbar.Text = mensaje;
+        //    SnackBarNotificacion.IsActive = true;
+        //    if (error is null)
+        //    {
+        //        SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+        //        BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+        //    }
+        //    else
+        //    {
+        //        Formulario.MostrarErrores(error);
+        //        SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+        //        BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+        //    }
+        //}
+        ////funcion limpiar drawner
+        //private void limpiarDrawner()
+        //{
+        //    DrawerHost.IsBottomDrawerOpen = false;
+        //    BtnConfirmarDrawner.Click -= Agregar_Click;
+        //    BtnConfirmarDrawner.Click -= Actualizar_Click;
+        //    BtnConfirmarDrawner.Click -= Eliminar_Click;
+        //    BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+        //    BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
+        //}
+
     }
 }

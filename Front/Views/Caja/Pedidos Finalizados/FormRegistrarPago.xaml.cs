@@ -26,12 +26,12 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     {
 
         public ObservableCollection <Payments> payments { get; set; }
-        public List<Orders> selecteds = new List<Orders>();
-        public List<Orders> Selecteds { get { return selecteds; } set { selecteds = value; } }
+        public ObservableCollection <Orders> Selecteds { get; set; }
         public static float Total { get; set; }
         public FormRegistrarPago()
         {
             InitializeComponent();
+            Selecteds = new ObservableCollection<Orders>();
             payments = new ObservableCollection<Payments>();
             ListPagos.ItemsSource = payments;
         }
@@ -113,7 +113,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             TxtNombreCliente.Text = "";
             LblErrorNombreCliente.Text = "";
             payments.Clear();
-            selecteds.Clear();
+            Selecteds.Clear();
         }
 
 
@@ -136,7 +136,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void BtnEliminarPedidoActual_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            //payments.Remove(element.DataContext as );
+            Selecteds.Remove(element.DataContext as Orders);
 
         }
 

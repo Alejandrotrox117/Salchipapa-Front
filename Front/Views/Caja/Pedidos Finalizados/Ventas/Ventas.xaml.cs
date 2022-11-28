@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +26,20 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
         {
             InitializeComponent();
         }
-
-        private void BtnVerProductos_Click(object sender, RoutedEventArgs e)
+        public async void Get()
         {
-
+            string response = await Request.Get("sales");
+            List<Sales> returnedData = JsonConvert.DeserializeObject<List<Sales>>(response);
+            if (returnedData != null)
+            {
+                CardsVentasTerminadas.ItemsSource = returnedData;
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
+
+        
     }
 }

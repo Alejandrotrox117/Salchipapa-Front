@@ -77,7 +77,7 @@ namespace Front
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://192.168.1.102:3000");
+            this.client = new SocketIO("http://192.168.0.110:3000");
             await this.client.ConnectAsync();
         }
 
@@ -126,6 +126,7 @@ namespace Front
             {
                 case "BtnPedidos":
                     MyFrame.NavigationService.Navigate(pedidos);
+                    MyFrame.Focus();
                     break;
                 case "BtnCaja":
                     MyFrame.NavigationService.Navigate(caja);
@@ -159,6 +160,7 @@ namespace Front
         private void BtnVerPedido_Click(object sender, RoutedEventArgs e)
         {
             MyFrame.NavigationService.Navigate(pedidos);
+            MyFrame.Focus();
             SnackBar.IsActive = false;
         }
 

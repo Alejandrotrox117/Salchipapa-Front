@@ -180,18 +180,18 @@
                     TextWrapping="Wrap"
                     Visibility="Visible" />
                 <StackPanel
-                    Grid.Row="6"
+                    Grid.Row="5"
+                    Grid.RowSpan="3"
                     Grid.Column="0"
                     Width="220"
-                    Margin="0,0,0,0">
+                    Margin="10,35,10,14">
                     <Grid>
                         <ListBox
                             x:Name="ListPedidosFinalizados"
                             Grid.Column="0"
                             Width="220"
-                            Height="115"
-                            Margin="0,-42,0,0"
-                            VerticalAlignment="Top"
+                            Height="105"
+                            VerticalAlignment="Center"
                             ScrollViewer.HorizontalScrollBarVisibility="Visible"
                             ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListBox.ItemsPanel>
