@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Front.Views.Pedidos
 {
@@ -37,7 +38,7 @@ namespace Front.Views.Pedidos
             }
             else
             {
-                MessageBox.Show("Error");
+                MostrarError("Error inesperado", true);
             }
         }
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -111,14 +112,18 @@ namespace Front.Views.Pedidos
                 });
 
                 var response = await Request.Put("orders/"+order.number.ToString(), body);
-                if (!response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("error");
+                    MostrarError("El pedido "+order.number.ToString()+" ha cambiado de estatus", false);
+                } 
+                else
+                {
+                    MostrarError("Error inesperado", true);
                 }
             }
             else
             {
-                MessageBox.Show("No puedes realizar esta accion");
+                MostrarError("No puedes realizar esta acción", true);
             }
         }
 
@@ -126,19 +131,69 @@ namespace Front.Views.Pedidos
         {
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
-            string body = new JavaScriptSerializer().Serialize(new
+            switch (order.status)
             {
-                status = order.status == "NUEVO" ? "PROCESO" : "ENTREGADO"
-            });
+                case "NUEVO":
+                    if (MainWindow.session.account.rol == "COCINERO" || MainWindow.session.account.rol == "ADMIN")
+                    {
+                        string body = new JavaScriptSerializer().Serialize(new
+                        {
+                            status = order.status == "NUEVO" ? "PROCESO" : "ENTREGADO"
+                        });
 
-            var response = await Request.Put("orders/"+order.number.ToString(), body);
-            if (!response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("error");
+                        var response = await Request.Put("orders/"+order.number.ToString(), body);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            MostrarError("El pedido "+order.number.ToString()+" ha cambiado de estatus", false);
+                        }
+                        {
+                            MostrarError("Error inesperado", true);
+                        }
+                    }
+                    else
+                    {
+                        MostrarError("No puedes realizar esta acción", true);
+                    }
+                    break;
+                case "LISTO":
+                    if (MainWindow.session.account.rol == "MESERO" || MainWindow.session.account.rol == "ADMIN")
+                    {
+                        string body = new JavaScriptSerializer().Serialize(new
+                        {
+                            status = order.status == "NUEVO" ? "PROCESO" : "ENTREGADO"
+                        });
+
+                        var response = await Request.Put("orders/"+order.number.ToString(), body);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            MostrarError("El pedido "+order.number.ToString()+" ha cambiado de estatus", false);
+                        }
+                        else
+                        {
+                            MostrarError("Error inesperado", true);
+                        }
+                    }
+                    else
+                    {
+                        MostrarError("No puedes realizar esta acción", true);
+                    }
+                    break;
             }
-
         }
 
-       
+        private void MostrarError(string massage, bool error)
+        {
+            if(error)
+            {
+                SnackBarNotificacion.Background = (Brush)new BrushConverter().ConvertFrom("#f44c58");
+            }
+            TxtSnackbar.Text = massage;
+            SnackBarNotificacion.IsActive = true;
+        }
+        private void BtnSnackbar_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+            SnackBarNotificacion.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
+        }
     }
 }

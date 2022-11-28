@@ -22,9 +22,10 @@
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            Background="#f44c58"
-            IsActive="False"
-            >
+            Background="#00695c" 
+            Margin="0,502,0,0"
+            VerticalAlignment="Top" 
+            Height="81">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -45,7 +46,8 @@
                         Margin="80,0,0,0"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Content="Ok" />
+                        Content="Ok" 
+                        Click="BtnSnackbar_Click"/>
                 </Grid>
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>

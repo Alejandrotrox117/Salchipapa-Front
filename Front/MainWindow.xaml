@@ -107,8 +107,7 @@
                         Background="#00695c"
                         FlowDirection="LeftToRight" 
                         Height="45" 
-                        Margin="0,525,0,0"
-                        IsActive="True">
+                        Margin="0,525,0,0">
                     <materialDesign:SnackbarMessage Height="24">
                         <Grid Width="256">
                             <Grid.ColumnDefinitions>
