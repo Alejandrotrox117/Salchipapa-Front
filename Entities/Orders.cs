@@ -15,8 +15,8 @@ namespace Entities
         public List<product> products { get; set; }
         public int number { get; set; }
         public string status { get; set; }
-        public string madeBy { get; set; }
-        public string attendedBy { get; set; }
+        public Employe madeBy { get; set; }
+        public Employe attendedBy { get; set; }
         public bool IsProgress
         {
             get { return status == "PROCESO"; }

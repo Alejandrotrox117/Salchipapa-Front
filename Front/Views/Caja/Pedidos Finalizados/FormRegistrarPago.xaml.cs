@@ -25,6 +25,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class FormRegistrarPago : UserControl
     {
 
+        public  Client client { get; set; }
         public ObservableCollection <Payments> payments { get; set; }
         public ObservableCollection <Orders> Selecteds { get; set; }
         public static float Total { get; set; }
@@ -66,7 +67,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
                 TxtNombreCliente.Text = returnedData.name + " " + returnedData.surname;
                 TxtNombreCliente.Visibility = Visibility.Visible;
                 LblErrorNombreCliente.Visibility = Visibility.Hidden;
-
+                this.client = returnedData;
             }
             else
             {

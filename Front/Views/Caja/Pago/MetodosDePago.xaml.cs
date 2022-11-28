@@ -46,8 +46,7 @@ namespace Front.Views.Caja.Pagos
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
             string pago = new JavaScriptSerializer().Serialize(new
-            {
-                
+            { 
                 name = Formulario.TxtNombrePago.Text,
                 money = Formulario.CBMoneda.Text
             });

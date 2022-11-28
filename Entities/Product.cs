@@ -23,7 +23,7 @@ namespace Entities
         public string description { get; set; }
         public int stock { get; set; }
         public DateTime updatedAt { get; set; }
-        public List<Topping> toppings { get; set; }
+        public List<Entities.Topping> toppings { get; set; }
         public string img
         {
             get

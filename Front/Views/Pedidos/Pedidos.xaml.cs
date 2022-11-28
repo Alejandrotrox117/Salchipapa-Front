@@ -17,10 +17,8 @@ namespace Front.Views.Pedidos
     public partial class Pedidos : UserControl
     {
         private Snackbar notify;
-        public ObservableCollection<Orders> Orders { get; set; }
-
         private SocketIO client;
-
+        public ObservableCollection<Orders> Orders { get; set; }
         public Pedidos(ref SocketIO client, ref Snackbar notify)
         {
             InitializeComponent();
@@ -104,7 +102,7 @@ namespace Front.Views.Pedidos
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
 
-            if (MainWindow.session._id == order.madeBy)
+            if (MainWindow.session._id == order.madeBy._id)
             {
                 string body = new JavaScriptSerializer().Serialize(new
                 {
