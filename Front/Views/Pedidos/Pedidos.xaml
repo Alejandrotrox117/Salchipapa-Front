@@ -23,8 +23,7 @@
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
             Background="#f44c58"
-            IsActive="False"
-            >
+            IsActive="False">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -116,7 +115,6 @@
                                                     <Grid Width="154">
                                                         <Button
                                                             x:Name="BtnFinalizado"
-                                                            materialDesign:ButtonProgressAssist.IndicatorBackground="White"
                                                             materialDesign:ButtonProgressAssist.IsIndeterminate="True"
                                                             materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
                                                             materialDesign:ButtonProgressAssist.Value="-1"
@@ -136,7 +134,6 @@
                                             Height="345"
                                             Margin="0,-8,0,0"
                                             Panel.ZIndex="6"
-                                            Background="Transparent"
                                             IsFlipped="False">
                                             <materialDesign:Flipper.FrontContent>
                                                 <materialDesign:Card>
@@ -222,7 +219,9 @@
                                                             BorderBrush="Transparent"
                                                             Command="{x:Static materialDesign:Flipper.FlipCommand}"
                                                             Content="Ver detalles"
-                                                            Foreground="White" />
+                                                            Foreground="White"
+                                                            IsDefault="False"
+                                                            IsEnabled="True" />
                                                     </Grid>
                                                 </materialDesign:Card>
                                             </materialDesign:Flipper.FrontContent>

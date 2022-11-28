@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Front.Utilities;
 
 namespace Front
 {
@@ -104,5 +105,15 @@ namespace Front
         {
             BtnIniciarSesion.Click -= IniciarSesion_Click;
         }
+
+
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
+
+
+        }
+
     }
 }

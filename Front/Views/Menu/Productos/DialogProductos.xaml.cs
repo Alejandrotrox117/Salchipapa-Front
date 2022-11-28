@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Front.Utilities;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -184,6 +185,13 @@ namespace Front.Views.Menu.Productos
                 img.ImageSource = new BitmapImage(new Uri(file.FileName));
                 BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
             }
+        }
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
+
+
         }
     }
 }

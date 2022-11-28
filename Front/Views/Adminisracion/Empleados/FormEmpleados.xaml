@@ -44,7 +44,7 @@
                     x:Name="TxtNombre"
                     Grid.Row="1"
                     Width="190"
-                    Height="50"
+                    Height="53"
                     Margin="0,10,0,0"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Nombre"
@@ -118,6 +118,7 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
+                    KeyDown="TextBoxValidation_KeyDown"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     TextChanged="TextChanged" />
                 <!--#endregion-->

@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Front.Utilities;
 using Microsoft.Win32;
 using Nancy.Json;
 using System;
@@ -106,6 +107,13 @@ namespace Front.Views.Menu.Toppings
                 BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
 
             }
+        }
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
+
+
         }
 
     }

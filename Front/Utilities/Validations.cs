@@ -6,31 +6,22 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace Front.Utilities
 {
-    public class Validations : ValidationRule
+    public class Validations
     {
-        
+        public static void TextBox_ValidateNum(object sender, KeyEventArgs e)
+        {
 
-        private bool ValidateFormat(string value)
-        {
-            Regex rgx = new Regex(@"/^[a-zA-Z ]+$/");
-             Match match = rgx.Match(value);
-            return match.Success;
-        }
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
-            string valor = value as string;
-            //if (string.IsNullOrEmpty(valor))                
-            //    return new ValidationResult(false, "El campo no puede estar vacio");
-            if (ValidateFormat(valor))
-                return new ValidationResult(false, "El campo no puede contener caracteres especiales");
-            else
-                return ValidationResult.ValidResult;
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key==Key.OemComma || e.Key==Key.OemPeriod)
+                    e.Handled = false;
+                else
+                    e.Handled = true;
             
-            
-        
         }
+
+
     }
 }

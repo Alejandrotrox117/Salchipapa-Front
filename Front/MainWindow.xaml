@@ -79,6 +79,7 @@
                         FontSize="15"
                         FontWeight="Bold"
                         Foreground="#00695c"
+                        KeyDown="TextBoxValidation_KeyDown"
                         Text="Fecha Actual" />
 
                 </Grid>
@@ -98,47 +99,41 @@
                     FontWeight="Bold"
                     Style="{StaticResource PrimaryColor}"
                     Text="Hierba Santa" />
-                <materialDesign:Badged
-                    Name="SnackbarBadge"
+                <materialDesign:Snackbar
+                    x:Name="SnackbarNotify"
                     Grid.Row="1"
-                    Margin="251,521,0,0"
-                    Badge="1"
-                    Visibility="Hidden">
-                    <materialDesign:Snackbar
-                        x:Name="SnackbarNotify"
-                        Grid.Row="1"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        VerticalContentAlignment="Center"
-                        Panel.ZIndex="6"
-                        Background="#00695c"
-                        FlowDirection="LeftToRight"
-                        IsActive="True">
-                        <materialDesign:SnackbarMessage Height="24">
-                            <Grid Width="256">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="110" />
-                                    <ColumnDefinition Width="100" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    Margin="7,-2,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    FontSize="15"
-                                    FontWeight="Bold"
-                                    Text="¡Nuevo pedido!" />
-                                <Button
-                                    x:Name="BtnAceptarPedido"
-                                    Grid.Column="1"
-                                    Margin="40,-9,-56,1"
-                                    Background="#20786b"
-                                    BorderBrush="Transparent"
-                                    Content="Aceptar" />
-                            </Grid>
-                        </materialDesign:SnackbarMessage>
-                    </materialDesign:Snackbar>
-                </materialDesign:Badged>
+                    Height="40"
+                    Margin="0,530,0,0"
+                    VerticalAlignment="Top"
+                    VerticalContentAlignment="Center"
+                    Panel.ZIndex="6"
+                    Background="#00695c"
+                    FlowDirection="LeftToRight"
+                    IsActive="True">
+                    <materialDesign:SnackbarMessage Height="24">
+                        <Grid Width="256">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="7,-2,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Text="¡Nuevo pedido!" />
+                            <Button
+                                x:Name="BtnAceptarPedido"
+                                Grid.Column="1"
+                                Margin="40,-9,-56,1"
+                                Background="#20786b"
+                                BorderBrush="Transparent"
+                                Content="Ver" />
+                        </Grid>
+                    </materialDesign:SnackbarMessage>
+                </materialDesign:Snackbar>
                 <Frame
                     x:Name="MyFrame"
                     Grid.Row="1"

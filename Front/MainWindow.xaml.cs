@@ -17,7 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Threading;
 using Front.Views.Caja;
 using Nancy.Json;
-
+using Front.Utilities;
 
 namespace Front
 {
@@ -26,7 +26,7 @@ namespace Front
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static float dolar { get; set; }
+        public static string dolar { get; set; }
         public static Employe session = null;
         public static bool admin { get { return session.account.admin; } }
 
@@ -77,7 +77,7 @@ namespace Front
         }
         public async void SocketClient()
         {
-            this.client = new SocketIO("http://192.168.137.1:3000");
+            this.client = new SocketIO("http://192.168.1.102:3000");
             
             //this.client.On("newOrder", async response =>
             // {
@@ -152,11 +152,17 @@ namespace Front
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textbox = sender as TextBox;
+            dolar =textbox.Text;
 
-            dolar = float.Parse(textbox.Text);
+        }
 
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
 
 
         }
+
     }
 }

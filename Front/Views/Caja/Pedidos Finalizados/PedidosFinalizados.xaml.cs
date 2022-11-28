@@ -81,5 +81,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             Formulario.CargarLista();
             DialogHost.IsOpen = true;
         }
+
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
+        }
     }
 }

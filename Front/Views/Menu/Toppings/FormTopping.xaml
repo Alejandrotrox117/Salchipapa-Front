@@ -76,6 +76,7 @@
                         AcceptsReturn="True"
                         BorderBrush="#00695c"
                         BorderThickness="2"
+                        KeyDown="TextBoxValidation_KeyDown"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextChanged="TextChanged" />
                     <TextBlock

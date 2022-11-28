@@ -8,22 +8,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Session"
     Width="350"
-    Height="495"
+    Height="520"
     Background="White"
+    BorderBrush="Transparent"
+    ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Border >
+    <Border>
         <materialDesign:DialogHost
             x:Name="Dialog"
             Grid.Row="0"
             Grid.RowSpan="4"
+            Height="550"
             DialogClosing="Dialog_DialogClosing"
             IsOpen="False">
             <materialDesign:DialogHost.DialogContent>
                 <Border
                     Width="240"
-                    Height="95"
+                    Height="100"
                     Background="White"
                     CornerRadius="5">
                     <Grid>
@@ -57,40 +60,31 @@
             </materialDesign:DialogHost.DialogContent>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="170" />
-                    <RowDefinition Height="67*" />
-                    <RowDefinition Height="27*" />
-                    <RowDefinition Height="67*" />
-                    <RowDefinition Height="24*" />
-                    <RowDefinition Height="130*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Image
                     Grid.Row="0"
-                    Margin="34,0,50,0"
+                    Height="220"
+                    Margin="55,0,55,20"
                     Source="/Views/logoFondoBlanco.png"
                     Stretch="Fill" />
                 <TextBox
                     x:Name="TxtUsuario"
                     Grid.Row="1"
                     Height="55"
-                    Margin="50,4,50,4"
+                    Margin="50,0,50,20"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Cédula"
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
+                    Cursor="Arrow"
+                    InputScope="Number"
+                    KeyDown="TextBoxValidation_KeyDown"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
-                <TextBlock
-                    x:Name="lblCiError"
-                    Grid.Row="2"
-                    Height="20"
-                    Margin="50,2,50,0"
-                    VerticalAlignment="Top"
-                    FontSize="10"
-                    Foreground="#f44c58"
-                    TextAlignment="Justify"
-                    TextWrapping="Wrap"
-                    Visibility="Visible" />
                 <PasswordBox
                     x:Name="TxtContrasena"
                     Grid.Row="3"
@@ -101,51 +95,40 @@
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
-                <TextBlock
-                    x:Name="lblContraError"
-                    Grid.Row="4"
-                    Height="20"
-                    Margin="50,0,50,0"
-                    VerticalAlignment="Center"
-                    FontSize="10"
-                    Foreground="#f44c58"
-                    TextAlignment="Justify"
-                    TextWrapping="Wrap"
-                    Visibility="Visible" />
-                <StackPanel Grid.Row="5" Margin="0,27,0,0">
-                    <Grid Height="103">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Button
-                            x:Name="BtnAceptar"
-                            Grid.Row="0"
-                            Width="100"
-                            Margin="0,0,0,0"
-                            Background="Transparent"
-                            BorderBrush="#00695c"
-                            BorderThickness="2"
-                            Click="BtnAceptar_Click"
-                            Content="Aceptar"
-                            Foreground="#00695c"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
-                        <Button
-                            x:Name="BtnCerrarForm"
-                            Grid.Row="1"
-                            Width="80"
-                            Height="30"
-                            Background="Transparent"
-                            BorderBrush="#f44c58"
-                            BorderThickness="2"
-                            Click="BtnCerrarForm_Click"
-                            Content="Cerrar"
-                            Foreground="#f44c58"
-                            IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                            ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
-                    </Grid>
-                </StackPanel>
+
+                <StackPanel Grid.Row="4" Margin="0,0,0,0" />
+                <Grid Grid.Row="3" Margin="0,84,0,-81">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Button
+                        x:Name="BtnAceptar"
+                        Grid.Row="0"
+                        Width="100"
+                        Margin="0,0,0,20"
+                        Background="Transparent"
+                        BorderBrush="#00695c"
+                        BorderThickness="2"
+                        Click="BtnAceptar_Click"
+                        Content="Aceptar"
+                        Foreground="#00695c"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                    <Button
+                        x:Name="BtnCerrarForm"
+                        Grid.Row="1"
+                        Width="80"
+                        Height="30"
+                        Background="Transparent"
+                        BorderBrush="#f44c58"
+                        BorderThickness="2"
+                        Click="BtnCerrarForm_Click"
+                        Content="Cerrar"
+                        Foreground="#f44c58"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                </Grid>
             </Grid>
         </materialDesign:DialogHost>
     </Border>

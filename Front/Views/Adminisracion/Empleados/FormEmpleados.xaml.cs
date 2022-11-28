@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Front.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,6 +123,13 @@ namespace Front.Views.Adminisracion.Empleados
 
             lblAccountError.Visibility = Visibility.Hidden;
             CbAccount.BorderBrush = color;
+        }
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
+
+
         }
     }
 }

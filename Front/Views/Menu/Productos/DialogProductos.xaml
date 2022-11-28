@@ -114,6 +114,7 @@
                                 BorderThickness="2"
                                 Cursor="Arrow"
                                 InputScope="Number"
+                                KeyDown="TextBoxValidation_KeyDown"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextChanged="TextChanged" />
                             <TextBlock
@@ -137,6 +138,7 @@
                                 AcceptsReturn="True"
                                 BorderBrush="#00695c"
                                 BorderThickness="2"
+                                KeyDown="TextBoxValidation_KeyDown"
                                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                 TextChanged="TextChanged" />
                             <TextBlock

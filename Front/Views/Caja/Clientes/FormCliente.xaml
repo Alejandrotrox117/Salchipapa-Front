@@ -114,6 +114,7 @@
                     materialDesign:HintAssist.Hint="Cédula"
                     BorderBrush="#00695c"
                     BorderThickness="2"
+                    KeyDown="TextBoxValidation_KeyDown"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     TextChanged="TextChanged" />
                 <!--#endregion-->
@@ -157,6 +158,7 @@
                     AcceptsReturn="True"
                     BorderBrush="#00695c"
                     BorderThickness="2"
+                    KeyDown="TextBoxValidation_KeyDown"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     TextChanged="TextChanged"
                     TextWrapping="Wrap" />

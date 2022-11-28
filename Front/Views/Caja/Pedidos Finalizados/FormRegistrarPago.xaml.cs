@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Front.Utilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -84,24 +85,46 @@ namespace Front.Views.Caja.Pedidos_Finalizados
                 count = monto
             };
             this.payments.Add(payment);
-
             cargarPrecio();
-
+            Limpiar();
         }
         public void cargarPrecio (){
             float total = 0;
             foreach (Payments i in this.payments)
             {
-               total+=i.payment.money == "BS" ? i.count / MainWindow.dolar : i.count;
+               total+=i.payment.money == "BS" ? i.count / float.Parse(MainWindow.dolar) : i.count;
             }
             txtMontoTotal.Text = Convert.ToString(total);
         }
+        public void Limpiar()
+        {
+           
+            TxtMonto.Clear();
+            CbMetodoPago.Text=" ";
+        }
+
+
+        public void LimpiarForm()
+        {
+
+            CbMetodoPago.Text = "";
+            TxtCiCliente.Text = "";
+            TxtMonto.Text = " ";
+            TxtNombreCliente.Text = "";
+            LblErrorNombreCliente.Text = "";
+            payments.Clear();
+            selecteds.Clear();
+        }
+
+
+
 
         private void BtnEliminarPagoList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             payments.Remove(element.DataContext as Payments);
             cargarPrecio();
+            
 
         }
 
@@ -116,5 +139,14 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             //payments.Remove(element.DataContext as );
 
         }
+
+        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            Validations.TextBox_ValidateNum(sender, e);
+
+
+        }
+
     }
 }
