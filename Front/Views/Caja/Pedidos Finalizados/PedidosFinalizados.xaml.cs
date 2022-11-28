@@ -26,11 +26,9 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class PedidosFinalizados : UserControl
     {
         public ObservableCollection<Orders> Orders { get; set; }
-        private SocketIO client;
-        public PedidosFinalizados(ref SocketIO client)
+        public PedidosFinalizados()
         {
             InitializeComponent();
-            this.client = client;
         }
         //funcion obtener Pedidos
         public async void Get()
@@ -55,6 +53,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             {
                orders = orders.Select(order => new
                {
+                   number = order.number,
                    products = order.products.Select(product => new
                    {
                        product = product._id,
@@ -70,6 +69,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
                }),
                client = Formulario.client._id,
                sellerBy = MainWindow.session._id,
+               total = float.Parse(Formulario.TxtMontoActual.Text),
                payments = payments.Select(payment => new
                {
                    payment = payment.payment._id,
@@ -78,15 +78,15 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             });
 
             var response = await Request.Post("sales", pago);
-            string message = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                MessageBox.Show("ok");
-                await client.EmitAsync("finishOrder", orders.Select(order => order.number));
+                abrirSnack("Se ha agredado correctamente", null);
             }
             else
             {
-                MessageBox.Show(message);
+                Error error = JsonConvert.DeserializeObject<Error>(content);
+                abrirSnack("Ha ocurrido un error", error);
             }
         }
 
@@ -127,31 +127,63 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             Formulario.CargarLista();
             DialogHost.IsOpen = true;
         }
+        //evento click boton aceptar form
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            DrawerHost.IsBottomDrawerOpen = true;
+        }
 
         private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
         {
             DialogHost.IsOpen = false;
             Formulario.LimpiarForm();
         }
-
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
+        }
         //funcion abrir notificacion
-        //private void abrirSnack(string mensaje, Error error)
-        //{
-        //    var bc = new BrushConverter();
-        //    TxtSnackbar.Text = mensaje;
-        //    SnackBarNotificacion.IsActive = true;
-        //    if (error is null)
-        //    {
-        //        SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
-        //        BtnSnackbar.Click += BtnSnackbarCerrar_Click;
-        //    }
-        //    else
-        //    {
-        //        Formulario.MostrarErrores(error);
-        //        SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
-        //        BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
-        //    }
-        //}
+        private void abrirSnack(string mensaje, Error error)
+        {
+            var bc = new BrushConverter();
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
+            if (error is null)
+            {
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+            }
+            else
+            {
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento btn snack cerrar 
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Get();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
+        }
+        //evento btn snack abrir form 
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
+        }
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
         ////funcion limpiar drawner
         //private void limpiarDrawner()
         //{

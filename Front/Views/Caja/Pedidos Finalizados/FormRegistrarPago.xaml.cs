@@ -128,7 +128,23 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             
 
         }
+        public void MostrarErrores(Error errores)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#f44c58");
 
+            foreach (ErrorsList error in errores.errors)
+            {
+                switch (error.property)
+                {
+                    case "client":
+                        lblNombreError.Text = error.error;
+                        lblNombreError.Visibility = Visibility.Visible;
+                        TxtCiCliente.BorderBrush = color;
+                        break;
+                }
+            }
+        }
         private void CbMetodoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             

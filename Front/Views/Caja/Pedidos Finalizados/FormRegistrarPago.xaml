@@ -36,6 +36,7 @@
                 <!--#region Titulo formulario-->
                 <TextBlock
                     x:Name="TxtTituloDialg"
+                    Text="Registrar venta"
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,20"

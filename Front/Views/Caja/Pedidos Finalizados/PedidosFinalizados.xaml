@@ -75,7 +75,8 @@
                                         VerticalAlignment="Center"
                                         FontSize="13"
                                         FontWeight="Bold"
-                                        Foreground="White" />
+                                        Foreground="White" 
+                                        Text="¿Desea registrar la venta?"/>
                                     <Button
                                         Name="BtnConfirmarDrawner"
                                         Margin="4"
@@ -83,6 +84,7 @@
                                         Panel.ZIndex="3"
                                         Background="Transparent"
                                         BorderBrush="Transparent"
+                                        Click="Agregar_Click"
                                         Content="Confirmar"
                                         Foreground="White"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -93,6 +95,7 @@
                                         BorderBrush="Transparent"
                                         Content="Cancelar"
                                         Foreground="White"
+                                        Click="BtnCancelarDrawnerAbrirForm_Click"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
                                 </StackPanel>
                             </materialDesign:DrawerHost.BottomDrawerContent>
@@ -154,7 +157,7 @@
                                                 BorderBrush="#00695c"
                                                 Content="Aceptar"
                                                 Foreground="#00695c"
-                                                Click="Agregar_Click"/>
+                                                Click="BtnAceptarDialog_Click"/>
                                             <Button
                                                 x:Name="BtnCerrarForm"
                                                 Grid.Column="1"
