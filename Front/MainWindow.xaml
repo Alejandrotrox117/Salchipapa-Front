@@ -98,47 +98,42 @@
                     FontWeight="Bold"
                     Style="{StaticResource PrimaryColor}"
                     Text="Hierba Santa" />
-                <materialDesign:Badged
-                    Name="SnackbarBadge"
-                    Grid.Row="1"
-                    Margin="251,521,0,0"
-                    Badge="1"
-                    Visibility="Hidden">
-                    <materialDesign:Snackbar
-                        x:Name="SnackbarNotify"
+                <materialDesign:Snackbar
+                        x:Name="SnackBar"
                         Grid.Row="1"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Bottom"
                         VerticalContentAlignment="Center"
                         Panel.ZIndex="6"
                         Background="#00695c"
-                        FlowDirection="LeftToRight"
+                        FlowDirection="LeftToRight" 
+                        Height="45" 
+                        Margin="0,525,0,0"
                         IsActive="True">
-                        <materialDesign:SnackbarMessage Height="24">
-                            <Grid Width="256">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="110" />
-                                    <ColumnDefinition Width="100" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock
-                                    Grid.Column="0"
-                                    Margin="7,-2,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    FontSize="15"
-                                    FontWeight="Bold"
-                                    Text="¡Nuevo pedido!" />
-                                <Button
-                                    x:Name="BtnAceptarPedido"
-                                    Grid.Column="1"
-                                    Margin="40,-9,-56,1"
-                                    Background="#20786b"
-                                    BorderBrush="Transparent"
-                                    Content="Aceptar" />
-                            </Grid>
-                        </materialDesign:SnackbarMessage>
-                    </materialDesign:Snackbar>
-                </materialDesign:Badged>
+                    <materialDesign:SnackbarMessage Height="24">
+                        <Grid Width="256">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="100" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Grid.Column="0"
+                                Margin="7,-2,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                FontSize="15"
+                                FontWeight="Bold"
+                                Text="¡Nuevo pedido!" />
+                            <Button
+                                x:Name="BtnVerPedido"
+                                Grid.Column="1"
+                                Margin="40,-9,-20,1"
+                                Background="#20786b"
+                                BorderBrush="Transparent"
+                                Content="Ver" 
+                                Click="BtnVerPedido_Click"/>
+                        </Grid>
+                    </materialDesign:SnackbarMessage>
+                </materialDesign:Snackbar>
                 <Frame
                     x:Name="MyFrame"
                     Grid.Row="1"

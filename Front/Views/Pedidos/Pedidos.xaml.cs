@@ -1,4 +1,5 @@
 ﻿using Entities;
+using MaterialDesignThemes.Wpf;
 using Nancy.Json;
 using Newtonsoft.Json;
 using SocketIOClient;
@@ -14,15 +15,17 @@ namespace Front.Views.Pedidos
     /// </summary>
     public partial class Pedidos : UserControl
     {
+        private Snackbar notify;
         public ObservableCollection<Orders> Orders { get; set; }
 
         private SocketIO client;
 
-        public Pedidos(ref SocketIO client)
+        public Pedidos(ref SocketIO client, ref Snackbar notify)
         {
             InitializeComponent();
             this.client = client;
             this.DataContext = this;
+            this.notify = notify;
         }
         private async void Main()
         {
@@ -46,8 +49,7 @@ namespace Front.Views.Pedidos
                 {
                     var returned = JsonConvert.DeserializeObject<List<Orders>>(response.ToString())[0];
                     this.Orders.Add(returned);
-                    itemCardFlipper.Focus();
-
+                    notify.IsActive = true;
                 });
             });
             client.On("takeOrder", async response =>
