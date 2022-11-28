@@ -12,7 +12,6 @@
     Height="510"
     mc:Ignorable="d">
     <Grid Background="White" Loaded="Grid_Loaded">
-
         <materialDesign:Card>
             <TabControl
                 Name="TabcontrolFinalizados"
@@ -50,6 +49,7 @@
                         </Button>
                     </TabItem.Header>
                     <Grid>
+                        <!--#region Cuerpo principal drawerHost-->
                         <materialDesign:DrawerHost
                             x:Name="DrawerHost"
                             Grid.RowSpan="5"
@@ -97,11 +97,13 @@
                                 </StackPanel>
                             </materialDesign:DrawerHost.BottomDrawerContent>
                         </materialDesign:DrawerHost>
+                        <!--#endregion-->
                         <!--#region Snackbar-->
                         <materialDesign:Snackbar
                             x:Name="SnackBarNotificacion"
                             Panel.ZIndex="5"
-                            IsActive="False">
+                            IsActive="False"
+                            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
                             <materialDesign:SnackbarMessage>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -152,6 +154,7 @@
                                                 Margin="0,0,0,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
+                                                Click="BtnAceptarDialog_Click"
                                                 Content="Aceptar"
                                                 Foreground="#00695c"
                                                 Visibility="Visible" />
@@ -188,14 +191,11 @@
                                         Foreground="White"
                                         Kind="Plus" />
                                 </Button>
-
                                 <ScrollViewer>
                                     <ItemsControl
                                         x:Name="itemCardTerminados"
                                         Margin="0,0,-13,0"
-                                        materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
                                         Background="White"
-                                        Focusable="True"
                                         ItemsSource="{Binding Orders}"
                                         ScrollViewer.VerticalScrollBarVisibility="Visible">
                                         <ItemsControl.ItemsPanel>

@@ -114,22 +114,5 @@ namespace Front
                 return null;
             }
         }
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -127,7 +127,6 @@
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     DisplayMemberPath="name"
-                    SelectionChanged="CbMetodoPago_SelectionChanged"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 <TextBox
                     x:Name="TxtMonto"
@@ -171,102 +170,85 @@
                 </Button>
                 <TextBlock
                     Grid.Row="5"
-                    Margin="15,10,15,46"
-                    FontSize="10"
+                    Margin="15,10,15,75"
+                    VerticalAlignment="Top"
+                    FontSize="13"
                     FontWeight="Bold"
                     Foreground="#00695c"
                     Text="Pedido Actual"
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
-                <StackPanel
+                <ScrollViewer
                     Grid.Row="5"
                     Grid.RowSpan="3"
                     Grid.Column="0"
                     Width="220"
-                    Margin="10,35,10,14">
-                    <Grid>
-                        <ListBox
-                            x:Name="ListPedidosFinalizados"
-                            Grid.Column="0"
-                            Width="220"
-                            Height="105"
-                            VerticalAlignment="Center"
-                            ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                            ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <materialDesign:Chip Width="90" Height="27">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50" />
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock
-                                                Grid.Column="0"
-                                                FontSize="15"
-                                                FontWeight="DemiBold"
-                                                Foreground="#00695c"
-                                                Text="{Binding number}"
-                                                TextAlignment="Center"
-                                                TextWrapping="Wrap" />
-                                            <Button
-                                                x:Name="BtnEliminarPedidoActual"
-                                                Grid.Column="1"
-                                                Width="17"
-                                                Height="17"
-                                                Background="Transparent"
-                                                BorderBrush="Transparent"
-                                                Click="BtnEliminarPedidoActual_Click"
-                                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
-                                                <materialDesign:PackIcon
-                                                    Width="16"
-                                                    Height="16"
-                                                    Foreground="Black"
-                                                    Kind="CloseCircle" />
-                                            </Button>
-                                        </Grid>
-                                    </materialDesign:Chip>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </Grid>
-                </StackPanel>
+                    Height="67">
+                    <ItemsControl
+                        x:Name="ListPedidosFinalizados"
+                        Grid.Row="5"
+                        Grid.RowSpan="3"
+                        Grid.Column="0"
+                        Width="220"
+                        Height="67"
+                        Margin="0,0,0,0"
+                        VerticalAlignment="Center"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Vertical" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Chip
+                                    Width="90"
+                                    Height="30"
+                                    Background="#00695c">
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        FontWeight="DemiBold"
+                                        Foreground="White"
+                                        Text="{Binding number}"
+                                        TextAlignment="Center"
+                                        TextWrapping="Wrap" />
+                                </materialDesign:Chip>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
                 <TextBlock
                     Grid.Row="5"
                     Grid.Column="1"
                     Margin="15,10,15,46"
-                    FontSize="10"
+                    VerticalAlignment="Top"
+                    FontSize="13"
                     FontWeight="Bold"
                     Foreground="#00695c"
                     Text="Metodos de pago"
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
-                <StackPanel
+                <ScrollViewer
                     Grid.Row="5"
-                    Grid.RowSpan="2"
                     Grid.Column="1"
                     Width="220"
-                    Margin="10,34,10,0">
-                    <ListBox
+                    Margin="0,25,0,8"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ItemsControl
                         x:Name="ListPagos"
-                        Grid.Column="0"
-                        Width="220"
-                        Height="107"
-                        ScrollViewer.HorizontalScrollBarVisibility="Visible"
-                        ScrollViewer.VerticalScrollBarVisibility="Hidden">
-                        <ListBox.ItemsPanel>
+                        Grid.Row="5"
+                        Grid.Column="1">
+                        <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel />
+                                <WrapPanel Orientation="Vertical" />
                             </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                        <ListBox.ItemTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <materialDesign:Card
                                     Width="190"
@@ -336,9 +318,9 @@
                                     </Grid>
                                 </materialDesign:Card>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
                 <StackPanel
                     Grid.Row="7"
                     Grid.Column="0"
