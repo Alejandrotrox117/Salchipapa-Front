@@ -6,6 +6,7 @@
     xmlns:caja="clr-namespace:Front.Views.Caja"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Pedidos"
+    xmlns:front="clr-namespace:Front"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:materialDesignMahApps="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -22,8 +23,10 @@
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            Background="#f44c58"
-            IsActive="False">
+            Background="#00695c" 
+            Margin="0,502,0,0"
+            VerticalAlignment="Top" 
+            Height="81">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -44,7 +47,8 @@
                         Margin="80,0,0,0"
                         Background="Transparent"
                         BorderBrush="Transparent"
-                        Content="Ok" />
+                        Content="Ok" 
+                        Click="BtnSnackbar_Click"/>
                 </Grid>
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>
@@ -172,7 +176,9 @@
                                                             Width="50"
                                                             Margin="160,0,0,0"
                                                             Background="#f44c58"
-                                                            BorderBrush="Transparent">
+                                                            BorderBrush="Transparent"
+                                                            IsEnabled="{Binding Source={x:Static front:MainWindow.admin}}"
+                                                            Click="BtnCancelarPedido_Click">
                                                             <materialDesign:PackIcon
                                                                 Width="20"
                                                                 Height="20"

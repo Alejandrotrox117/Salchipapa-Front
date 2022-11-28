@@ -100,16 +100,15 @@
                     Style="{StaticResource PrimaryColor}"
                     Text="Hierba Santa" />
                 <materialDesign:Snackbar
-                    x:Name="SnackbarNotify"
-                    Grid.Row="1"
-                    Height="40"
-                    Margin="0,530,0,0"
-                    VerticalAlignment="Top"
-                    VerticalContentAlignment="Center"
-                    Panel.ZIndex="6"
-                    Background="#00695c"
-                    FlowDirection="LeftToRight"
-                    IsActive="True">
+                        x:Name="SnackBar"
+                        Grid.Row="1"
+                        VerticalAlignment="Bottom"
+                        VerticalContentAlignment="Center"
+                        Panel.ZIndex="6"
+                        Background="#00695c"
+                        FlowDirection="LeftToRight" 
+                        Height="45" 
+                        Margin="0,525,0,0">
                     <materialDesign:SnackbarMessage Height="24">
                         <Grid Width="256">
                             <Grid.ColumnDefinitions>
@@ -125,12 +124,13 @@
                                 FontWeight="Bold"
                                 Text="¡Nuevo pedido!" />
                             <Button
-                                x:Name="BtnAceptarPedido"
+                                x:Name="BtnVerPedido"
                                 Grid.Column="1"
-                                Margin="40,-9,-56,1"
+                                Margin="40,-9,-20,1"
                                 Background="#20786b"
                                 BorderBrush="Transparent"
-                                Content="Ver" />
+                                Content="Ver" 
+                                Click="BtnVerPedido_Click"/>
                         </Grid>
                     </materialDesign:SnackbarMessage>
                 </materialDesign:Snackbar>
