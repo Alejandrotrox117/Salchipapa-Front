@@ -1,5 +1,7 @@
 ﻿using Entities;
+using Nancy.Json;
 using Newtonsoft.Json;
+using SocketIOClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,10 +26,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class PedidosFinalizados : UserControl
     {
         public ObservableCollection<Orders> Orders { get; set; }
-
-        public PedidosFinalizados()
+        private SocketIO client;
+        public PedidosFinalizados(ref SocketIO client)
         {
             InitializeComponent();
+            this.client = client;
         }
         //funcion obtener Pedidos
         public async void Get()
@@ -44,7 +47,48 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             }
         }
 
+        private async void Agregar_Click(object sender, RoutedEventArgs e)
+        {
+            List<Orders> orders = new List<Orders>(Formulario.Selecteds);
+            List<Payments> payments = new List<Payments>(Formulario.payments);
+            string pago = new JavaScriptSerializer().Serialize(new
+            {
+               orders = orders.Select(order => new
+               {
+                   products = order.products.Select(product => new
+                   {
+                       product = product._id,
+                       price = product.price,
+                       toppings = product.toppings.Select(topping => new
+                       {
+                           topping = topping._id,
+                           price = topping.price
+                       })
+                   }),
+                   attendedBy = order.attendedBy._id,
+                   madeBy = order.madeBy._id
+               }),
+               client = Formulario.client._id,
+               sellerBy = MainWindow.session._id,
+               payments = payments.Select(payment => new
+               {
+                   payment = payment.payment._id,
+                   count = payment.count
+               })
+            });
 
+            var response = await Request.Post("sales", pago);
+            string message = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("ok");
+                await client.EmitAsync("finishOrder", orders.Select(order => order.number));
+            }
+            else
+            {
+                MessageBox.Show(message);
+            }
+        }
 
         private void BtnVentas_Click(object sender, RoutedEventArgs e)
         {

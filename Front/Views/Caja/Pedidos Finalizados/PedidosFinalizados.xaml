@@ -154,7 +154,7 @@
                                                 BorderBrush="#00695c"
                                                 Content="Aceptar"
                                                 Foreground="#00695c"
-                                                Visibility="Visible" />
+                                                Click="Agregar_Click"/>
                                             <Button
                                                 x:Name="BtnCerrarForm"
                                                 Grid.Column="1"
