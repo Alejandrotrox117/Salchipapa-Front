@@ -129,8 +129,28 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             
 
         }
+        public void MostrarErrores(Error errores)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#f44c58");
 
-        
+            foreach (ErrorsList error in errores.errors)
+            {
+                switch (error.property)
+                {
+                    case "client":
+                        lblNombreError.Text = error.error;
+                        lblNombreError.Visibility = Visibility.Visible;
+                        TxtCiCliente.BorderBrush = color;
+                        break;
+                }
+            }
+        }
+        private void CbMetodoPago_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
         private void BtnEliminarPedidoActual_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
@@ -144,28 +164,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         }
 
 
-        public void MostrarErrores(Error errores)
-        {
-            var bc = new BrushConverter();
-            Brush color = (Brush)bc.ConvertFrom("#f44c58");
-
-            foreach (ErrorsList error in errores.errors)
-            {
-                switch (error.property)
-                {
-                    case "name":
-                        lblNombreError.Text = error.error;
-                        lblNombreError.Visibility = Visibility.Visible;
-                        TxtCiCliente.BorderBrush = color;
-                        break;
-                    case "price":
-                        lblPrecioError.Text = error.error;
-                        lblPrecioError.Visibility = Visibility.Visible;
-                        TxtMonto.BorderBrush = color;
-                        break;
-                }
-            }
-        }
+        
 
     }
 }

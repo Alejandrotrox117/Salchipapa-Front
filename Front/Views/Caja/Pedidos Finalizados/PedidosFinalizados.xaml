@@ -75,7 +75,8 @@
                                         VerticalAlignment="Center"
                                         FontSize="13"
                                         FontWeight="Bold"
-                                        Foreground="White" />
+                                        Foreground="White"
+                                        Text="¿Desea registrar la venta?" />
                                     <Button
                                         Name="BtnConfirmarDrawner"
                                         Margin="4"
@@ -83,6 +84,7 @@
                                         Panel.ZIndex="3"
                                         Background="Transparent"
                                         BorderBrush="Transparent"
+                                        Click="Agregar_Click"
                                         Content="Confirmar"
                                         Foreground="White"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -91,6 +93,7 @@
                                         Margin="4"
                                         VerticalAlignment="Center"
                                         BorderBrush="Transparent"
+                                        Click="BtnCancelarDrawnerAbrirForm_Click"
                                         Content="Cancelar"
                                         Foreground="White"
                                         Style="{StaticResource MaterialDesignFlatButton}" />
@@ -154,7 +157,7 @@
                                                 Margin="0,0,0,0"
                                                 Background="Transparent"
                                                 BorderBrush="#00695c"
-                                                Click="Agregar_Click"
+                                                Click="BtnAceptarDialog_Click"
                                                 Content="Aceptar"
                                                 Foreground="#00695c" />
                                             <Button
