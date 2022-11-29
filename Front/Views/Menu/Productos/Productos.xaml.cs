@@ -132,7 +132,7 @@ namespace Front.Views.Menu.Productos
             Formulario.TxtTituloDialg.Text = "Agregar Producto";
             TxtTituloDrawer.Text = "¿Desea agregar el producto?";
             DialogHost.IsOpen = true;
-            //Formulario.CargarCombobox();
+            Formulario.CargarCombobox();
             BtnConfirmarDrawner.Click += Agregar_Click;
             BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
         }

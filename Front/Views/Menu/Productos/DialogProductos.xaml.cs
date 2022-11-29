@@ -27,7 +27,6 @@ namespace Front.Views.Menu.Productos
         public DialogProductos()
         {
             InitializeComponent();
-            CargarCombobox();
         }
 
         public void CargarForm(Product products)
