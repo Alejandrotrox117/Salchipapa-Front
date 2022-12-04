@@ -1,22 +1,12 @@
 ﻿using Entities;
 using Nancy.Json;
 using Newtonsoft.Json;
-using SocketIOClient;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Front.Views.Caja.Pedidos_Finalizados
 {
@@ -47,6 +37,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         private async void Agregar_Click(object sender, RoutedEventArgs e)
         {
+            float total = float.Parse(Formulario.TxtMontoActual.Text);
+            float montoTotal = float.Parse(Formulario.txtMontoTotal.Text);
+
+            if(total == montoTotal)
+            {
             List<Orders> orders = new List<Orders>(Formulario.Selecteds);
             List<Payments> payments = new List<Payments>(Formulario.payments);
             string pago = new JavaScriptSerializer().Serialize(new
@@ -69,7 +64,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
                }),
                client = Formulario.client._id,
                sellerBy = MainWindow.session._id,
-               total = float.Parse(Formulario.TxtMontoActual.Text),
+               total = total,
                payments = payments.Select(payment => new
                {
                    payment = payment.payment._id,
@@ -86,6 +81,19 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             else
             {
                 Error error = JsonConvert.DeserializeObject<Error>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Error error = new Error()
+                {
+                    errors = new List<ErrorsList>()
+                    {
+                        new ErrorsList { property = "total"}
+                    }
+                };
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -149,6 +157,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void abrirSnack(string mensaje, Error error)
         {
             var bc = new BrushConverter();
+            DrawerHost.IsBottomDrawerOpen = false;
             TxtSnackbar.Text = mensaje;
             SnackBarNotificacion.IsActive = true;
             if (error is null)
@@ -176,24 +185,5 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             SnackBarNotificacion.IsActive = false;
             DialogHost.IsOpen = true;
         }
-        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
-        {
-            if (!e.NewValue)
-            {
-                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
-                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
-            }
-        }
-        ////funcion limpiar drawner
-        //private void limpiarDrawner()
-        //{
-        //    DrawerHost.IsBottomDrawerOpen = false;
-        //    BtnConfirmarDrawner.Click -= Agregar_Click;
-        //    BtnConfirmarDrawner.Click -= Actualizar_Click;
-        //    BtnConfirmarDrawner.Click -= Eliminar_Click;
-        //    BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
-        //    BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
-        //}
-
     }
 }

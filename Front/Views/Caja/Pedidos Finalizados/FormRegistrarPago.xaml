@@ -109,13 +109,14 @@
                     Visibility="Visible" />
                 <TextBlock
                     x:Name="lblPagoError"
-                    Grid.Row="4"
-                    Margin="15,0,15,0"
+                    Grid.Row="7"
+                    Margin="176,17,94,8"
                     FontSize="10"
                     Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Visible" />
+                    Visibility="Hidden" Grid.ColumnSpan="2" 
+                    Text="Los montos deben coincidir"/>
                 <ComboBox
                     x:Name="CbMetodoPago"
                     Grid.Row="3"
@@ -350,6 +351,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
+                            Name="LblMontoActual"
                             Height="14"
                             Margin="0,0,3,0"
                             VerticalAlignment="Center"
@@ -385,6 +387,7 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
+                            Name="LblMontoTotal"
                             Width="80"
                             Height="14"
                             Margin="0,0,0,0"

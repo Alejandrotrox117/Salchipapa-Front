@@ -107,6 +107,8 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         public void LimpiarForm()
         {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#00695c");
 
             CbMetodoPago.Text = "";
             TxtCiCliente.Text = "";
@@ -115,18 +117,14 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             LblErrorNombreCliente.Text = "";
             payments.Clear();
             Selecteds.Clear();
+            LblMontoActual.Foreground = color;
+            LblMontoTotal.Foreground = color;
         }
-
-
-
-
         private void BtnEliminarPagoList_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
             payments.Remove(element.DataContext as Payments);
             cargarPrecio();
-            
-
         }
         public void MostrarErrores(Error errores)
         {
@@ -141,6 +139,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
                         lblNombreError.Text = error.error;
                         lblNombreError.Visibility = Visibility.Visible;
                         TxtCiCliente.BorderBrush = color;
+                        break;
+                    case "total":
+                        lblPagoError.Visibility = Visibility.Visible;
+                        LblMontoActual.Foreground = color;
+                        LblMontoTotal.Foreground = color;
                         break;
                 }
             }
