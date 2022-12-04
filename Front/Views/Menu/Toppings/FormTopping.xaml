@@ -83,13 +83,12 @@
                         x:Name="lblPrecioError"
                         Grid.Row="2"
                         Grid.Column="1"
-                        Width="90"
-                        Margin="0,0,130,0"
+                        Margin="3,0,91,57"
                         FontSize="10"
                         Foreground="#f44c58"
                         TextAlignment="Left"
                         TextWrapping="Wrap"
-                        Visibility="Visible" />
+                        Visibility="Visible" Grid.RowSpan="2" />
                     <CheckBox
                         x:Name="CheckboxTp"
                         Grid.Row="1"
@@ -101,14 +100,6 @@
                         FontSize="14"
                         FontWeight="Bold"
                         Foreground="#00695c" />
-                    <TextBlock
-                        x:Name="lblCheckboxError"
-                        Grid.Row="4"
-                        FontSize="10"
-                        Foreground="#f44c58"
-                        TextAlignment="Center"
-                        TextWrapping="Wrap"
-                        Visibility="Visible" />
                     <Button
                         x:Name="BtnImage"
                         Grid.Row="3"
@@ -119,6 +110,15 @@
                         BorderBrush="Transparent"
                         Click="BtnImage_Click"
                         Content="{materialDesign:PackIcon Kind=ContentSave}" />
+                    <TextBlock
+                        x:Name="lblImgError"
+                        Grid.Row="4"
+                        FontSize="10"
+                        Foreground="#f44c58"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"
+                        Visibility="Hidden" 
+                        Text="La imagen es requerida"/>
                     <Border
                         Grid.Row="3"
                         Grid.RowSpan="2"

@@ -40,21 +40,33 @@ namespace Front.Views.Menu.Categorias
         //funcion agregar categoria
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            string categoria = new JavaScriptSerializer().Serialize(new
+            if (!string.IsNullOrEmpty(Formulario.FileImg))
             {
-                name = Formulario.TxtNombreCategoria.Text,
-            });
-            var response = await Request.Post("categories", categoria, Formulario.FileImg, Formulario.TxtNombreCategoria.Text+".jpg");
-            string content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                limpiarDrawner();
-                abrirSnack("Se ha agredado correctamente", null);
+                string categoria = new JavaScriptSerializer().Serialize(new
+                {
+                    name = Formulario.TxtNombreCategoria.Text,
+                });
+                var response = await Request.Post("categories", categoria, Formulario.FileImg, Formulario.TxtNombreCategoria.Text+".jpg");
+                string content = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    limpiarDrawner();
+                    abrirSnack("Se ha agredado correctamente", null);
+                }
+                else
+                {
+                    DrawerHost.IsBottomDrawerOpen = false;
+                    Error error = JsonConvert.DeserializeObject<Error>(content);
+                    abrirSnack("Ha ocurrido un error", error);
+                }
             }
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Error error = JsonConvert.DeserializeObject<Error>(content);
+                Error error = new Error()
+                {
+                    message = "img"
+                };
                 abrirSnack("Ha ocurrido un error", error);
             }
 

@@ -47,32 +47,44 @@ namespace Front.Views.Menu.Productos
         //evento agregar clientes
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            List<Entities.Topping> ListaToppings = new List<Entities.Topping>();
-            foreach (Entities.Topping i in Formulario.ListToppings.Items)
+            if (!string.IsNullOrEmpty(Formulario.FileImg))
             {
-                ListaToppings.Add(i);
-            }
-            Categorie categoria = Formulario.CbCategoriaProducto.SelectedItem as Categorie;
-            string products = new JavaScriptSerializer().Serialize(new
-            {
-                name = Formulario.TxtNombreProducto.Text,
-                description = Formulario.TxtDescripcionProducto.Text,
-                price = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioProducto.Text) ? Formulario.TxtPrecioProducto.Text : "0"),
-                stock = Convert.ToInt32(!string.IsNullOrEmpty(Formulario.TxtStockProducto.Text) ? Formulario.TxtStockProducto.Text : "0"),
-                categorie = categoria is not null ? categoria._id : "",
-                toppings = ListaToppings.Select(x => x._id)
-            });
-            var response = await Request.Post("products", products, Formulario.FileImg, Formulario.TxtNombreProducto.Text + ".jpg");
-            string content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                limpiarDrawner();
-                abrirSnack("Se ha agredado correctamente", null);
+                List<Entities.Topping> ListaToppings = new List<Entities.Topping>();
+                foreach (Entities.Topping i in Formulario.ListToppings.Items)
+                {
+                    ListaToppings.Add(i);
+                }
+                Categorie categoria = Formulario.CbCategoriaProducto.SelectedItem as Categorie;
+                string products = new JavaScriptSerializer().Serialize(new
+                {
+                    name = Formulario.TxtNombreProducto.Text,
+                    description = Formulario.TxtDescripcionProducto.Text,
+                    price = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioProducto.Text) ? Formulario.TxtPrecioProducto.Text : "0"),
+                    stock = Convert.ToInt32(!string.IsNullOrEmpty(Formulario.TxtStockProducto.Text) ? Formulario.TxtStockProducto.Text : "0"),
+                    categorie = categoria is not null ? categoria._id : "",
+                    toppings = ListaToppings.Select(x => x._id)
+                });
+                var response = await Request.Post("products", products, Formulario.FileImg, Formulario.TxtNombreProducto.Text + ".jpg");
+                string content = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    limpiarDrawner();
+                    abrirSnack("Se ha agredado correctamente", null);
+                }
+                else
+                {
+                    DrawerHost.IsBottomDrawerOpen = false;
+                    Error error = JsonConvert.DeserializeObject<Error>(content);
+                    abrirSnack("Ha ocurrido un error", error);
+                }
             }
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                Error error = JsonConvert.DeserializeObject<Error>(content);
+                Error error = new Error()
+                {
+                    message = "img"
+                };
                 abrirSnack("Ha ocurrido un error", error);
             }
         }

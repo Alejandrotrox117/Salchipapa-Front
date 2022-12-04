@@ -221,19 +221,21 @@
                                 Grid.Column="1"
                                 Width="100"
                                 Margin="0,0,0,0"
-                                Background="#00695c"
+                                Background="#f44c58"
                                 BorderBrush="Transparent"
                                 Click="BtnImage_Click"
                                 Content="{materialDesign:PackIcon Kind=ContentSave}" />
                             <TextBlock
                                 x:Name="lblFotoError"
-                                Grid.Row="7"
+                                Grid.Row="6"
                                 Grid.Column="1"
-                                Margin="30,0,40,0"
+                                Margin="75,48,-5,6"
                                 FontSize="10"
                                 Foreground="#f44c58"
                                 TextWrapping="Wrap"
-                                Visibility="Hidden" />
+                                Visibility="Hidden"
+                                Text="La imagen es requerida" 
+                                Grid.RowSpan="2"/>
                             <Border
                                 Grid.Row="8"
                                 Grid.Column="1"

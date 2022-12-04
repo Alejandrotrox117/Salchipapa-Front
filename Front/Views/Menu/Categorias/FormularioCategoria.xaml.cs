@@ -36,19 +36,26 @@ namespace Front.Views.Menu.Categorias
         }
         public void MostrarErrores(Error errores)
         {
-            var bc = new BrushConverter();
-            Brush color = (Brush)bc.ConvertFrom("#f44c58");
-
-            foreach (ErrorsList error in errores.errors)
+            if(errores.message != "img")
             {
-                switch (error.property)
+                var bc = new BrushConverter();
+                Brush color = (Brush)bc.ConvertFrom("#f44c58");
+
+                foreach (ErrorsList error in errores.errors)
                 {
-                    case "name":
-                        lblNombreError.Text = error.error;
-                        lblNombreError.Visibility = Visibility.Visible;
-                        TxtNombreCategoria.BorderBrush = color;
-                        break;
+                    switch (error.property)
+                    {
+                        case "name":
+                            lblNombreError.Text = error.error;
+                            lblNombreError.Visibility = Visibility.Visible;
+                            TxtNombreCategoria.BorderBrush = color;
+                            break;
+                    }
                 }
+            } 
+            else
+            {
+                lblImgError.Visibility = Visibility.Visible;
             }
         }
 
@@ -71,6 +78,7 @@ namespace Front.Views.Menu.Categorias
                 FileImg = file.FileName;
                 img.ImageSource = new BitmapImage(new Uri(file.FileName));
                 BtnImage.Background =  (Brush) new BrushConverter().ConvertFrom("#00695c");
+                lblImgError.Visibility = Visibility.Hidden;
             }
         }
     }

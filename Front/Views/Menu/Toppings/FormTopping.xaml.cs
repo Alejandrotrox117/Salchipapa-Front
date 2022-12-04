@@ -52,26 +52,28 @@ namespace Front.Views.Menu.Toppings
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");
 
-            foreach (ErrorsList error in errores.errors)
+            if (errores.message != "img")
             {
-                switch (error.property)
+                foreach (ErrorsList error in errores.errors)
                 {
-                    case "name":
-                        lblNombreError.Text = error.error;
-                        lblNombreError.Visibility = Visibility.Visible;
-                        TxtNombreTopping.BorderBrush = color;
-                        break;
-                    case "price":
-                        lblPrecioError.Text = error.error;
-                        lblPrecioError.Visibility = Visibility.Visible;
-                        TxtPrecioTopping.BorderBrush =color;
-                        break;
-                    case "stock":
-                        lblCheckboxError.Text = error.error;
-                        lblCheckboxError.Visibility = Visibility.Visible;
-                        CheckboxTp.BorderBrush = color;
-                        break;
+                    switch (error.property)
+                    {
+                        case "name":
+                            lblNombreError.Text = error.error;
+                            lblNombreError.Visibility = Visibility.Visible;
+                            TxtNombreTopping.BorderBrush = color;
+                            break;
+                        case "price":
+                            lblPrecioError.Text = error.error;
+                            lblPrecioError.Visibility = Visibility.Visible;
+                            TxtPrecioTopping.BorderBrush =color;
+                            break;
+                    }
                 }
+            }
+            else
+            {
+                lblImgError.Visibility = Visibility.Visible;
             }
         }
 
@@ -105,7 +107,7 @@ namespace Front.Views.Menu.Toppings
                 FileImg = file.FileName;
                 img.ImageSource = new BitmapImage(new Uri(file.FileName));
                 BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
-
+                lblImgError.Visibility = Visibility.Hidden;
             }
         }
         private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)

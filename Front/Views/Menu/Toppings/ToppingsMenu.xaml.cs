@@ -37,25 +37,37 @@ namespace Front.Views.Menu
         //evento agregar clientes
         public async void Agregar_Click(object sender, RoutedEventArgs e)
         {
-            decimal precio = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : "0");
-            string topping = new JavaScriptSerializer().Serialize(new
+            if (!string.IsNullOrEmpty(Formulario.FileImg))
             {
-                name = Formulario.TxtNombreTopping.Text,
-                price = precio,
-                stock = Formulario.CheckboxTp.IsChecked
-            });
-            var response = await Request.Post("toppings", topping, Formulario.FileImg, Formulario.TxtNombreTopping.Text + ".jpg");
-            string content = await response.Content.ReadAsStringAsync();
-            if (response.IsSuccessStatusCode)
-            {
-                limpiarDrawner();
-                abrirSnack("Se ha agredado correctamente", null);
+                decimal precio = Convert.ToDecimal(!string.IsNullOrEmpty(Formulario.TxtPrecioTopping.Text) ? Formulario.TxtPrecioTopping.Text : "0");
+                string topping = new JavaScriptSerializer().Serialize(new
+                {
+                    name = Formulario.TxtNombreTopping.Text,
+                    price = precio,
+                    stock = Formulario.CheckboxTp.IsChecked
+                });
+                var response = await Request.Post("toppings", topping, Formulario.FileImg, Formulario.TxtNombreTopping.Text + ".jpg");
+                string content = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    limpiarDrawner();
+                    abrirSnack("Se ha agredado correctamente", null);
+                }
+                else
+                {
+                    DrawerHost.IsBottomDrawerOpen = false;
+                    MessageBox.Show(content);
+                    Error error = JsonConvert.DeserializeObject<Error>(content);
+                    abrirSnack("Ha ocurrido un error", error);
+                }
             }
             else
             {
                 DrawerHost.IsBottomDrawerOpen = false;
-                MessageBox.Show(content);
-                Error error = JsonConvert.DeserializeObject<Error>(content);
+                Error error = new Error()
+                {
+                    message = "img"
+                };
                 abrirSnack("Ha ocurrido un error", error);
             }
         }

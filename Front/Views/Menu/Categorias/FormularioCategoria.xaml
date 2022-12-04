@@ -49,12 +49,12 @@
                 <TextBlock
                     x:Name="lblNombreError"
                     Grid.Row="2"
-                    Margin="75,0,75,52"
+                    Margin="15,0,135,52"
                     FontSize="10"
                     Foreground="#f44c58"
                     TextAlignment="Justify"
                     TextWrapping="Wrap"
-                    Visibility="Hidden" />
+                    Visibility="Hidden"/>
                 <Button
                     x:Name="BtnImage"
                     Grid.Row="2"
@@ -76,6 +76,17 @@
                         <ImageBrush x:Name="img" />
                     </Border.Background>
                 </Border>
+                <TextBlock
+                    x:Name="lblImgError"
+                    Grid.Row="2"
+                    Margin="44,54,106,-3"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextAlignment="Justify"
+                    TextWrapping="Wrap"
+                    Visibility="Hidden"
+                    Grid.RowSpan="2"
+                    Text="La imagen es requerida"/>
             </Grid>
             <!--#endregion-->
         </StackPanel>

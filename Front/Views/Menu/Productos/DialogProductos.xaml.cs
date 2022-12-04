@@ -82,43 +82,48 @@ namespace Front.Views.Menu.Productos
             var bc = new BrushConverter();
             Brush color = (Brush)bc.ConvertFrom("#f44c58");
 
-            foreach (ErrorsList error in errores.errors)
+            if(errores.message != "img")
             {
-                switch (error.property)
+                foreach (ErrorsList error in errores.errors)
                 {
-                    case "name":
-                        lblNombreError.Text = error.error;
-                        lblNombreError.Visibility = Visibility.Visible;
-                        TxtNombreProducto.BorderBrush = color;
-                        break;
-                    case "price":
-                        lblPrecioError.Text = error.error;
-                        lblPrecioError.Visibility = Visibility.Visible;
-                        TxtPrecioProducto.BorderBrush = color;
-                        break;
-                    case "stock":
-                        lblStockError.Text = error.error;
-                        lblStockError.Visibility = Visibility.Visible;
-                        TxtStockProducto.BorderBrush = color;
-                        break;
-                    case "categorie":
-                        lblCategoriaError.Text = error.error;
-                        lblCategoriaError.Visibility = Visibility.Visible;
-                        CbCategoriaProducto.BorderBrush = color;
-                        break;
-                    case "toppings":
-                        lblToppingError.Text = error.error;
-                        lblToppingError.Visibility = Visibility.Visible;
-                        CBToppings.BorderBrush = color;
-                        break;
+                    switch (error.property)
+                    {
+                        case "name":
+                            lblNombreError.Text = error.error;
+                            lblNombreError.Visibility = Visibility.Visible;
+                            TxtNombreProducto.BorderBrush = color;
+                            break;
+                        case "price":
+                            lblPrecioError.Text = error.error;
+                            lblPrecioError.Visibility = Visibility.Visible;
+                            TxtPrecioProducto.BorderBrush = color;
+                            break;
+                        case "stock":
+                            lblStockError.Text = error.error;
+                            lblStockError.Visibility = Visibility.Visible;
+                            TxtStockProducto.BorderBrush = color;
+                            break;
+                        case "categorie":
+                            lblCategoriaError.Text = error.error;
+                            lblCategoriaError.Visibility = Visibility.Visible;
+                            CbCategoriaProducto.BorderBrush = color;
+                            break;
+                        case "toppings":
+                            lblToppingError.Text = error.error;
+                            lblToppingError.Visibility = Visibility.Visible;
+                            CBToppings.BorderBrush = color;
+                            break;
                         case "description":
-                        lblDescripError.Text = error.error;
-                        lblDescripError.Visibility = Visibility.Visible;
-                        TxtDescripcionProducto.BorderBrush = color;
-                        break;
-
-                        
+                            lblDescripError.Text = error.error;
+                            lblDescripError.Visibility = Visibility.Visible;
+                            TxtDescripcionProducto.BorderBrush = color;
+                            break;
+                    }
                 }
+            }
+            else
+            {
+                lblFotoError.Visibility = Visibility.Visible;
             }
         }
 
@@ -141,8 +146,7 @@ namespace Front.Views.Menu.Productos
                     TxtStockProducto.BorderBrush = color;
                     lblStockError.Visibility = Visibility.Hidden;
                     break;
-                
-                    case "TxtDescripcionProducto":
+                case "TxtDescripcionProducto":
                     TxtDescripcionProducto.BorderBrush = color;
                     lblDescripError.Visibility = Visibility.Hidden;
                     break;
@@ -184,14 +188,12 @@ namespace Front.Views.Menu.Productos
                 FileImg = file.FileName;
                 img.ImageSource = new BitmapImage(new Uri(file.FileName));
                 BtnImage.Background = (Brush)new BrushConverter().ConvertFrom("#00695c");
+                lblFotoError.Visibility = Visibility.Hidden;
             }
         }
         private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
         {
-
             Validations.TextBox_ValidateNum(sender, e);
-
-
         }
     }
 }
