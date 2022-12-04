@@ -8,18 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Views\Caja\Batido-pie.jpg" />
-    <None Remove="Views\Insignia Brillante Logo Tienda de Etsy Ícono.png" />
-    <None Remove="Views\logo.png" />
-    <None Remove="Views\logoFondoBlanco.png" />
-    <None Remove="Views\LogoFormSession.png" />
-    <None Remove="Views\Menu\Batido-pie.jpg" />
-    <None Remove="Views\Menu\Productos\Batido-pie.jpg" />
-    <None Remove="Views\Menu\Toppings\Batido-pie.jpg" />
-    <None Remove="Views\Pedidos\Batido-pie.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="IMG\" />
   </ItemGroup>
 
@@ -39,18 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Views\Caja\Batido-pie.jpg" />
-    <Resource Include="Views\Insignia Brillante Logo Tienda de Etsy Ícono.png" />
-    <Resource Include="Views\logo.png" />
-    <Resource Include="Views\logoFondoBlanco.png" />
-    <Resource Include="Views\LogoFormSession.png" />
-    <Resource Include="Views\Menu\Batido-pie.jpg" />
-    <Resource Include="Views\Menu\Productos\Batido-pie.jpg" />
-    <Resource Include="Views\Menu\Toppings\Batido-pie.jpg" />
-    <Resource Include="Views\Pedidos\Batido-pie.jpg" />
   </ItemGroup>
 
 </Project>

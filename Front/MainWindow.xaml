@@ -87,7 +87,7 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Margin="179,168,460,198"
-                    Source="/logoFondoBlanco.png"
+                    Source="\\localhost\IMG\logoFondoBlanco.png"
                     Stretch="Uniform" />
                 <TextBlock
                     Grid.Row="1"
@@ -189,7 +189,7 @@
                                                 Grid.Column="0"
                                                 Width="60"
                                                 Height="50"
-                                                Source="\\localhost\img\logo.png"
+                                                Source="\\localhost\IMG\logo.png"
                                                 Stretch="Fill"
                                                 StretchDirection="DownOnly" />
                                             <TextBlock
@@ -377,7 +377,7 @@
                                         Margin="4,18,0,0"
                                         IconBackground="Transparent">
                                         <materialDesign:Chip.Icon>
-                                            <Image Source="\\localhost\img\logo.png" />
+                                            <Image Source="\\localhost\IMG\logo.png" />
                                         </materialDesign:Chip.Icon>
                                         <Grid Width="111">
                                             <Grid.ColumnDefinitions>

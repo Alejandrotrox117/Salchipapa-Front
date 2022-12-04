@@ -69,7 +69,7 @@
                     Grid.Row="0"
                     Height="220"
                     Margin="55,0,55,20"
-                    Source="/Views/logoFondoBlanco.png"
+                    Source="\\localhost\IMG\logoFormSession.png"
                     Stretch="Fill" />
                 <TextBox
                     x:Name="TxtUsuario"
