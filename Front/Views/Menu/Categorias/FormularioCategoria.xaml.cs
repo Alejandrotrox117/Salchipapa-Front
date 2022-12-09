@@ -20,7 +20,6 @@ namespace Front.Views.Menu.Categorias
         }
         public void CargarForm(Categorie categorie)
         {
-            
             TxtNombreCategoria.Text = categorie.name;
             FileImg = categorie.img;
             img.ImageSource = new BitmapImage(new Uri(categorie.img));

@@ -91,7 +91,6 @@ namespace Front.Views.Menu.Toppings
                     lblPrecioError.Visibility = Visibility.Hidden;
                     TxtPrecioTopping.BorderBrush = color;
                     break;
-
             }
         }
 
@@ -110,10 +109,7 @@ namespace Front.Views.Menu.Toppings
         }
         private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
         {
-
             Validations.TextBox_ValidateNum(sender, e);
-
-
         }
 
     }

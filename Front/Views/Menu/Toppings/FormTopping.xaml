@@ -52,7 +52,7 @@
                         AcceptsReturn="True"
                         BorderBrush="#00695c"
                         BorderThickness="2"
-                        MaxLength="15"
+                        MaxLength="20"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextChanged="TextChanged" />
                     <TextBlock
@@ -89,7 +89,7 @@
                         Foreground="#f44c58"
                         TextAlignment="Left"
                         TextWrapping="Wrap"
-                        Visibility="Visible" />
+                        Visibility="Hidden" />
                     <CheckBox
                         x:Name="CheckboxTp"
                         Grid.Row="1"
@@ -108,7 +108,7 @@
                         Foreground="#f44c58"
                         TextAlignment="Center"
                         TextWrapping="Wrap"
-                        Visibility="Visible" />
+                        Visibility="Hidden" />
                     <Button
                         x:Name="BtnImage"
                         Grid.Row="3"
