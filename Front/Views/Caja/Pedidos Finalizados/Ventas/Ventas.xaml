@@ -6,25 +6,15 @@
     xmlns:local="clr-namespace:Front.Views.Caja.Pedidos_Finalizados.Ventas"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="800"
-    Height="600"
+    Width="789"
+    Height="510"
     mc:Ignorable="d">
     <Grid Background="White">
-        <ScrollViewer
-            Margin="0,0,0,0"
-            HorizontalScrollBarVisibility="Disabled"
-            VerticalScrollBarVisibility="Visible">
-            <ItemsControl
-                x:Name="CardsVentasTerminadas"
-                Width="796"
-                Height="600"
-                materialDesign:ScrollViewerAssist.CornerRectangleVisibility="Hidden"
-                Background="White"
-                Focusable="True"
-                ScrollViewer.VerticalScrollBarVisibility="Visible">
+        <ScrollViewer VerticalScrollBarVisibility="Visible">
+            <ItemsControl x:Name="CardsVentasTerminadas" Background="White">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal" />
+                        <WrapPanel />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -32,8 +22,8 @@
                         <materialDesign:Flipper
                             Width="500"
                             Height="340"
-                            Margin="150,20,0,0"
-                            IsFlipped="False">
+                            Margin="50"
+                            IsFlipped="True">
                             <materialDesign:Flipper.FrontContent>
                                 <materialDesign:Card Width="500" Height="340">
                                     <Grid>
@@ -77,9 +67,9 @@
                                             VerticalScrollBarVisibility="Hidden">
                                             <ItemsControl
                                                 Grid.Row="1"
-
                                                 Grid.Column="0"
-                                                Height="270">
+                                                Height="270"
+                                                ItemsSource="{Binding orders}">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
                                                         <WrapPanel Orientation="Horizontal" />
@@ -91,7 +81,7 @@
                                                             Width="160"
                                                             Height="254"
                                                             Background="WhiteSmoke"
-                                                            IsFlipped="False">
+                                                            IsFlipped="True">
                                                             <materialDesign:Flipper.FrontContent>
                                                                 <materialDesign:Card>
                                                                     <Grid>
@@ -117,7 +107,7 @@
                                                                             FontSize="50"
                                                                             FontStyle="Italic"
                                                                             Foreground="#00695c"
-                                                                            Text="{Binding number}"
+                                                                            Text="1"
                                                                             TextAlignment="Center" />
                                                                         <TextBlock
                                                                             Grid.Row="2"
@@ -131,18 +121,17 @@
                                                                             Height="28"
                                                                             HorizontalAlignment="Center"
                                                                             Background="#00695c"
-                                                                            Cursor="No">
+                                                                            IsHitTestVisible="False">
                                                                             <TextBlock
                                                                                 Grid.Column="1"
                                                                                 FontSize="10"
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="{Binding madeBy}" />
+                                                                                Text="Richard" />
                                                                         </materialDesign:Chip>
                                                                         <TextBlock
                                                                             Grid.Row="4"
-                                                                            Cursor="No"
                                                                             FontSize="10"
                                                                             FontWeight="Bold"
                                                                             Foreground="#00695c"
@@ -154,7 +143,8 @@
                                                                             Margin="0,-10,0,0"
                                                                             HorizontalAlignment="Center"
                                                                             VerticalAlignment="Top"
-                                                                            Background="#00695c">
+                                                                            Background="#00695c"
+                                                                            IsHitTestVisible="False">
                                                                             <TextBlock
                                                                                 Grid.Column="1"
                                                                                 Margin="0,0,0,0"
@@ -162,7 +152,7 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="{Binding attendedBy}" />
+                                                                                Text="Samuel" />
                                                                         </materialDesign:Chip>
                                                                         <Button
                                                                             x:Name="BtnVerProductos"
@@ -219,10 +209,9 @@
                                                                                     <DataTemplate>
                                                                                         <TreeViewItem
                                                                                             Width="250"
-                                                                                            materialDesign:ScrollBarAssist.ButtonsVisibility="Collapsed"
-                                                                                            Header="{Binding name}"
+                                                                                            Header="Café"
                                                                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                                                                            <ListBox IsHitTestVisible="False" ItemsSource="{Binding toppings}">
+                                                                                            <ListBox ItemsSource="{Binding toppings}">
                                                                                                 <ListBox.ItemsPanel>
                                                                                                     <ItemsPanelTemplate>
                                                                                                         <WrapPanel Orientation="Vertical" />
@@ -230,13 +219,15 @@
                                                                                                 </ListBox.ItemsPanel>
                                                                                                 <ListBox.ItemTemplate>
                                                                                                     <DataTemplate>
-                                                                                                        <TextBlock FontWeight="DemiBold" Text="{Binding name}" />
+                                                                                                        <TextBlock FontWeight="DemiBold" Text=" Grande" />
                                                                                                     </DataTemplate>
                                                                                                 </ListBox.ItemTemplate>
+                                                                                                a
                                                                                             </ListBox>
                                                                                         </TreeViewItem>
                                                                                     </DataTemplate>
                                                                                 </ListBox.ItemTemplate>
+                                                                                a
                                                                             </ListBox>
                                                                         </materialDesign:Card>
                                                                     </Grid>
@@ -245,7 +236,7 @@
                                                         </materialDesign:Flipper>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
-
+                                                a
                                             </ItemsControl>
                                         </ScrollViewer>
                                     </Grid>
@@ -323,7 +314,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="{Binding client.name}"
+                                                    Text="Manuel Aponte"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="1"
@@ -345,7 +336,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="{Binding sellerBy.name}"
+                                                    Text="Richard"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="3"
@@ -354,25 +345,35 @@
                                                     Foreground="#00695c"
                                                     Text="Metodos de pago"
                                                     TextAlignment="Center" />
-                                                <StackPanel Grid.Row="4" Grid.Column="0">
-                                                    <ItemsControl ItemsSource="{Binding payments}">
-                                                        <ItemsControl.ItemsPanel>
+                                                <StackPanel
+                                                    Grid.Row="4"
+                                                    Grid.Column="0"
+                                                    Width="250"
+                                                    Height="150">
+                                                    <ListBox
+                                                        Width="250"
+                                                        Height="150"
+                                                        ItemsSource="{Binding payments}"
+                                                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                                        <ListBox.ItemsPanel>
                                                             <ItemsPanelTemplate>
-                                                                <WrapPanel />
+                                                                <WrapPanel Orientation="Vertical" />
                                                             </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                        <ItemsControl.ItemTemplate>
+                                                        </ListBox.ItemsPanel>
+                                                        <ListBox.ItemTemplate>
                                                             <DataTemplate>
                                                                 <materialDesign:Chip
                                                                     Margin="10,20,0,0"
                                                                     Background="#00695c"
                                                                     FontStyle="Italic"
                                                                     Foreground="White">
-                                                                    <TextBlock Text="{Binding payment.name}" />
+                                                                    <TextBlock Text="Efectivo dolares" />
                                                                 </materialDesign:Chip>
                                                             </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                    </ItemsControl>
+                                                        </ListBox.ItemTemplate>
+a
+                                                    </ListBox>
                                                 </StackPanel>
                                                 <TextBlock
                                                     Grid.Row="3"
@@ -397,29 +398,8 @@
                                                     FontSize="15"
                                                     FontWeight="DemiBold"
                                                     Foreground="#00695c"
-                                                    Text="12"
+                                                    Text="3"
                                                     TextAlignment="Center" />
-                                            </Grid>
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="3" Margin="0,0,0,20">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <Button
-                                                    Width="50"
-                                                    Background="#FFC107"
-                                                    BorderBrush="Transparent">
-                                                    <materialDesign:PackIcon Kind="Pencil" />
-                                                </Button>
-                                                <Button
-                                                    Grid.Column="1"
-                                                    Width="50"
-                                                    Background="#f44c58"
-                                                    BorderBrush="Transparent">
-                                                    <materialDesign:PackIcon Kind="Trash" />
-                                                </Button>
                                             </Grid>
                                         </StackPanel>
                                     </Grid>
@@ -428,7 +408,7 @@
                         </materialDesign:Flipper>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
+                a
             </ItemsControl>
         </ScrollViewer>
     </Grid>

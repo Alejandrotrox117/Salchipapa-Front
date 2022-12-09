@@ -52,7 +52,7 @@
                         AcceptsReturn="True"
                         BorderBrush="#00695c"
                         BorderThickness="2"
-                        MaxLength="15"
+                        MaxLength="20"
                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
                         TextChanged="TextChanged" />
                     <TextBlock

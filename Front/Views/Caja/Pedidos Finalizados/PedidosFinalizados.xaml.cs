@@ -156,6 +156,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         //funcion abrir notificacion
         private void abrirSnack(string mensaje, Error error)
         {
+            DrawerHost.IsBottomDrawerOpen = false;
             var bc = new BrushConverter();
             DrawerHost.IsBottomDrawerOpen = false;
             TxtSnackbar.Text = mensaje;

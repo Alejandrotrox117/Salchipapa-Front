@@ -8,18 +8,16 @@ namespace Entities
 {
     public class Payments
     {
-        
-
         public Payment payment { get; set; }
         public float count { get; set; }
     }
-  
     public class Sales
     {
+        public float total { get; set; }  
+        public int number { get; set; }
         public List<Orders> orders { get; set; }
         public Employe sellerBy { get; set; }
         public Client client { get; set; }
-        List<Payments> payments { get; set; }
-
+        public List<Payments> payments { get; set; }
     }
 }

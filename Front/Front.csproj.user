@@ -62,6 +62,9 @@
     <Compile Update="Views\Pedidos\Pedidos.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UserControl1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Adminisracion\Bitacora\bitacora.xaml">
@@ -125,6 +128,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Style\Colors.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControl1.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

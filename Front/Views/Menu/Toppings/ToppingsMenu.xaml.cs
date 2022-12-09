@@ -87,6 +87,7 @@ namespace Front.Views.Menu
             {
                 limpiarDrawner();
                 abrirSnack("Se ha actualizado correctamente", null);
+
             }
             else
             {

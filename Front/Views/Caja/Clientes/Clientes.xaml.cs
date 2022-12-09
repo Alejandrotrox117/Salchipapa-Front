@@ -116,7 +116,6 @@ namespace Front.Views.Caja.Clientes
             Client client = element.DataContext as Client;
             id = client._id;
             Formulario.CargarForm(client);
-
             Formulario.TxtTituloDialg.Text = "Actualizar Cliente";
             TxtTituloDrawer.Text = "¿Desea actualizar el cliente?";
             DialogHost.IsOpen = true;

@@ -27,10 +27,9 @@ namespace Front.Views.Menu.Productos
         public DialogProductos()
         {
             InitializeComponent();
-            CargarCombobox();
         }
 
-        public void CargarForm(product products)
+        public void CargarForm(Product products)
         {
             TxtNombreProducto.Text = products.name;
             TxtPrecioProducto.Text = products.price.ToString();

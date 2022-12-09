@@ -111,6 +111,7 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
+                                <!--#region Boton Aceptar dentro del formulario de clientes-->
                                 <Button
                                     x:Name="BtnAceptarDialog"
                                     Grid.Column="0"
@@ -121,7 +122,8 @@
                                     Content="Aceptar"
                                     Foreground="#00695c"
                                     IsDefault="False" />
-
+                                <!--#endregion-->
+                                <!--#region Btn Cerrar dentro de formulario clientes-->
                                 <Button
                                     x:Name="BtnCerrarForm"
                                     Grid.Column="1"
@@ -143,7 +145,6 @@
                         Grid.ColumnSpan="5"
                         Height="50"
                         Background="#00695c"
-                        Effect="{DynamicResource MaterialDesignShadowDepth5}"
                         Mode="Custom">
                         <TextBlock
                             Margin="16"

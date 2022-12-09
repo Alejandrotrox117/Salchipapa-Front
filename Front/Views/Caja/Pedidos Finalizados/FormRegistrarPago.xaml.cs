@@ -91,10 +91,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         }
         public void cargarPrecio (){
             float total = 0;
-            foreach (Payments i in this.payments)
-            {
-               total+=i.payment.money == "BS" ? i.count / float.Parse(MainWindow.dolar) : i.count;
-            }
+           
+                foreach (Payments i in this.payments)
+                {
+                   total+=i.payment.money == "BS" ? i.count / float.Parse(MainWindow.dolar) : i.count;
+                }        
             txtMontoTotal.Text = Convert.ToString(total);
         }
         public void Limpiar()
@@ -162,11 +163,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
         private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
         {
-
             Validations.TextBox_ValidateNum(sender, e);
-
-
         }
+
+
+        
 
     }
 }

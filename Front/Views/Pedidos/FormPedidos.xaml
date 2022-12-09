@@ -6,17 +6,21 @@
     xmlns:local="clr-namespace:Front.Views.Pedidos"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="800"
-    Height="400"
+    Width="600"
+    Height="580"
     mc:Ignorable="d">
-    <Grid Background="White">
-        <StackPanel Width="800" Height="400">
-            <Grid Height="400">
+    <Border
+        Width="600"
+        Height="580"
+        Background="White"
+        CornerRadius="6">
+        <StackPanel>
+            <Grid Height="580">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                    <RowDefinition Height="120" />
-                    <RowDefinition Height="120" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -24,29 +28,35 @@
                 </Grid.ColumnDefinitions>
                 <!--#region Titulo formulario-->
                 <TextBlock
+                    x:Name="TxtTituloDialg"
                     Grid.Row="0"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="#00695c"
-                    Text="Editar Pedidos"
                     TextAlignment="Center" />
                 <!--#endregion-->
                 <TextBlock
                     Grid.Row="1"
                     Grid.Column="0"
-                    Margin="91,49,58,63"
+                    Grid.ColumnSpan="2"
+                    Margin="180,22,171,90"
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="#00695c"
                     Text="Productos del pedido actual" />
                 <ListBox
+                    x:Name="ListPedidosActuales"
                     Grid.Row="1"
-                    Grid.Column="1"
-                    Width="244"
-                    Margin="24,9,0,10"
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="2"
+                    Width="240"
+                    Height="173"
+                    Margin="180,51,0,0"
                     HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    ItemsSource="{Binding Orders}"
                     ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -58,33 +68,68 @@
                             <materialDesign:Card Width="200">
                                 <Expander
                                     Width="200"
-                                    Height="50"
                                     materialDesign:ExpanderAssist.HeaderFontSize="12"
-                                    Header="Batido de oreo"
                                     IsExpanded="True">
-                                    <Expander.Content>
-                                        <StackPanel>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <CheckBox Grid.Column="0" />
-                                                <TextBlock Grid.Column="1" Text="Chispa" />
-                                            </Grid>
-                                        </StackPanel>
-                                    </Expander.Content>
+                                    <Expander.Header>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button
+                                                Name="BtnEliminarPagoList"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Width="20"
+                                                Height="20"
+                                                HorizontalAlignment="Left"
+                                                Background="Transparent"
+                                                BorderBrush="Transparent"
+                                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding name}" />
+                                            <materialDesign:PackIcon
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-19,0,0,0"
+                                                VerticalAlignment="Center"
+                                                Foreground="Black"
+                                                Kind="CloseCircle" />
+                                        </Grid>
+                                    </Expander.Header>
+                                    <ListBox x:Name="ListBoxToppingPedidoActual">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <TextBlock Grid.Column="1" Text="Chispas" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </Expander>
                             </materialDesign:Card>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+
                 </ListBox>
+                <TextBlock
+                    x:Name="LblErrorPActual"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Margin="160,88,140,223"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextWrapping="Wrap" />
                 <ComboBox
-                    Name="CbCategoria"
-                    Grid.Row="2"
+                    x:Name="CbCategoria"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Height="52"
-                    Margin="40,14,200,0"
+                    Margin="65,144,95,0"
                     VerticalAlignment="Top"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Categoria"
@@ -92,8 +137,8 @@
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
                 <Button
-                    Grid.Row="2"
-                    Margin="273,70,0,10"
+                    Grid.Row="3"
+                    Margin="255,185,0,103"
                     HorizontalAlignment="Left"
                     Background="#00695c"
                     BorderBrush="Transparent"
@@ -105,22 +150,22 @@
                         Kind="Plus" />
                 </Button>
                 <TextBlock
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
+                    Grid.Row="3"
                     Grid.ColumnSpan="2"
-                    Margin="323,126,0,101"
+                    Margin="215,117,0,188"
                     HorizontalAlignment="Left"
                     FontSize="17"
                     FontWeight="Bold"
                     Foreground="#00695c"
-                    Text="Agregar más productos" />
+                    Text="Agregar Toppings" />
                 <ListBox
-                    Grid.Row="2"
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="2"
-                    Width="228"
-                    Margin="379,24,0,98"
+                    x:Name="ListBoxToppings"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Width="235"
+                    Margin="20,159,0,23"
                     HorizontalAlignment="Left"
+                    ItemsSource="{Binding toppings}"
                     ScrollViewer.VerticalScrollBarVisibility="Visible">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -129,47 +174,59 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Expander
-                                Width="200"
-                                Height="50"
-                                materialDesign:ExpanderAssist.HeaderFontSize="12"
-                                Header="Batido de oreo"
-                                IsExpanded="True">
+                            <materialDesign:Card Width="200">
+                                <ListBox>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Vertical" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <CheckBox Grid.Column="0" />
+                                                <TextBlock Grid.Column="1" Text="{Binding name}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
 
-                                <StackPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <CheckBox Grid.Column="0" />
-                                        <TextBlock Grid.Column="1" Text="Chispas" />
-                                    </Grid>
-                                </StackPanel>
-                            </Expander>
+                                </ListBox>
+                            </materialDesign:Card>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    a
+
                 </ListBox>
                 <ComboBox
-                    x:Name="CbCategoria_Copy"
-                    Grid.Row="2"
-                    Grid.RowSpan="2"
+                    x:Name="CbProducto"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Height="52"
-                    Margin="40,99,200,0"
+                    Margin="65,235,95,0"
                     VerticalAlignment="Top"
                     materialDesign:HintAssist.Foreground="#00695c"
                     materialDesign:HintAssist.Hint="Productos"
                     BorderBrush="#00695c"
                     BorderThickness="2"
                     Style="{StaticResource MaterialDesignOutlinedComboBox}" />
-
-
-
-
-
+                <TextBlock
+                    x:Name="LblErrorCategoria"
+                    Grid.Row="3"
+                    Margin="30,201,80,110"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    x:Name="LblErrorProducto"
+                    Grid.Row="3"
+                    Margin="30,288,80,23"
+                    FontSize="10"
+                    Foreground="#f44c58"
+                    TextWrapping="Wrap" />
             </Grid>
         </StackPanel>
-    </Grid>
+    </Border>
 </UserControl>

@@ -110,7 +110,7 @@ namespace Front
         private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
         {
 
-            Validations.TextBox_ValidateNum(sender, e);
+           
 
 
         }

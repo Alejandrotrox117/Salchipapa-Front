@@ -9,10 +9,11 @@ namespace Entities
     public struct Products
     {
         public Categorie categorie { get; set; }
-        public List<product> products { get; set; }
+        public List<Product> products { get; set; }
     }
-    public class product
+    public class Product
     {
+        public Product product { get; set; }    
         public string _id { get; set; }
         public string name { get; set; }
         
@@ -23,7 +24,7 @@ namespace Entities
         public string description { get; set; }
         public int stock { get; set; }
         public DateTime updatedAt { get; set; }
-        public List<Entities.Topping> toppings { get; set; }
+        public List<Topping> toppings { get; set; }
         public string img
         {
             get

@@ -18,6 +18,9 @@ namespace Front.Views.Pedidos
     {
         private Snackbar notify;
         private SocketIO client;
+
+        public string id { get; set; }
+        private Orders select { get; set; }
         public ObservableCollection<Orders> Orders { get; set; }
         public Pedidos(ref SocketIO client, ref Snackbar notify)
         {
@@ -209,6 +212,119 @@ namespace Front.Views.Pedidos
             {
                 MostrarError("Error inesperado", true);
             }
+        }
+
+
+        
+        //funcion actualizar Pedido
+        public async void Actualizar_Click(object sender, RoutedEventArgs e)
+        {
+            string categoria = new JavaScriptSerializer().Serialize(new
+            {
+              
+            });
+
+            var response = await Request.Put("orders/" + id, categoria);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha actualizado correctamente", null);
+            }
+            else
+            {
+                DrawerHost.IsBottomDrawerOpen = false;
+                Error error = JsonConvert.DeserializeObject<Error>(content);
+                abrirSnack("Ha ocurrido un error", error);
+            }
+
+        }
+        
+        //evento click btn actualizar categoria
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            Orders order = element.DataContext as Orders;
+            select = order;
+            id = order._id;
+            Formulario.CargarForm(order);
+            Formulario.TxtTituloDialg.Text = "Editar Pedido";
+            TxtTituloDrawer.Text = "¿Desea actualizar el Pedido?";
+            DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+        }
+        private void abrirSnack(string mensaje, Error error)
+        {
+            var bc = new BrushConverter();
+            TxtSnackbar.Text = mensaje;
+            SnackBarNotificacion.IsActive = true;
+            if (error is null)
+            {
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#00695c");
+                BtnSnackbar.Click += BtnSnackbarCerrar_Click;
+            }
+            else
+            {
+                Formulario.MostrarErrores(error);
+                SnackBarNotificacion.Background = (Brush)bc.ConvertFrom("#f44c58");
+                BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //funcion limpiar drawner
+        private void limpiarDrawner()
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
+        }
+        //evento btn snack cerrar 
+        private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            Main();
+            Formulario.LimpiarForm();
+            SnackBarNotificacion.IsActive = false;
+        }
+        //evento btn snack abrir form 
+        private void BtnSnackbarAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            SnackBarNotificacion.IsActive = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento cierre snack siempre limpiar
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento click boton aceptar form
+        private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            DrawerHost.IsBottomDrawerOpen = true;
+        }
+        //evento click boton cancelar form
+        private void BtnCerrarForm_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.IsOpen = false;
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawnerAbrirForm_Click(object sender, RoutedEventArgs e)
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            DialogHost.IsOpen = true;
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
+        {
+            Formulario.LimpiarForm();
+            limpiarDrawner();
         }
     }
 }

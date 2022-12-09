@@ -8,9 +8,8 @@ namespace Entities
 {
     public class Topping
     {
-
+        public Topping  topping { get; set; }
         public string name { get; set; }
-
         public double price { get; set; }
         public bool stock { get; set; }
         public string _id { get; set; }
