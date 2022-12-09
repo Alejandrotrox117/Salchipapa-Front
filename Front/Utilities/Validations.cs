@@ -15,7 +15,7 @@ namespace Front.Utilities
         public static void TextBox_ValidateNum(object sender, KeyEventArgs e)
         {
 
-            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key==Key.OemComma || e.Key==Key.OemPeriod)
+            if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key==Key.OemComma)
                     e.Handled = false;
                 else
                     e.Handled = true;

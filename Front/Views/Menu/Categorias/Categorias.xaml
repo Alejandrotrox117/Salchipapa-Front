@@ -45,9 +45,8 @@
                 </Grid>
             </materialDesign:SnackbarMessage>
         </materialDesign:Snackbar>
-
-
-
+        <!--#endregion-->
+        <!--#region Drawer Categorias-->
         <materialDesign:DrawerHost
             x:Name="DrawerHost"
             Grid.RowSpan="6"
@@ -228,7 +227,7 @@
                                                     <materialDesign:PackIcon
                                                         Width="20"
                                                         Height="20"
-                                                        Foreground="Black"
+                                                        Foreground="White"
                                                         Kind="Pencil" />
                                                 </Button>
                                             </Grid>

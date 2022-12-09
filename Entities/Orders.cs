@@ -10,6 +10,7 @@ namespace Entities
     public class Orders
     {
         
+        public string _id { get; set; }
         public string origin { get; set; }
         public float total { get; set; }
         public List<Product> products { get; set; }

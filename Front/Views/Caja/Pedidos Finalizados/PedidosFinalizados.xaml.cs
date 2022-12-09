@@ -148,6 +148,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         //funcion abrir notificacion
         private void abrirSnack(string mensaje, Error error)
         {
+            DrawerHost.IsBottomDrawerOpen = false;
             var bc = new BrushConverter();
             TxtSnackbar.Text = mensaje;
             SnackBarNotificacion.IsActive = true;
@@ -178,11 +179,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         }
         private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
-            if (!e.NewValue)
-            {
-                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
-                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
-            }
+            //if (!e.NewValue)
+            //{
+            //    BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+            //    BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            //}
         }
        
         

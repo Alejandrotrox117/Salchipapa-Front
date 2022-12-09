@@ -36,14 +36,14 @@
                 <!--#region Titulo formulario-->
                 <TextBlock
                     x:Name="TxtTituloDialg"
-                    Text="Registrar venta"
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Margin="0,0,0,20"
                     HorizontalAlignment="Center"
                     FontSize="20"
                     FontWeight="Bold"
-                    Foreground="#00695c" />
+                    Foreground="#00695c"
+                    Text="Registrar venta" />
                 <!--#endregion-->
                 <!--#region Titulo y texbox NOMBRE-->
                 <TextBox
@@ -180,45 +180,50 @@
                     TextAlignment="Center"
                     TextWrapping="Wrap"
                     Visibility="Visible" />
-                <ScrollViewer
+                <StackPanel
                     Grid.Row="5"
-                    Grid.RowSpan="3"
                     Grid.Column="0"
                     Width="220"
-                    Height="67">
-                    <ItemsControl
-                        x:Name="ListPedidosFinalizados"
+                    Margin="10,40,10,8">
+                    <ScrollViewer
                         Grid.Row="5"
                         Grid.RowSpan="3"
                         Grid.Column="0"
                         Width="220"
-                        Height="67"
-                        Margin="0,0,0,0"
-                        VerticalAlignment="Center">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Vertical" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <materialDesign:Chip
-                                    Width="90"
-                                    Height="30"
-                                    Background="#00695c">
-                                    <TextBlock
-                                        Grid.Column="0"
-                                        FontSize="15"
-                                        FontWeight="DemiBold"
-                                        Foreground="White"
-                                        Text="{Binding number}"
-                                        TextAlignment="Center"
-                                        TextWrapping="Wrap" />
-                                </materialDesign:Chip>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                        Height="84">
+                        <ListBox
+                            x:Name="ListPedidosFinalizados"
+                            Grid.Row="5"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Width="220"
+                            Height="84"
+                            Margin="0,0,0,0">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <materialDesign:Chip
+                                        Width="90"
+                                        Height="30"
+                                        Background="#00695c">
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            FontSize="15"
+                                            FontWeight="DemiBold"
+                                            Foreground="White"
+                                            Text="{Binding number}"
+                                            TextAlignment="Center"
+                                            TextWrapping="Wrap" />
+                                    </materialDesign:Chip>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                </StackPanel>
                 <TextBlock
                     Grid.Row="5"
                     Grid.Column="1"
@@ -270,7 +275,7 @@
                                             FontStyle="Italic"
                                             FontWeight="DemiBold"
                                             Foreground="#00695c"
-                                            Text="{Binding payment}"
+                                            Text="{Binding payment.name}"
                                             TextAlignment="Center"
                                             TextWrapping="Wrap" />
                                         <TextBlock

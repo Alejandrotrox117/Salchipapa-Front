@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,36 @@ namespace Front.Views.Pedidos
         {
             InitializeComponent();
         }
+
+        public void CargarForm(Orders order)
+        {
+
+        }
+        public void LimpiarForm()
+        {
+            
+            CbCategoria.Text = "";
+            CbProducto.Text = "";    
+        }
+        public void MostrarErrores(Error errores)
+        {
+            var bc = new BrushConverter();
+            Brush color = (Brush)bc.ConvertFrom("#f44c58");
+
+            foreach (ErrorsList error in errores.errors)
+            {
+                switch (error.property)
+                {
+                    case "name":
+                        LblErrorPActual.Text = error.error;
+                        LblErrorPActual.Visibility = Visibility.Visible;
+                        CbCategoria.BorderBrush = color;
+                        break;
+                }
+            }
+        }
+
+
+
     }
 }

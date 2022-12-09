@@ -20,7 +20,7 @@ namespace Front.Views.Menu.Categorias
         }
         public void CargarForm(Categorie categorie)
         {
-            MessageBox.Show(categorie.updatedAt.ToString("DD-MM-YYYY-HH-mm-ss"));
+            
             TxtNombreCategoria.Text = categorie.name;
             FileImg = categorie.img;
             img.ImageSource = new BitmapImage(new Uri(categorie.img));

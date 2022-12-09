@@ -23,7 +23,7 @@
                             Width="500"
                             Height="340"
                             Margin="50"
-                            IsFlipped="False">
+                            IsFlipped="True">
                             <materialDesign:Flipper.FrontContent>
                                 <materialDesign:Card Width="500" Height="340">
                                     <Grid>
@@ -81,7 +81,7 @@
                                                             Width="160"
                                                             Height="254"
                                                             Background="WhiteSmoke"
-                                                            IsFlipped="False">
+                                                            IsFlipped="True">
                                                             <materialDesign:Flipper.FrontContent>
                                                                 <materialDesign:Card>
                                                                     <Grid>
@@ -107,7 +107,7 @@
                                                                             FontSize="50"
                                                                             FontStyle="Italic"
                                                                             Foreground="#00695c"
-                                                                            Text="{Binding number}"
+                                                                            Text="1"
                                                                             TextAlignment="Center" />
                                                                         <TextBlock
                                                                             Grid.Row="2"
@@ -128,7 +128,7 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="{Binding madeBy.name}" />
+                                                                                Text="Richard" />
                                                                         </materialDesign:Chip>
                                                                         <TextBlock
                                                                             Grid.Row="4"
@@ -152,7 +152,7 @@
                                                                                 FontStyle="Italic"
                                                                                 FontWeight="Bold"
                                                                                 Foreground="White"
-                                                                                Text="{Binding attendedBy.name}" />
+                                                                                Text="Samuel" />
                                                                         </materialDesign:Chip>
                                                                         <Button
                                                                             x:Name="BtnVerProductos"
@@ -209,7 +209,7 @@
                                                                                     <DataTemplate>
                                                                                         <TreeViewItem
                                                                                             Width="250"
-                                                                                            Header="{Binding product.name}"
+                                                                                            Header="Café"
                                                                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                                                             <ListBox ItemsSource="{Binding toppings}">
                                                                                                 <ListBox.ItemsPanel>
@@ -219,13 +219,15 @@
                                                                                                 </ListBox.ItemsPanel>
                                                                                                 <ListBox.ItemTemplate>
                                                                                                     <DataTemplate>
-                                                                                                        <TextBlock FontWeight="DemiBold" Text="{Binding topping.name}" />
+                                                                                                        <TextBlock FontWeight="DemiBold" Text=" Grande" />
                                                                                                     </DataTemplate>
                                                                                                 </ListBox.ItemTemplate>
+                                                                                                a
                                                                                             </ListBox>
                                                                                         </TreeViewItem>
                                                                                     </DataTemplate>
                                                                                 </ListBox.ItemTemplate>
+                                                                                a
                                                                             </ListBox>
                                                                         </materialDesign:Card>
                                                                     </Grid>
@@ -234,6 +236,7 @@
                                                         </materialDesign:Flipper>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
+                                                a
                                             </ItemsControl>
                                         </ScrollViewer>
                                     </Grid>
@@ -311,7 +314,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="{Binding client.name}"
+                                                    Text="Manuel Aponte"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="1"
@@ -333,7 +336,7 @@
                                                     FontStyle="Italic"
                                                     FontWeight="Bold"
                                                     Foreground="#00695c"
-                                                    Text="{Binding sellerBy.name}"
+                                                    Text="Richard"
                                                     TextAlignment="Center" />
                                                 <TextBlock
                                                     Grid.Row="3"
@@ -365,11 +368,11 @@
                                                                     Background="#00695c"
                                                                     FontStyle="Italic"
                                                                     Foreground="White">
-                                                                    <TextBlock Text="{Binding payment.name}" />
+                                                                    <TextBlock Text="Efectivo dolares" />
                                                                 </materialDesign:Chip>
                                                             </DataTemplate>
                                                         </ListBox.ItemTemplate>
-
+a
                                                     </ListBox>
                                                 </StackPanel>
                                                 <TextBlock
@@ -395,7 +398,7 @@
                                                     FontSize="15"
                                                     FontWeight="DemiBold"
                                                     Foreground="#00695c"
-                                                    Text="{Binding total}"
+                                                    Text="3"
                                                     TextAlignment="Center" />
                                             </Grid>
                                         </StackPanel>
@@ -405,7 +408,7 @@
                         </materialDesign:Flipper>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
+                a
             </ItemsControl>
         </ScrollViewer>
     </Grid>
