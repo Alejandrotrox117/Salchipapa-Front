@@ -38,8 +38,6 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
             {
                 MessageBox.Show("Error");
             }
-        }
-
-        
+        }        
     }
 }

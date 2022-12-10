@@ -28,11 +28,13 @@ namespace Front.Views.Pedidos
 
         public void CargarForm(Orders order)
         {
-
+            ListPedidosActuales.ItemsSource = order.products;
+            
         }
         public void LimpiarForm()
         {
-            
+            ListBoxToppings.Items.Clear();
+            ListPedidosActuales.Items.Clear();
             CbCategoria.Text = "";
             CbProducto.Text = "";    
         }
@@ -53,8 +55,5 @@ namespace Front.Views.Pedidos
                 }
             }
         }
-
-
-
     }
 }
