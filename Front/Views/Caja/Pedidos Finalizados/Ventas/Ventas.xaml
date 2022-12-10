@@ -2,9 +2,9 @@
     x:Class="Front.Views.Caja.Pedidos_Finalizados.Ventas.Ventas"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:PageFinalizados="clr-namespace:Front.Views.Caja.Pedidos_Finalizados"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Front.Views.Caja.Pedidos_Finalizados.Ventas"
-    xmlns:PageFinalizados="clr-namespace:Front.Views.Caja.Pedidos_Finalizados"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
@@ -527,18 +527,32 @@
                                                 </Grid>
                                             </StackPanel>
                                             <Button
-                                                Click="BtnActualizar_Click"
                                                 Grid.Row="5"
                                                 Grid.Column="0"
                                                 Width="50"
                                                 Margin="400,0,0,20"
                                                 Background="#f44c58"
-                                                BorderBrush="Transparent">
+                                                BorderBrush="Transparent"
+                                                Click="BtnActualizar_Click">
                                                 <materialDesign:PackIcon
                                                     Width="20"
                                                     Height="25"
                                                     Foreground="White"
                                                     Kind="Trash" />
+                                            </Button>
+                                            <Button
+                                                Grid.Row="5"
+                                                Grid.Column="0"
+                                                Width="50"
+                                                Margin="290,0,0,20"
+                                                Background="#ffc107"
+                                                BorderBrush="Transparent"
+                                                Click="BtnActualizar_Click">
+                                                <materialDesign:PackIcon
+                                                    Width="20"
+                                                    Height="25"
+                                                    Foreground="White"
+                                                    Kind="Pencil" />
                                             </Button>
                                         </Grid>
                                     </materialDesign:Card>
