@@ -15,12 +15,12 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
     /// </summary>
     public partial class Ventas : UserControl
     {
-        public string _id { get; set; }
+        public Sales sale { get; set; }
         public Ventas()
         {
             InitializeComponent();
         }
-        private async void Agregar_Click(object sender, RoutedEventArgs e)
+        private async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
             float total = float.Parse(Formulario.TxtMontoActual.Text);
             float montoTotal = float.Parse(Formulario.txtMontoTotal.Text);
@@ -31,25 +31,10 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
                 List<Payments> payments = new List<Payments>(Formulario.payments);
                 string pago = new JavaScriptSerializer().Serialize(new
                 {
-                    orders = orders.Select(order => new
-                    {
-                        number = order.number,
-                        products = order.products.Select(product => new
-                        {
-                            product = product._id,
-                            price = product.price,
-                            toppings = product.toppings.Select(topping => new
-                            {
-                                topping = topping._id,
-                                price = topping.price
-                            })
-                        }),
-                        attendedBy = order.attendedBy._id,
-                        madeBy = order.madeBy._id
-                    }),
+                    orders = sale.orders,
                     client = Formulario.client._id,
-                    sellerBy = MainWindow.session._id,
-                    total = total,
+                    sellerBy = sale.sellerBy._id,
+                    total = sale.total,
                     payments = payments.Select(payment => new
                     {
                         payment = payment.payment._id,
@@ -57,10 +42,11 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
                     })
                 });
 
-                var response = await Request.Post("sales", pago);
+                var response = await Request.Put("sales/"+sale._id, pago);
                 string content = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
+                    limpiarDrawner();
                     abrirSnack("Se ha agredado correctamente", null);
                 }
                 else
@@ -79,6 +65,21 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
                         new ErrorsList { property = "total"}
                     }
                 };
+                abrirSnack("Ha ocurrido un error", error);
+            }
+        }
+        private async void Eliminar_Click(object sender, RoutedEventArgs e)
+        {
+            var response = await Request.Delete("sales/"+sale._id);
+            string content = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                limpiarDrawner();
+                abrirSnack("Se ha eliminado correctamente", null);
+            }
+            else
+            {
+                Error error = JsonConvert.DeserializeObject<Error>(content);
                 abrirSnack("Ha ocurrido un error", error);
             }
         }
@@ -101,10 +102,24 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
         {
             FrameworkElement element = e.Source as FrameworkElement;
             Sales sale = element.DataContext as Sales;
-            this._id = sale._id;
+            sale = sale;
             Formulario.CargarForm(sale);
 
+            TxtTituloDrawer.Text = "¿Desea actualizar la venta?";
             DialogHost.IsOpen = true;
+            BtnConfirmarDrawner.Click += Actualizar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawnerAbrirForm_Click;
+        }
+        private void BtnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            FrameworkElement element = e.Source as FrameworkElement;
+            Sales sale = element.DataContext as Sales;
+            sale = sale;
+
+            TxtTituloDrawer.Text = "¿Desea eliminar la venta?";
+            DrawerHost.IsBottomDrawerOpen = true;
+            BtnConfirmarDrawner.Click += Eliminar_Click;
+            BtnCancelarDrawner.Click += BtnCancelarDrawner_Click;
         }
         //evento click boton aceptar form
         private void BtnAceptarDialog_Click(object sender, RoutedEventArgs e)
@@ -144,6 +159,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
                 BtnSnackbar.Click += BtnSnackbarAbrirForm_Click;
             }
         }
+
         //evento btn snack cerrar 
         private void BtnSnackbarCerrar_Click(object sender, RoutedEventArgs e)
         {
@@ -157,6 +173,29 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
             SnackBarNotificacion.IsActive = false;
             DialogHost.IsOpen = true;
         }
-
+        //funcion limpiar drawner
+        private void limpiarDrawner()
+        {
+            DrawerHost.IsBottomDrawerOpen = false;
+            BtnConfirmarDrawner.Click -= Actualizar_Click;
+            BtnConfirmarDrawner.Click -= Eliminar_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawnerAbrirForm_Click;
+            BtnCancelarDrawner.Click -= BtnCancelarDrawner_Click;
+        }
+        //evento cierre snack siempre limpiar
+        private void SnackBarNotificacion_IsActiveChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            if (!e.NewValue)
+            {
+                BtnSnackbar.Click -= BtnSnackbarCerrar_Click;
+                BtnSnackbar.Click -= BtnSnackbarAbrirForm_Click;
+            }
+        }
+        //evento click boton cancelar drawner para abrir form
+        private void BtnCancelarDrawner_Click(object sender, RoutedEventArgs e)
+        {
+            Formulario.LimpiarForm();
+            limpiarDrawner();
+        }
     }
 }

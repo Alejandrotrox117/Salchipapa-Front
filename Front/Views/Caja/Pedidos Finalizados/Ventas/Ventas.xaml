@@ -14,7 +14,8 @@
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"
-            IsActive="False">
+            IsActive="False"
+            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
             <materialDesign:SnackbarMessage>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -123,6 +124,7 @@
                                 Background="Transparent"
                                 BorderBrush="#00695c"
                                 Content="Aceptar"
+                                Click="BtnAceptarDialog_Click"
                                 Foreground="#00695c"
                                 Visibility="Visible" />
                             <Button
@@ -132,6 +134,7 @@
                                 Background="Transparent"
                                 BorderBrush="#00695c"
                                 Content="Cancelar"
+                                Click="BtnCerrarForm_Click"
                                 Foreground="#00695c" />
                         </Grid>
                     </StackPanel>
