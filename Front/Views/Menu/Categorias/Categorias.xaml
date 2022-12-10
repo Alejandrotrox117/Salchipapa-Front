@@ -15,7 +15,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--#region DRAWERHOST CATEGORIAS-->
-
         <materialDesign:Snackbar
             x:Name="SnackBarNotificacion"
             Panel.ZIndex="5"

@@ -114,7 +114,6 @@
                             </materialDesign:Card>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
                 </ListBox>
                 <TextBlock
                     x:Name="LblErrorPActual"

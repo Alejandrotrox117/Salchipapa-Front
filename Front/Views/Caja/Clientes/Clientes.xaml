@@ -132,7 +132,7 @@
                                     BorderBrush="#f44c58"
                                     Click="BtnCerrarForm_Click"
                                     Content="Cancelar"
-                                    Foreground="#00695c"
+                                    Foreground="#f44c58"
                                     IsCancel="True" />
                             </Grid>
                         </StackPanel>
