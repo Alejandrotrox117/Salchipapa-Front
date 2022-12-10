@@ -112,9 +112,7 @@
                         BorderThickness="2"
                         Click="BtnAceptar_Click"
                         Content="Aceptar"
-                        Foreground="#00695c"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                        Foreground="#00695c"/>
                     <Button
                         x:Name="BtnCerrarForm"
                         Grid.Row="1"
@@ -125,9 +123,7 @@
                         BorderThickness="2"
                         Click="BtnCerrarForm_Click"
                         Content="Cerrar"
-                        Foreground="#f44c58"
-                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
-                        ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
+                        Foreground="#f44c58"/>
                 </Grid>
             </Grid>
         </materialDesign:DialogHost>
