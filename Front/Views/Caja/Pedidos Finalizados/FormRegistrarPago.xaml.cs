@@ -28,19 +28,18 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         public  Client client { get; set; }
         public ObservableCollection <Payments> payments { get; set; }
         public ObservableCollection <Orders> Selecteds { get; set; }
-        public static float Total { get; set; }
         public FormRegistrarPago()
         {
             InitializeComponent();
             Selecteds = new ObservableCollection<Orders>();
             payments = new ObservableCollection<Payments>();
-            ListPagos.ItemsSource = payments;
         }
 
 
         public async void CargarLista()
         {
             ListPedidosFinalizados.ItemsSource = Selecteds;
+            float Total = 0;
             foreach (Orders i in Selecteds)
             {
                 Total += i.total;
@@ -89,23 +88,35 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             cargarPrecio();
             Limpiar();
         }
-        public void cargarPrecio (){
+        public void cargarPrecio ()
+        {
+            ListPagos.ItemsSource = payments;
             float total = 0;
-           
-                foreach (Payments i in this.payments)
-                {
-                   total+=i.payment.money == "BS" ? i.count / float.Parse(MainWindow.dolar) : i.count;
-                }        
+            foreach (Payments i in this.payments)
+            {
+                total+=i.payment.money == "BS" ? i.count / float.Parse(MainWindow.dolar) : i.count;
+            }
             txtMontoTotal.Text = Convert.ToString(total);
         }
         public void Limpiar()
         {
-           
             TxtMonto.Clear();
             CbMetodoPago.Text=" ";
         }
 
-
+        public void CargarForm(Sales sale)
+        {
+            TxtNombreCliente.Text = sale.client.name + " " + sale.client.surname;
+            TxtNombreCliente.Visibility = Visibility.Visible;
+            LblErrorNombreCliente.Visibility = Visibility.Hidden;
+            this.client = sale.client;
+            this.Selecteds = new ObservableCollection<Orders>(sale.orders);
+            CargarLista();
+            TxtMontoActual.Text = sale.total.ToString();
+            this.payments = new ObservableCollection<Payments>(sale.payments);
+            cargarPrecio();
+            
+        }
         public void LimpiarForm()
         {
             var bc = new BrushConverter();
@@ -113,9 +124,12 @@ namespace Front.Views.Caja.Pedidos_Finalizados
 
             CbMetodoPago.Text = "";
             TxtCiCliente.Text = "";
-            TxtMonto.Text = " ";
+            TxtMonto.Text = "";
             TxtNombreCliente.Text = "";
-            LblErrorNombreCliente.Text = "";
+            txtMontoTotal.Text = "0";
+            TxtMontoActual.Text = "0";
+            LblErrorNombreCliente.Visibility = Visibility.Hidden;
+            lblPagoError.Visibility = Visibility.Hidden;
             payments.Clear();
             Selecteds.Clear();
             LblMontoActual.Foreground = color;

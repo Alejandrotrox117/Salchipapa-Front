@@ -15,6 +15,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
     /// </summary>
     public partial class Ventas : UserControl
     {
+        public string _id { get; set; }
         public Ventas()
         {
             InitializeComponent();
@@ -96,9 +97,13 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
                 MessageBox.Show("Error");
             }
         }
-        private void BtnAgregar_Click(object sender, RoutedEventArgs e)
+        private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
-            //Formulario.CargarLista(sele);
+            FrameworkElement element = e.Source as FrameworkElement;
+            Sales sale = element.DataContext as Sales;
+            this._id = sale._id;
+            Formulario.CargarForm(sale);
+
             DialogHost.IsOpen = true;
         }
         //evento click boton aceptar form

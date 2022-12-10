@@ -105,8 +105,7 @@
                         <materialDesign:Snackbar
                             x:Name="SnackBarNotificacion"
                             Panel.ZIndex="5"
-                            IsActive="False"
-                            IsActiveChanged="SnackBarNotificacion_IsActiveChanged">
+                            IsActive="False">
                             <materialDesign:SnackbarMessage>
                                 <Grid>
                                     <Grid.ColumnDefinitions>

@@ -106,6 +106,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+                    <PageFinalizados:FormRegistrarPago x:Name="Formulario" />
                     <StackPanel
                         Grid.Row="4"
                         Margin="0,-30,0,40"
@@ -207,7 +208,7 @@
                                                                 Width="160"
                                                                 Height="254"
                                                                 Background="WhiteSmoke"
-                                                                IsFlipped="True">
+                                                                IsFlipped="False">
                                                                 <materialDesign:Flipper.FrontContent>
                                                                     <materialDesign:Card>
                                                                         <Grid>
@@ -254,7 +255,7 @@
                                                                                     FontStyle="Italic"
                                                                                     FontWeight="Bold"
                                                                                     Foreground="White"
-                                                                                    Text="{Binding madeBy}" />
+                                                                                    Text="{Binding madeBy.name}" />
                                                                             </materialDesign:Chip>
                                                                             <TextBlock
                                                                                 Grid.Row="4"
@@ -278,7 +279,7 @@
                                                                                     FontStyle="Italic"
                                                                                     FontWeight="Bold"
                                                                                     Foreground="White"
-                                                                                    Text="{Binding attendedBy}" />
+                                                                                    Text="{Binding attendedBy.name}" />
                                                                             </materialDesign:Chip>
                                                                             <Button
                                                                                 x:Name="BtnVerProductos"
@@ -526,6 +527,7 @@
                                                 </Grid>
                                             </StackPanel>
                                             <Button
+                                                Click="BtnActualizar_Click"
                                                 Grid.Row="5"
                                                 Grid.Column="0"
                                                 Width="50"

@@ -16,13 +16,17 @@ namespace Front.Views.Caja.Pedidos_Finalizados
     public partial class PedidosFinalizados : UserControl
     {
         public ObservableCollection<Orders> Orders { get; set; }
+        public List<Orders> select { get; set; }
         public PedidosFinalizados()
         {
             InitializeComponent();
+            select = new List<Orders>();
+
         }
         //funcion obtener Pedidos
         public async void Get()
         {
+            select.Clear();
             string response = await Request.Get("orders?filter=true");
             Orders = JsonConvert.DeserializeObject<ObservableCollection<Orders>>(response);
             if (Orders != null)
@@ -121,17 +125,18 @@ namespace Front.Views.Caja.Pedidos_Finalizados
             FrameworkElement element = e.Source as FrameworkElement;
             Orders order = element.DataContext as Orders;
             if (check.IsChecked.Value) {
-                
-                Formulario.Selecteds.Add(order);
+
+                select.Add(order);
             }
             else
             {
-                Formulario.Selecteds.Remove(order);
+                select.Remove(order);
             }
         }
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
+            Formulario.Selecteds = new ObservableCollection<Orders>(select);
             Formulario.CargarLista();
             DialogHost.IsOpen = true;
         }

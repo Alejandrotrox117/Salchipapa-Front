@@ -13,6 +13,7 @@ namespace Entities
     }
     public class Sales
     {
+        public string _id { get; set; }
         public float total { get; set; }  
         public int number { get; set; }
         public List<Orders> orders { get; set; }
