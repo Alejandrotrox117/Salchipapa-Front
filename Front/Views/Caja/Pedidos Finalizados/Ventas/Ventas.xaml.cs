@@ -27,11 +27,25 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
 
             if (total == montoTotal)
             {
-                List<Orders> orders = new List<Orders>(Formulario.Selecteds);
                 List<Payments> payments = new List<Payments>(Formulario.payments);
                 string pago = new JavaScriptSerializer().Serialize(new
                 {
-                    orders = sale.orders,
+                    orders = sale.orders.Select(order => new
+                    {
+                        number = order.number,
+                        products = order.products.Select(product => new
+                        {
+                            product = product.product._id,
+                            price = product.price,
+                            toppings = product.toppings.Select(topping => new
+                            {
+                                topping = topping.topping._id,
+                                price = topping.price
+                            })
+                        }),
+                        attendedBy = order.attendedBy._id,
+                        madeBy = order.madeBy._id
+                    }),
                     client = Formulario.client._id,
                     sellerBy = sale.sellerBy._id,
                     total = sale.total,
@@ -101,8 +115,8 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
         private void BtnActualizar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            Sales sale = element.DataContext as Sales;
-            sale = sale;
+            Sales x = element.DataContext as Sales;
+            sale = x;
             Formulario.CargarForm(sale);
 
             TxtTituloDrawer.Text = "¿Desea actualizar la venta?";
@@ -113,8 +127,8 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
         private void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             FrameworkElement element = e.Source as FrameworkElement;
-            Sales sale = element.DataContext as Sales;
-            sale = sale;
+            Sales x = element.DataContext as Sales;
+            sale = x;
 
             TxtTituloDrawer.Text = "¿Desea eliminar la venta?";
             DrawerHost.IsBottomDrawerOpen = true;

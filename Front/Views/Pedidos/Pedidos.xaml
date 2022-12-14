@@ -313,7 +313,7 @@
                                                             Foreground="White"
                                                             IsDefault="False"
                                                             IsEnabled="True" />
-                                                        <Button
+                                                        <!--<Button
                                                             Grid.Row="3"
                                                             Width="50"
                                                             Margin="0,0,0,0"
@@ -324,7 +324,7 @@
                                                                 Width="20"
                                                                 Height="20"
                                                                 Kind="Pencil" />
-                                                        </Button>
+                                                        </Button>-->
                                                     </Grid>
                                                 </materialDesign:Card>
                                             </materialDesign:Flipper.FrontContent>
