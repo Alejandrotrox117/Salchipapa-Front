@@ -170,7 +170,8 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <TextBox
-                                        x:Name="TxtNombre"
+                                        x:Name="TxtFiltroCi"
+                                        TextChanged="TxtFiltroCi_TextChanged"
                                         Grid.Column="0"
                                         Width="190"
                                         Margin="0,3,0,0"
@@ -238,7 +239,6 @@
                         HorizontalGridLinesBrush="#00695c"
                         HorizontalScrollBarVisibility="Auto"
                         IsReadOnly="True"
-                        ItemsSource="{Binding listClientes}"
                         RowBackground="White"
                         SelectionMode="Single"
                         SelectionUnit="FullRow">

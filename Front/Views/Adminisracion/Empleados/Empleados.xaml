@@ -190,7 +190,8 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <TextBox
-                                    x:Name="TxtNombreBusqueda"
+                                    x:Name="TxtFiltroCi"
+                                    TextChanged="TxtFiltroCi_TextChanged"
                                     Grid.Column="0"
                                     Width="190"
                                     Margin="0,0,0,0"

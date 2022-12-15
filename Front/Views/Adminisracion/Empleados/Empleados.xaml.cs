@@ -24,11 +24,19 @@ namespace Front.Views.Adminisracion.Empleados
     public partial class Empleados : UserControl
     {
         private string id;
-        public List<Employe> ListEmployes;
+        public List<Employe> ListEmployes { get; set; }
         public Empleados()
         {
             InitializeComponent();
-            this.DataContext = this;
+        }
+        private void TxtFiltroCi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.ListEmployes != null)
+            {
+                TextBox txt = sender as TextBox;
+                List<Employe> ListaFiltrada = this.ListEmployes.FindAll(employe => employe.ci.Contains(txt.Text));
+                DataGrid.ItemsSource = ListaFiltrada;
+            }
         }
         //funcion obtener empleados
         public async void Get()
@@ -37,7 +45,8 @@ namespace Front.Views.Adminisracion.Empleados
             List<Employe> returnedDataClients = JsonConvert.DeserializeObject<List<Employe>>(response);
             if (returnedDataClients != null)
             {
-                DataGrid.ItemsSource = returnedDataClients;
+                this.ListEmployes = returnedDataClients;
+                DataGrid.ItemsSource = this.ListEmployes;
             }
             else
             {

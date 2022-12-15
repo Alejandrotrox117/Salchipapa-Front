@@ -13,11 +13,21 @@ namespace Front.Views.Caja.Clientes
     /// </summary>
     public partial class Clientes : UserControl
     {
-
+        public List<Client> ListaClientes { get; set; }
         private string id;
         public Clientes()
         {
             InitializeComponent();
+        }
+        //Evento tipeado en texbox de filtro
+        private void TxtFiltroCi_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.ListaClientes != null)
+            {
+                TextBox txt = sender as TextBox;
+                List<Client> ListaFiltrada = this.ListaClientes.FindAll(client => client.ci.Contains(txt.Text));
+                DataGridClientes.ItemsSource = ListaFiltrada;
+            }                  
         }
         //funcion obtener clientes
         public async void Get()
@@ -26,7 +36,8 @@ namespace Front.Views.Caja.Clientes
             List<Client> returnedDataClients = JsonConvert.DeserializeObject<List<Client>>(responseClients);
             if (returnedDataClients != null)
             {    
-                DataGridClientes.ItemsSource = returnedDataClients;
+                this.ListaClientes = returnedDataClients;
+                DataGridClientes.ItemsSource = this.ListaClientes;
             }
             else
             {
