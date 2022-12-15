@@ -17,6 +17,12 @@
     <Compile Update="Views\Caja\Pedidos Finalizados\PedidosFinalizados.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Caja\Pedidos Finalizados\Ventas\DatagridVentas.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Caja\Pedidos Finalizados\Ventas\DialogDetalleVenta.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Caja\Pedidos Finalizados\Ventas\Ventas.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -80,6 +86,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Pedidos Finalizados\PedidosFinalizados.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Pedidos Finalizados\Ventas\DatagridVentas.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Caja\Pedidos Finalizados\Ventas\DialogDetalleVenta.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Caja\Pedidos Finalizados\Ventas\Ventas.xaml">
