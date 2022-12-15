@@ -29,19 +29,53 @@
             <!--#region Contenido-->
             <materialDesign:ColorZone
                 Grid.Row="0"
+                Grid.RowSpan="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="5"
-                Height="50"
+                Height="60"
                 Background="#00695c"
-                Effect="{DynamicResource MaterialDesignShadowDepth5}"
                 Mode="Custom">
-                <TextBlock
-                    Margin="16"
-                    FontSize="15"
-                    FontStyle="Italic"
-                    FontWeight="Bold"
-                    Foreground="White"
-                    Text="Todos los Registros" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Width="150"
+                        Margin="16"
+                        HorizontalAlignment="Left"
+                        FontSize="15"
+                        FontStyle="Italic"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Text="Bítacora" />
+                    <StackPanel
+                        Grid.Column="1"
+                        Width="350"
+                        Margin="22,0,22,6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="158" />
+                                <ColumnDefinition Width="Auto" MinWidth="122" />
+                            </Grid.ColumnDefinitions>
+                            <DatePicker
+                                Width="140"
+                                materialDesign:HintAssist.HelperText="Helper text"
+                                materialDesign:HintAssist.Hint="Desde"
+                                Background="White"
+                                Foreground="#00695c"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                            <DatePicker
+                                Grid.Column="1"
+                                Width="140"
+                                materialDesign:HintAssist.Hint="Hasta"
+                                Background="White"
+                                Foreground="#00695c"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+                        </Grid>
+                    </StackPanel>
+                </Grid>
             </materialDesign:ColorZone>
             <!--#region Datagrid  BITACORA EMPLEADOS-->
             <DataGrid
@@ -50,8 +84,8 @@
                 Grid.RowSpan="4"
                 Grid.ColumnSpan="5"
                 Width="789"
-                Height="460"
-                Margin="0,5,0,0"
+                Height="455"
+                Margin="0,10,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 AutoGenerateColumns="False"

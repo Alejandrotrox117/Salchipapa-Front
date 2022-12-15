@@ -165,15 +165,59 @@
                     Grid.ColumnSpan="5"
                     Height="50"
                     Background="#00695c"
-                    Effect="{DynamicResource MaterialDesignShadowDepth5}"
                     Mode="Custom">
-                    <TextBlock
-                        Margin="16"
-                        FontSize="15"
-                        FontStyle="Italic"
-                        FontWeight="Bold"
-                        Foreground="White"
-                        Text="Todos los Empleados" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Width="150"
+                            Margin="16"
+                            HorizontalAlignment="Left"
+                            FontSize="15"
+                            FontStyle="Italic"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Text="Todos los Empleados" />
+                        <StackPanel
+                            Grid.Column="1"
+                            Width="250"
+                            HorizontalAlignment="Right">
+                            <Grid Height="45">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox
+                                    x:Name="TxtNombreBusqueda"
+                                    Grid.Column="0"
+                                    Width="190"
+                                    Margin="0,0,0,0"
+                                    Panel.ZIndex="9"
+                                    materialDesign:HintAssist.Foreground="Gray"
+                                    materialDesign:HintAssist.Hint="Nombre"
+                                    AcceptsReturn="True"
+                                    Background="White"
+                                    BorderBrush="#00695c"
+                                    BorderThickness="2"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                     />
+                                <Label
+                                    Grid.Column="1"
+                                    Width="50"
+                                    Height="40"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent">
+                                    <materialDesign:PackIcon
+                                        Width="50"
+                                        Height="30"
+                                        Foreground="White"
+                                        Kind="AccountSearch" />
+                                </Label>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                 </materialDesign:ColorZone>
                 <!--#region Datagrid EMPLEADOS-->
                 <DataGrid

@@ -9,7 +9,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="789"
-    Height="510"
+    Height="500"
     mc:Ignorable="d">
     <Grid Background="White" Loaded="Grid_Loaded">
         <materialDesign:Card>
@@ -405,7 +405,7 @@
                             </StackPanel>
                         </Button>
                     </TabItem.Header>
-                    <PageVentas:Ventas x:Name="PageVentas" />
+                    <PageVentas:DatagridVentas x:Name="PageVentas" Margin="0,0,0,-75" />
                 </TabItem>
             </TabControl>
         </materialDesign:Card>
