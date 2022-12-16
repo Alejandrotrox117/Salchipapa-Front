@@ -22,32 +22,36 @@ namespace Front.Views.Adminisracion.Bitacora
     /// </summary>
     public partial class bitacora : UserControl
     {
+        private List<Reports> ReportsList { get; set; }
         public bitacora()
         {
             InitializeComponent();
         }
-
+        //evento click filtro fecha
+        private void BtnFiltroClick_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime? InitialDate = DateInitial.SelectedDate;
+            DateTime? FinalDate = DateFinal.SelectedDate;
+            if(InitialDate != null && FinalDate != null)
+            {
+                List<Reports> ReportsFilter = ReportsList.FindAll(report => report.createdAt >= InitialDate && report.createdAt <= FinalDate);
+                DataGridBitacora.ItemsSource = ReportsFilter;
+            }
+        }
         public async void Get()
         {
             string Response = await Request.Get("reports");
             List<Reports> report = JsonConvert.DeserializeObject<List<Reports>>(Response);
-
             if (report != null)
             {
-              
-
-                DataGridBitacora.ItemsSource = report;
+                this.ReportsList = report;
+                DataGridBitacora.ItemsSource = this.ReportsList;
             }
             else
             {
                 MessageBox.Show("Error");
             }
         }
-
-
-
-
-
 
     }
 }
