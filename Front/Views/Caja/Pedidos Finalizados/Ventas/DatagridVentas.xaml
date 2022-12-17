@@ -224,7 +224,8 @@
                                         materialDesign:TextFieldAssist.UnderlineBrush="White"
                                         materialDesign:ThemeAssist.Theme="Dark"
                                         BorderBrush="White"
-                                        Foreground="White" />
+                                        Foreground="White"
+                                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
 
                                     <Button
                                         Grid.Column="3"
