@@ -1,5 +1,4 @@
-﻿
-using Nancy.Json;
+﻿using Nancy.Json;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -36,52 +35,48 @@ namespace Front
             this.Close();
         }
 
-        private async void Post()
+        private async void BtnAceptar_Click(object sender, RoutedEventArgs e)
         {
-
+            Dialog.IsOpen = true;
             string js = new JavaScriptSerializer().Serialize(new
             {
                 ci = TxtUsuario.Text,
                 password = TxtContrasena.Password
             });
-            var httpResponse = await Request.Post("session",js);
+            var httpResponse = await Request.Post("session", js);
             string result = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
                 this.session = Newtonsoft.Json.JsonConvert.DeserializeObject<Employe>(result);
-                AbrirDialog(null);
+                MostrarMensaje(null);
             }
             else
             {
-
                 Error error = Newtonsoft.Json.JsonConvert.DeserializeObject<Error>(result);
-                AbrirDialog(error);
-
+                MostrarMensaje(error);
             }
         }
-        private void AbrirDialog(Error error)
+        private void MostrarMensaje(Error error)
         {
             var bc = new BrushConverter();
-
+            Progress.Visibility = Visibility.Hidden;
+            TxtSesion.Visibility = Visibility.Visible;
+            BtnIniciarSesion.Visibility = Visibility.Visible;
             if (error is null)
             {
                 Brush color = (Brush)bc.ConvertFrom("#00695c");
                 TxtSesion.Text = "Has iniciado sesión";
-                TxtSesion.Foreground=color;
+                TxtSesion.Foreground = color;
                 BtnIniciarSesion.Foreground = color;
                 BtnIniciarSesion.Click+= IniciarSesion_Click;
-                Dialog.IsOpen = true;
-
             }
             else
             {
                 Brush color = (Brush)bc.ConvertFrom("#f44c58");
-                TxtSesion.Text=error.message;
+                TxtSesion.Text = error.message;
                 TxtSesion.Foreground = color;
                 BtnIniciarSesion.Foreground = color;
                 BtnIniciarSesion.Click += Cerrar_Click;
-                Dialog.IsOpen = true;
-
             }
 
         }
@@ -89,6 +84,9 @@ namespace Front
         private void Cerrar_Click(object sender,RoutedEventArgs e) 
         {
             Dialog.IsOpen = false;
+            Progress.Visibility = Visibility.Visible;
+            TxtSesion.Visibility = Visibility.Hidden;
+            BtnIniciarSesion.Visibility = Visibility.Hidden;
 
         }
         private void IniciarSesion_Click(object sender,RoutedEventArgs e) 
@@ -96,24 +94,10 @@ namespace Front
             Dialog.IsOpen = false;
             this.Close();
         }
-        private void BtnAceptar_Click(object sender, RoutedEventArgs e)
-        {
-            Post();
-        }
 
         private void Dialog_DialogClosing(object sender, MaterialDesignThemes.Wpf.DialogClosingEventArgs eventArgs)
         {
             BtnIniciarSesion.Click -= IniciarSesion_Click;
         }
-
-
-        private void TextBoxValidation_KeyDown(object sender, KeyEventArgs e)
-        {
-
-           
-
-
-        }
-
     }
 }

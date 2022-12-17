@@ -22,10 +22,11 @@ namespace Front.Views.Caja.Clientes
         //Evento tipeado en texbox de filtro
         private void TxtFiltroCi_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.ListaClientes != null)
+            if (this.ListaClientes != null)
             {
                 TextBox txt = sender as TextBox;
-                List<Client> ListaFiltrada = this.ListaClientes.FindAll(client => client.ci.Contains(txt.Text));
+                string filter = txt.Text.ToUpper();
+                List<Client> ListaFiltrada = this.ListaClientes.FindAll(client => client.ci.ToUpper().Contains(filter) || client.name.ToUpper().StartsWith(filter) || client.surname.ToUpper().StartsWith(filter));
                 DataGridClientes.ItemsSource = ListaFiltrada;
             }                  
         }

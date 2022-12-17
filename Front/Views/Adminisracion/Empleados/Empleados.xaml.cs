@@ -34,7 +34,8 @@ namespace Front.Views.Adminisracion.Empleados
             if (this.ListEmployes != null)
             {
                 TextBox txt = sender as TextBox;
-                List<Employe> ListaFiltrada = this.ListEmployes.FindAll(employe => employe.ci.Contains(txt.Text));
+                string filter = txt.Text.ToUpper();
+                List<Employe> ListaFiltrada = this.ListEmployes.FindAll(employe => employe.ci.ToUpper().Contains(txt.Text) || employe.name.ToUpper().StartsWith(filter) || employe.surname.ToUpper().StartsWith(filter));
                 DataGrid.ItemsSource = ListaFiltrada;
             }
         }

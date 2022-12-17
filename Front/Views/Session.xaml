@@ -34,7 +34,15 @@
                             <RowDefinition Height="30" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+                        <ProgressBar
+                            x:Name="Progress"
+                            Height="10"
+                            VerticalAlignment="Bottom"
+                            Style="{StaticResource MaterialDesignCircularProgressBar}"
+                            Value="0"
+                            IsIndeterminate="True" />
                         <TextBlock
+                            Visibility="Hidden"
                             x:Name="TxtSesion"
                             Height="20"
                             Margin="0,0,0,0"
@@ -45,6 +53,7 @@
                             TextAlignment="Center" />
                         <Button
                             x:Name="BtnIniciarSesion"
+                            Visibility="Hidden"
                             Grid.Row="1"
                             Width="80"
                             Height="24"
@@ -83,7 +92,6 @@
                     BorderThickness="2"
                     Cursor="Arrow"
                     InputScope="Number"
-                    KeyDown="TextBoxValidation_KeyDown"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}" />
                 <PasswordBox
                     x:Name="TxtContrasena"
