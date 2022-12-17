@@ -57,34 +57,52 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" MinWidth="158" />
                                 <ColumnDefinition Width="Auto" MinWidth="122" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <DatePicker
                                 Name="DateInitial"
-                                Width="140"
-                                materialDesign:HintAssist.HelperText="Helper text"
+                                Width="100"
+                                materialDesign:CalendarAssist.IsHeaderVisible="False"
+                                materialDesign:HintAssist.Foreground="White"
                                 materialDesign:HintAssist.Hint="Desde"
-                                Background="White"
-                                Foreground="#00695c"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                                materialDesign:HintAssist.HintOpacity="2"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="White"
+                                materialDesign:ThemeAssist.Theme="Dark"
+                                BorderBrush="White"
+                                Foreground="White"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                             <DatePicker
                                 Name="DateFinal"
                                 Grid.Column="1"
-                                Width="140"
+                                Width="100"
+                                materialDesign:CalendarAssist.IsHeaderVisible="False"
+                                materialDesign:HintAssist.Foreground="White"
                                 materialDesign:HintAssist.Hint="Hasta"
-                                Background="White"
-                                Foreground="#00695c"
-                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-
+                                materialDesign:HintAssist.HintOpacity="2"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                                materialDesign:TextFieldAssist.UnderlineBrush="White"
+                                materialDesign:ThemeAssist.Theme="Dark"
+                                BorderBrush="White"
+                                Foreground="White"
+                                Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                            <Button
+                                Grid.Column="3"
+                                Width="35"
+                                Height="35"
+                                Margin="20,5,0,0"
+                                Background="#099faf"
+                                BorderBrush="Transparent"
+                                Click="BtnFiltroClick_Click"
+                                Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="25"
+                                    Foreground="White"
+                                    Kind="ShoppingSearch" />
+                            </Button>
                         </Grid>
                     </StackPanel>
-                    <Button 
-                        Click="BtnFiltroClick_Click"
-                        Content="Filtro" 
-                        HorizontalAlignment="Left" 
-                        Margin="338,8,0,0" 
-                        VerticalAlignment="Top" 
-                        Grid.Column="1" 
-                        Width="57"/>
                 </Grid>
             </materialDesign:ColorZone>
             <!--#region Datagrid  BITACORA EMPLEADOS-->

@@ -17,10 +17,12 @@
             <materialDesign:Flipper.FrontContent>
                 <materialDesign:Card Width="500" Height="340">
                     <Grid>
+
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
                         <TextBlock
                             Grid.Column="0"
                             Grid.ColumnSpan="3"
@@ -28,7 +30,7 @@
                             FontSize="17"
                             FontWeight="DemiBold"
                             Foreground="#00695c"
-                            Text="Registro de ventas" />
+                            Text="Consulta de venta" />
                         <materialDesign:Chip
                             Width="100"
                             HorizontalAlignment="Right"
@@ -56,6 +58,7 @@
                             HorizontalScrollBarVisibility="Visible"
                             VerticalScrollBarVisibility="Hidden">
                             <ItemsControl
+                                x:Name="ItemControlDetalles"
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Height="270"
@@ -199,7 +202,8 @@
                                                                     <DataTemplate>
                                                                         <TreeViewItem
                                                                             Width="250"
-                                                                            Header="Café"
+                                                                            Header="{Binding name}"
+                                                                            IsExpanded="True"
                                                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                                             <ListBox ItemsSource="{Binding toppings}">
                                                                                 <ListBox.ItemsPanel>
@@ -294,6 +298,7 @@
                                     Foreground="#00695c"
                                     Text="Nombre del cliente" />
                                 <TextBlock
+                                    x:Name="TxtNombreCliente"
                                     Grid.Row="2"
                                     Height="50"
                                     Margin="0,0,0,0"
@@ -316,6 +321,7 @@
                                     Text="Cobrado por:"
                                     TextAlignment="Center" />
                                 <TextBlock
+                                    x:Name="TxtCobradoPor"
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     Width="140"
@@ -339,6 +345,7 @@
                                     Width="250"
                                     Height="150">
                                     <ListBox
+                                        x:Name="ListBoxPagos"
                                         Width="250"
                                         Height="150"
                                         ItemsSource="{Binding payments}"
@@ -380,41 +387,17 @@
                                     Text="$"
                                     TextAlignment="Center" />
                                 <TextBlock
+                                    Name="TxtTotal"
                                     Grid.Row="4"
                                     Grid.Column="1"
                                     FontSize="15"
                                     FontWeight="DemiBold"
                                     Foreground="#00695c"
-                                    Text="{Binding total}"
                                     TextAlignment="Center" />
                             </Grid>
                         </StackPanel>
-                        <Button
-                            Grid.Row="5"
-                            Grid.Column="0"
-                            Width="50"
-                            Margin="400,0,0,20"
-                            Background="#f44c58"
-                            BorderBrush="Transparent">
-                            <materialDesign:PackIcon
-                                Width="20"
-                                Height="25"
-                                Foreground="White"
-                                Kind="Trash" />
-                        </Button>
-                        <Button
-                            Grid.Row="5"
-                            Grid.Column="0"
-                            Width="50"
-                            Margin="290,0,0,20"
-                            Background="#ffc107"
-                            BorderBrush="Transparent">
-                            <materialDesign:PackIcon
-                                Width="20"
-                                Height="25"
-                                Foreground="White"
-                                Kind="Pencil" />
-                        </Button>
+
+
                     </Grid>
                 </materialDesign:Card>
             </materialDesign:Flipper.BackContent>

@@ -161,9 +161,11 @@
                 </Grid.RowDefinitions>
                 <materialDesign:ColorZone
                     Grid.Row="0"
+                    Grid.RowSpan="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="5"
-                    Height="50"
+                    Margin="0,0,0,138"
+                    VerticalAlignment="Stretch"
                     Background="#00695c"
                     Mode="Custom">
                     <Grid>
@@ -187,35 +189,32 @@
                             <Grid Height="45">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
+
                                 </Grid.ColumnDefinitions>
                                 <TextBox
                                     x:Name="TxtFiltroCi"
-                                    TextChanged="TxtFiltroCi_TextChanged"
-                                    Grid.Column="0"
-                                    Width="190"
-                                    Margin="0,0,0,0"
-                                    Panel.ZIndex="9"
-                                    materialDesign:HintAssist.Foreground="Gray"
-                                    materialDesign:HintAssist.Hint="Nombre"
-                                    AcceptsReturn="True"
-                                    Background="White"
-                                    BorderBrush="#00695c"
-                                    BorderThickness="2"
-                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                     />
-                                <Label
-                                    Grid.Column="1"
-                                    Width="50"
-                                    Height="40"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent">
-                                    <materialDesign:PackIcon
-                                        Width="50"
-                                        Height="30"
-                                        Foreground="White"
-                                        Kind="AccountSearch" />
-                                </Label>
+                                    Width="150"
+                                    Margin="50,0,0,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Foreground="White"
+                                    materialDesign:HintAssist.HintOpacity="3"
+                                    materialDesign:TextFieldAssist.UnderlineBrush="White"
+                                    BorderBrush="White"
+                                    FontSize="15"
+                                    Foreground="White"
+                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                    TextChanged="TxtFiltroCi_TextChanged">
+                                    <materialDesign:HintAssist.Hint>
+                                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                            <materialDesign:PackIcon
+                                                Width="25"
+                                                Height="25"
+                                                Kind="AccountSearch" />
+                                            <TextBlock VerticalAlignment="Center" Text="Buscar" />
+                                        </StackPanel>
+                                    </materialDesign:HintAssist.Hint>
+                                </TextBox>
+
                             </Grid>
                         </StackPanel>
                     </Grid>
@@ -224,10 +223,11 @@
                 <DataGrid
                     x:Name="DataGrid"
                     Grid.Row="1"
-                    Grid.RowSpan="3"
+                    Grid.RowSpan="4"
                     Grid.ColumnSpan="5"
                     Width="788"
-                    Height="465"
+                    Height="450"
+                    Margin="0,15,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     AutoGenerateColumns="False"
