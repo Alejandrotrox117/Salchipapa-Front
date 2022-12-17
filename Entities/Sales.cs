@@ -19,6 +19,8 @@ namespace Entities
         public List<Orders> orders { get; set; }
         public Employe sellerBy { get; set; }
         public DateTime createdAt { get; set; }
+        public string CreatedAt { get { return createdAt.ToString("d"); } }
+
         public Client client { get; set; }
         public List<Payments> payments { get; set; }
     }

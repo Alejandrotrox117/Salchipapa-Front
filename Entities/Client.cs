@@ -11,6 +11,10 @@ namespace Entities
         public string ci { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
+        public string fullname
+        {
+            get { return this.name + " " + this.surname; }
+        }
         public string address { get; set; }
         public string phone { get; set; }
     }

@@ -37,7 +37,8 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
             Console.WriteLine(response);
             if (returnedData != null)
             {
-                DataGridVentas.ItemsSource = returnedData;
+                this.ListSales = returnedData;
+                DataGridVentas.ItemsSource = this.ListSales;
             }
             else
             {
@@ -63,6 +64,10 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
             {
                 List<Sales> ReportsFilter = ListSales.FindAll(report => report.createdAt >= InitialDate && report.createdAt <= FinalDate);
                 DataGridVentas.ItemsSource = ReportsFilter;
+            }
+            else
+            {
+                DataGridVentas.ItemsSource = ListSales;
             }
         }
 

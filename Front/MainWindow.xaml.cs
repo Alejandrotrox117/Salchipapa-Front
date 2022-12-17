@@ -18,6 +18,7 @@ using System.Windows.Threading;
 using Front.Views.Caja;
 using Nancy.Json;
 using Front.Utilities;
+using System.Net.Http;
 
 namespace Front
 {
@@ -43,6 +44,24 @@ namespace Front
         {
             InitializeComponent();
         }
+        private async void GetDolar()
+        {
+            try
+            {
+                HttpClient Client = new HttpClient();
+                HttpResponseMessage response = await Client.GetAsync("https://s3.amazonaws.com/dolartoday/data.json");
+                if (response.IsSuccessStatusCode)
+                {
+                    var DolarApi = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
+                    TxtDolar.Text = DolarApi.USD.sicad2.ToString();
+                    dolar = DolarApi.USD.sicad2.ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
+        }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             IniciarSession();
@@ -56,6 +75,7 @@ namespace Front
             //session = JsonConvert.DeserializeObject<Employe>(result);
             if (session is not null)
             {
+                GetDolar();
                 TxtNombreUser.Text = session.ci;
                 BtnPedidos.IsEnabled = session.account.rol == "ADMIN" || session.account.rol == "MESERO" || session.account.rol == "COCINERO";
                 BtnMenu.IsEnabled = session.account.rol == "ADMIN" || session.account.rol == "COCINERO";

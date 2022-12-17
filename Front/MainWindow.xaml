@@ -50,6 +50,7 @@
                         TextAlignment="Center" />
 
                     <TextBox
+                        x:Name="TxtDolar"
                         Grid.Column="0"
                         Width="70"
                         Margin="180,0,0,0"

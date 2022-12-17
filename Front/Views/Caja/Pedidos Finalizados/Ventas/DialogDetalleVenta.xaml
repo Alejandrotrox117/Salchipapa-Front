@@ -121,7 +121,7 @@
                                                                 FontStyle="Italic"
                                                                 FontWeight="Bold"
                                                                 Foreground="White"
-                                                                Text="{Binding madeBy.name}" />
+                                                                Text="{Binding madeBy.fullname}" />
                                                         </materialDesign:Chip>
                                                         <TextBlock
                                                             Grid.Row="4"
@@ -145,7 +145,7 @@
                                                                 FontStyle="Italic"
                                                                 FontWeight="Bold"
                                                                 Foreground="White"
-                                                                Text="{Binding attendedBy.name}" />
+                                                                Text="{Binding attendedBy.fullname}" />
                                                         </materialDesign:Chip>
                                                         <Button
                                                             x:Name="BtnVerProductos"
@@ -202,8 +202,8 @@
                                                                     <DataTemplate>
                                                                         <TreeViewItem
                                                                             Width="250"
-                                                                            Header="{Binding name}"
-                                                                            IsExpanded="True"
+                                                                            Header="{Binding product.name}"
+                                                                            IsExpanded="False"
                                                                             ScrollViewer.VerticalScrollBarVisibility="Visible">
                                                                             <ListBox ItemsSource="{Binding toppings}">
                                                                                 <ListBox.ItemsPanel>
@@ -213,7 +213,7 @@
                                                                                 </ListBox.ItemsPanel>
                                                                                 <ListBox.ItemTemplate>
                                                                                     <DataTemplate>
-                                                                                        <TextBlock FontWeight="DemiBold" Text=" Grande" />
+                                                                                        <TextBlock FontWeight="DemiBold" Text="{Binding topping.name}" />
                                                                                     </DataTemplate>
                                                                                 </ListBox.ItemTemplate>
                                                                             </ListBox>
@@ -307,7 +307,7 @@
                                     FontStyle="Italic"
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    Text="{Binding client.name}"
+                                    Text="{Binding client.fullname}"
                                     TextAlignment="Center" />
                                 <TextBlock
                                     Grid.Row="1"
@@ -330,7 +330,7 @@
                                     FontStyle="Italic"
                                     FontWeight="Bold"
                                     Foreground="#00695c"
-                                    Text="{Binding sellerBy.name}"
+                                    Text="{Binding sellerBy.surname}"
                                     TextAlignment="Center" />
                                 <TextBlock
                                     Grid.Row="3"

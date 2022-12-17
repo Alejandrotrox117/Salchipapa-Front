@@ -233,6 +233,7 @@
                                         Height="35"
                                         Margin="20,5,0,0"
                                         Background="#099faf"
+                                        Click="BtnFiltroClick_Click"
                                         BorderBrush="Transparent"
                                         Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}">
                                         <materialDesign:PackIcon
@@ -270,12 +271,12 @@
                         SelectionUnit="FullRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn
-                                Width="*"
+                                Width="250"
                                 Binding="{Binding _id}"
                                 Header="Referencia" />
                             <DataGridTextColumn
                                 Width="*"
-                                Binding="{Binding client.name}"
+                                Binding="{Binding client.fullname}"
                                 Header="Cliente" />
                             <DataGridTextColumn
                                 x:Name="ColumnDate"

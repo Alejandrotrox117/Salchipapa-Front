@@ -25,18 +25,15 @@ namespace Front.Views.Caja.Pedidos_Finalizados.Ventas
         public DialogDetalleVenta()
         {
             InitializeComponent();
-        }
-        
+        }   
         public void CargarDialog(Sales sale)
         {
            
             ItemControlDetalles.ItemsSource = sale.orders;
-            TxtNombreCliente.Text = sale.client.name + " " + sale.client.surname;
-            TxtCobradoPor.Text = sale.sellerBy.name;
+            TxtNombreCliente.Text = sale.client.fullname;
+            TxtCobradoPor.Text = sale.sellerBy.fullname;
             ListBoxPagos.ItemsSource = sale.payments;
             TxtTotal.Text = sale.total.ToString();
         }
-        
-
     }
 }

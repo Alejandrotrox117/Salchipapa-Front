@@ -134,7 +134,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn
                         Width="*"
-                        Binding="{Binding employe.name}"
+                        Binding="{Binding employe.fullname}"
                         Header="Empleado" />
                     <DataGridTextColumn
                         Width="*"
