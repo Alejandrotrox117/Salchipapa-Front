@@ -18,6 +18,7 @@ namespace Entities
         public int number { get; set; }
         public List<Orders> orders { get; set; }
         public Employe sellerBy { get; set; }
+        public DateTime createdAt { get; set; }
         public Client client { get; set; }
         public List<Payments> payments { get; set; }
     }

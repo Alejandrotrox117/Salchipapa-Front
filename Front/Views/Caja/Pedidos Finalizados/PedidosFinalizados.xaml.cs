@@ -105,7 +105,7 @@ namespace Front.Views.Caja.Pedidos_Finalizados
         private void BtnVentas_Click(object sender, RoutedEventArgs e)
         {
             TabcontrolFinalizados.SelectedIndex = 1;
-            //PageVentas.Get();
+            PageVentas.Get();
         }
 
         private void BtnPFinalizados_Click(object sender, RoutedEventArgs e)
